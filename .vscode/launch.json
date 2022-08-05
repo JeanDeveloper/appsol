@@ -1,0 +1,44 @@
+{
+
+    "version": "0.2.0",
+
+    "configurations": [
+
+        {
+            "name": "Flutter-All",
+            "preLaunchTask": "Flutter-Launch-All",
+            "type": "dart"
+        },
+
+        {
+            "name": "Flutter-Android 1",
+            "preLaunchTask": "Flutter-Launch-Android 1",
+            "type": "dart"
+        },
+        {
+            "name": "Flutter-Android 2",
+            "preLaunchTask": "Flutter-Launch-Android 2",
+            "type": "dart"
+        },
+
+        {
+            "name": "solgis",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "solgis (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "solgis (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+
+    ]
+
+}

@@ -1,0 +1,1 @@
+export 'package:solgis/cargo/domain/providers/registrar_form_cargo.dart';

@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+
+      {
+        "label": "Flutter-Launch-All",
+
+        "dependsOn": [
+          "Flutter-Launch-Android 1",
+          "Flutter-Launch-Android 2",
+        ]
+      },
+
+      {
+        "label": "Flutter-Launch-Android 1",
+        "type": "shell",
+        "command": "flutter run -d 'SM A107M' "
+      },
+
+      {
+        "label": "Flutter-Launch-Android 2",
+        "type": "shell",
+        "command": "flutter run -d 'SM A305G' "
+      },
+
+
+      
+
+    ]
+}
