@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
 
 class LoadingPage extends StatelessWidget {
-
+  
   const LoadingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    return const Scaffold(
+    final size = MediaQuery.of(context).size;
 
-      body: Center(child:CircularProgressIndicator()),
-    
+    return Scaffold(
+
+      body: Center(
+
+        child:Column(
+
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+
+            const CircularProgressIndicator(),
+            SizedBox(height: size.height*0.02,),
+            const Text('Estamos validando los datos')
+
+          ],
+
+        )
+
+      ),
+
     );
-    
+
   }
 
 }

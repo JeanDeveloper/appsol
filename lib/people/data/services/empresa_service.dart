@@ -8,7 +8,9 @@ import 'package:solgis/people/domain/models/empresa_model.dart';
 
 class EmpresasProvider {
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/empresas/';
+
 
   final bool cargando     = false;
 
@@ -39,7 +41,7 @@ class EmpresasProvider {
     
     List<DropdownMenuItem<int>> menuItems = [];
 
-    final url = Uri.http( _url, 'empresas/', {
+    final url = Uri.http( _url, _uncodePath, {
       'nombreEmpresa': nomEmpresa,
       'codEmpresa': codEmpresa,
     } );

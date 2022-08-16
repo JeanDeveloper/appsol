@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 InputDecoration inputDecoration()=> const InputDecoration(
 
-
   contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-
 
   filled: true,
 
@@ -65,10 +63,8 @@ InputDecoration inputDecoration()=> const InputDecoration(
       color: Colors.red,
       width: 1,
     )
-  
+
   ),
-
-
 
 );
 

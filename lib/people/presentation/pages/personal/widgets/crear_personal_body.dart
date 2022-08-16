@@ -74,7 +74,7 @@ class CrearPersonalBody extends StatelessWidget {
       } ,
     
       onStepContinue: (){
-    
+
         if(personalProvider.getValorStep<=0){
 
           if(personalProvider.isValidForm(personalProvider.getValorStep)){
@@ -83,7 +83,7 @@ class CrearPersonalBody extends StatelessWidget {
             FocusScope.of(context).requestFocus(FocusNode());
 
           }
-        
+
         }else{
 
           if(personalProvider.isValidForm(personalProvider.getValorStep)){

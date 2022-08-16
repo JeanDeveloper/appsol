@@ -110,7 +110,7 @@ class _IconMenuPeople extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    return Row(
+    return Row( 
 
       mainAxisAlignment: MainAxisAlignment.center,
 
@@ -121,6 +121,7 @@ class _IconMenuPeople extends StatelessWidget {
           icon: FontAwesomeIcons.person, 
           text: 'REGISTRAR',
           onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
+
         ),
 
         SizedBox(width: size.width*0.08),

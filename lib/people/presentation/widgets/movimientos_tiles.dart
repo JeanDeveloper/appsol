@@ -78,8 +78,94 @@ class _ListTileMovimiento extends StatelessWidget {
     final globalProvider  = Provider.of<GlobalProvider>(context);
 
     return ListTile(
+
       style: ListTileStyle.list,
-      leading:Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
+      // leading:Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
+      leading: GestureDetector(
+        onTap: ()async{
+
+          await NDialog(
+            
+            dialogStyle: DialogStyle(
+              backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
+            ),
+            
+            title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
+            
+            content: Container(
+            
+              margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              width: size.width*0.05,
+              height: size.height*0.35,
+            
+              child:ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FutureBuilder(
+                  
+                  future: getImage(movimiento.pathImage),
+
+                  builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+                    if(!snapshot.hasData){
+                      return const Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/gifs/loader-gris.gif'),
+                      );
+                    }
+
+                    return Container(
+                      child: snapshot.data!,
+                    );
+
+                  }
+
+                ),
+              )
+            
+            )
+
+          ).show(context);
+
+        },
+        child: SizedBox(
+          width: size.width*0.15,
+          height: size.height*0.4,
+          child: ClipRRect(
+      
+            borderRadius: BorderRadius.circular(20),
+      
+            child: FutureBuilder(
+      
+              future: getImage(movimiento.pathImage),
+      
+              builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+                if(!snapshot.hasData){
+                  return const Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/gifs/loader-gris.gif'),
+                  );
+                }
+      
+                return Container(
+                  child: snapshot.data!,
+                );
+      
+              }
+      
+            ),
+      
+          ),
+      
+        ),
+      ),
+
+      // leading:Container(
+      //   width: size.width*0.15,
+      //   height: size.height*0.4,
+      //   color: Colors.red,
+      // ),
+
+
+
       title: Row(
 
         children: [
@@ -93,8 +179,6 @@ class _ListTileMovimiento extends StatelessWidget {
 
           Expanded(child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1))
 
-          
-
         ],
 
       ),
@@ -102,80 +186,83 @@ class _ListTileMovimiento extends StatelessWidget {
       subtitle: Row(
 
         children: [
+          // AÑADIMOS EXPANDED Y COMENTAMOS LA FOTO
+          Expanded(
+            flex: 7,
+            child: SizedBox(
           
-          SizedBox(
-
-            width: size.width*0.31,
-            
-            child: Column(
-            
-              crossAxisAlignment: CrossAxisAlignment.start,
-            
-              children: [
-            
-                AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
-                AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
-            
-              ]
-            
+              width: size.width*0.31,
+              
+              child: Column(
+              
+                crossAxisAlignment: CrossAxisAlignment.start,
+              
+                children: [
+              
+                  AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
+                  AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
+              
+                ]
+              
+              ),
+          
             ),
-
           ),
 
-          IconButton(
+          // IconButton(
 
-            icon: Icon(Icons.camera_alt_outlined, size:  size.width*0.06,),
+          //   icon: Icon(Icons.camera_alt_outlined, size:  size.width*0.06,),
 
-            onPressed: ()async{
+          //   onPressed: ()async{
 
-              await NDialog(
+          //     await NDialog(
                 
-                dialogStyle: DialogStyle(
-                  backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
-                ),
+          //       dialogStyle: DialogStyle(
+          //         backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
+          //       ),
                 
-                title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
+          //       title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
                 
-                content: Container(
+          //       content: Container(
                 
-                  margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  width: size.width*0.05,
-                  height: size.height*0.35,
+          //         margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+          //         width: size.width*0.05,
+          //         height: size.height*0.35,
                 
-                  child:ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: FutureBuilder(
+          //         child:ClipRRect(
+          //           borderRadius: BorderRadius.circular(20),
+          //           child: FutureBuilder(
                       
-                      future: getImage(movimiento.pathImage),
+          //             future: getImage(movimiento.pathImage),
 
-                      builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
-                        if(!snapshot.hasData){
-                          return const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/gifs/loader-gris.gif'),
-                          );
-                        }
+          //             builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+          //               if(!snapshot.hasData){
+          //                 return const Image(
+          //                   fit: BoxFit.cover,
+          //                   image: AssetImage('assets/gifs/loader-gris.gif'),
+          //                 );
+          //               }
 
-                        return Container(
-                          child: snapshot.data!,
-                        );
+          //               return Container(
+          //                 child: snapshot.data!,
+          //               );
 
-                      }
+          //             }
 
-                    ),
-                  )
+          //           ),
+          //         )
                 
-                )
+          //       )
 
-              ).show(context);
+          //     ).show(context);
 
-            }, 
+          //   }, 
 
-          ),
+          // ),
 
-          SizedBox(width: size.width*0.05),
+          // SizedBox(width: size.width*0.15),
 
-          AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)
+          Expanded( flex: 3, child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,))
 
         ],
 
@@ -184,23 +271,8 @@ class _ListTileMovimiento extends StatelessWidget {
       trailing: (movimiento.fechaSalida == '')
         ? GestureDetector( 
           onTap: ()async{
-            print(movimiento.fechaSalida);
-            await NDialog(
-              dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-              title: const Text("Movimiento",  style: TextStyle(color: Colors.black)),
-              content: const Text("¿Estas Seguro que quieres registar la salida?", style: TextStyle(color: Colors.black)),  
-              actions: <Widget>[
-                TextButton(
-                  child: const Text("Si"),
-                  onPressed: ()async{
 
-                    consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
-
-                  }
-                ),
-                TextButton(child: const Text("No"),onPressed: ()=> Navigator.pop(context)),
-              ],
-            ).show(context);
+            consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
           },
           child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
         )

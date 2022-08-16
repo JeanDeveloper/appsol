@@ -9,7 +9,9 @@ import 'package:solgis/people/domain/providers/crear_personal_provider.dart';
 
 class PersonalProvider{
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/personal/';
+  
   final bool cargando = false;
 
   //CONSULTA POST
@@ -18,9 +20,9 @@ class PersonalProvider{
     final personalProvider = Provider.of<CrearPersonalProvider>(context, listen: false);
     final globalProvider = Provider.of<GlobalProvider>(context, listen: false);
 
-    final url = Uri.http(_url, 'personal/');
+    final url = Uri.http(_url, _uncodePath);
 
-    final _body = jsonEncode({
+    final body = jsonEncode({
         'codigo_personal': 0,
         'codigo_tipo_personal': personalProvider.tipoPersona,
         'codigo_empresa': personalProvider.empresa,
@@ -45,7 +47,7 @@ class PersonalProvider{
       headers: {
         'Content-Type': "application/json; charset=utf-8",
       },
-      body: _body,
+      body: body,
     );
 
     final decodedData = json.decode(resp.body);
@@ -55,3 +57,4 @@ class PersonalProvider{
   }
 
 }
+

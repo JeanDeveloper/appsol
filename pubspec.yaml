@@ -35,27 +35,28 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_barcode_scanner: ^2.0.0
-  # flutter_device_identifier: ^0.0.1
+  flutter_device_identifier: ^0.0.1
   flutter_svg: ^1.1.1+1
   font_awesome_flutter: ^10.1.0
+  google_fonts: ^3.0.1
   http: ^0.13.4
   image_picker: ^0.8.5+3
   intl: ^0.17.0
   ndialog: ^4.1.1+1
   provider: ^6.0.3
+  vibration: ^1.7.5
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.9.3
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.3
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/appsol-icon.png"
   adaptive_icon_background: "assets/icon/appsol-icon.png"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -7,7 +7,8 @@ import 'package:solgis/people/domain/models/autorizante_model.dart';
 
 class AutorizanteService {
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/autorizantes/';
 
 
   //PETICION GET
@@ -37,7 +38,7 @@ class AutorizanteService {
   //OBTENCION DE LOS AUTORIZANTES
   Future<List<AutorizanteDbModel>> getAutorizantes(String codServicio, String tipoPersonal)async{
 
-    final url = Uri.http( _url, 'autorizantes/', {
+    final url = Uri.http( _url, _uncodePath, {
       'idServicio': codServicio,
       'tipoPersonal': tipoPersonal,
     });

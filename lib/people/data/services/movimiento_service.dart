@@ -8,7 +8,8 @@ import 'package:solgis/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '159.203.105.103:8000';
+  final String _url   = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/movimientos/';
   
   final bool cargando = false;
 
@@ -47,6 +48,7 @@ class MovimientosProvider extends ChangeNotifier{
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
+      
       body: jsonEncode(<String, String>{
 
         'codigo_personal' : '${consulta.codigoPersona}',
@@ -79,7 +81,7 @@ class MovimientosProvider extends ChangeNotifier{
   Future<List<MovimientoModel>> getMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
 
 
-    final url = Uri.http( _url, 'movimientos/', {
+    final url = Uri.http( _url, _uncodePath, {
       'tipoMovimiento': tipoMovimiento,
       'idServicio': idServicio,
       'tipoPersonal': tipoPersonal,
@@ -125,7 +127,7 @@ class MovimientosProvider extends ChangeNotifier{
   //REGISTRAR UN MOVIMIENTO
   Future<int> registerMovimiento(ConsultaModel consulta)async{
 
-    final url = Uri.http(_url, 'movimientos/');
+    final url = Uri.http(_url, _uncodePath);
 
     final movimientoId = await _procesarRespuestaPost(url, consulta);
 

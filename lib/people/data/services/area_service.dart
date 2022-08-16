@@ -7,7 +7,8 @@ import 'package:solgis/people/domain/models/area_model.dart';
 
 class AreaService {
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/areas/';
 
   //PETICION GET
   Future<List<AreaDbModel>> _procesarRespuestaGet( Uri url )async{
@@ -36,7 +37,7 @@ class AreaService {
   //OBTENCION DE LOS AUTORIZANTES
   Future<List<AreaDbModel>> getAreas(String codServicio, String codCliente)async{
 
-    final url = Uri.http( _url, 'areas/', {
+    final url = Uri.http( _url, _uncodePath, {
       'idServicio': codServicio,
       'codCliente': codCliente,
     });

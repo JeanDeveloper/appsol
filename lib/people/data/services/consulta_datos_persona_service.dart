@@ -6,7 +6,9 @@ import 'package:solgis/people/domain/models/consulta_validacion_model.dart';
 
 class ConsultaDatosService {
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/consulta-datos-persona/';
+
   final bool cargando = false;
 
   Future<ConsultaDatosPersonaModel> _procesarRespuestaGet(Uri url) async{
@@ -39,7 +41,7 @@ class ConsultaDatosService {
   // METODO PARA LA CONSULTA 
   Future<ConsultaDatosPersonaModel> getConsulta(String codServicio, String codPersonal, String tipoMaster)async{
     
-    final url = Uri.http(_url, 'consulta-datos-persona/',{
+    final url = Uri.http(_url, _uncodePath,{
 
       'codServicio' : codServicio,
       'codPersonal' : codPersonal,

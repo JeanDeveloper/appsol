@@ -7,7 +7,8 @@ import 'package:solgis/people/domain/models/motivo_model.dart';
 
 class MotivoService{
 
-  final String _url = '159.203.105.103:8000';
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/motivos/';
 
 
   //PETICION GET
@@ -37,7 +38,7 @@ class MotivoService{
   //OBTENCION DE LOS MOTIVOS
   Future<List<MotivoDbModel>> getMotivos(String codServicio, String idCliente)async{
 
-    final url = Uri.http( _url, 'motivos/', {
+    final url = Uri.http( _url, _uncodePath, {
       'idServicio': codServicio,
       'idCliente': idCliente,
     });

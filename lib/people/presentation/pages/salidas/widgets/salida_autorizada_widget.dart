@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -81,19 +83,27 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                         
                         onPressed: ()async{
 
-                          //inicia camara
-                          final ImagePicker _picker = ImagePicker();
-                          final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                          try {
+                            //inicia camara
+                            final ImagePicker _picker = ImagePicker();
+                            final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                          if(photo == null) {
+                            if(photo == null) {
 
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                          }else{
+                              // ignore: use_build_context_synchronously
+                              showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                            }else{
 
-                            print(photo);
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                              print(photo);
+                              // ignore: use_build_context_synchronously
+                              showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+
+                            }
+
+                          } catch (e) {
+
+                            showSnackBarAwesome(context, '¡Atencion!', ' ${e}', ContentType.failure);
+
 
                           }
 
@@ -150,17 +160,27 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                         icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
                         onPressed: ()async{
 
-                          //inicia camara
-                          final ImagePicker _picker = ImagePicker();
-                          final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                          if(photo == null) {
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                          }else{
-                            print(photo);
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                          try {
+
+                            //inicia camara
+                            final ImagePicker _picker = ImagePicker();
+                            final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+
+                            if(photo == null) {
+                              // ignore: use_build_context_synchronously
+                              showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                            }else{
+                              print(photo);
+                              // ignore: use_build_context_synchronously
+                              showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                            }
+
+                          } catch (e) {
+                            
+                            showSnackBarAwesome(context, '¡Atencion!', 'Permiso de camara necesario para tomar la foto ', ContentType.failure);
+                            print(e);
+                            
                           }
 
                         }, 
@@ -212,9 +232,6 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                       );
                     }
                   ),
-
-
-                  // const ImageSalidaWidget(urlimage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1XOvYx-KTCr6ebZCGZvDkkTeqF0_pdmj5PYO1cUYLHfFepVPPIXGtkFX9nXgupBZGzrU&usqp=CAU' ,onlyShow: true)
 
                 ],
               ),

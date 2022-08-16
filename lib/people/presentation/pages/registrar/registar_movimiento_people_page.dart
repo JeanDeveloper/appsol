@@ -88,12 +88,13 @@ class RegistrarMovimientoPage extends StatelessWidget {
 
                     
                     ],
-            
+
                   ),
-              
+
                 ),
-            
+
               ),
+
             ),
 
           ],
@@ -101,12 +102,10 @@ class RegistrarMovimientoPage extends StatelessWidget {
         ),
 
       ),
-      
 
 
-      
     );
-    
+
   }
-  
+
 }

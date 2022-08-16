@@ -8,8 +8,8 @@ import 'package:solgis/people/domain/models/cargo_model.dart';
 
 class CargosProvider {
 
-  final String _url = '159.203.105.103:8000';
-
+  final String _url = '192.168.10.58:8000';
+  final String _uncodePath = 'appsol/people/cargos/';
   final bool cargando = false;
 
 
@@ -40,7 +40,7 @@ class CargosProvider {
     
     List<DropdownMenuItem<int>> menuItems = [];
 
-    final url = Uri.http( _url, 'cargos/', {
+    final url = Uri.http( _url, _uncodePath, {
       'cargo': cargo,
       'codCliente': codCliente,
     } );
@@ -50,7 +50,7 @@ class CargosProvider {
     for (var i=0; i<cargos.length; i++) {
 
 
-      DropdownMenuItem<int> item =  DropdownMenuItem(value: int.parse(cargos[i].codigo!), child: Text(cargos[i].cargo!));
+      DropdownMenuItem<int> item = DropdownMenuItem(value: int.parse(cargos[i].codigo!), child: Text(cargos[i].cargo!));
       menuItems.add(item);
 
     }

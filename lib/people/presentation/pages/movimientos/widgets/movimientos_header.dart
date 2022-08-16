@@ -127,7 +127,7 @@ class MovimientosListButton extends StatelessWidget {
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
-                  title: 'CLIENTES',
+                  title: 'CLIENTE',
                   value: 5,
                 ),
 
@@ -135,7 +135,7 @@ class MovimientosListButton extends StatelessWidget {
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
-                  title: 'IMPORT',
+                  title: 'IMPO',
                   value: 6,
                 ),
 
@@ -143,7 +143,7 @@ class MovimientosListButton extends StatelessWidget {
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
-                  title: 'EXPORT',
+                  title: 'EXPO',
                   value: 7,
                 ),            
 

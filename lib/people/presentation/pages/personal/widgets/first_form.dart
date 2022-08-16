@@ -17,7 +17,7 @@ class FirstForm extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
 
       // color: Colors.red,
 
@@ -87,7 +87,7 @@ class _DNIRegister extends StatelessWidget {
                     
                   },
               
-                  hintText: 'INGRESE EL TIPO DE DOCUMENTO',
+                  hintText: 'SELECCIONE EL TIPO DE DOCUMENTO',
                   items: dropdownItemsTipoDocumento, 
                   onchanged:(value) =>personalProvider.tipoDocumento = value!
                 
@@ -292,8 +292,8 @@ class _ImageCardPersonalRegister extends StatelessWidget {
 List<DropdownMenuItem<int>> get dropdownItemSexo{
 
   List<DropdownMenuItem<int>> menuItems = [
-    const DropdownMenuItem(value: 1, child: Text('HOMBRE')),
-    const DropdownMenuItem(value: 2, child: Text('MUJER')),
+    const DropdownMenuItem(value: 1, child: Text('MASCULINO')),
+    const DropdownMenuItem(value: 2, child: Text('FEMENINO')),
   ];
 
   return menuItems;

@@ -18,7 +18,6 @@ class SecondForm extends StatelessWidget {
     final personalProvider = Provider.of<CrearPersonalProvider>(context);
     final globalProvider   = Provider.of<GlobalProvider>(context);
 
-
     personalProvider.initEmpresas(globalProvider.codCliente, '');
     personalProvider.initCargos('', globalProvider.codCliente);
 
@@ -127,7 +126,7 @@ class SecondForm extends StatelessWidget {
       
             children: [
       
-              Text('APELLIDO:  ', style: styleCrearPersonaltextForm()),
+              Text('A. PATERNO:  ', style: styleCrearPersonaltextForm()),
       
               Container(
       
@@ -136,7 +135,7 @@ class SecondForm extends StatelessWidget {
       
                 child: TextFormField(
                   textCapitalization: TextCapitalization.characters,
-           
+
                   cursorHeight: 20,
                   style:  TextStyle(fontSize: size.width*0.030, color: Colors.black),
                   decoration:inputDecorationDatos() ,
@@ -155,7 +154,7 @@ class SecondForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
       
-              Text('S. APELLIDO:  ', style: styleCrearPersonaltextForm()),
+              Text('A. MATERNO:  ', style: styleCrearPersonaltextForm()),
               Container(
                 width: size.width*0.57,
                 // height: size.height*0.04,
@@ -291,7 +290,7 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoPersona{
     const DropdownMenuItem(value:1, child: Text('PROPIO')),
     const DropdownMenuItem(value:2, child: Text('TERCERO')),
     const DropdownMenuItem(value:3, child:Text('VISITA')),
-    const DropdownMenuItem(value:4, child: Text('CLIENTES')),
+    const DropdownMenuItem(value:4, child: Text('CLIENTE')),
     const DropdownMenuItem(value:5, child:Text('AUTORIDAD')),
     const DropdownMenuItem(value:6, child:Text('CLIENTE IMPORTACION')),
     const DropdownMenuItem(value:7, child:Text('CLIENTE EXPORTACION')),

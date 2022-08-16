@@ -111,7 +111,7 @@ class _ConsultaPageBody extends StatelessWidget {
 
               } 
               
-              if(snapshot.data!.valor == '-1')return _ContainerEstado(size:size, text: 'NO TIENE', color: Colors.orange,);
+              if(snapshot.data!.valor == '-1')return _ContainerEstado(size:size, text: 'NO TIENE', color: Colors.red,);
               
 
               return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red,);
@@ -230,7 +230,7 @@ class _ConsultaPageBody extends StatelessWidget {
 
                   // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
                   if(!snapshot.hasData) return Expanded(child:Container());
-                  if( snapshot.data!.fiAutorizacion == '0') return const InputReadOnlyWidget(initialValue: 'NO CUENTA CON AUTORIZACION');
+                  if( snapshot.data!.fiAutorizacion == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
                   return InputReadOnlyWidget(initialValue: snapshot.data!.fiAutorizacion);
 
@@ -261,7 +261,7 @@ class _ConsultaPageBody extends StatelessWidget {
 
                   // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
                   if(!snapshot.hasData) return Expanded(child:Container());
-                  if( snapshot.data!.sctrSaludFv == '0') return const InputReadOnlyWidget(initialValue: 'NO CUENTA CON SCTR SALUD');
+                  if( snapshot.data!.sctrSaludFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
                   return InputReadOnlyWidget(initialValue: snapshot.data!.sctrSaludFv);
 
@@ -296,7 +296,7 @@ class _ConsultaPageBody extends StatelessWidget {
                   // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
                   if(!snapshot.hasData) return Expanded(child:Container());
 
-                  if( snapshot.data!.sctrPensionFv == '0') return const InputReadOnlyWidget(initialValue: 'NO CUENTA CON SCTR PENSION');
+                  if( snapshot.data!.sctrPensionFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
                   return InputReadOnlyWidget(initialValue: snapshot.data!.sctrPensionFv);
 
@@ -332,7 +332,7 @@ class _ConsultaPageBody extends StatelessWidget {
 
                   if(!snapshot.hasData) return Expanded(child:Container());
 
-                  if( snapshot.data!.emoFv == '0') return const InputReadOnlyWidget(initialValue: 'NO CUENTA CON E.M.O');
+                  if( snapshot.data!.emoFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
                   return InputReadOnlyWidget(initialValue: snapshot.data!.emoFv);
 
