@@ -1,7 +1,7 @@
 import 'package:flutter_device_identifier/flutter_device_identifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:solgis/app/app.dart';
+import 'package:solgis/core/app/app.dart';
 
 void main() async{
 
