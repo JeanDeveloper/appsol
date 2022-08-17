@@ -146,7 +146,8 @@ class _IngresosTemplateBody extends StatelessWidget {
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
                         text: 'SALIR',
-                        onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
+                        // onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
+                        onpressed: ()=> Navigator.pop(context),
                       ),
             
                     ],

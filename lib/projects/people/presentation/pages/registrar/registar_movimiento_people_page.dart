@@ -83,10 +83,9 @@ class RegistrarMovimientoPage extends StatelessWidget {
                       ButtonMenuPeople(
                         icon: FontAwesomeIcons.house,
                         text: 'INICIO', 
-                        onpressed:()=> Navigator.pushReplacementNamed(context, 'home_people'),
+                        onpressed:()=> Navigator.pop(context),
                       ),
 
-                    
                     ],
 
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/helpers/get_relation_service.dart';
+import 'package:solgis/core/domain/helpers/signin_dni.dart';
 import 'package:solgis/core/domain/providers/home_provider.dart';
 import 'package:solgis/core/presentation/pages/login/widgets/widget.dart';
 import 'package:solgis/core/presentation/pages/pages.dart';
@@ -11,18 +13,18 @@ class LoginAgenteForm extends StatelessWidget {
     super.key,
   });
 
-  void _openHomePage(BuildContext context) {
-    final newRoute = PageRouteBuilder<dynamic>(
-      transitionDuration: const Duration(milliseconds: 1000),
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return FadeTransition(
-          opacity: animation,
-          child: const HomePage(),
-        );
-      },
-    );
-    Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
-  }
+  // void _openHomePage(BuildContext context) {
+  //   final newRoute = PageRouteBuilder<dynamic>(
+  //     transitionDuration: const Duration(milliseconds: 1000),
+  //     pageBuilder: (context, animation, secondaryAnimation) {
+  //       return FadeTransition(
+  //         opacity: animation,
+  //         child: const HomePage(),
+  //       );
+  //     },
+  //   );
+  //   Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -81,43 +83,48 @@ class LoginAgenteForm extends StatelessWidget {
                               width: double.infinity,
                               color: Colors.white,
                               padding:const EdgeInsets.symmetric(horizontal: 40),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  const SizedBox(height: 60),
-                                  TextInputLoginAgente(
-                                    onchanged : (value)=> homeProvider.dni = value,
-                                    label: 'DNI',
-                                    iconData: Icons.person,
-                                    textInputType: TextInputType.number,
-                                  ),
-                                  const SizedBox(height: 20),
-                                  SizedBox(
-                                    width: size.width * .85,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        resizeNotifier.value = false;
-                                        //VEMOS SI EL USUARIO SOLMAR EXISTE PARA INGRESAR.
-                                        _openHomePage(context);
-                                      },
-                                      style: TextButton.styleFrom(
-                                        primary: Colors.white,
-                                        padding: const EdgeInsets.all(12),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:BorderRadius.circular(10),
-                                        ),
-                                        backgroundColor: AppThemeGeneral.lighTheme.primaryColor,
-                                      ),
-                                      child: const Text(
-                                        'Iniciar sesion',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
+                              child: SingleChildScrollView(
+                                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    const SizedBox(height: 60),
+                                    TextInputLoginAgente(
+                                      textcontroller: homeProvider.controller,
+                                      label: 'DNI',
+                                      iconData: Icons.person,
+                                      textInputType: TextInputType.number,
                                     ),
-                                  )
-                                ],
+                                    const SizedBox(height: 20),
+                                    SizedBox(
+                                      width: size.width * .85,
+                                      child: TextButton(
+                                        onPressed: () async {
+                                          // resizeNotifier.value = false;
+                                          //VEMOS SI EL USUARIO SOLMAR EXISTE PARA INGRESAR.
+                                          await getRelation(context);
+                                          await signinWithDNI(context, homeProvider.controller.text);
+                                          
+                                        },
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.white,
+                                          padding: const EdgeInsets.all(12),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:BorderRadius.circular(10),
+                                          ),
+                                          backgroundColor: AppThemeGeneral.lighTheme.primaryColor,
+                                        ),
+                                        child: const Text(
+                                          'Iniciar sesion',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -136,6 +143,7 @@ class LoginAgenteForm extends StatelessWidget {
 }
 
 class _DragDownIndication extends StatelessWidget {
+
   const _DragDownIndication();
 
   @override

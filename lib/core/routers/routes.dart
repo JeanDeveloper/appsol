@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:solgis/core/domain/models/project_model.dart';
 import 'package:solgis/core/presentation/pages/pages.dart';
+import 'package:solgis/projects/cargo/cargo_app.dart';
+import 'package:solgis/projects/cargo/presentation/pages/pages.dart';
+import 'package:solgis/projects/people/people_app.dart';
 import 'package:solgis/projects/people/presentation/pages/pages.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/salida_autorizada_page.dart';
-import 'package:solgis/projects/cargo/presentation/pages/pages.dart';
 
 class ProjectRoutes {
-
 
   static Map <String, Widget Function(BuildContext)> getAppRoutes(){
 
@@ -56,14 +58,20 @@ class SolAppRoutes {
 
     appRoutes.addAll({
 
+      //RUTAS DE LAS PANTALLAS DEL SOLAPP
       'home'         : ( BuildContext context ) => const HomePage(),
       'loading_page' : ( BuildContext context ) => const LoadingPage(),
       'phone_page'   : ( BuildContext context ) => const PhonePage(),
       'pending_page' : ( BuildContext context ) => const PendingPage(),
       'login_page'   : ( BuildContext context ) =>       LoginPage(),
+      
+
+      //RUTAS DE LOS PROYECTOS
+      ProjectModel.people.route : (_) => const PeopleApp(),
+      ProjectModel.cargo.route  : (_) => const CargoApp(),
+
     });
     return appRoutes;
-
   }
 
 }

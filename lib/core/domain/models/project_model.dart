@@ -16,13 +16,13 @@ class ProjectModel {
     title: "People",
     description: "App para Registrar Movimientos de una empresa",
     pathImage: 'assets/svgs/people.svg',
-    route: "home_people",
+    route: "people",
   );
   static const cargo = ProjectModel._(
     title: "Cargo",
     description: "App para Registra Movimientos de Vehiculos",
     pathImage: 'assets/svgs/cargo.svg',
-    route: "home_cargo",
+    route: "cargo",
   );
   static const listProjects = [
     people,

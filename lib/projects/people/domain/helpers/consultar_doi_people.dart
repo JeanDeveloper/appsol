@@ -19,8 +19,8 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
     if(consulta.tipoConsulta == 'INGRESO AUTORIZADO'){
       
       // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, 'ingreso_autorizado_people', arguments: consulta);
-
+      Navigator.pushNamed(context, 'ingreso_autorizado_people', arguments:  consulta);
+      // Navigator.pushReplacementNamed(context, 'ingreso_autorizado_people', arguments: consulta);
     }else {
       
       // ignore: use_build_context_synchronously

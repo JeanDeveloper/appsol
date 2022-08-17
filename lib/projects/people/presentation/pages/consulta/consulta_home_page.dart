@@ -14,7 +14,6 @@ class ConsultaHomePage extends StatelessWidget {
     
     final size = MediaQuery.of(context).size;
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
-  
 
     return MultiProvider(
 
@@ -59,7 +58,7 @@ class ConsultaHomePage extends StatelessWidget {
                       icon: FontAwesomeIcons.house,
                       text: 'INICIO', 
                   
-                      onpressed:()=> Navigator.pushNamed(context, 'home_people'),
+                      onpressed:()=> Navigator.pushNamed(context, '/'),
                   
                     ),
                 

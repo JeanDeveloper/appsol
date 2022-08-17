@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:solgis/core/app/app.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
@@ -19,14 +20,13 @@ class HomePagePeople extends StatelessWidget {
         child: Stack(
 
           children:  [
-    
+
             const HomePageBackGroundPeople(),
-
             const _HomeHeaderPeople(),
-
             const InformacionClientePeopleWidget(),
 
             Positioned(
+
               bottom: 0,
 
               //aqui debe tener el container que se expande con sus hijos.
@@ -146,10 +146,12 @@ class _IconMenuPeople extends StatelessWidget {
 
         //SALIR
         ButtonMenuPeople(
+
           icon: FontAwesomeIcons.arrowRightFromBracket, 
           text: 'SALIR',
           // onpressed: ()=>SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-          onpressed: ()=>Navigator.pushReplacementNamed(context, 'home'),
+          // onpressed: ()=>_openMyPage(context),
+          onpressed:  ()=> Navigator.pop(context),
         ),
 
       ],
@@ -158,4 +160,15 @@ class _IconMenuPeople extends StatelessWidget {
 
   }
 
+void _openMyPage(BuildContext context) {
+  Navigator.push<void>(
+    context,
+    MaterialPageRoute<void>(
+      builder: (BuildContext context) => const Appsol(),
+    ),
+  );
 }
+
+
+}
+

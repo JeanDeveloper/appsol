@@ -80,23 +80,17 @@ class MovimientosProvider extends ChangeNotifier{
   //OBTENER DE MOVIMIENTOS
   Future<List<MovimientoModel>> getMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
 
-
     final url = Uri.http( _url, _uncodePath, {
       'tipoMovimiento': tipoMovimiento,
       'idServicio': idServicio,
       'tipoPersonal': tipoPersonal,
     } );
-
     final movimientos = await _procesarRespuestaGet(url);
-
     if(tipoPersonal == '0'){
       movimientosTotalesSelected = [...movimientos];
     }
-
     movimientosContador = movimientos.length;
-
     // movimientosSelected = [...movimientos];
-    
     notifyListeners();
 
     return movimientos;

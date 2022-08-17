@@ -13,18 +13,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
       return Scaffold(
-
         backgroundColor: AppThemeGeneral.lighTheme.backgroundColor,
         drawer: const DrawerWidget(),
-
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
           title: const Text('APPSOL', style: TextStyle()),
           centerTitle: true,
         ),
-
         body: const HomePageBody(),
-
       );
 
   }

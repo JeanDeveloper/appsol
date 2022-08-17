@@ -47,10 +47,9 @@ class DeviceService {
     
   }
 
-
   Future<int> checkAuthDevice(String serial)async{
 
-    final url = Uri.http(_url, 'appsol/dispositivo/estado', {
+    final url = Uri.http(_url, 'appsol/dispositivo/estado/', {
       'serial': serial,
     });
 

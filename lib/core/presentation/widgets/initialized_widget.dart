@@ -19,7 +19,6 @@ class InitializedWidget extends StatefulWidget{
 class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindingObserver {
   
   late int _estado;
-  late final estadoDevice;
   late Timer timerSlide;
 
   @override

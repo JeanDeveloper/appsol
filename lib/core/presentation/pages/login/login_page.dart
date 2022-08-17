@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/providers/home_provider.dart';
 import 'package:solgis/core/presentation/pages/login/widgets/widget.dart';
 import 'package:solgis/core/theme/theme.dart';
 
@@ -7,14 +9,15 @@ import 'package:solgis/core/theme/theme.dart';
 class LoginPage extends StatelessWidget {
   
   LoginPage({Key? key}) : super(key: key);
-  final hideNotifier = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
     
     final size = MediaQuery.of(context).size;
+    final homeProvider = Provider.of<HomeProvider>(context);
 
     return Scaffold(
+
       resizeToAvoidBottomInset: false,
       backgroundColor: AppThemeGeneral.lighTheme.backgroundColor,
 
@@ -24,26 +27,18 @@ class LoginPage extends StatelessWidget {
         children: [
           const LoginBackground(),
 
-          ValueListenableBuilder<bool>(
-            valueListenable: hideNotifier,
-            builder: (context, value, child) {
-              return AnimatedPositioned(
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.fastOutSlowIn,
-                top: 0,
-                bottom: value ? - 100 : 0,
-                left: 0,
-                right: 0,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.fastOutSlowIn,
-                  opacity: value ? 0.0 : 1.0,
-                  child: child,
-                ),
-              );
-            },
-
-            child: Center(
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.fastOutSlowIn,
+            top: 0,
+            bottom: homeProvider.isdragged ? - 100 : 0,
+            left: 0,
+            right: 0,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.fastOutSlowIn,
+              opacity: homeProvider.isdragged ? 0.0 : 1.0,
+              child: Center(
               child: SizedBox(
                 height: size.height * .75,
                 width: double.infinity,
@@ -98,7 +93,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-          )
+            ),
+          ),
+
+
+
         ],
       )
 
@@ -106,7 +105,9 @@ class LoginPage extends StatelessWidget {
   }
 
   Future<void> _openPage(BuildContext context, Widget page) async {
-    hideNotifier.value = true;
+    final homeProvider = Provider.of<HomeProvider>(context, listen:false);
+
+    homeProvider.isdragged = true;
     await Navigator.push(
       context,
       PageRouteBuilder<dynamic>(
@@ -120,13 +121,13 @@ class LoginPage extends StatelessWidget {
         },
       ),
     );
-    hideNotifier.value = false;
+
+  
+    homeProvider.isdragged = false;
   }
 
 
-
 }
-
 
 
 class RectangularButton extends StatelessWidget {

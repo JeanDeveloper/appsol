@@ -38,14 +38,14 @@ class InformacionClienteCargo extends StatelessWidget {
             SizedBox(height: size.height*0.015),
             
             Text(
-              loginGlobal.nombreTipoServicio,
+              (loginGlobal.codTipoServicio==1000)? 'PLANTA' : 'FLOTA',
               style: AppThemeCargo.lighThemeCargo.textTheme.headline1
             ),// NOMBRE DEL TIPO DE SERVICIO - dinamico
 
             SizedBox(height: size.height*0.015),
             
             Text(
-              loginGlobal.nombreServicio,
+              loginGlobal.nombreSubArea,
               style: AppThemeCargo.lighThemeCargo.textTheme.headline3?.copyWith(  
                 color: Colors.amber
               )

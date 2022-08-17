@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/helpers/text_style_drawer.dart';
+import 'package:solgis/core/domain/providers/global_provider.dart';
+import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/core/presentation/widgets/widgets.dart';
-
 import 'package:solgis/core/theme/theme.dart';
 
 
@@ -15,6 +17,9 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
+    final personAuth = Provider.of<PersonAuthProvider>(context);
+    final serviceProvider = Provider.of<GlobalProvider>(context);
+
 
     return ClipRRect(
 
@@ -55,14 +60,17 @@ class DrawerWidget extends StatelessWidget {
 
                 SizedBox(height: size.height*0.03),
 
-                Center(child: AutoSizeText('SAASA', style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+                Center(child: AutoSizeText(serviceProvider.nombreCliente, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+                SizedBox(height: size.height*0.03),
+
+                Center(child: AutoSizeText('${personAuth.nombre}  ${personAuth.pApellido}  ${personAuth.sApellido}', style: letrasEstilo(), maxLines: 1)),
                 SizedBox(height: size.height*0.01),
 
-                Center(child: AutoSizeText('saasa-corporation@saasa.com.pe', style: letrasEstilo(), maxLines: 1)),
-                SizedBox(height: size.height*0.05),
+                Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
+                SizedBox(height: size.height*0.03),
 
                 Container(
-                  
+
                   width:size.width*0.55,
                   height: size.height*0.045,
 
@@ -79,23 +87,6 @@ class DrawerWidget extends StatelessWidget {
 
                 ),
                 SizedBox(height: size.height*0.03),
-
-                // const ItemWidget(
-                //   text: 'Perfil',
-                //   icon: FaIcon(FontAwesomeIcons.userLarge, color: Colors.white,),
-
-                //   color: Colors.white,
-                // ),
-
-                // SizedBox(height: size.height*0.03),
-
-                // const ItemWidget(
-                //   text: 'Configuracion',
-                //   icon: FaIcon(FontAwesomeIcons.gear, color: Colors.white,),
-                //   color: Colors.white,
-                // ),
-
-                // SizedBox(height: size.height*0.03),
 
                 const ItemWidget(
                   text: 'Acerca de',
@@ -140,12 +131,13 @@ class DrawerWidget extends StatelessWidget {
       ),
 
     );
-    
+
   }
 
 }
 
 class BackgroundDrawer extends StatelessWidget {
+
   const BackgroundDrawer({
     Key? key,
   }) : super(key: key);

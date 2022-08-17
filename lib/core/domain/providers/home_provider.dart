@@ -4,12 +4,21 @@ class HomeProvider extends ChangeNotifier{
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyPhone = GlobalKey<FormState>();
+  TextEditingController controller = TextEditingController();
 
   String _usuario  = '';
   String _password = '';
   String _dni = '';
   String _phone = '';
   bool _isLoading = false;
+  bool _isdragged = false;
+
+  bool get isdragged => _isdragged;
+
+  set isdragged(bool valor){
+    _isdragged = valor;
+    notifyListeners();
+  }
 
   String get dni => _dni;
 

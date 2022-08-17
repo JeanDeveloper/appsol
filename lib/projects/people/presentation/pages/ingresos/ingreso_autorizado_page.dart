@@ -93,7 +93,8 @@ class IngresoAutorizadoBody extends StatelessWidget {
                 showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
 
                 // ignore: use_build_context_synchronously
-                Navigator.pushReplacementNamed(context, 'home_people');
+                Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
+                // Navigator.pushNamedAndRemoveUntil(context, '/');
 
               }
 

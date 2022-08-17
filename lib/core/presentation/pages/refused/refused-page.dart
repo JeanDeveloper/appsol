@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solgis/core/theme/theme.dart';
+
+
 
 class RefusedPage extends StatelessWidget {
   
@@ -22,7 +22,7 @@ class RefusedPage extends StatelessWidget {
         child: Column(
       
           children: [
-      
+
             Padding(           
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: SvgPicture.asset(
@@ -32,9 +32,7 @@ class RefusedPage extends StatelessWidget {
               ),
             ),
 
-            const Text('Su peticion a sido enviada'),
-            const SizedBox(height: 20),
-            const Text('Pero ha sido rechazada, '),
+            const Text('Su peticion a sido Rechazada'),
             const SizedBox(height: 20),
             const Text('Contacte a soporte de SOLMAR'),
             const SizedBox(height: 20),

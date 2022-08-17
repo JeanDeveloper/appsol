@@ -101,7 +101,7 @@ class _ListTileMovimiento extends StatelessWidget {
               child:ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: FutureBuilder(
-                  
+
                   future: getImage(movimiento.pathImage),
 
                   builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
@@ -157,14 +157,6 @@ class _ListTileMovimiento extends StatelessWidget {
       
         ),
       ),
-
-      // leading:Container(
-      //   width: size.width*0.15,
-      //   height: size.height*0.4,
-      //   color: Colors.red,
-      // ),
-
-
 
       title: Row(
 

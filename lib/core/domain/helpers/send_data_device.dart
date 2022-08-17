@@ -1,4 +1,3 @@
-
 import 'package:solgis/core/data/services/device_service.dart';
 import 'package:solgis/core/domain/models/device_information_provider.dart';
 import 'package:solgis/core/domain/models/device_response_model.dart';
@@ -25,3 +24,6 @@ Future<int>checkAuthDevice()async{
   return deviceResponse;
 
 }
+
+
+

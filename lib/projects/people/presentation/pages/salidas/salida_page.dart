@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
@@ -88,9 +89,8 @@ class SalidaPageBody extends StatelessWidget {
                   Column(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.accessibility_outlined, color: Colors.white,size: size.width*0.06),
+                        icon: Icon(FontAwesomeIcons.registered, color: Colors.white,size: size.width*0.06),
                         onPressed: ()async{
-
 
                         await NDialog(
                           
@@ -121,17 +121,17 @@ class SalidaPageBody extends StatelessWidget {
                                 showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
 
                                 // ignore: use_build_context_synchronously
-                                Navigator.pushReplacementNamed(context, 'home_people');
+                                Navigator.pushReplacementNamed(context, '/');
 
                               }
 
                             ),
 
                             TextButton(
-                            
+
                               child: const Text("NO"),
                               onPressed: () => Navigator.pop(context)
-                              
+
                             ),
 
                           ],
@@ -151,7 +151,8 @@ class SalidaPageBody extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.exit_to_app_outlined, color: Colors.white, size: size.width*0.06),
                         onPressed: (){
-                          Navigator.pushNamed(context, 'home_people');
+                          // Navigator.pushReplacementNamed(context, '');
+                          Navigator.pop(context);
                         },
                       ),
                       Text('SALIR',  style: textStyleLetter() ),

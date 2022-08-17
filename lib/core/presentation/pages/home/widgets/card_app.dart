@@ -1,11 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 import 'package:solgis/core/domain/models/project_model.dart';
-
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 
 class CardApp extends StatelessWidget {
+
   final ProjectModel project;
 
   const CardApp({
@@ -21,7 +21,7 @@ class CardApp extends StatelessWidget {
     return GestureDetector(
       onTap: (){
 
-        if(project.title=='cargo'){
+        if(project.title=='Cargo'){
           return showSnackBarAwesome(context, 'Hola', 'Estamos trabajando para brindarte mas apps', ContentType.success);
         }
 
@@ -49,15 +49,15 @@ class CardApp extends StatelessWidget {
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
                 ),
                 child: Text(project.title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:size.width*0.06 )),
-    
+
               ),
-    
+
             ),
-    
+
           ],
         
         ),
-    
+
       
       ),
     );
