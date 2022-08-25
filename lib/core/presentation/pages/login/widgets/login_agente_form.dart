@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solgis/core/domain/helpers/get_relation_service.dart';
 import 'package:solgis/core/domain/helpers/signin_dni.dart';
 import 'package:solgis/core/domain/providers/home_provider.dart';
 import 'package:solgis/core/presentation/pages/login/widgets/widget.dart';
-import 'package:solgis/core/presentation/pages/pages.dart';
 import 'package:solgis/core/theme/theme.dart';
 
 class LoginAgenteForm extends StatelessWidget {
@@ -12,19 +10,6 @@ class LoginAgenteForm extends StatelessWidget {
   const LoginAgenteForm({
     super.key,
   });
-
-  // void _openHomePage(BuildContext context) {
-  //   final newRoute = PageRouteBuilder<dynamic>(
-  //     transitionDuration: const Duration(milliseconds: 1000),
-  //     pageBuilder: (context, animation, secondaryAnimation) {
-  //       return FadeTransition(
-  //         opacity: animation,
-  //         child: const HomePage(),
-  //       );
-  //     },
-  //   );
-  //   Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +47,13 @@ class LoginAgenteForm extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: size.height * .1),
-                    const Center(
-                      child: Text('SOLMAR'),
+                    Center(
+                      // child: Text('SOLMAR'),
+                      child: Image(
+                        width: size.width*0.5,
+                        height: size.height*0.1,
+                        image: const AssetImage('assets/pngs/SOLMAR.png'),
+                      ),
                     ),
                     const Spacer(),
                     Stack(
@@ -99,13 +89,12 @@ class LoginAgenteForm extends StatelessWidget {
                                     SizedBox(
                                       width: size.width * .85,
                                       child: TextButton(
-                                        onPressed: () async {
-                                          // resizeNotifier.value = false;
-                                          //VEMOS SI EL USUARIO SOLMAR EXISTE PARA INGRESAR.
-                                          await getRelation(context);
-                                          await signinWithDNI(context, homeProvider.controller.text);
-                                          
-                                        },
+                                        onPressed: (homeProvider.isLoading)
+                                          ? null
+                                          : () async {
+                                            await signinWithDNI(context, homeProvider.controller.text);
+                                          },
+
                                         style: TextButton.styleFrom(
                                           primary: Colors.white,
                                           padding: const EdgeInsets.all(12),
@@ -114,12 +103,11 @@ class LoginAgenteForm extends StatelessWidget {
                                           ),
                                           backgroundColor: AppThemeGeneral.lighTheme.primaryColor,
                                         ),
-                                        child: const Text(
+                                        child: (homeProvider.isLoading)
+                                        ? const CircularProgressIndicator()
+                                        : const Text(
                                           'Iniciar sesion',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                          style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),
                                         ),
                                       ),
                                     )
@@ -155,6 +143,7 @@ class _DragDownIndication extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
+            color: Colors.white
           ),
         ),
         Text(
@@ -162,12 +151,12 @@ class _DragDownIndication extends StatelessWidget {
           style: TextStyle(
             height: 2,
             fontSize: 14,
-            color: Colors.black.withOpacity(.9),
+            color: Colors.white.withOpacity(.9),
           ),
         ),
         Icon(
           Icons.keyboard_arrow_down,
-          color: Colors.black.withOpacity(.8),
+          color: Colors.white.withOpacity(.8),
           size: 35,
         ),
       ],

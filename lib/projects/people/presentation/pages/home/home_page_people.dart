@@ -142,17 +142,17 @@ class _IconMenuPeople extends StatelessWidget {
           onpressed: ()=>Navigator.pushNamed(context, 'consulta_home_page_people'),
         ),
 
-        SizedBox(width:  size.width*0.08),
+        // SizedBox(width:  size.width*0.08),
 
-        //SALIR
-        ButtonMenuPeople(
+        // //SALIR
+        // ButtonMenuPeople(
 
-          icon: FontAwesomeIcons.arrowRightFromBracket, 
-          text: 'SALIR',
-          // onpressed: ()=>SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-          // onpressed: ()=>_openMyPage(context),
-          onpressed:  ()=> Navigator.pop(context),
-        ),
+        //   icon: FontAwesomeIcons.arrowRightFromBracket, 
+        //   text: 'SALIR',
+        //   // onpressed: ()=>SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
+        //   // onpressed: ()=>_openMyPage(context),
+        //   onpressed:  ()=> Navigator.pop(context),
+        // ),
 
       ],
 

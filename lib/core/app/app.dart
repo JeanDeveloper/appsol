@@ -28,7 +28,6 @@ class Appsol extends StatelessWidget {
         ChangeNotifierProvider( create: (_) => GlobalProvider() ),
         ChangeNotifierProvider( create: (_) => PersonAuthProvider() ),
 
-
         //PROVIDERS DEL CARGO
         ChangeNotifierProvider( create: (_) => RadioCargoProvider() ),
 

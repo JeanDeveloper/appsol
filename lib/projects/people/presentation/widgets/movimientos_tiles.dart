@@ -1,12 +1,11 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
+import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
 import 'package:solgis/projects/people/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
-import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
 class MovimientosTiles extends StatelessWidget {
@@ -25,12 +24,12 @@ class MovimientosTiles extends StatelessWidget {
 
     return FutureBuilder(
 
-
       future:movimientos,
 
       builder: (BuildContext context, AsyncSnapshot <List<MovimientoModel>>  snapshot) {
 
         if(!snapshot.hasData) {
+          print('esta cargando la data');
           return const Center(child: CircularProgressIndicator(color: Colors.blue));
         }
 
@@ -40,30 +39,17 @@ class MovimientosTiles extends StatelessWidget {
             );
         }
 
-        return RefreshIndicator(
-          onRefresh: onRefresh,
-          child: ListView.separated(
-            
-            separatorBuilder: ( _ , int i) => const Divider(color: Colors.black, indent: 10, endIndent: 10),
-            itemCount: snapshot.data!.length,
-            itemBuilder: ( _, i) => _ListTileMovimiento( movimiento: snapshot.data![i] )
-            
-          ),
+        return ListView.separated(
+          separatorBuilder: ( _ , int i) => const Divider(color: Colors.black, indent: 10, endIndent: 10),
+          itemCount: snapshot.data!.length,
+          itemBuilder: ( _, i) => _ListTileMovimiento( movimiento: snapshot.data![i] )
         );
-
       },
-
     );
 
-  
-  }
-
-  Future<void> onRefresh()async{
-    await movimientos;
   }
 
 }
-
 
 class _ListTileMovimiento extends StatelessWidget {
 
@@ -182,77 +168,24 @@ class _ListTileMovimiento extends StatelessWidget {
           Expanded(
             flex: 7,
             child: SizedBox(
-          
+
               width: size.width*0.31,
-              
+
               child: Column(
-              
+
                 crossAxisAlignment: CrossAxisAlignment.start,
-              
+
                 children: [
-              
+
                   AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
                   AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
-              
+
                 ]
-              
+
               ),
-          
+
             ),
           ),
-
-          // IconButton(
-
-          //   icon: Icon(Icons.camera_alt_outlined, size:  size.width*0.06,),
-
-          //   onPressed: ()async{
-
-          //     await NDialog(
-                
-          //       dialogStyle: DialogStyle(
-          //         backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
-          //       ),
-                
-          //       title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
-                
-          //       content: Container(
-                
-          //         margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-          //         width: size.width*0.05,
-          //         height: size.height*0.35,
-                
-          //         child:ClipRRect(
-          //           borderRadius: BorderRadius.circular(20),
-          //           child: FutureBuilder(
-                      
-          //             future: getImage(movimiento.pathImage),
-
-          //             builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
-          //               if(!snapshot.hasData){
-          //                 return const Image(
-          //                   fit: BoxFit.cover,
-          //                   image: AssetImage('assets/gifs/loader-gris.gif'),
-          //                 );
-          //               }
-
-          //               return Container(
-          //                 child: snapshot.data!,
-          //               );
-
-          //             }
-
-          //           ),
-          //         )
-                
-          //       )
-
-          //     ).show(context);
-
-          //   }, 
-
-          // ),
-
-          // SizedBox(width: size.width*0.15),
 
           Expanded( flex: 3, child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,))
 
@@ -263,7 +196,6 @@ class _ListTileMovimiento extends StatelessWidget {
       trailing: (movimiento.fechaSalida == '')
         ? GestureDetector( 
           onTap: ()async{
-
             consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
           },
           child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
@@ -275,3 +207,6 @@ class _ListTileMovimiento extends StatelessWidget {
     );
   }
 }
+
+
+

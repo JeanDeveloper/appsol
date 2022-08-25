@@ -19,10 +19,8 @@ class MovimientosListButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     initializeDateFormatting('es');
-
     final size = MediaQuery.of(context).size;
     final contadorProvider = Provider.of<MovimientosProvider>(context);
-    
     
     return Container(
 
@@ -35,7 +33,7 @@ class MovimientosListButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
-          
+
           AutoSizeText(DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.now()), style: textStyleDate(), minFontSize: 6),
 
           Row(
@@ -56,9 +54,9 @@ class MovimientosListButton extends StatelessWidget {
             width: double.infinity,
             height: size.height*0.05,
             alignment: Alignment.center,
-            
+
             child: Row(
-              
+
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
               children: [
@@ -95,15 +93,14 @@ class MovimientosListButton extends StatelessWidget {
                   value: 3,
                 ),
 
-
               ],
 
             ),
             
           ),
-          
+
           SizedBox( width: size.height*0.03),
-          
+
           SizedBox(
 
             width: double.infinity,
@@ -160,7 +157,5 @@ class MovimientosListButton extends StatelessWidget {
     );
   
   }
-
-
 
 }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:solgis/projects/people/domain/utils/dropdown_decorations.dart';
 
@@ -32,7 +33,7 @@ class DropdownButtonPersonal extends StatelessWidget {
 
       child: DropdownButtonFormField<int>(
 
-        hint: hintText!=null ? Text(hintText!, style: TextStyle(fontSize: size.width*0.030)) : null ,
+        hint: hintText!=null ? AutoSizeText(hintText!, style: TextStyle(fontSize: size.width*0.03)) : null ,
         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
         decoration: inputDecorationDropDownPersonal(),
         validator: onvalidator,

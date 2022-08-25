@@ -18,21 +18,14 @@ class ButtonMenuPeople extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
-
     return Column(
 
       children: [
-
         IconButton(
-
           icon: Icon(icon, color: Colors.white,size: size.width*0.06),
-
           onPressed: onpressed,
-        
         ),
-
         AutoSizeText(text,  style: textStyleLetter()),
         
       ],

@@ -63,8 +63,7 @@ class SolAppRoutes {
       'loading_page' : ( BuildContext context ) => const LoadingPage(),
       'phone_page'   : ( BuildContext context ) => const PhonePage(),
       'pending_page' : ( BuildContext context ) => const PendingPage(),
-      'login_page'   : ( BuildContext context ) =>       LoginPage(),
-      
+      'login_page'   : ( BuildContext context ) => const LoginPage(),
 
       //RUTAS DE LOS PROYECTOS
       ProjectModel.people.route : (_) => const PeopleApp(),

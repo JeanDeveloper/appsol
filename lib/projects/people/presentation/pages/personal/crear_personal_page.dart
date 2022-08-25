@@ -14,36 +14,25 @@ class CrearPersonalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MultiProvider(
+  return MultiProvider(
 
       providers: [
         ChangeNotifierProvider(create: ((context)=> CrearPersonalProvider()))
       ],
-
       child: SafeArea(
-
         child: Scaffold(
-
           appBar: AppBar(
-
             elevation: 0,
             titleSpacing: 20,
             backgroundColor: AppThemePeople.lighThemePeople.appBarTheme.backgroundColor,
             centerTitle: true,
-
             title: AutoSizeText('CREAR PERSONAL', style:styleCrearPersonalTitulo()),
-
             leading:  IconButton(
-              
               icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
               onPressed: ()=> Navigator.pop(context),
-              
             ),
-
           ),
-
           body: const CrearPersonalBody(),
-
         ),
       
       ),

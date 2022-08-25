@@ -3,24 +3,19 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '192.168.10.58:8000';
+  final String _url   = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
-  
   final bool cargando = false;
-
-  // List<MovimientoModel> movimientosSelected = [];
-
   List<MovimientoModel> movimientosTotalesSelected = [];
-
   String tipoSeleccionado = 'todos';
-
   int movimientosContador = 0;
-
   int get getmovimientosContador => movimientosContador;
 
 
@@ -33,16 +28,14 @@ class MovimientosProvider extends ChangeNotifier{
     );
 
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
-
     final movimientos = MovimientosModel.fromJsonList(decodedData);
-
     return movimientos.items;
-    
+
   }
 
   //PETICION POST
-  Future<int> _procesarRespuestaPost(Uri url, ConsultaModel consulta) async{
-
+  Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta) async{
+    final loginProvider = Provider.of<PersonAuthProvider>(context, listen: false);
     final resp = await http.post(
       url,
       headers: <String, String>{
@@ -57,23 +50,15 @@ class MovimientosProvider extends ChangeNotifier{
         'codigo_tipo_motivo' : '${consulta.codigoMotivo}',
         'codigo_empresa':  '${consulta.codigoEmpresa}',
         'autorizado_por' : '${consulta.codigoAutorizante}',
-        'creado_por' : 'TABLET_ ${consulta.codigoServicio}',
+        'creado_por' : 'PEOPLE_${loginProvider.dni}',
         'codigo_area': '${consulta.codigoArea}',
 
       }),
 
     );
 
-    if ( resp.statusCode == 201 ){
-      return 1;
-
-
-    }else{
-
-      return -1;
-
-    }
-
+    if( resp.statusCode == 201 ) return 1;
+    return -1;
 
   }
 
@@ -86,15 +71,10 @@ class MovimientosProvider extends ChangeNotifier{
       'tipoPersonal': tipoPersonal,
     } );
     final movimientos = await _procesarRespuestaGet(url);
-    if(tipoPersonal == '0'){
-      movimientosTotalesSelected = [...movimientos];
-    }
     movimientosContador = movimientos.length;
-    // movimientosSelected = [...movimientos];
     notifyListeners();
-
+    if(tipoPersonal== '0') movimientosTotalesSelected = [...movimientos];
     return movimientos;
-
   }
 
   //CONSULTAR UN MOVIMIENTO
@@ -119,11 +99,11 @@ class MovimientosProvider extends ChangeNotifier{
   }
 
   //REGISTRAR UN MOVIMIENTO
-  Future<int> registerMovimiento(ConsultaModel consulta)async{
+  Future<int> registerMovimiento(BuildContext context, ConsultaModel consulta)async{
 
     final url = Uri.http(_url, _uncodePath);
 
-    final movimientoId = await _procesarRespuestaPost(url, consulta);
+    final movimientoId = await _procesarRespuestaPost(context, url, consulta);
 
     return movimientoId;
 

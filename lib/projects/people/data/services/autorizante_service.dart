@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/autorizante_model.dart';
 
 class AutorizanteService {
 
-  final String _url = '192.168.10.58:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/autorizantes/';
 
 

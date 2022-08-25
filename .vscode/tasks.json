@@ -14,7 +14,7 @@
       {
         "label": "Flutter-Launch-Android 1",
         "type": "shell",
-        "command": "flutter run -d 'SM A107M' "
+        "command": "flutter run -d 'Android SDK built for x86' "
       },
 
       {
@@ -22,9 +22,6 @@
         "type": "shell",
         "command": "flutter run -d 'SM A305G' "
       },
-
-
-      
 
     ]
 }

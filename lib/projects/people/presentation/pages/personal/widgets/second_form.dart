@@ -17,7 +17,7 @@ class SecondForm extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final personalProvider = Provider.of<CrearPersonalProvider>(context);
     final globalProvider   = Provider.of<GlobalProvider>(context);
-
+    print('se carga las empresas y los cargos');
     personalProvider.initEmpresas(globalProvider.codCliente, '');
     personalProvider.initCargos('', globalProvider.codCliente);
 
@@ -34,32 +34,24 @@ class SecondForm extends StatelessWidget {
 
           //CAMPO PARA EL TIPO DE PERSONA DROPDOWNBUTTON
           Row(
-          
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      
+
             children: [
       
               Text('TIPO PERSONA:  ', style: styleCrearPersonaltextForm()),
       
-      
               DropdownButtonPersonal(
-      
                 items: dropdownItemsTipoPersona,
                 hintText: 'SELECCIONE EL TIPO PERSONA',
                 onchanged: (value)=>personalProvider.tipoPersona = value!,
-      
                 onvalidator: (value) {
-                
                   return (value!= null)
                   ? null
                   : "Por favor complete este campo";
                   
                 },
-      
               ),
-          
             ],
-          
           ),
           SizedBox(height: size.height*0.04), 
 
@@ -72,7 +64,7 @@ class SecondForm extends StatelessWidget {
       
               Text('NOMBRE:  ', style: styleCrearPersonaltextForm()),
           
-              Container(
+              SizedBox(
           
                 width: size.width*0.57,
           
@@ -100,7 +92,7 @@ class SecondForm extends StatelessWidget {
       
               Text('S. NOMBRE:  ', style: styleCrearPersonaltextForm()),
               
-              Container(
+              SizedBox(
                 width: size.width*0.57,
           
                 child: TextFormField(
@@ -128,7 +120,7 @@ class SecondForm extends StatelessWidget {
       
               Text('A. PATERNO:  ', style: styleCrearPersonaltextForm()),
       
-              Container(
+              SizedBox(
       
                 width: size.width*0.57,
                 // height: size.height*0.04,
@@ -155,7 +147,7 @@ class SecondForm extends StatelessWidget {
             children: [
       
               Text('A. MATERNO:  ', style: styleCrearPersonaltextForm()),
-              Container(
+              SizedBox(
                 width: size.width*0.57,
                 // height: size.height*0.04,
                 child: TextFormField(
@@ -175,37 +167,95 @@ class SecondForm extends StatelessWidget {
           
           //CAMPO PARA LA EMPRESA
           Row(
-      
+
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      
+
             children: [
-      
+
               Text('EMPRESA: ', style: styleCrearPersonaltextForm()),
 
-              (personalProvider.itemsEmpresas.isNotEmpty)
-                // ?const Center(child:  CircularProgressIndicator())
+              // (personalProvider.itemsEmpresas.isNotEmpty)
+              //     ?DropdownButtonHideUnderline(
+              //       child: DropdownButton2< int >(
+              //         buttonPadding: const EdgeInsets.only(left:10),
+              //         buttonElevation: 0,
+              //         dropdownElevation: 0,
+              //         buttonDecoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(5),
+              //           border: Border.all(
+              //             color: Colors.black
+              //           )
+              //         ),
+              //         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
+              //         items: personalProvider.itemsEmpresas, //
+              //         buttonWidth: size.width*0.57,
+              //         isExpanded: true,
+              //         hint: Text('SELECCIONE LA EMPRESA', style: TextStyle(color:Colors.grey, fontSize: size.width*0.030)), //
+              //         onChanged: (value)=>personalProvider.empresa = value!, //
+              //         value: personalProvider.empresa,//
+              //         searchController: personalProvider.searchEditingControllerEmpresa, //
+              //         searchInnerWidget: Padding(
+              //           padding: const EdgeInsets.only(
+              //             top: 8,
+              //             bottom: 4,
+              //             right: 8,
+              //             left: 8,
+              //           ),
+              //           child: TextFormField(
+              //             textCapitalization: TextCapitalization.characters,
+              //             style: const TextStyle(color: Colors.black),
+              //             controller: personalProvider.searchEditingControllerEmpresa,
+              //             decoration: InputDecoration(
+              //               hintText: 'Busque la empresa',//
+              //               hintStyle: const TextStyle(fontSize: 14),
+              //               border: OutlineInputBorder(
+              //                 borderRadius: BorderRadius.circular(5)
+              //               ),
+              //               isDense: true,
+              //               contentPadding:  const EdgeInsets.symmetric(
+              //                 horizontal: 10,
+              //                 vertical: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
 
-                ? DropdownButton2Widget(
-                  items: personalProvider.itemsEmpresas,
-                  hinText: 'SELECCIONE LA EMPRESA',
-                  hintTextForm: 'Busque la empresa',
-                  onchanged: (value)=>personalProvider.empresa = value!,
-                  texteditingcontroller: personalProvider.searchEditingControllerEmpresa,
-                  value: personalProvider.empresa,
-                  ) 
-                : const Center(child:  CircularProgressIndicator()),
-      
+              //         searchMatchFn: (DropdownMenuItem<dynamic> item, searchValue){
+              //           final hijo = item.child.toString();
+              //           final texto = hijo.substring(5, hijo.lastIndexOf('"')+1);
+              //           return ( texto.contains(searchValue));
+              //         },
+
+              //         onMenuStateChange: (isOpen) {
+              //           if (!isOpen) {
+              //             personalProvider.searchEditingControllerEmpresa.clear();
+              //           }
+              //         }
+
+              //       ),
+              //     )
+
+              //   // ? DropdownButton2Widget(
+                  
+              //   //   items: personalProvider.itemsEmpresas,
+              //   //   hinText: 'SELECCIONE LA EMPRESA',
+              //   //   hintTextForm: 'Busque la empresa',
+              //   //   onchanged: (value)=>personalProvider.empresa = value!,
+              //   //   texteditingcontroller: personalProvider.searchEditingControllerEmpresa,
+              //   //   value: personalProvider.empresa,
+              //   //   ) 
+
+              //   : const Center(child:  CircularProgressIndicator()),
             ]
-      
           ),
           SizedBox(height: size.height*0.04), 
-          
+
           //CAMPO PARA EL CARGO
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            
+
             children: [
-      
+
               Text('CARGO: ', style: styleCrearPersonaltextForm()),
 
               (personalProvider.itemsCargos.isNotEmpty)
@@ -225,7 +275,7 @@ class SecondForm extends StatelessWidget {
           SizedBox(height: size.height*0.04), 
           
         ],
-          
+
       ),
       
     );
@@ -242,10 +292,9 @@ class _SexoRegister extends StatelessWidget {
 
     final personalProvider = Provider.of<CrearPersonalProvider>(context);    
 
-    return Container(
+    return SizedBox(
 
       width: double.infinity,
-      // color: Colors.red,
       
       child: Row(
 
@@ -258,27 +307,18 @@ class _SexoRegister extends StatelessWidget {
           DropdownButtonPersonal(
 
             hintText: 'SELECCIONE EL SEXO',
-
             onvalidator: (value) {
-            
               return (value!= null)
               ? null
               : "Por favor complete este campo";
               
             },
-            
             items: dropdownItemSexo, 
             onchanged: (value)=> personalProvider.valorSexo = value!,
-
           ),
-
-
         ]
-
       ),
-    
     );
-
   }
 
 }

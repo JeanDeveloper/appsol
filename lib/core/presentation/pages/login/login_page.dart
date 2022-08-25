@@ -8,7 +8,7 @@ import 'package:solgis/core/theme/theme.dart';
 
 class LoginPage extends StatelessWidget {
   
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,50 +40,53 @@ class LoginPage extends StatelessWidget {
               opacity: homeProvider.isdragged ? 0.0 : 1.0,
               child: Center(
               child: SizedBox(
-                height: size.height * .75,
+                height: size.height * .85,
                 width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const Spacer(),
-                      const Center(
-                        child:Text('SOLMAR') 
-                        
+                      // const Spacer(),
+                      Center(
+                        // child:Text('Solmar') 
+                        child: Image(
+                          width: size.width*0.6,
+                          height: size.height*0.13,
+                          image: const AssetImage('assets/pngs/SOLMAR.png'),
+                        ),
                       ),
                       const SizedBox(height: 35),
-                      const Spacer(flex: 5),
+                      const Spacer(flex: 7),
                       Text(
                         'Bienvenido',
                         style: GoogleFonts.poppins(
                           fontSize: size.height * .040,
                           fontWeight: FontWeight.w700,
+                          color: const Color(0xffffffff)
                         ),
                       ),
                       const Spacer(flex: 5),
                       Row(
                         children: <Widget>[
-
                           Expanded(
                             child: SnakeButton(
                               onPressed: () => _openPage(context, const LoginAgenteForm()),
                               child: Text(
-                                'Agente',
+                                'DNI',
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
+                                  color: const Color(0xffffffff)
                                 ),
                               ),
                             ),
                           ),
-
                           const SizedBox(width: 30),
-
                           Expanded(
                             child: RectangularButton(
                               onPressed: () => _openPage(context, const LoginGeneralForm()),
-                              label: 'Usuario',
+                              label: 'USUARIO',
                             ),
                           ),
                         ],
@@ -95,8 +98,6 @@ class LoginPage extends StatelessWidget {
             ),
             ),
           ),
-
-
 
         ],
       )
@@ -121,11 +122,8 @@ class LoginPage extends StatelessWidget {
         },
       ),
     );
-
-  
     homeProvider.isdragged = false;
   }
-
 
 }
 
@@ -147,9 +145,9 @@ class RectangularButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          primary: Colors.black,
+          primary: Colors.white,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color:  Color(0xff6F56FF), width: 3),
+            side: BorderSide(color:  Colors.white, width: 3),
           ),
         ),
         child: Text(

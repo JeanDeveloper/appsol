@@ -1,82 +1,96 @@
 import 'package:flutter/material.dart';
 
-class PersonAuthProvider extends ChangeNotifier{
-  late String _codigoPersona = '';
-  late int _codigoUsuario = 0;
-  late String _dni = '';
-  late String _nombre = '';
-  late String _pApellido = '';
-  late String _sApellido = '';
-  late int _rol = 0;
-  late String _codigoCliente = '';
+enum AuthStatus{
 
+  Authenticated,
+  Unauthenticated,
+
+}
+
+class PersonAuthProvider extends ChangeNotifier{
+  late String codigoPersona = '';
+  late int codigoUsuario = 0;
+  late String dni = '';
+  late String nombre = '';
+  late String pApellido = '';
+  late String sApellido = '';
+  late int rol = 0;
+  late String codigoCliente = '';
+
+  AuthStatus status = AuthStatus.Unauthenticated;
+
+  //METODOS PARA LA VARIABLE status
+  AuthStatus get estado => status;
+
+  set estado(AuthStatus valor){
+    status = valor;
+    notifyListeners();
+  }
 
   //METODOS PARA LA VARIABLE CODIGO PERSONA
-  String get codigoPersona => _codigoPersona;
+  String get getcodigoPersona => codigoPersona;
 
-  set codigoPersona(String valor){
-    _codigoPersona = valor;
+  set setcodigoPersona(String valor){
+    codigoPersona = valor;
     notifyListeners();
   }
 
 
   //METODOS PARA LA VARIABLE CODIGO USUARIO
-  int get codigoUsuario => _codigoUsuario;
+  int get getcodigoUsuario => codigoUsuario;
 
-  set codigoUsuario(int valor){
-    _codigoUsuario = valor;
+  set setcodigoUsuario(int valor){
+    codigoUsuario = valor;
     notifyListeners();
   }
 
 
   //METODOS PARA LA VARIABLE DNI
-  String get dni => _dni;
+  String get getdni => dni;
 
-  set dni(String valor){
-    _dni = valor;
+  set setdni(String valor){
+    dni = valor;
     notifyListeners();
   }
 
 
   //METODOS PARA LA VARIABLE NOMBRE
-  String get nombre => _nombre;
+  String get getnombre => nombre;
 
-  set nombre(String valor){
-    _nombre = valor;
+  set setnombre(String valor){
+    nombre = valor;
     notifyListeners();
   }
 
   //METODOS PARA LA VARIABLE P APELLIDO
-  String get pApellido => _pApellido;
+  String get getpApellido => pApellido;
 
-  set pApellido(String valor){
-    _pApellido = valor;
+  set setpApellido(String valor){
+    pApellido = valor;
     notifyListeners();
   }
-
 
   //METODOS PARA LA VARIABLE S APELLIDO
-  String get sApellido => _sApellido;
+  String get getsApellido => sApellido;
 
-  set sApellido(String valor){
-    _sApellido = valor;
+  set setsApellido(String valor){
+    sApellido = valor;
     notifyListeners();
   }
 
-
   //METODOS PARA LA VARIABLE ROL
-  int get rol => _rol;
+  int get getrol => rol;
 
-  set rol(int valor){
-    _rol = valor;
+  set setrol(int valor){
+    rol = valor;
     notifyListeners();
   }
 
   //METODOS PARA LA VARIABLE CODIGO CLIENTE
-  String get codigoCliente => _codigoCliente;
+  String get getcodigoCliente => codigoCliente;
 
-  set codigoCliente(String valor){
-    _codigoCliente = valor;
+  set setcodigoCliente(String valor){
+    codigoCliente = valor;
     notifyListeners();
   }
 

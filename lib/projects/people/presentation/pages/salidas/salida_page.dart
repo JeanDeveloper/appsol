@@ -111,7 +111,7 @@ class SalidaPageBody extends StatelessWidget {
                                 progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
                                 progressDialog.show();
 
-                                final idMovimiento = await movimientoProvider.registerMovimiento(consulta);
+                                final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
 
                                 print(idMovimiento);
 

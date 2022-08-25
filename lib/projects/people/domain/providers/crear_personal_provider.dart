@@ -15,8 +15,6 @@ class CrearPersonalProvider extends ChangeNotifier{
   List<DropdownMenuItem<int>> itemsCargos = [];
   List<DropdownMenuItem<int>> itemsEmpresas = [];
 
-  
-
   //controla el listado de empresas.
   // List<DropdownMenuItem<int>> get itemsEmpresas =>_itemsEmpresas; 
 

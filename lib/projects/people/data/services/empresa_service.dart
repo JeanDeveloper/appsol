@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/empresa_model.dart';
 
 class EmpresasProvider {
 
-  final String _url = '192.168.10.58:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/empresas/';
 
 
@@ -25,6 +25,7 @@ class EmpresasProvider {
     );
 
     if(resp.statusCode ==200){
+
 
       final decodedData = json.decode(utf8.decode(resp.bodyBytes));
       final empresas = EmpresasModel.fromJsonList(decodedData);
@@ -49,16 +50,10 @@ class EmpresasProvider {
     final empresas = await _procesarRespuestaGet(url);
 
     for (var i=0; i<empresas.length; i++) {
-
       DropdownMenuItem<int> item =  DropdownMenuItem(value: int.parse(empresas[i].codigo!), child: Text(empresas[i].empresa!));
       menuItems.add(item);
-
     }
-
     return menuItems;
-
-
   }
-
 
 }

@@ -22,12 +22,12 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
 
     return ElevatedButton(
+      
 
       style: ButtonStyle(
-
 
         textStyle: MaterialStateProperty.all(
           Theme.of(context).textTheme.subtitle1!

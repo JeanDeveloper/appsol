@@ -76,7 +76,7 @@ class SalidaAutorizadaBody extends StatelessWidget {
                 progressDialog.show();
 
                 //funcion para registrar el movimiento.
-                final idMovimiento = await movimientoProvider.registerMovimiento(consulta);
+                final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
 
                 print(idMovimiento);
 

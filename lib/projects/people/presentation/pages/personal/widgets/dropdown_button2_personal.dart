@@ -31,16 +31,12 @@ class DropdownButton2Widget extends StatelessWidget {
         buttonPadding: const EdgeInsets.only(left:10),
         buttonElevation: 0,
         dropdownElevation: 0,
-    
         buttonDecoration: BoxDecoration(
-          
           borderRadius: BorderRadius.circular(5),
           border: Border.all(
             color: Colors.black
           )
-        
         ),
-    
         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
         items: items, //
         buttonWidth: size.width*0.57,
@@ -49,16 +45,13 @@ class DropdownButton2Widget extends StatelessWidget {
         onChanged: onchanged, //
         value: value,//
         searchController: texteditingcontroller, //
-    
         searchInnerWidget: Padding(
-    
           padding: const EdgeInsets.only(
             top: 8,
             bottom: 4,
             right: 8,
             left: 8,
           ),
-    
           child: TextFormField(
             textCapitalization: TextCapitalization.characters,
             style: const TextStyle(color: Colors.black),
@@ -74,19 +67,14 @@ class DropdownButton2Widget extends StatelessWidget {
                 horizontal: 10,
                 vertical: 10,
               ),
-    
             ),
           ),
-    
           
         ),
-    
         searchMatchFn: (DropdownMenuItem<dynamic> item, searchValue){
-    
           final hijo = item.child.toString();
           final texto = hijo.substring(5, hijo.lastIndexOf('"')+1);
           return ( texto.contains(searchValue));
-    
         },
 
         onMenuStateChange: (isOpen) {
@@ -95,11 +83,8 @@ class DropdownButton2Widget extends StatelessWidget {
           }
         }
 
-
       ),
     );
-
-
 
   }
 }

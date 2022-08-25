@@ -290,14 +290,11 @@ class _ImageCardPersonalRegister extends StatelessWidget {
 
 
 List<DropdownMenuItem<int>> get dropdownItemSexo{
-
   List<DropdownMenuItem<int>> menuItems = [
     const DropdownMenuItem(value: 1, child: Text('MASCULINO')),
     const DropdownMenuItem(value: 2, child: Text('FEMENINO')),
   ];
-
   return menuItems;
-
 }
 
 
@@ -342,12 +339,10 @@ InputDecoration inputDecorationDatos()=> const  InputDecoration(
 List<DropdownMenuItem<int>> get dropdownItemsTipoDocumento{
 
   List<DropdownMenuItem<int>> menuItems = [
-    const DropdownMenuItem(value:1, child: Text('DNI')),
-    const DropdownMenuItem(value:2, child: Text('CARNET DE EXTRANJERIA')),
-    const DropdownMenuItem(value:3, child:Text('PASAPORTE')),
+    const DropdownMenuItem(value:1, child: AutoSizeText('DNI')),
+    const DropdownMenuItem(value:2, child: AutoSizeText('CARNET DE EXTRANJERIA')),
+    const DropdownMenuItem(value:3, child: AutoSizeText('PASAPORTE')),
   ];
-
   return menuItems;
-
 }
 

@@ -88,6 +88,7 @@ class _SnakePainter extends CustomPainter {
       ..shader = SweepGradient(
         colors: const [
           Color(0xff6F56FF),
+          // Color(0xff000000),
           Colors.transparent,
 
           // Colors.brown,

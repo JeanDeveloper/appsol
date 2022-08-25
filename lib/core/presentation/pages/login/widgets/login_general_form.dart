@@ -1,8 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:solgis/core/presentation/pages/login/widgets/widget.dart';
 import 'package:solgis/core/presentation/pages/pages.dart';
 
 import 'package:solgis/core/theme/theme.dart';
+import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 
 class LoginGeneralForm extends StatelessWidget {
   
@@ -10,21 +12,21 @@ class LoginGeneralForm extends StatelessWidget {
     super.key,
   });
 
-  void _openHomePage(BuildContext context) {
+  // void _openHomePage(BuildContext context) {
     
-    final newRoute = PageRouteBuilder<dynamic>(
-      transitionDuration: const Duration(milliseconds: 1000),
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return FadeTransition(
-          opacity: animation,
-          child: const HomePage(),
-        );
-      },
-    );
-    Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
-    // Navigator.pushReplacementNamed(context, newRoute)
+  //   final newRoute = PageRouteBuilder<dynamic>(
+  //     transitionDuration: const Duration(milliseconds: 1000),
+  //     pageBuilder: (context, animation, secondaryAnimation) {
+  //       return FadeTransition(
+  //         opacity: animation,
+  //         child: const HomePage(),
+  //       );
+  //     },
+  //   );
+  //   Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
+  //   // Navigator.pushReplacementNamed(context, newRoute)
   
-  }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +63,13 @@ class LoginGeneralForm extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: size.height * .1),
-                    const Center(
-                      child: Text('SOLMAR'),
+                    Center(
+                      // child: Text('SOLMAR'),
+                      child: Image(
+                        width: size.width*0.5,
+                        height: size.height*0.1,
+                        image: AssetImage('assets/pngs/SOLMAR.png'),
+                      ),
                     ),
                     const Spacer(),
                     Stack(
@@ -105,7 +112,8 @@ class LoginGeneralForm extends StatelessWidget {
                                     child: TextButton(
                                       onPressed: () {
                                         resizeNotifier.value = false;
-                                        _openHomePage(context);
+                                        showSnackBarAwesome(context, 'Atencion', 'Estamos trabajando para brindarle mas funcionalidades', ContentType.failure);
+                                        // _openHomePage(context);
                                       },
                                       style: TextButton.styleFrom(
                                         primary: Colors.white,
@@ -155,6 +163,7 @@ class _DragDownIndication extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
+            color: Colors.white
           ),
         ),
         Text(
@@ -162,12 +171,13 @@ class _DragDownIndication extends StatelessWidget {
           style: TextStyle(
             height: 2,
             fontSize: 14,
-            color: Colors.black.withOpacity(.9),
+            color: Colors.white.withOpacity(.9),
+
           ),
         ),
         Icon(
           Icons.keyboard_arrow_down,
-          color: Colors.black.withOpacity(.8),
+          color: Colors.white.withOpacity(.8),
           size: 35,
         ),
       ],

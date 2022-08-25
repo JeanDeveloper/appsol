@@ -6,11 +6,8 @@ Future<DeviceResponseModel?>senDataDevice(String number)async{
   
   final device = DeviceInformationModel();
   await device.getInformationDevice();
-
   final deviceService = DeviceService();
-
   final deviceResponse = await deviceService.sendDataDevice(device, number);
-
   return deviceResponse;
 
 }

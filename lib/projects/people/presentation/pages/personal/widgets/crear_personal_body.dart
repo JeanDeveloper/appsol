@@ -45,17 +45,17 @@ class CrearPersonalBody extends StatelessWidget {
                 ),
 
               ),
-    
+
             ),
-    
+
             SizedBox(width: (personalProvider.getValorStep != 0) ? size.width*0.1: null),
-    
+
             if(personalProvider.getValorStep != 0 )
-    
+
               Expanded(
-    
+
                 child: TextButton(
-    
+
                   style: getStyleButtonStep(context),
                   onPressed: details.onStepCancel,
                   child: Padding(
@@ -111,7 +111,7 @@ class CrearPersonalBody extends StatelessWidget {
     
     );
     
-  
+
   }
 
   List<Step> getSteps(BuildContext context ){

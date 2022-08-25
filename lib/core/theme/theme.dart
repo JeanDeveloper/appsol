@@ -5,7 +5,7 @@ class AppThemeGeneral {
   static final ThemeData lighTheme = ThemeData.light().copyWith(
 
     backgroundColor: const Color(0xffF6F2EC),
-    primaryColor : const Color(0xff6F56FF)
+    primaryColor : Color.fromARGB(255, 111, 86, 255)
     // primaryColor: const Color(0xff004194),
 
     //COLORES

@@ -5,15 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/helpers/send_data_device.dart';
 import 'package:solgis/core/domain/providers/auth_device_provider.dart';
 import 'package:solgis/core/presentation/pages/pages.dart';
-
+import 'package:solgis/core/presentation/widgets/widgets.dart';
 
 class InitializedWidget extends StatefulWidget{
-
   const InitializedWidget({Key? key}) : super(key: key);
-
   @override
   State<InitializedWidget> createState() => _InitializedWidgetState();
-
 }
 
 class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindingObserver {
@@ -25,45 +22,49 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     _estado = -1;
-    checkAuthDevice()
-      .then((value) {
-        _estado =value;
-        setState(() {});
-      });
+    // checkAuthDevice()
+    //   .then((value) {
+    //     _estado =value;
+    //     setState(() {});
+    //   });
 
     //TAREA CRONOMETRADA CADA 5 SEGUNDOS
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       timerSlide = Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
-        checkAuthDevice()
-          .then((value) {
-            _estado =value;
-            setState(() {});
-          });
+
+        final status = await checkAuthDevice();
+        _estado = status;
+        setState(() {});
+        // checkAuthDevice()
+        //   .then((value) {
+        //     _estado =value;
+        //     setState(() {});
+        //   });
+
       });
     });
+
     super.initState();
   }
 
   @override
   void dispose() {
+    print('se llamo al dispose');
     timerSlide.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state)async{
-    if(state == AppLifecycleState.resumed){
-      final estadoId = await checkAuthDevice();
-      print(estadoId);
-      _estado = estadoId;
-      setState(() {});
-    }
-
-    super.didChangeAppLifecycleState(state);
-
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state)async{
+  //   if(state == AppLifecycleState.resumed){
+  //     final estadoId = await checkAuthDevice();
+  //     print(estadoId);
+  //     _estado = estadoId;
+  //     setState(() {});
+  //   }
+  //   super.didChangeAppLifecycleState(state);
+  // }
 
   @override
   Widget build(BuildContext context) { 
@@ -88,12 +89,11 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
         return const PendingPage();
 
       case AuthDeviceStatus.Aproved:
-        return LoginPage();
+        return const InitializedWidgetAuth();
 
       case AuthDeviceStatus.Refused:
         return const RefusedPage(); //MANDAR UN PARAMETRO QUE ESTA RECHAZADO
 
     }
-
   }
 }

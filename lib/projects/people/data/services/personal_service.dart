@@ -9,7 +9,7 @@ import 'package:solgis/projects/people/domain/providers/crear_personal_provider.
 
 class PersonalProvider{
 
-  final String _url = '192.168.10.58:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/personal/';
   
   final bool cargando = false;
@@ -19,7 +19,7 @@ class PersonalProvider{
 
     final personalProvider = Provider.of<CrearPersonalProvider>(context, listen: false);
     final globalProvider = Provider.of<GlobalProvider>(context, listen: false);
-
+    final personProvider = Provider.of(context, listen: false);
     final url = Uri.http(_url, _uncodePath);
 
     final body = jsonEncode({
@@ -34,7 +34,7 @@ class PersonalProvider{
         'apellido2': personalProvider.sApellido,
         'doc_personal': personalProvider.nDocumento,
         'sexo': (personalProvider.sexo==1)? 'M' : 'F',
-        'creado_por': 'PEOPLE_${globalProvider.codServicio}',
+        'creado_por': 'PEOPLE_${personProvider.dni}',
         'brevete': '',
         'es_autorizante': 0,
         'habilitado': 1,
