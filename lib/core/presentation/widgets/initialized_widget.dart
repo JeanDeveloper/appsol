@@ -32,14 +32,11 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       timerSlide = Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
 
-        final status = await checkAuthDevice();
-        _estado = status;
-        setState(() {});
-        // checkAuthDevice()
-        //   .then((value) {
-        //     _estado =value;
-        //     setState(() {});
-        //   });
+        checkAuthDevice()
+          .then((value) {
+            _estado =value;
+            setState(() {});
+          });
 
       });
     });

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "421984983217",
+    "project_id": "appsol-95fc5",
+    "storage_bucket": "appsol-95fc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421984983217:android:eed0ed7f8a13509bc2aa90",
+        "android_client_info": {
+          "package_name": "com.jccsgruposolmar.appsol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421984983217-7opg4u005p8nkkfrasli3hkbrc86qu0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE_QbLOJ4Wz2MLwm9UBTI8lWwNHZjQOQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421984983217-7opg4u005p8nkkfrasli3hkbrc86qu0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
