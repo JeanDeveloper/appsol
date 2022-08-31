@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/empresa_model.dart';
 
 class EmpresasProvider {
 
-  final String _url = '20.168.13.107:8000';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/empresas/';
 
 
@@ -25,7 +25,6 @@ class EmpresasProvider {
     );
 
     if(resp.statusCode ==200){
-
 
       final decodedData = json.decode(utf8.decode(resp.bodyBytes));
       final empresas = EmpresasModel.fromJsonList(decodedData);

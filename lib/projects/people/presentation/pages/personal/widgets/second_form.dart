@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
+import 'package:solgis/projects/people/presentation/widgets/shimmer_widget.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
 
@@ -17,9 +18,7 @@ class SecondForm extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final personalProvider = Provider.of<CrearPersonalProvider>(context);
     final globalProvider   = Provider.of<GlobalProvider>(context);
-    print('se carga las empresas y los cargos');
-    personalProvider.initEmpresas(globalProvider.codCliente, '');
-    personalProvider.initCargos('', globalProvider.codCliente);
+    
 
     return Form(
 
@@ -28,7 +27,7 @@ class SecondForm extends StatelessWidget {
       child: Column(
           
         children: [
-          
+
           _SexoRegister(),
           SizedBox(height: size.height*0.04), 
 
@@ -37,9 +36,9 @@ class SecondForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
             children: [
-      
+
               Text('TIPO PERSONA:  ', style: styleCrearPersonaltextForm()),
-      
+
               DropdownButtonPersonal(
                 items: dropdownItemsTipoPersona,
                 hintText: 'SELECCIONE EL TIPO PERSONA',
@@ -57,30 +56,30 @@ class SecondForm extends StatelessWidget {
 
           //CAMPO PARA EL PRIMER NOMBRE
           Row(
-          
+
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          
+
             children: [
-      
+
               Text('NOMBRE:  ', style: styleCrearPersonaltextForm()),
-          
+
               SizedBox(
-          
+
                 width: size.width*0.57,
-          
+
                 child: TextFormField(
-      
+
                   textCapitalization: TextCapitalization.characters,
-      
+
                   onChanged: (value)=>personalProvider.pNombre=value,
-          
+
                   
                   style: TextStyle(fontSize: size.width*0.030, color: Colors.black),
                   decoration:inputDecorationDatos() ,
                 )
-          
+
               )
-          
+
             ]
           ),
           SizedBox(height: size.height*0.04), 
@@ -174,78 +173,35 @@ class SecondForm extends StatelessWidget {
 
               Text('EMPRESA: ', style: styleCrearPersonaltextForm()),
 
-              // (personalProvider.itemsEmpresas.isNotEmpty)
-              //     ?DropdownButtonHideUnderline(
-              //       child: DropdownButton2< int >(
-              //         buttonPadding: const EdgeInsets.only(left:10),
-              //         buttonElevation: 0,
-              //         dropdownElevation: 0,
-              //         buttonDecoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(5),
-              //           border: Border.all(
-              //             color: Colors.black
-              //           )
-              //         ),
-              //         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
-              //         items: personalProvider.itemsEmpresas, //
-              //         buttonWidth: size.width*0.57,
-              //         isExpanded: true,
-              //         hint: Text('SELECCIONE LA EMPRESA', style: TextStyle(color:Colors.grey, fontSize: size.width*0.030)), //
-              //         onChanged: (value)=>personalProvider.empresa = value!, //
-              //         value: personalProvider.empresa,//
-              //         searchController: personalProvider.searchEditingControllerEmpresa, //
-              //         searchInnerWidget: Padding(
-              //           padding: const EdgeInsets.only(
-              //             top: 8,
-              //             bottom: 4,
-              //             right: 8,
-              //             left: 8,
-              //           ),
-              //           child: TextFormField(
-              //             textCapitalization: TextCapitalization.characters,
-              //             style: const TextStyle(color: Colors.black),
-              //             controller: personalProvider.searchEditingControllerEmpresa,
-              //             decoration: InputDecoration(
-              //               hintText: 'Busque la empresa',//
-              //               hintStyle: const TextStyle(fontSize: 14),
-              //               border: OutlineInputBorder(
-              //                 borderRadius: BorderRadius.circular(5)
-              //               ),
-              //               isDense: true,
-              //               contentPadding:  const EdgeInsets.symmetric(
-              //                 horizontal: 10,
-              //                 vertical: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
 
-              //         searchMatchFn: (DropdownMenuItem<dynamic> item, searchValue){
-              //           final hijo = item.child.toString();
-              //           final texto = hijo.substring(5, hijo.lastIndexOf('"')+1);
-              //           return ( texto.contains(searchValue));
-              //         },
+              FutureBuilder(
 
-              //         onMenuStateChange: (isOpen) {
-              //           if (!isOpen) {
-              //             personalProvider.searchEditingControllerEmpresa.clear();
-              //           }
-              //         }
+                future:personalProvider.initEmpresas(globalProvider.codCliente, ''),
 
-              //       ),
-              //     )
+                builder: (BuildContext context,  AsyncSnapshot<List<DropdownMenuItem<int>>> snapshot) {
 
-              //   // ? DropdownButton2Widget(
+                  if(snapshot.data!.isEmpty) return Container();
                   
-              //   //   items: personalProvider.itemsEmpresas,
-              //   //   hinText: 'SELECCIONE LA EMPRESA',
-              //   //   hintTextForm: 'Busque la empresa',
-              //   //   onchanged: (value)=>personalProvider.empresa = value!,
-              //   //   texteditingcontroller: personalProvider.searchEditingControllerEmpresa,
-              //   //   value: personalProvider.empresa,
-              //   //   ) 
+                  if(!snapshot.hasData){
+                    return ShimmerWidget(
+                      width: size.width*0.57, 
+                      height: size.height*0.04
+                    );
+                  } 
+                  
+                  final dropdownempresas = snapshot.data;
 
-              //   : const Center(child:  CircularProgressIndicator()),
+                  return DropdownButton2Widget(
+                    items: dropdownempresas,
+                    hinText: 'SELECCIONE LA EMPRESA',
+                    hintTextForm: 'Busque la empresa',
+                    onchanged: (value)=>personalProvider.empresa = value!,
+                    texteditingcontroller: personalProvider.searchEditingControllerEmpresa,
+                    value: personalProvider.empresa,
+                  );
+                }, 
+              ),
+
             ]
           ),
           SizedBox(height: size.height*0.04), 
@@ -258,17 +214,33 @@ class SecondForm extends StatelessWidget {
 
               Text('CARGO: ', style: styleCrearPersonaltextForm()),
 
-              (personalProvider.itemsCargos.isNotEmpty)
-                ? DropdownButton2Widget(
-                  items: personalProvider.itemsCargos,
-                  hinText: 'SELECCIONE EL CARGO',
-                  hintTextForm: 'Busque el cargo',
-                  onchanged: (value)=>personalProvider.cargo = value!,
-                  texteditingcontroller: personalProvider.searchEditingControllerCargo,
-                  value: personalProvider.cargo,
-                  ) 
-                : const Center(child:  CircularProgressIndicator()),
-      
+              FutureBuilder(
+
+                future:personalProvider.initCargos('', globalProvider.codCliente),
+
+                builder: (BuildContext context,  AsyncSnapshot<List<DropdownMenuItem<int>>> snapshot) {
+                  if(snapshot.data!.isEmpty) return Container();
+                  
+                  if(!snapshot.hasData){
+                    return ShimmerWidget(
+                      width: size.width*0.57, 
+                      height: size.height*0.04
+                    );
+                  } 
+                  
+                  final dropdowncargos = snapshot.data;
+
+                  return DropdownButton2Widget(
+                    items: dropdowncargos,
+                    hinText: 'SELECCIONE EL CARGO',
+                    hintTextForm: 'Busque el cargo',
+                    onchanged: (value)=>personalProvider.cargo = value!,
+                    texteditingcontroller: personalProvider.searchEditingControllerCargo,
+                    value: personalProvider.cargo,
+                  );
+                }, 
+              ),
+
             ]
 
           ),

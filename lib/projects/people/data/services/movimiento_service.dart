@@ -10,7 +10,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '20.168.13.107:8000';
+  final String _url   = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   List<MovimientoModel> movimientosTotalesSelected = [];

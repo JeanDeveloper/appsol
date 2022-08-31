@@ -43,7 +43,7 @@ class CrearPersonalProvider extends ChangeNotifier{
   String _sApellido = "";
 
   //controla la empresa.
-  int _empresa = 1;
+  int _empresa = 0;
 
   //controla el cargo.
   int _cargo = 1;
@@ -179,7 +179,7 @@ class CrearPersonalProvider extends ChangeNotifier{
   Future<List<DropdownMenuItem<int>>> initEmpresas(String codEmpresa, String nombreEmpresa)async{
     if(itemsEmpresas.isEmpty){
       itemsEmpresas = await listaempresas.getEmpresas(codEmpresa, nombreEmpresa); //se rellena la lista que necesito posteriormente
-      notifyListeners();
+      // notifyListeners();
     }
     return itemsEmpresas;
   }
@@ -187,7 +187,7 @@ class CrearPersonalProvider extends ChangeNotifier{
   Future<List<DropdownMenuItem<int>>> initCargos(String codCargo, String nombreCargo)async{
     if(itemsCargos.isEmpty){
       itemsCargos = await cargos.getCargos(codCargo, nombreCargo); //se rellena la lista que necesito posteriormente
-      notifyListeners();
+      // notifyListeners();
     }
     return itemsCargos;
   }

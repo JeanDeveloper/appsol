@@ -88,7 +88,6 @@ class _PhonePageBody extends StatelessWidget {
                   FocusScope.of(context).unfocus();
                   
                   if(!homeProvider.isValidFormPhone()) return;
-                  // final estado = await MyFunction(deviceProvider.deviceModel);
                   bool checkpermision = await FlutterDeviceIdentifier.checkPermission();
                   // ignore: use_build_context_synchronously
                   if(!checkpermision) return showSnackBarAwesome(context, 'Atencion', 'Se requiere permisos para leer informacion del dispositivo  ', ContentType.failure);

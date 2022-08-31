@@ -15,10 +15,8 @@ class Appsol extends StatelessWidget {
   const Appsol({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {  
-
+  Widget build(BuildContext context) {
     return MultiProvider(
-
       providers: [
         //PROVEEDOR DEL LOGIN.
         //PROVEEDOR DEL SOLAPP.
@@ -27,16 +25,11 @@ class Appsol extends StatelessWidget {
         ChangeNotifierProvider( create: (_) => HomeProvider() ),
         ChangeNotifierProvider( create: (_) => GlobalProvider() ),
         ChangeNotifierProvider( create: (_) => PersonAuthProvider() ),
-
         //PROVIDERS DEL CARGO
         ChangeNotifierProvider( create: (_) => RadioCargoProvider() ),
-
       ],
-
       child: const AppsolState(),
-
     );
-
   }
 
 }
@@ -44,7 +37,6 @@ class Appsol extends StatelessWidget {
 class AppsolState extends StatelessWidget {
 
   const AppsolState({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
 

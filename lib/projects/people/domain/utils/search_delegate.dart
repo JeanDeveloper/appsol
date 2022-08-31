@@ -177,7 +177,85 @@ class _MovimientoTile extends StatelessWidget {
       style: ListTileStyle.list,
       // contentPadding: EdgeInsets.symmetric(horizontal: size.height*0.0116),
       contentPadding: EdgeInsets.zero,
-      leading: Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
+      // leading: Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
+      
+      leading: GestureDetector(
+        onTap: ()async{
+
+          await NDialog(
+            
+            dialogStyle: DialogStyle(
+              backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
+            ),
+            
+            title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
+            
+            content: Container(
+            
+              margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              width: size.width*0.05,
+              height: size.height*0.35,
+            
+              child:ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FutureBuilder(
+
+                  future: getImage(movimiento.pathImage),
+
+                  builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+                    if(!snapshot.hasData){
+                      return const Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/gifs/loader-gris.gif'),
+                      );
+                    }
+
+                    return Container(
+                      child: snapshot.data!,
+                    );
+
+                  }
+
+                ),
+              )
+            
+            )
+
+          ).show(context);
+
+        },
+        child: SizedBox(
+          width: size.width*0.15,
+          height: size.height*0.4,
+          child: ClipRRect(
+      
+            borderRadius: BorderRadius.circular(20),
+      
+            child: FutureBuilder(
+      
+              future: getImage(movimiento.pathImage),
+      
+              builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+                if(!snapshot.hasData){
+                  return const Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/gifs/loader-gris.gif'),
+                  );
+                }
+      
+                return Container(
+                  child: snapshot.data!,
+                );
+      
+              }
+      
+            ),
+      
+          ),
+      
+        ),
+      ),
+
       title: Row(
 
         children: [
@@ -188,7 +266,6 @@ class _MovimientoTile extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Expanded(child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1))
-
 
         ],
 

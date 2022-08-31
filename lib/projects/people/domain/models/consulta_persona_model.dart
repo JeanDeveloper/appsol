@@ -56,7 +56,7 @@ class ConsultaModel {
     int? codigoTipoPersona;
     String? tipoPersona;
     int codigoServicio;
-    int codigoClienteControl;
+    int? codigoClienteControl;
     String? img;
     String? nroPase;
 

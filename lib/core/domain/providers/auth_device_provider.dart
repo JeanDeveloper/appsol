@@ -18,8 +18,6 @@ enum AuthDeviceStatus{
 
   Refused, //CUANDO EL DISPOSITIVO HA SIDO RECHAZADO DESDE EL PANEL DE CONTROL.
 
-
-
 }
 
 class AuthDeviceProvider extends ChangeNotifier{
@@ -37,20 +35,20 @@ class AuthDeviceProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  sendData(BuildContext context, DeviceInformationModel dispositivo){
+  // sendData(BuildContext context, DeviceInformationModel dispositivo){
 
-    try {
+  //   try {
 
-      //METODO HTTP PARA ENVIAR TODA LA DATA. 
+  //     //METODO HTTP PARA ENVIAR TODA LA DATA. 
 
-      deviceService.sendDataDevice(dispositivo, '918398611');
-    } catch (e) {
+  //     deviceService.sendDataDevice(dispositivo, '918398611');
+  //   } catch (e) {
 
-      print(e);
+  //     print(e);
 
-    }
+  //   }
 
-  }
+  // }
 
 
 }

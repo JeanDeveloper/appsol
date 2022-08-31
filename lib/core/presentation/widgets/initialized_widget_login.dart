@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/device/preferences.dart';
+import 'package:solgis/core/domain/helpers/signin_dni.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/core/presentation/pages/pages.dart';
@@ -15,7 +16,6 @@ class InitializedWidgetAuth extends StatelessWidget{
     final authProvider = Provider.of<PersonAuthProvider>(context, listen: false);
     final gProvider = Provider.of<GlobalProvider>(context, listen: false);
     (Preferences.isAuthenticated)?authProvider.status = AuthStatus.Authenticated : authProvider.status = AuthStatus.Unauthenticated;
-    // print(Preferences.isAuthenticated);
 
     if(Preferences.isAuthenticated){
       authProvider.codigoPersona = Preferences.codigoPersona;
@@ -42,9 +42,11 @@ class InitializedWidgetAuth extends StatelessWidget{
       
       case AuthStatus.Authenticated:
         return const HomePage();
+        // return openHomePage(context)
       case AuthStatus.Unauthenticated:  
         return const LoginPage();
     }
 
   }
 }
+

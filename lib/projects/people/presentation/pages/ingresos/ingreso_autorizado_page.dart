@@ -58,11 +58,11 @@ class IngresoAutorizadoBody extends StatelessWidget {
       registrarFunction: () async {
 
         await NDialog(
-          
+
           dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
           title: const Text("¡Alerta!",),
           content: const Text(" ¿Estas seguro que deseas registrar el movimiento? ", style: TextStyle(color: Colors.black)),  
-          
+
           actions: <Widget>[
 
             TextButton(

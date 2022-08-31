@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/consulta_datos_persona_service.dart';
@@ -7,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart
 import 'package:solgis/projects/people/domain/models/consulta_validacion_model.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 
 class ConsultaPage extends StatelessWidget {
   const ConsultaPage({Key? key}) : super(key: key);
@@ -49,6 +50,7 @@ class _ConsultaPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('es');
 
     final loginProvider = Provider.of<GlobalProvider>(context);
 
@@ -103,16 +105,14 @@ class _ConsultaPageBody extends StatelessWidget {
 
               if( snapshot.data!.valor == '0'){
 
-                if(loginProvider.codCliente == '25866') return _ContainerEstado(size:size, text: 'HOMOLOGADO', color: Colors.greenAccent,);
-                
-                if( loginProvider.codCliente == '00013') return _ContainerEstado(size:size, text: 'INDUCIDO', color: Colors.greenAccent); //CODIGO EXALMAR 
-                
-                return _ContainerEstado(size:size, text: 'VIGENTE', color: Colors.greenAccent,);
+                if(loginProvider.codCliente  == '25866') return _ContainerEstado(size:size, text: 'HOMOLOGADO', color: Colors.greenAccent); // CODIGO SAASA
+                if( loginProvider.codCliente == '00013') return _ContainerEstado(size:size, text: 'INDUCIDO', color: Colors.greenAccent);  //CODIGO EXALMAR 
+                if( loginProvider.codCliente == '00005') return _ContainerEstado(size:size, text: 'AUTORIZADO', color: Colors.greenAccent);
+                return _ContainerEstado(size:size, text: 'VIGENTE', color: Colors.greenAccent);
 
               } 
               
-              if(snapshot.data!.valor == '-1')return _ContainerEstado(size:size, text: 'NO TIENE', color: Colors.red,);
-              
+              if(snapshot.data!.valor == '-1')return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red);
 
               return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red,);
 
@@ -201,9 +201,8 @@ class _ConsultaPageBody extends StatelessWidget {
           //CAMPO ACCESO
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  
+
             children: [
-  
               Text('AREA DE ACCESSO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
               InputReadOnlyWidget(initialValue: consulta.area),
             ],
@@ -224,18 +223,18 @@ class _ConsultaPageBody extends StatelessWidget {
               FutureBuilder(
 
                 future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
-                
-                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
+                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
                   // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
                   if(!snapshot.hasData) return Expanded(child:Container());
                   if( snapshot.data!.fiAutorizacion == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  return InputReadOnlyWidget(initialValue: snapshot.data!.fiAutorizacion);
+                  final String? fecha = snapshot.data!.fiAutorizacion;
+                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
                 }
-              
+
               ),
 
             ],
@@ -263,7 +262,8 @@ class _ConsultaPageBody extends StatelessWidget {
                   if(!snapshot.hasData) return Expanded(child:Container());
                   if( snapshot.data!.sctrSaludFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  return InputReadOnlyWidget(initialValue: snapshot.data!.sctrSaludFv);
+                  final String? fecha = snapshot.data!.sctrSaludFv;
+                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
                 }
               
@@ -298,14 +298,12 @@ class _ConsultaPageBody extends StatelessWidget {
 
                   if( snapshot.data!.sctrPensionFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  return InputReadOnlyWidget(initialValue: snapshot.data!.sctrPensionFv);
+                  final String? fecha = snapshot.data!.sctrPensionFv;
+                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
                 }
-              
+
               ),
-
-              
-
             ],
 
           ),
@@ -334,7 +332,8 @@ class _ConsultaPageBody extends StatelessWidget {
 
                   if( snapshot.data!.emoFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  return InputReadOnlyWidget(initialValue: snapshot.data!.emoFv);
+                  final String? fecha = snapshot.data!.emoFv;
+                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
                 }
               ),

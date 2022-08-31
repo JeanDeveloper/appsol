@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final cargoModel = cargoModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -9,7 +6,7 @@ List<CargoModel> cargoModelFromJson(String str) => List<CargoModel>.from(json.de
 class CargosModel {
 
   List<CargoModel> items = [];
-  
+
   CargosModel();
 
   CargosModel.fromJsonList( List<dynamic> jsonList ) {
@@ -18,7 +15,6 @@ class CargosModel {
       items.add(cargo);
     }
   }
-
 
 }
 

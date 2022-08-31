@@ -22,11 +22,7 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     _estado = -1;
-    // checkAuthDevice()
-    //   .then((value) {
-    //     _estado =value;
-    //     setState(() {});
-    //   });
+
 
     //TAREA CRONOMETRADA CADA 5 SEGUNDOS
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
@@ -52,16 +48,6 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
     super.dispose();
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state)async{
-  //   if(state == AppLifecycleState.resumed){
-  //     final estadoId = await checkAuthDevice();
-  //     print(estadoId);
-  //     _estado = estadoId;
-  //     setState(() {});
-  //   }
-  //   super.didChangeAppLifecycleState(state);
-  // }
 
   @override
   Widget build(BuildContext context) { 

@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/cargo_model.dart';
 
 class CargosProvider {
 
-  final String _url = '20.168.13.107:8000';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/cargos/';
   final bool cargando = false;
 
@@ -36,23 +36,20 @@ class CargosProvider {
   }
 
   //obtengo los cargos
-  Future<List<DropdownMenuItem<int>>> getCargos(String cargo , String codCliente)async{
+  Future<List<DropdownMenuItem<int>>> getCargos(String cargo, String codCliente)async{
     
     List<DropdownMenuItem<int>> menuItems = [];
 
     final url = Uri.http( _url, _uncodePath, {
       'cargo': cargo,
       'codCliente': codCliente,
-    } );
+    });
 
     final cargos = await _procesarRespuestaGet(url);
 
     for (var i=0; i<cargos.length; i++) {
-
-
       DropdownMenuItem<int> item = DropdownMenuItem(value: int.parse(cargos[i].codigo!), child: Text(cargos[i].cargo!));
       menuItems.add(item);
-
     }
 
     return menuItems;
