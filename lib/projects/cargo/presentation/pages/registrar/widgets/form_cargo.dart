@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/cargo/domain/providers/registrar_form_cargo.dart';
@@ -25,25 +26,22 @@ class RegistrarFormCargo extends StatelessWidget {
 
             _TipoRegistro(),
             SizedBox(height: size.height*0.05),
-      
+
             if(tipoProvider.tipoRegistro==1)
               const PlacaFormRegistro(),
 
             if(tipoProvider.tipoRegistro==2)
               const Text('CODIGO'),
               // const _PlacaFormRegistro(),
-            
+
             // if(tipoProvider.valorTipoDocumento==3)
             //   const _PasaporteFormRegister(),
-        
+
           ],
-        
+
         ),
-      
       ),
-
     );
-
   }
 
 }
@@ -57,7 +55,6 @@ class _TipoRegistro extends StatelessWidget{
     final tipoProvider = Provider.of<RadioCargoProvider>(context);
 
     return Container(
-      // color: Colors.red,
       padding: const EdgeInsets.all(10),
       alignment: Alignment.topCenter,
       width: double.infinity,
@@ -68,9 +65,8 @@ class _TipoRegistro extends StatelessWidget{
 
           // radio de placa, por defecto esta encendido
           SizedBox(
-            width: size.width*0.25,
+            width: size.width*0.4,
             child: RadioListTile<int>(
-              
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
               value:1, 
@@ -78,13 +74,13 @@ class _TipoRegistro extends StatelessWidget{
               onChanged: (value){
                 tipoProvider.tipoRegistro=value! ;
               },
-              title: Text('PLACA', style:AppThemeCargo.lighThemeCargo.textTheme.headline4),
+              title: AutoSizeText('PLACA', style:AppThemeCargo.lighThemeCargo.textTheme.headline3),
             ),
           ),
 
-          // radio de extranjeria
+          // radio de codigo
           SizedBox(
-            width: size.width*0.25,
+            width: size.width*0.4,
             child: RadioListTile<int>(
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
@@ -93,16 +89,13 @@ class _TipoRegistro extends StatelessWidget{
               onChanged: (value){
                 tipoProvider.tipoRegistro=value! ;
               },
-              title: Text('CODIGO', style: AppThemeCargo.lighThemeCargo.textTheme.headline4),
+              title: AutoSizeText('CODIGO', style: AppThemeCargo.lighThemeCargo.textTheme.headline3),
             ),
           ),
 
-        ],
-      
+        ]
       ),
-
     );
-
   }
 
 }

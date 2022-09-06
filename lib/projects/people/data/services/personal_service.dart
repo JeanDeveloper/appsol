@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
+import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/domain/models/response_persona_model.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 
@@ -18,8 +19,8 @@ class PersonalProvider{
   Future<ResponsePersonalModel> procesarRegistroPersonal(BuildContext context ) async{
 
     final personalProvider = Provider.of<CrearPersonalProvider>(context, listen: false);
-    final globalProvider = Provider.of<GlobalProvider>(context, listen: false);
-    final personProvider = Provider.of(context, listen: false);
+    final globalProvider   = Provider.of<GlobalProvider>(context, listen: false);
+    final loginProvider    = Provider.of<PersonAuthProvider>(context, listen: false);
     final url = Uri.http(_url, _uncodePath);
 
     final body = jsonEncode({
@@ -34,7 +35,7 @@ class PersonalProvider{
         'apellido2': personalProvider.sApellido,
         'doc_personal': personalProvider.nDocumento,
         'sexo': (personalProvider.sexo==1)? 'M' : 'F',
-        'creado_por': 'PEOPLE_${personProvider.dni}',
+        'creado_por': 'PEOPLE_${loginProvider.dni}',
         'brevete': '',
         'es_autorizante': 0,
         'habilitado': 1,
@@ -58,4 +59,3 @@ class PersonalProvider{
   }
 
 }
-

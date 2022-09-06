@@ -30,17 +30,11 @@ class RegistrarPageCargo extends StatelessWidget {
           Visibility(
             visible: (viewBotton==0) ? true: false,
             child: Positioned(
-            
               bottom: 0,
-          
               child: BottomMenuCargo(
-          
               padding: EdgeInsets.symmetric(vertical: size.height*0.035 ),
-                
                 child: const MenuOptions(),
-            
               ),
-          
             ),
           ),
 

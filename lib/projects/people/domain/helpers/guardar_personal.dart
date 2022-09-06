@@ -5,6 +5,7 @@ import 'package:solgis/projects/people/data/services/personal_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/response_persona_model.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
+import 'package:vibration/vibration.dart';
 
 void guardarPersonal(BuildContext context )async{
 
@@ -36,13 +37,18 @@ void guardarPersonal(BuildContext context )async{
               if(response.personal_maestro !=-1){
 
                 // ignore: use_build_context_synchronously
-                Navigator.pushReplacementNamed(context, 'home_people');
+                Navigator.pushReplacementNamed(context, '/');
 
+                bool? hasvibration = await Vibration.hasVibrator();
+
+                if( hasvibration! ) Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+                
                 // ignore: use_build_context_synchronously
                 showSnackBarAwesome(context, 'Exito', "${response.message} ", ContentType.success);
 
               }else{
 
+              // ignore: use_build_context_synchronously
                 Navigator.pop(context);
                  // ignore: use_build_context_synchronously
                 showSnackBarAwesome(context, 'Error', "${response.message}", ContentType.failure);
@@ -50,7 +56,7 @@ void guardarPersonal(BuildContext context )async{
               }
 
             }else{
-              
+              // ignore: use_build_context_synchronously
                 Navigator.pop(context);
               // ignore: use_build_context_synchronously
               showSnackBarAwesome(context, 'Error', 'Hubo un problema al registrar el personal', ContentType.failure);

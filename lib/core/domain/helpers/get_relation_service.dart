@@ -6,7 +6,6 @@ import 'package:solgis/core/domain/models/device_information_provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 
 Future<void>getRelation(BuildContext context)async{
-
   final provider = Provider.of<GlobalProvider>(context, listen:false);
   final device = DeviceInformationModel();
   await device.getInformationDevice();
@@ -22,5 +21,4 @@ Future<void>getRelation(BuildContext context)async{
   Preferences.nombreCliente = provider.nombreCliente = relation.nombreCliente!;
   Preferences.aliasSede = provider.aliasSede = relation.aliasSede;
   Preferences.codTipoServicio = provider.codTipoServicio = relation.codigoTipoServicio!;
-
 }

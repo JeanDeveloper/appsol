@@ -1,9 +1,8 @@
+import 'domain/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/routes/routes.dart';
-
-import 'domain/providers/providers.dart';
 
 class PeopleApp extends StatelessWidget{
   const PeopleApp({Key? key}) : super(key: key);
@@ -24,6 +23,7 @@ class PeopleApp extends StatelessWidget{
         ChangeNotifierProvider( create: (_) => RadioListProvider() ),
 
       ],
+
       child: const PeopleAppState(),
     );
 

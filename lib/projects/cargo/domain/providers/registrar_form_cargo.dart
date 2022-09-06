@@ -10,7 +10,7 @@ class RadioCargoProvider extends ChangeNotifier {
 
   //controla el radio de tipo de persona movimiento del dia
   int _valorTipoPersonaMovimientoDia= 0;
-  
+
   int get tipoRegistro =>_tipoRegistro; 
 
   set tipoRegistro(int valor){

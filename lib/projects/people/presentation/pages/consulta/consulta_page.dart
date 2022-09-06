@@ -203,7 +203,7 @@ class _ConsultaPageBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
             children: [
-              Text('AREA DE ACCESSO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
+              Text('ACCESSO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
               InputReadOnlyWidget(initialValue: consulta.area),
             ],
 

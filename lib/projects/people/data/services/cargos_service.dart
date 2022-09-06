@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:solgis/projects/people/domain/models/cargo_model.dart';
-
 
 class CargosProvider {
 
@@ -12,32 +11,27 @@ class CargosProvider {
   final String _uncodePath = 'appsol/people/cargos/';
   final bool cargando = false;
 
-
   // peticion GET
   Future<List<CargoModel>> _procesarRespuestaGet(Uri url) async {
 
-    final resp  =  await http.get(
-
+    final resp = await http.get(
       url,
       headers: {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
-
     );
 
     if(resp.statusCode ==200){
-
       final decodedData = json.decode(utf8.decode(resp.bodyBytes));
       final empresas = CargosModel.fromJsonList(decodedData);
       return empresas.items;
-
-    }else{
-      return [];
     }
+
+    return [];
 
   }
 
   //obtengo los cargos
   Future<List<DropdownMenuItem<int>>> getCargos(String cargo, String codCliente)async{
-    
+
     List<DropdownMenuItem<int>> menuItems = [];
 
     final url = Uri.http( _url, _uncodePath, {
@@ -54,11 +48,6 @@ class CargosProvider {
 
     return menuItems;
 
-
   }
-
-
-
-
 
 }

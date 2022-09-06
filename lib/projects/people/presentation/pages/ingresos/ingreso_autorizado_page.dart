@@ -11,8 +11,6 @@ import 'package:solgis/projects/people/presentation/pages/ingresos/widgets/widge
 import 'package:solgis/projects/people/theme/theme.dart';
 import 'package:vibration/vibration.dart';
 
-
-
 class IngresoAutorizadoPage extends StatelessWidget {
 
   const IngresoAutorizadoPage({Key? key}) : super(key: key);
@@ -21,15 +19,10 @@ class IngresoAutorizadoPage extends StatelessWidget {
   Widget build(BuildContext context) {
         
     final consulta = ModalRoute.of(context)!.settings.arguments as ConsultaModel;
-
     return MultiProvider(
-
       providers: [
-
         ChangeNotifierProvider(create: ((context) => IngresoAutorizadoProvider())),
-      
       ],
-      
       child: IngresoAutorizadoBody(consulta: consulta),
     );
 
@@ -48,6 +41,9 @@ class IngresoAutorizadoBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context);
+
 
     return IngresosTemplatePage(
 
@@ -77,9 +73,22 @@ class IngresoAutorizadoBody extends StatelessWidget {
                 progressDialog.show();
 
                 //funcion para registrar el movimiento.
-                final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
 
-                print(idMovimiento);
+                if(
+                  consulta.codigoClienteControl == 5 || consulta.codigoClienteControl == 28463 ||  
+                  consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 25866 || 
+                  consulta.codigoClienteControl == 13 || consulta.codigoClienteControl == 14517
+                  ){
+                    await movimientoProvider.registerMovimiento(context, consulta);
+                  }else{
+
+                    //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
+                    consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
+                    consulta.codigoArea = ingresoProvider.cod_area;
+                    consulta.codigoMotivo = ingresoProvider.cod_motivo;
+                    await movimientoProvider.registerMovimiento(context, consulta);
+                  } 
+                  
 
                 progressDialog.dismiss();
 

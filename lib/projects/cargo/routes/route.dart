@@ -5,7 +5,10 @@ class CargoRoutes {
 
   static Map<String, WidgetBuilder> routes = {
 
-    'home_cargo'                : (_) => const HomePageCargo(),
+    //RAIZ DEL CARGO
+    "/": (context) => const HomePageCargo(),
+    
+    //RUTAS PARA LA APP CARGO
     'registrar_movimiento_cargo': (_) => const RegistrarPageCargo(),
 
   };

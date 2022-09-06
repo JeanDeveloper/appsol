@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:solgis/core/domain/models/relation_device_service_provider.dart';
 
-
 class RelationDeviceService{
 
   final String _url = '192.168.10.103:8000';
@@ -25,6 +24,5 @@ class RelationDeviceService{
     final relation = RelationDeviceServiceModel.fromJson(decodedData);
     return relation;
   }
-
 
 }

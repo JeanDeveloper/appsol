@@ -7,7 +7,6 @@ import 'package:solgis/projects/people/domain/providers/crear_personal_provider.
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
-
 class FirstForm extends StatelessWidget {
 
   const FirstForm({Key? key}) : super(key: key);
@@ -19,28 +18,20 @@ class FirstForm extends StatelessWidget {
 
     return SizedBox(
 
-      // color: Colors.red,
-
       width: double.infinity,
       height: size.height*0.72,
 
       child: Column(
-
         children: [
-
           const _ImageCardPersonalRegister(),
-
           SizedBox(height: size.height*0.04),
-
           _DNIRegister(),
-
         ],
-
       )
 
     );
-
   }
+
 }
 
 class _DNIRegister extends StatelessWidget {
@@ -53,66 +44,52 @@ class _DNIRegister extends StatelessWidget {
     return Form(
 
       autovalidateMode: AutovalidateMode.onUserInteraction,
-
       key: personalProvider.formKeys[0],
-
       child: Column(
-    
+
         children: [
-    
+
           //CAMPO PARA EL TIPO DE DOCUMENTO (DROPDOWNBUTTON)
           Row(
             
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        
             children: [
-        
+
               Container(
-                
                 width: size.width*0.30,
                 height: size.height*0.04,
                 alignment: Alignment.centerLeft,
-    
                 child: AutoSizeText('DOCUMENTO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: size.width*0.0364963503649635))
               ),
-    
+
               Expanded(
                 child: DropdownButtonPersonal(
-              
                   onvalidator: (value) {
-                  
                     return (value!= null)
                     ? null
                     : "Por favor complete este campo";
-                    
                   },
-              
                   hintText: 'SELECCIONE EL TIPO DE DOCUMENTO',
                   items: dropdownItemsTipoDocumento, 
                   onchanged:(value) =>personalProvider.tipoDocumento = value!
-                
                 ),
               ),
-    
+
             ],
-        
           ),
-    
+
           SizedBox(height: size.height*0.03),
-    
+
           //CAMPO PARA EL NUMERO DEL DOCUMENTO
           Row(
 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             
             children: [
-
               Container(
-
                 width: size.width*0.30,
                 height: size.height*0.04,
                 alignment: Alignment.centerLeft,
-                
                 child: Text('N°', style: styleCrearPersonaltextForm().copyWith(fontSize: size.width*0.0364963503649635), maxLines: 1,),
               
               ),
@@ -125,11 +102,9 @@ class _DNIRegister extends StatelessWidget {
                   child: TextFormField(
                   
                     validator:(value){
-                      
                       return (value!= '')
                       ? null
                       : "Por favor complete este campo";
-                      
                     },
                     
                     keyboardType: (personalProvider.tipoDocumento == 1 || personalProvider.tipoDocumento== 2)  ? TextInputType.number : TextInputType.text ,
@@ -137,26 +112,16 @@ class _DNIRegister extends StatelessWidget {
                     style: const TextStyle(fontSize: 15, color: Colors.black),
                     decoration:inputDecorationDatos(),
                     onChanged: (value)=> personalProvider.nDocumento=value,
-              
-                  
                   ),
-                  
                 ),
               ),
-
             ],
-    
           ),
-
         ],
-    
       ),
     );
-
   }
-
 }
-
 
 class _ImageCardPersonalRegister extends StatelessWidget {
 
@@ -288,7 +253,6 @@ class _ImageCardPersonalRegister extends StatelessWidget {
 
 }
 
-
 List<DropdownMenuItem<int>> get dropdownItemSexo{
   List<DropdownMenuItem<int>> menuItems = [
     const DropdownMenuItem(value: 1, child: Text('MASCULINO')),
@@ -296,7 +260,6 @@ List<DropdownMenuItem<int>> get dropdownItemSexo{
   ];
   return menuItems;
 }
-
 
 InputDecoration inputDecorationDatos()=> const  InputDecoration(
 
@@ -335,7 +298,6 @@ InputDecoration inputDecorationDatos()=> const  InputDecoration(
 
 );
 
-
 List<DropdownMenuItem<int>> get dropdownItemsTipoDocumento{
 
   List<DropdownMenuItem<int>> menuItems = [
@@ -345,4 +307,3 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoDocumento{
   ];
   return menuItems;
 }
-

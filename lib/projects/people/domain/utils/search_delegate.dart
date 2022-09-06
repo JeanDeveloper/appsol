@@ -1,12 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
+import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
 import 'package:solgis/projects/people/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
-import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
@@ -265,7 +266,8 @@ class _MovimientoTile extends StatelessWidget {
             child: AutoSizeText(movimiento.nombres!,style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1,)
           ),
           const SizedBox(width: 10),
-          Expanded(child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1))
+          
+          AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1)
 
         ],
 
@@ -275,89 +277,28 @@ class _MovimientoTile extends StatelessWidget {
         
         children: [
 
-          Container(
-        
-            width: size.width*0.31,
-            alignment: Alignment.topLeft,
-
-            child: Column(
-              
-              crossAxisAlignment: CrossAxisAlignment.start,
-              
-              children: [
-                AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2,),
-                AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 3,)
-              ]
-        
+          Expanded(
+            flex: 8,
+            child: Container(
+                  
+              width: size.width*0.31,
+              alignment: Alignment.topLeft,
+          
+              child: Column(
+                
+                crossAxisAlignment: CrossAxisAlignment.start,
+                
+                children: [
+                  AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2,),
+                  AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 3,)
+                ]
+                  
+              ),
+                  
             ),
-        
           ),
 
-
-          SizedBox(width: size.width*0.03),
-
-          IconButton(
-              
-            icon: Icon(Icons.camera_alt_outlined, size:  size.width*0.06,),
-        
-            onPressed: ()async{
-        
-              await NDialog(
-                
-                dialogStyle: DialogStyle(
-                  backgroundColor: Colors.grey,
-                ),
-                
-                title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black)),
-                
-                content: Container(
-        
-                  margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  width: size.width*0.05,
-                  height: size.height*0.35,
-                                  
-                  child:ClipRRect(
-        
-                    borderRadius: BorderRadius.circular(20),
-        
-                    child: FutureBuilder(
-                      
-        
-                      future: getImage(movimiento.pathImage),
-        
-                      builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
-        
-                        if(snapshot.hasData){
-                          
-                          return Container(
-        
-                            child: snapshot.data,
-                          
-                          );
-        
-        
-                        }else{
-        
-                          return const Center(child: CircularProgressIndicator());
-                        }
-        
-                      }
-        
-                    )
-        
-                  )
-              
-                )
-        
-              ).show(context);
-        
-            }, 
-              
-          ),
-
-          SizedBox(width: size.width*0.02),
-
-          AutoSizeText(movimiento.fechaMovimiento!.toString().substring(11, 16), style: const TextStyle(color: Colors.red, fontSize: 12), maxLines: 1,)
+          Expanded(flex: 2, child: AutoSizeText(movimiento.fechaMovimiento!.toString().substring(11, 16), style: const TextStyle(color: Colors.red, fontSize: 12), maxLines: 1,))
         
         ],
       ),
@@ -365,25 +306,27 @@ class _MovimientoTile extends StatelessWidget {
       trailing: (movimiento.fechaSalida == '')
         ? GestureDetector( 
           onTap: ()async{
-            print(movimiento.fechaSalida);
-            await NDialog(
-              dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-              title: const Text("Movimiento",  style: TextStyle(color: Colors.black)),
-              content: const Text("¿Estas Seguro que quieres registar la salida?", style: TextStyle(color: Colors.black)),  
-              actions: <Widget>[
-                TextButton(
-                  child: const Text("Si"),
-                  onPressed: ()async{
+              consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
+            // await NDialog(
+            //   dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
+            //   title: const Text("Movimiento",  style: TextStyle(color: Colors.black)),
+            //   content: const Text("¿Estas Seguro que quieres registar la salida?", style: TextStyle(color: Colors.black)),  
+            //   actions: <Widget>[
 
-                    consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
+            //     TextButton(
+            //       child: const Text("Si"),
+            //       onPressed: ()async{
 
-                  }
-                ),
-                TextButton(child: const Text("No"),onPressed: ()=> Navigator.pop(context)),
-              ],
-            ).show(context);
+            //         consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
+
+            //       }
+            //     ),
+            //     TextButton(child: const Text("No"),onPressed: ()=> Navigator.pop(context)),
+            //   ],
+
+            // ).show(context);
           },
-          child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
+          child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
         : null,
       

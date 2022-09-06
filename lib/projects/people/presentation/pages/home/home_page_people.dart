@@ -11,7 +11,7 @@ class HomePagePeople extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;  //47269389
     
     return Scaffold(
       
@@ -26,17 +26,12 @@ class HomePagePeople extends StatelessWidget {
             const InformacionClientePeopleWidget(),
 
             Positioned(
-
               bottom: 0,
-
               //aqui debe tener el container que se expande con sus hijos.
               child: FondoMenuPeople(
-
                 padding: EdgeInsets.symmetric(vertical:size.height*0.035),
                 child: const _IconMenuPeople(),
-
               )
-
             ),
 
           ],
@@ -63,36 +58,25 @@ class _HomeHeaderPeople extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      
       padding: const EdgeInsets.symmetric(horizontal: 15),
       width: double.infinity,
       height: 200,
 
       child: SafeArea(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
-
             Text('PEOPLE', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
-      
             SizedBox(height: size.height*0.05),
-      
             Align(
               alignment: Alignment.centerLeft,
               child: Text('BIENVENIDO A: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
             ),
-      
             SizedBox(height: size.height*0.02),
-
           ],
-      
+
         ),
-
       ),
-
     );
 
   }
@@ -141,18 +125,6 @@ class _IconMenuPeople extends StatelessWidget {
           text: 'CONSULTAR',
           onpressed: ()=>Navigator.pushNamed(context, 'consulta_home_page_people'),
         ),
-
-        // SizedBox(width:  size.width*0.08),
-
-        // //SALIR
-        // ButtonMenuPeople(
-
-        //   icon: FontAwesomeIcons.arrowRightFromBracket, 
-        //   text: 'SALIR',
-        //   // onpressed: ()=>SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-        //   // onpressed: ()=>_openMyPage(context),
-        //   onpressed:  ()=> Navigator.pop(context),
-        // ),
 
       ],
 

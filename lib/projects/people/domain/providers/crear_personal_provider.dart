@@ -43,10 +43,10 @@ class CrearPersonalProvider extends ChangeNotifier{
   String _sApellido = "";
 
   //controla la empresa.
-  int _empresa = 0;
+  int _empresa = -1;
 
   //controla el cargo.
-  int _cargo = 1;
+  int _cargo = -1;
 
   //controla el campo sexo.
   int _sexo = 1;
@@ -144,20 +144,9 @@ class CrearPersonalProvider extends ChangeNotifier{
   }
 
   //FOTO
-  // File? get foto =>_foto;
-
-  // set foto (File valor){
-  //   _foto = valor;
-  //   notifyListeners();
-  // }
-
-  //FOTO
   void updateImage( String path ){
-
     foto = File.fromUri(Uri(path: path));
-    
     notifyListeners();
-
   }
 
 

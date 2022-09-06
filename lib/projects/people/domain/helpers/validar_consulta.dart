@@ -39,29 +39,16 @@ void validarConsulta(BuildContext context, String documento, String codServicio 
         actions: <Widget>[
 
           TextButton(
-
-            child: const Text("Si"),
-
-            onPressed: ()=>Navigator.pushReplacementNamed(context, 'crear_personal_page_people'), 
-
-          ),
-
-          TextButton(
-
-            child: const Text("No"),
+            child: const Text("Ok"),
             onPressed: ()=> Navigator.pop(context)
-
           ),
 
         ],
-      
-      ).show(context);
 
+      ).show(context);
 
     }
 
   }
-
-
 
 }

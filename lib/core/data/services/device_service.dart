@@ -1,9 +1,9 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'package:solgis/core/domain/models/device_information_provider.dart';
-import 'package:solgis/core/domain/models/device_response_model.dart';
+  import 'dart:async';
+  import 'dart:convert';
+  import 'dart:io';
+  import 'package:http/http.dart' as http;
+  import 'package:solgis/core/domain/models/device_information_provider.dart';
+  import 'package:solgis/core/domain/models/device_response_model.dart';
 
 
 class DeviceService {
@@ -24,7 +24,6 @@ class DeviceService {
       },
 
       body: jsonEncode(<String, String>{
-
         'serial'     : dispositivo.serialNumber!,
         'hardware'   : dispositivo.hardware!,
         'modelo'     : dispositivo.model!,
@@ -36,7 +35,6 @@ class DeviceService {
         'dispositivo': dispositivo.device!,
         'id'         : dispositivo.id!,
         'id_fb'      : token?? '',
-
       })
 
     );
@@ -48,19 +46,23 @@ class DeviceService {
 
   Future<int> checkAuthDevice(String serial)async{
 
-    final url = Uri.http(_url, 'appsol/dispositivo/estado/', {
-      'serial': serial,
-    });
+    final url = Uri.http(
+      _url, 
+      'appsol/dispositivo/estado/', 
+      {
+        'serial': serial,
+      }
+    );
 
     final response = await http.get( 
       url, 
-      headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
+      headers:  {
+        HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"
+      }
     );
 
     final estadoData = json.decode(response.body);
     return estadoData['estado'];
 
   }
-
-
 }

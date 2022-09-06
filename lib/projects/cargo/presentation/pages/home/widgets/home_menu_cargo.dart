@@ -48,15 +48,15 @@ class MenuCargo extends StatelessWidget {
 
         ),
 
-        SizedBox(width:  size.width*0.1),
+        // SizedBox(width:  size.width*0.1),
 
         //SALIR
-        ButtonMenuCargo(
-          icon: FontAwesomeIcons.arrowRightFromBracket, 
-          text: 'SALIR',
-          onpressed: ()=>Navigator.pushReplacementNamed(context, 'home'),
-          // onpressed:(){},
-        ),
+        // ButtonMenuCargo(
+        //   icon: FontAwesomeIcons.arrowRightFromBracket, 
+        //   text: 'SALIR',
+        //   onpressed: ()=>Navigator.pushReplacementNamed(context, 'home'),
+        //   // onpressed:(){},
+        // ),
 
       ],
 

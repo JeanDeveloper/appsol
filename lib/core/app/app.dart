@@ -7,7 +7,6 @@ import 'package:solgis/core/domain/providers/home_provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/core/presentation/widgets/initialized_widget.dart';
 import 'package:solgis/core/routers/routes.dart';
-import 'package:solgis/projects/cargo/domain/providers/registrar_form_cargo.dart';
 
 
 class Appsol extends StatelessWidget {
@@ -25,8 +24,7 @@ class Appsol extends StatelessWidget {
         ChangeNotifierProvider( create: (_) => HomeProvider() ),
         ChangeNotifierProvider( create: (_) => GlobalProvider() ),
         ChangeNotifierProvider( create: (_) => PersonAuthProvider() ),
-        //PROVIDERS DEL CARGO
-        ChangeNotifierProvider( create: (_) => RadioCargoProvider() ),
+
       ],
       child: const AppsolState(),
     );

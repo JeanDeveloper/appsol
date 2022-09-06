@@ -15,7 +15,6 @@ class CrearPersonalPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
   return MultiProvider(
-
       providers: [
         ChangeNotifierProvider(create: ((context)=> CrearPersonalProvider()))
       ],
@@ -34,9 +33,7 @@ class CrearPersonalPage extends StatelessWidget {
           ),
           body: const CrearPersonalBody(),
         ),
-      
       ),
-    
     );
   
   }

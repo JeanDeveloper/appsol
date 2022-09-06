@@ -19,7 +19,6 @@ class ConsultaHomePage extends StatelessWidget {
 
       providers: [
         ChangeNotifierProvider(create:  ((context) =>  RadioListConsultaProvider())),
-
       ],
       
       child: Scaffold(
@@ -32,11 +31,9 @@ class ConsultaHomePage extends StatelessWidget {
           child: Stack(
     
             children:  [
-    
+
               //FONDO
               const HomePageBackGroundPeople(),
-    
-    
               //FORMULARIO DE REGISTRO
               const FormConsulta(),
               

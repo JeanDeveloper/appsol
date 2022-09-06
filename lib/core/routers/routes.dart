@@ -22,7 +22,7 @@ class ProjectRoutes {
       'loading_page' : ( BuildContext context ) => const LoadingPage(),
       'phone_page'   : ( BuildContext context ) => const PhonePage(),
       'pending_page' : ( BuildContext context ) => const PendingPage(),
-      'login_page'   : ( BuildContext context ) =>       LoginPage(),
+      'login_page'   : ( BuildContext context ) => const LoginPage(),
 
 
       //RUTA GENERAL PARA AL APP PEOPLE.

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/material.dart';
 
 class DropdownButton2Widget extends StatelessWidget {
 
@@ -45,6 +45,7 @@ class DropdownButton2Widget extends StatelessWidget {
         onChanged: onchanged, //
         value: value,//
         searchController: texteditingcontroller, //
+        
         searchInnerWidget: Padding(
           padding: const EdgeInsets.only(
             top: 8,
@@ -52,6 +53,7 @@ class DropdownButton2Widget extends StatelessWidget {
             right: 8,
             left: 8,
           ),
+          
           child: TextFormField(
             textCapitalization: TextCapitalization.characters,
             style: const TextStyle(color: Colors.black),
@@ -69,7 +71,7 @@ class DropdownButton2Widget extends StatelessWidget {
               ),
             ),
           ),
-          
+
         ),
         searchMatchFn: (DropdownMenuItem<dynamic> item, searchValue){
           final hijo = item.child.toString();
@@ -78,9 +80,7 @@ class DropdownButton2Widget extends StatelessWidget {
         },
 
         onMenuStateChange: (isOpen) {
-          if (!isOpen) {
-            texteditingcontroller?.clear();
-          }
+          if (!isOpen) texteditingcontroller?.clear();
         }
 
       ),

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
@@ -54,7 +55,6 @@ class MovimientosTiles extends StatelessWidget {
 class _ListTileMovimiento extends StatelessWidget {
 
   final MovimientoModel movimiento;
-
   const _ListTileMovimiento({Key? key, required this.movimiento}) : super(key: key);
 
   @override
@@ -66,24 +66,18 @@ class _ListTileMovimiento extends StatelessWidget {
     return ListTile(
 
       style: ListTileStyle.list,
-      // leading:Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
+      
       leading: GestureDetector(
         onTap: ()async{
-
           await NDialog(
-            
             dialogStyle: DialogStyle(
               backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
             ),
-            
             title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
-            
             content: Container(
-            
               margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               width: size.width*0.05,
               height: size.height*0.35,
-            
               child:ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: FutureBuilder(
@@ -106,7 +100,6 @@ class _ListTileMovimiento extends StatelessWidget {
 
                 ),
               )
-            
             )
 
           ).show(context);
@@ -149,13 +142,13 @@ class _ListTileMovimiento extends StatelessWidget {
         children: [
 
           SizedBox(
-            width: size.width*0.40,
-            child: AutoSizeText(movimiento.nombres!,style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1)
+            width: size.width*0.4,
+            child: Text(movimiento.nombres!, style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1, )
           ),
 
           const SizedBox(width: 10),
 
-          Expanded(child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1))
+          AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 8, maxFontSize: 12,)
 
         ],
 
@@ -164,33 +157,20 @@ class _ListTileMovimiento extends StatelessWidget {
       subtitle: Row(
 
         children: [
-          // AÑADIMOS EXPANDED Y COMENTAMOS LA FOTO
-          Expanded(
-            flex: 7,
-            child: SizedBox(
-
-              width: size.width*0.31,
-
+            Expanded(
+              flex: 8,
               child: Column(
-
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
-
                   AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
                   AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
-
                 ]
-
               ),
-
             ),
-          ),
 
-          Expanded( flex: 3, child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,))
-
+          Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,))
+        
         ],
-
       ),
 
       trailing: (movimiento.fechaSalida == '')
@@ -198,7 +178,9 @@ class _ListTileMovimiento extends StatelessWidget {
           onTap: ()async{
             consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
           },
-          child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
+          // child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
+          
+          child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
         :null,
 
@@ -207,6 +189,4 @@ class _ListTileMovimiento extends StatelessWidget {
     );
   }
 }
-
-
 

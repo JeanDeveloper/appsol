@@ -61,7 +61,8 @@ class MovimientosListButton extends StatelessWidget {
 
               children: [
 
-                //TODOS
+                //TODO
+
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,

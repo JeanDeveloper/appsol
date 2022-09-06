@@ -11,19 +11,18 @@ class SecondForm extends StatelessWidget {
   
   const SecondForm({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    
+
     final size = MediaQuery.of(context).size;
     final personalProvider = Provider.of<CrearPersonalProvider>(context);
     final globalProvider   = Provider.of<GlobalProvider>(context);
-    
 
     return Form(
 
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: personalProvider.formKeys[1],
-      
+
       child: Column(
           
         children: [
@@ -70,12 +69,11 @@ class SecondForm extends StatelessWidget {
                 child: TextFormField(
 
                   textCapitalization: TextCapitalization.characters,
-
                   onChanged: (value)=>personalProvider.pNombre=value,
-
-                  
+                  cursorHeight: 20,
                   style: TextStyle(fontSize: size.width*0.030, color: Colors.black),
                   decoration:inputDecorationDatos() ,
+
                 )
 
               )
@@ -122,17 +120,20 @@ class SecondForm extends StatelessWidget {
               SizedBox(
       
                 width: size.width*0.57,
-                // height: size.height*0.04,
       
                 child: TextFormField(
+                  validator: (value) {
+                    return (value!= '')
+                    ? null
+                    : "El primer apellido es obligatorio";
+                  },
                   textCapitalization: TextCapitalization.characters,
-
                   cursorHeight: 20,
                   style:  TextStyle(fontSize: size.width*0.030, color: Colors.black),
                   decoration:inputDecorationDatos() ,
                   onChanged: (value)=>personalProvider.pApellido=value,
                 )
-      
+
               )
             
             ]
@@ -173,33 +174,30 @@ class SecondForm extends StatelessWidget {
 
               Text('EMPRESA: ', style: styleCrearPersonaltextForm()),
 
-
               FutureBuilder(
 
                 future:personalProvider.initEmpresas(globalProvider.codCliente, ''),
 
                 builder: (BuildContext context,  AsyncSnapshot<List<DropdownMenuItem<int>>> snapshot) {
 
-                  if(snapshot.data!.isEmpty) return Container();
-                  
                   if(!snapshot.hasData){
                     return ShimmerWidget(
                       width: size.width*0.57, 
                       height: size.height*0.04
                     );
                   } 
-                  
                   final dropdownempresas = snapshot.data;
-
                   return DropdownButton2Widget(
-                    items: dropdownempresas,
                     hinText: 'SELECCIONE LA EMPRESA',
+                    items: dropdownempresas,
                     hintTextForm: 'Busque la empresa',
                     onchanged: (value)=>personalProvider.empresa = value!,
                     texteditingcontroller: personalProvider.searchEditingControllerEmpresa,
-                    value: personalProvider.empresa,
+                    value: (personalProvider.empresa == -1) ?null  :personalProvider.empresa,
                   );
+
                 }, 
+
               ),
 
             ]
@@ -219,37 +217,35 @@ class SecondForm extends StatelessWidget {
                 future:personalProvider.initCargos('', globalProvider.codCliente),
 
                 builder: (BuildContext context,  AsyncSnapshot<List<DropdownMenuItem<int>>> snapshot) {
-                  if(snapshot.data!.isEmpty) return Container();
-                  
                   if(!snapshot.hasData){
                     return ShimmerWidget(
                       width: size.width*0.57, 
                       height: size.height*0.04
                     );
                   } 
-                  
-                  final dropdowncargos = snapshot.data;
 
+                  final dropdowncargos = snapshot.data;
                   return DropdownButton2Widget(
                     items: dropdowncargos,
                     hinText: 'SELECCIONE EL CARGO',
                     hintTextForm: 'Busque el cargo',
                     onchanged: (value)=>personalProvider.cargo = value!,
                     texteditingcontroller: personalProvider.searchEditingControllerCargo,
-                    value: personalProvider.cargo,
+                    value: (personalProvider.cargo == -1) ? null : personalProvider.cargo,
                   );
                 }, 
+
               ),
 
             ]
 
           ),
           SizedBox(height: size.height*0.04), 
-          
+
         ],
 
       ),
-      
+
     );
 
   }
@@ -313,8 +309,6 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoPersona{
 
 }
 
-
-
 InputDecoration inputDecorationDatos()=> const  InputDecoration(
 
   contentPadding: EdgeInsets.symmetric(vertical:1, horizontal: 5),
@@ -332,6 +326,14 @@ InputDecoration inputDecorationDatos()=> const  InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(5)),
     borderSide: BorderSide(
       color: Colors.blue
+    )
+  ),
+
+
+  focusedErrorBorder:  OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(5)),
+    borderSide: BorderSide(
+      color: Colors.red,
     )
   ),
 

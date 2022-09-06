@@ -21,10 +21,6 @@ class CardApp extends StatelessWidget {
     return GestureDetector(
       onTap: (){
 
-        if(project.title=='Cargo'){
-          return showSnackBarAwesome(context, 'Hola', 'Estamos trabajando para brindarte mas apps', ContentType.success);
-        }
-
         Navigator.pushNamed(context, project.route);
 
       },

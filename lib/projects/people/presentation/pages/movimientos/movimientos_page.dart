@@ -20,6 +20,7 @@ class MovimientosPage extends StatelessWidget {
       bottomNavigationBar: const CustomNavigationBar(),
       body: const _MovimientosPageBody(),
     );
+
   }
 
 }

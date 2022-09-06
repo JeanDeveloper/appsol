@@ -32,7 +32,7 @@ class InformacionClienteCargo extends StatelessWidget {
               width: size.width*0.48,
               height: size.width*0.48,
               placeholder:  const AssetImage('assets/gifs/loading.gif'), 
-              image: const AssetImage('assets/pngs/saasa.png')
+              image: AssetImage("assets/pngs/${loginGlobal.nombreCliente}.png")
             ),
 
             SizedBox(height: size.height*0.015),

@@ -20,22 +20,16 @@ class HomePageCargo extends StatelessWidget {
           children:  [
 
             const HomePageBackGroundCargo(),
-
             const HomeHeaderCargo(),
-
             const InformacionClienteCargo(),
 
             Positioned(
               bottom: 0,
-
               //aqui debe tener el container que se expande con sus hijos.
               child: BottomMenuCargo(
-
                 padding: EdgeInsets.symmetric(vertical:size.height*0.035),
                 child: const MenuCargo(),
-
               )
-
             ),
 
           ],

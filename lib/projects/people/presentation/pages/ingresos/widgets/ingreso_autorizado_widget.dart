@@ -74,47 +74,42 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         List<DropdownMenuItem<int>> dropdownautorizantes = [];
                         for(final autorizante in autorizantes!){
                           final DropdownMenuItem<int> autorizanteTemp = DropdownMenuItem(
-                            value: int.parse(autorizante.codigo!), 
+                            value: int.parse(autorizante.codigo!) , 
                             child: Text(autorizante.nombrePersonal!)
                           );
                           dropdownautorizantes.add(autorizanteTemp);
-                        }
+                        } 
                         return DropdownButtonWidget(
                           items:dropdownautorizantes, 
-                          onchanged: (value) => ingresoProvider.codautorizante = value!,
+                          onchanged: (value) {
+                            print(value);
+                            ingresoProvider.codautorizante = value!;
+                          },
                           hintText: (autorizantes.isEmpty)?'NO HAY AUTORIZANTES'  :'SELECCIONE EL AUTORIZANTE',
                         );
                       },
                     ),
-
-                  // DropdownButtonWidget(
-                  //   //if es propio el autorizante será por defecto el que viene con la consulta, caso contrario se tendrá que elegir entre los que se haga en la peticion http de autorizantes
-                  //   items: (consulta.codigoAutorizante == 0) 
-                  //     ? []   
-                  //     : [DropdownMenuItem(value: consulta.codigoAutorizante ,child: Text(consulta.autorizante!))], 
-                  //   onchanged: (value) =>  (consulta.codigoAutorizante== 0) ? null : ingresoProvider.codautorizante=value!, 
-                  //   value: consulta.codigoAutorizante,
-                  // )
-
                 ],
+
               ),
               SizedBox(height: size.height*0.02),
 
               //CAMPO MOTIVO
               Row(
-
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('MOTIVO:  ', style: styleCrearPersonaltextForm()),
 
                   ( documentacion.contains(gProvider.codCliente) )
+                    
                     ? DropdownButtonWidget(
                       items: (consulta.codigoMotivo == -1)
                         ?[]
                         :[DropdownMenuItem(value: consulta.codigoMotivo, child: Text(consulta.motivo!))],
-                      onchanged: (value) => (consulta.codigoMotivo== -1) ? null : ingresoProvider.codmotivo=value!,
+                      onchanged: (value) => (consulta.codigoMotivo == -1) ? null : ingresoProvider.codmotivo=value!,
                       value: consulta.codigoMotivo,
                     )
+
                     : FutureBuilder(
                       future: motivoService.getMotivos(gProvider.codServicio, gProvider.codCliente),
                       builder: (BuildContext context,AsyncSnapshot<List<MotivoDbModel>> snapshot) {
@@ -137,7 +132,10 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         }
                         return DropdownButtonWidget(
                           items:dropdownmotivos, 
-                          onchanged: (value) => ingresoProvider.codmotivo = value!,
+                          onchanged: (value) {
+                            print(value);
+                            ingresoProvider.codmotivo = value!;
+                          },
                           hintText: (motivos.isEmpty)?'NO HAY MOTIVOS'  :'SELECCIONE EL MOTIVO' ,
                         );
                       },
@@ -155,13 +153,15 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                   Text('ACCESO:  ', style:styleCrearPersonaltextForm().copyWith(fontSize: 14)),
 
                   ( documentacion.contains(gProvider.codCliente) )
+
                     ? DropdownButtonWidget(
-                      items: (consulta.codigoMotivo == 0)
+                      items: (consulta.codigoArea == 0)
                         ?[]
                         :[DropdownMenuItem(value: consulta.codigoArea, child: Text(consulta.area!))],
                       onchanged: (value) => (consulta.codigoArea== 0) ? null : ingresoProvider.codarea=value!,
                       value: consulta.codigoArea,
                     )
+                    
                     : FutureBuilder(
                       future: areaService.getAreas(gProvider.codServicio, gProvider.codCliente),
                       builder: (BuildContext context,AsyncSnapshot<List<AreaDbModel>> snapshot) {
@@ -183,21 +183,14 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         }
                         return DropdownButtonWidget(
                           items:dropdownareas, 
-                          onchanged: (value) => ingresoProvider.codarea = value!,
+                          onchanged: (value) {
+                            print(value);
+                            ingresoProvider.codarea = value!;
+                          },
                           hintText: (areas.isEmpty)?'NO HAY AREAS DE ACCESO'  :'SELECCIONE EL AREA',
                         );
                       },
                     ),
-
-                  // DropdownButtonWidget(
-                  //   items:(consulta.codigoArea == 0)
-                  //     ? []
-                  //     :[DropdownMenuItem(value:consulta.codigoArea, child: Text(consulta.area!))],
-                  //   onchanged: (value) =>(consulta.codigoArea == 0) ? null : ingresoProvider.codarea = value!,
-                  //   value: consulta.codigoArea,
-                  // ),
-
-
 
                 ],
               ),

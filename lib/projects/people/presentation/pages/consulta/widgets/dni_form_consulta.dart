@@ -18,37 +18,27 @@ class DNIFormConsulta extends StatelessWidget {
     final loginGlobal = Provider.of<GlobalProvider>(context);
     
     return Column(
-      
+
       crossAxisAlignment: CrossAxisAlignment.center,
 
       children: [
 
         AutoSizeText('INGRESE EL NUMERO DE DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2,), 
-
         NumpadV2(
-          
           length: 8,
-
           onPressed: (String value) async{
+            if( value == '' || value.length<8 ) showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
 
-            if( value == '' || value.length<8 ){
-              
-              showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
-
-            }else{
-
-              validarConsulta(context, value, loginGlobal.codServicio);
-
-            }
+            validarConsulta(context, value, loginGlobal.codServicio);
 
           },
 
         )
-      
+
       ],
 
     );
-  
+
   }
 
 }

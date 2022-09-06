@@ -55,12 +55,13 @@ class RegistrarMovimientoPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: size.height*0.035 ),
                   
                   child: Row(
-            
+
                     mainAxisAlignment: MainAxisAlignment.center,
-            
+
                     children: [
 
                       if(tipoProvider.valorTipoDocumento!=3)
+
                         //SCANNER
                         ButtonMenuPeople(
                           icon: FontAwesomeIcons.barcode,
@@ -76,6 +77,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
                             getResultScanner(context,barcodeScanRes);
                           },
                         ),
+
                       if(tipoProvider.valorTipoDocumento!=3)
                         SizedBox(width: size.width*0.1),
 
@@ -89,19 +91,12 @@ class RegistrarMovimientoPage extends StatelessWidget {
                     ],
 
                   ),
-
                 ),
-
               ),
-
             ),
-
           ],
-
         ),
-
       ),
-
 
     );
 

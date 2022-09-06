@@ -11,16 +11,12 @@ class DropdownButtonPersonal extends StatelessWidget {
   final String? Function(int?)? onvalidator;
 
   const DropdownButtonPersonal({
-
     super.key, 
     required this.items, 
     this.hintText, 
     required this.onchanged,
     this.onvalidator,
-
   });
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +28,14 @@ class DropdownButtonPersonal extends StatelessWidget {
       width: size.width*0.57,
 
       child: DropdownButtonFormField<int>(
-
+        validator: onvalidator,
         hint: hintText!=null ? AutoSizeText(hintText!, style: TextStyle(fontSize: size.width*0.03)) : null ,
+        items: items, 
+        onChanged: onchanged,
         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
         decoration: inputDecorationDropDownPersonal(),
-        validator: onvalidator,
-        onChanged: onchanged,
         isExpanded: true,
-        items: items, 
-      
       ),
-
     );
 
   }

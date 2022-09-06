@@ -42,18 +42,19 @@ class MovimientosProvider extends ChangeNotifier{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       
-      body: jsonEncode(<String, String>{
-
-        'codigo_personal' : '${consulta.codigoPersona}',
-        'codigo_servicio' : '${consulta.codigoServicio}',
-        'codigo_tipo_movimiento': '${consulta.codigoMovSgt}',
-        'codigo_tipo_motivo' : '${consulta.codigoMotivo}',
-        'codigo_empresa':  '${consulta.codigoEmpresa}',
-        'autorizado_por' : '${consulta.codigoAutorizante}',
-        'creado_por' : 'PEOPLE_${loginProvider.dni}',
-        'codigo_area': '${consulta.codigoArea}',
-
-      }),
+      body: jsonEncode(
+        <String, String>{
+          'codigo_personal'       : '${consulta.codigoPersona}',
+          'codigo_servicio'       : '${consulta.codigoServicio}',
+          'codigo_tipo_movimiento': '${consulta.codigoMovSgt}',
+          'codigo_tipo_motivo'    : '${consulta.codigoMotivo}', //DINAMICO NO ESTATICO
+          'codigo_empresa'        : '${consulta.codigoEmpresa}', 
+          'autorizado_por'        : '${consulta.codigoAutorizante}', // DINAMICO Y NO ESTATICO
+          'creado_por'            : 'PEOPLE_${loginProvider.dni}',
+          'codigo_area'           : '${consulta.codigoArea}',  // DINAMICO Y NO ESTATICO
+          'tipo_persona'          : '${consulta.tipoPersona}',
+        }
+      ),
 
     );
 
