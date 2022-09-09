@@ -5,7 +5,7 @@ import 'package:solgis/projects/people/domain/models/area_model.dart';
 
 class AreaService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/areas/';
 
   //PETICION GET

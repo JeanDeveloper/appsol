@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
-import 'package:solgis/projects/people/presentation/widgets/shimmer_widget.dart';
+import 'package:solgis/core/presentation/widgets/shimmer_widget.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
 
@@ -245,9 +245,7 @@ class SecondForm extends StatelessWidget {
         ],
 
       ),
-
     );
-
   }
 
   

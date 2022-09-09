@@ -30,7 +30,13 @@ class IngresoAutorizadoWidget extends StatelessWidget {
     final motivoService = MotivoService();
     final autorizanteService = AutorizanteService();
     final areaService = AreaService();
-    final documentacion = ['25866', '28463','22702','00005','14517', '00013'];
+    final documentacion = [
+      '28463', //CREC 10
+      '22702', //OPORSA
+      '00005', //HAYDUK
+      '14517', //CENTINELA
+      '00013'  //EXALMAR
+    ];
 
     return Container(
 
@@ -225,28 +231,16 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                           final ImagePicker _picker = ImagePicker();
                           final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                          if(photo == null) {
+                          if(photo == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
 
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                          }else{
-
-                            print(photo);
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
-
-                          }
+                          print(photo);
+                          showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
 
                         }, 
-
                       )
-
                     ],
-
                   )
-
                 ]
-
               ),
 
               SizedBox(height: size.height*0.02), 

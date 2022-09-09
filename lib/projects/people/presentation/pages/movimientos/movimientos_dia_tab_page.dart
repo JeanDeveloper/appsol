@@ -49,50 +49,36 @@ class MovimientosTilesDiaBody extends StatelessWidget {
     final movimientosListProvider = Provider.of<MovimientosProvider>(context, listen: false);
     final globalProvider = Provider.of<GlobalProvider>(context);
 
-
     switch (currentIndex) {
 
       case 0:
-
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2'));
-        
+
       case 1:
-        
         return MovimientosTiles(movimientos:movimientosListProvider.getMovimientos(globalProvider.codServicio, '2', tipoPersonal: '1'));
 
       case 2:
-
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '2'));
 
       case 3:
-
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '3'));
 
       case 4:
-        
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '4'));
 
       case 5:
-        
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '5'));
         
       case 6:
-
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '6'));
 
       case 7:
-
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2', tipoPersonal: '7'));
       
       default:
-      
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2'));
-        
 
     }
-    
-
-
 
   }
 

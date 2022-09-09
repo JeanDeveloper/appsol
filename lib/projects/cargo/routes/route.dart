@@ -10,6 +10,7 @@ class CargoRoutes {
     
     //RUTAS PARA LA APP CARGO
     'registrar_movimiento_cargo': (_) => const RegistrarPageCargo(),
+    'movimientos_page_cargo'    : (_) => const MovimientosPageCargo(),
 
   };
 

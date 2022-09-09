@@ -78,7 +78,7 @@ class _TipoCarnet extends StatelessWidget{
 
           // radio de dni, por defecto esta encendido
           SizedBox(
-            width: size.width*0.25,
+            width: size.width*0.22,
             child: RadioListTile<int>(
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
@@ -93,7 +93,7 @@ class _TipoCarnet extends StatelessWidget{
 
           // radio de extranjeria
           SizedBox(
-            width: size.width*0.25,
+            width: size.width*0.21,
             child: RadioListTile<int>(
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
@@ -108,7 +108,7 @@ class _TipoCarnet extends StatelessWidget{
 
           // radio de pasaporte
           SizedBox(
-            width: size.width*0.35,
+            width: size.width*0.37,
             child: RadioListTile<int>(
               value: 3, 
               groupValue: tipoProvider.valorTipoDocumento, 
@@ -244,14 +244,12 @@ class _PasaporteFormRegister extends StatelessWidget {
         children: [
 
           Form(
-            
             key: registerForm.formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
 
             child: InputWidget(
 
               length: 12,
-
               initialvalue: registerForm.pasaporte,
 
               validator: (value){
@@ -261,12 +259,10 @@ class _PasaporteFormRegister extends StatelessWidget {
               },
 
               onchanged: (value) =>registerForm.pasaporte=value,
-
               hintext: 'Ingrese el pasaporte', 
               icon: FontAwesomeIcons.idCard, 
 
             ),
-
           ),
 
           const SizedBox(height:20),
@@ -277,22 +273,17 @@ class _PasaporteFormRegister extends StatelessWidget {
               padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 15)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
-            
-            child: const Text('BUSCAR', style: TextStyle(fontSize: 20, color: Colors.black),),
-            
-            onPressed: (){
 
+            child: const Text('BUSCAR', style: TextStyle(fontSize: 20, color: Colors.black),),
+
+            onPressed: (){
               if(registerForm.isValidForm()){
               FocusScope.of(context).requestFocus(FocusNode());
               consultarDOI(context, registerForm.pasaporte, loginProvider.codServicio);
               }
-              
             },
-
           )
-
         ],
-
       ),
 
     );

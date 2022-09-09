@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/projects/cargo/domain/providers/movimientos_page_provider.dart';
 import 'package:solgis/projects/cargo/domain/providers/registrar_form_cargo.dart';
 import 'package:solgis/projects/cargo/routes/route.dart';
 
@@ -9,15 +10,19 @@ class CargoApp extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
+
       //PROVIDERS DEL CARGO
       providers:[
-          ChangeNotifierProvider( create: (_) => RadioCargoProvider() ),
+        ChangeNotifierProvider( create: (_) => RadioListProvider() ),
+        ChangeNotifierProvider( create: (_) => MovimientosPageProvider())
       ],
 
       child: const CargoAppState(),
+
     );
-    
+
   }
 
 }

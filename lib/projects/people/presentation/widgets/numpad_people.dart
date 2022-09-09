@@ -155,10 +155,9 @@ class Preview extends StatelessWidget {
         children: previewLength
 
       )
-    
+
     );
-  
-  
+
   }
 
 }

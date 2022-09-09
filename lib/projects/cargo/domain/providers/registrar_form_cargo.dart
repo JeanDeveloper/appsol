@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 
-class RadioCargoProvider extends ChangeNotifier {
+class RadioListProvider extends ChangeNotifier {
 
-  //controla el radio de tipo de documento
+  //controla el radio de tipo de registro
   int _tipoRegistro  = 1;
 
-  //controla el radio de tipo de persona
-  int _valorTipoPersonaDentroPlanta = 0;
+  //controla el radio de tipo de carga
+  int _valorTipoCargaDentroPlanta = 0;
 
-  //controla el radio de tipo de persona movimiento del dia
-  int _valorTipoPersonaMovimientoDia= 0;
+  //controla el radio de tipo de carga movimiento del dia
+  int _valorTipoCargaMovimientoDia= 0;
+
+  //controla el valor de la placa
+  String _placa = '';
+
+  String get placa => _placa;
+
+  set placa(String valor){
+    _placa = valor;
+    notifyListeners();
+  }
 
   int get tipoRegistro =>_tipoRegistro; 
 
@@ -18,18 +28,17 @@ class RadioCargoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int get valorTipoPersonaMovimientoDia =>_valorTipoPersonaMovimientoDia; 
+  int get valorTipoCargaMovimientoDia =>_valorTipoCargaMovimientoDia; 
 
-  set valorTipoPersonaMovimientoDia(int valor){
-    _valorTipoPersonaMovimientoDia = valor;
+  set valorTipoCargaMovimientoDia(int valor){
+    _valorTipoCargaMovimientoDia = valor;
     notifyListeners();
   }
 
+  int get valorTipoCargaDentroPlanta =>_valorTipoCargaDentroPlanta; 
 
-  int get valorTipoPersonaDentroPlanta =>_valorTipoPersonaDentroPlanta; 
-
-  set valorTipoPersonaDentroPlanta(int valor){
-    _valorTipoPersonaDentroPlanta = valor;
+  set valorTipoCargaDentroPlanta(int valor){
+    _valorTipoCargaDentroPlanta = valor;
     notifyListeners();
 }
 

@@ -23,6 +23,7 @@ class MovimientosTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+
     return FutureBuilder(
 
       future:movimientos,
@@ -62,6 +63,8 @@ class _ListTileMovimiento extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     final globalProvider  = Provider.of<GlobalProvider>(context);
+
+
 
     return ListTile(
 
@@ -103,8 +106,8 @@ class _ListTileMovimiento extends StatelessWidget {
             )
 
           ).show(context);
-
         },
+
         child: SizedBox(
           width: size.width*0.15,
           height: size.height*0.4,
@@ -148,7 +151,12 @@ class _ListTileMovimiento extends StatelessWidget {
 
           const SizedBox(width: 10),
 
-          AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 8, maxFontSize: 12,)
+          SizedBox(
+            width: size.width*0.15,
+            child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 6, maxFontSize: 12,)
+          ),
+
+          
 
         ],
 
@@ -157,19 +165,23 @@ class _ListTileMovimiento extends StatelessWidget {
       subtitle: Row(
 
         children: [
-            Expanded(
-              flex: 8,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
-                  AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
-                ]
-              ),
+          Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 ,style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2),
+                AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2,)
+              ]
             ),
+          ),
 
-          Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 16), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,))
-        
+          if(movimiento.fechaSalida == '')
+            Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),
+
+          // if(movimiento.fechaSalida != '')
+          //   Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaSalida!.toString().substring(11, 16), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12)),
+
         ],
       ),
 
@@ -182,11 +194,29 @@ class _ListTileMovimiento extends StatelessWidget {
           
           child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
-        :null,
+        : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+            // SizedBox(height: size.height*0.01),
+
+            AutoSizeText( movimiento.fechaSalida!.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+            // SizedBox(height: size.height*0.01),
+            
+            // AutoSizeText( DateTime.parse(movimiento.fechaSalida!).toString(), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+
+            AutoSizeText( getTiempoTranscurrido(movimiento.fechaMovimiento!, DateTime.parse('${movimiento.fechaSalida.toString().replaceAll(' ', 'T')}Z')).toString().substring(0, 7), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+          ],
+        ),  
 
       contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-    
     );
+
   }
+
 }
 
+Duration getTiempoTranscurrido(DateTime fecha1, DateTime fecha2){
+  final Duration resultado = fecha2.difference(fecha1);
+  return resultado;
+}

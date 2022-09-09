@@ -18,7 +18,6 @@ class RegistrarMovimientoPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final registerProvider = Provider.of<RegistrarFormProvider>(context);
     final tipoProvider = Provider.of<RadioProvider>(context);
-
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
@@ -27,7 +26,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
 
         width: size.width,
         height: size.height,
-        
+
         child: Stack(
 
           children:  [
@@ -49,15 +48,13 @@ class RegistrarMovimientoPage extends StatelessWidget {
               child: Positioned(
 
                 bottom: 0,
-            
+
                 child: FondoMenuPeople(
-            
+
                 padding: EdgeInsets.symmetric(vertical: size.height*0.035 ),
-                  
+
                   child: Row(
-
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
 
                       if(tipoProvider.valorTipoDocumento!=3)
@@ -89,7 +86,6 @@ class RegistrarMovimientoPage extends StatelessWidget {
                       ),
 
                     ],
-
                   ),
                 ),
               ),

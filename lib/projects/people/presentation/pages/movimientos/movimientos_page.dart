@@ -7,7 +7,6 @@ import 'package:solgis/projects/people/presentation/pages/movimientos/movimiento
 import 'package:solgis/projects/people/presentation/pages/movimientos/movimientos_planta_tab_page.dart';
 import 'package:solgis/projects/people/presentation/pages/movimientos/widgets/custom_navigation_bar.dart';
 
-
 class MovimientosPage extends StatelessWidget {
 
   const MovimientosPage({Key? key}) : super(key: key);

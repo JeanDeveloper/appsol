@@ -8,6 +8,13 @@ class MovimientosPageProvider extends ChangeNotifier{
 
   bool _isShearing = false;
 
+  int _selectedcarga = -1;
+
+  int get selectedCarga =>_selectedcarga;
+  set selectedCarga(int valor){
+    _selectedcarga = valor;
+    notifyListeners();
+  }
 
   int get getSelectedMenuOpt =>_selectedMenuOpt;
   set setSelectedMenuOpt(int valor){
@@ -28,5 +35,6 @@ class MovimientosPageProvider extends ChangeNotifier{
     _search = valor;
     notifyListeners();
   }
+
 
 }

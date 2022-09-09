@@ -10,7 +10,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '192.168.10.103:8000';
+  final String _url   = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   List<MovimientoModel> movimientosTotalesSelected = [];
@@ -80,23 +80,16 @@ class MovimientosProvider extends ChangeNotifier{
 
   //CONSULTAR UN MOVIMIENTO
   Future<List<MovimientoModel>> getSearchMovimientos(String query)async{
-
     final List<MovimientoModel> movimientosFiltered = [];
 
     Future.delayed(const Duration(seconds: 3));
 
     for( int i= 0; i< movimientosTotalesSelected.length; i++ ) {
-
       if (movimientosTotalesSelected[i].dni!.contains(query)){
-
         movimientosFiltered.add(movimientosTotalesSelected[i]);
-      
       }
-    
     }
-
     return movimientosFiltered;
-
   }
 
   //REGISTRAR UN MOVIMIENTO

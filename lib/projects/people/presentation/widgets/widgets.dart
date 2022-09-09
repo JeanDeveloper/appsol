@@ -1,4 +1,4 @@
-export 'package:solgis/projects/people/presentation/widgets/shimmer_widget.dart';
+export 'package:solgis/core/presentation/widgets/shimmer_widget.dart';
 export 'package:solgis/projects/people/presentation/widgets/movimientos_tiles.dart';
 export 'package:solgis/projects/people/presentation/widgets/radio_list_button.dart';
 export 'package:solgis/projects/people/presentation/pages/ingresos/widgets/ingreso_autorizado_widget.dart';

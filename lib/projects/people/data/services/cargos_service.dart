@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/cargo_model.dart';
 
 class CargosProvider {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/people/cargos/';
   final bool cargando = false;
 

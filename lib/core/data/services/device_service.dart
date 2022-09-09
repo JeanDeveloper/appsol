@@ -1,20 +1,18 @@
-  import 'dart:async';
-  import 'dart:convert';
-  import 'dart:io';
-  import 'package:http/http.dart' as http;
-  import 'package:solgis/core/domain/models/device_information_provider.dart';
-  import 'package:solgis/core/domain/models/device_response_model.dart';
-
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:solgis/core/domain/models/device_information_provider.dart';
+import 'package:solgis/core/domain/models/device_response_model.dart';
 
 class DeviceService {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '20.168.13.107:8000';
   final String _uncodePath = 'appsol/dispositivo/';
 
   //PETICION POST
-
   Future<DeviceResponseModel?> sendDataDevice( DeviceInformationModel dispositivo, String number, String? token )async{
-    
+
     final url = Uri.http(_url, _uncodePath);
 
     final response = await http.post(
@@ -65,4 +63,5 @@ class DeviceService {
     return estadoData['estado'];
 
   }
+
 }

@@ -36,7 +36,6 @@ class MovimientosTilesPageBody extends StatelessWidget {
   
   const MovimientosTilesPageBody({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -49,29 +48,20 @@ class MovimientosTilesPageBody extends StatelessWidget {
 
       case 0:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1'));
-        
-
       case 1:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '1'));
-
       case 2:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '2'));
-
       case 3:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '3'));
-
       case 4: 
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '4'));
-
       case 5:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '5'));
-
       case 6:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '6'));
-
       case 7:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '7'));
-
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '7'));      
       default:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1'));
 

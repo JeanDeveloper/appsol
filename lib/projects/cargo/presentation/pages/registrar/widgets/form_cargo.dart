@@ -14,7 +14,7 @@ class RegistrarFormCargo extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final tipoProvider = Provider.of<RadioCargoProvider>(context);
+    final tipoProvider = Provider.of<RadioListProvider>(context);
 
     return SizedBox.expand(
 
@@ -31,8 +31,8 @@ class RegistrarFormCargo extends StatelessWidget {
               const PlacaFormRegistro(),
 
             if(tipoProvider.tipoRegistro==2)
-              const Text('CODIGO'),
-              // const _PlacaFormRegistro(),
+              const PlacaFormRegistro(),
+              // const Text('CODIGO'),
 
             // if(tipoProvider.valorTipoDocumento==3)
             //   const _PasaporteFormRegister(),
@@ -52,7 +52,7 @@ class _TipoRegistro extends StatelessWidget{
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final tipoProvider = Provider.of<RadioCargoProvider>(context);
+    final tipoProvider = Provider.of<RadioListProvider>(context);
 
     return Container(
       padding: const EdgeInsets.all(10),

@@ -33,8 +33,8 @@ class AreaDbModel {
   String? area;
 
   AreaDbModel.fromJson(Map<String, dynamic> json) {
-      codigo  = json["codigo"];
-      area    = json["area"];
+    codigo  = json["codigo"];
+    area    = json["area"];
   }
 
 }
