@@ -13,7 +13,7 @@ class PlacaFormRegistro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     final registroProvider = Provider.of<RadioListProvider>(context);
     final size = MediaQuery.of(context).size;
 
@@ -27,9 +27,9 @@ class PlacaFormRegistro extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
 
         children: [
-
           AutoSizeText('INGRESE EL NUMERO DE PLACA', style: AppThemeCargo.lighThemeCargo.textTheme.headline3,), 
           SizedBox(height: size.height*0.05),
+
           Form(
 
             child: Row(
@@ -189,16 +189,14 @@ class PlacaFormRegistro extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.white, fontSize:20),
                     decoration: InputDecorationClass.formInputDecoration(),
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                    ],
+                    inputFormatters: [LengthLimitingTextInputFormatter(1)],
                   ),
 
                 ),
+
               ],
             ),
           ),
-
         ],
       ),
     );

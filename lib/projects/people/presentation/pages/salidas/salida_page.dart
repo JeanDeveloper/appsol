@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/widgets/widgets.dart';

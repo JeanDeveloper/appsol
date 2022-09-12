@@ -38,14 +38,12 @@ class MovimientosHeader extends StatelessWidget {
           AutoSizeText(DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.now()), style: textStyleDate(), minFontSize: 6),
 
           Row(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AutoSizeText('CANTIDAD:', style: TextStyle( color: Colors.green, fontSize: size.height*0.03, fontWeight: FontWeight.bold), minFontSize: 6),
               SizedBox( width: size.width*0.03),
               AutoSizeText('13', style: TextStyle(fontSize: size.height*0.03, fontWeight:  FontWeight.bold, color:  Colors.black), minFontSize: 6,),
             ],
-
           ),
 
           FutureBuilder(

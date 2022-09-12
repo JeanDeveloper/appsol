@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 
 
 class ImageCreatedWidget extends StatelessWidget{

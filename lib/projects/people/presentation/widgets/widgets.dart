@@ -10,5 +10,5 @@ export 'package:solgis/projects/people/presentation/pages/home/widgets/home_page
 export 'package:solgis/projects/people/presentation/pages/home/widgets/informacion_cliente_people_widget.dart';
 export 'package:solgis/projects/people/presentation/widgets/input_widget.dart';
 export 'package:solgis/projects/people/presentation/widgets/numpad_people.dart';
-export 'package:solgis/projects/people/presentation/widgets/read_only_input.dart';
+export 'package:solgis/core/presentation/widgets/read_only_input.dart';
 export 'package:solgis/projects/people/presentation/pages/registrar/widgets/registrar_form_people.dart';

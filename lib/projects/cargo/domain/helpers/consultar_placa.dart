@@ -14,7 +14,9 @@ consultarPlaca(BuildContext context, String placa)async{
 
   await Future.delayed(const Duration(seconds: 3));
 
+
   progressDialog.dismiss();
 
+  return Navigator.pushNamed(context, 'ingreso_autorizado_page_cargo');
 
 }

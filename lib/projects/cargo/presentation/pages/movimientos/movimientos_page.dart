@@ -24,6 +24,7 @@ class MovimientosPageCargo extends StatelessWidget {
       body: const _MovimientosPageCargoBody(),
 
     );
+
   }
 }
 

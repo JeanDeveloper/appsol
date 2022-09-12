@@ -26,11 +26,8 @@ class InputReadOnlyWidget extends StatelessWidget {
         readOnly: true,
         style: const TextStyle(fontSize: 14, color: Colors.black),
         decoration:InputDecorationsReadOnly.formInputDecorationReadOnly(),
-        
+
       )
-
     );
-
   }
-
 }

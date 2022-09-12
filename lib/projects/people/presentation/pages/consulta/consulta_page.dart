@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/consulta_datos_persona_service.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/consulta_validacion_model.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';

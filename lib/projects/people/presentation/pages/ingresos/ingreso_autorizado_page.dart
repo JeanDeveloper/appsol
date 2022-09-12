@@ -42,7 +42,7 @@ class IngresoAutorizadoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context);
+    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
 
 
     return IngresosTemplatePage(

@@ -25,7 +25,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context);
+    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
     final gProvider = Provider.of<GlobalProvider>(context);
     final motivoService = MotivoService();
     final autorizanteService = AutorizanteService();
@@ -189,10 +189,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         }
                         return DropdownButtonWidget(
                           items:dropdownareas, 
-                          onchanged: (value) {
-                            print(value);
-                            ingresoProvider.codarea = value!;
-                          },
+                          onchanged: (value) =>ingresoProvider.codarea = value!,
                           hintText: (areas.isEmpty)?'NO HAY AREAS DE ACCESO'  :'SELECCIONE EL AREA',
                         );
                       },
@@ -214,8 +211,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         height: size.height*0.04,
                         child: TextFormField(
                           cursorHeight: 20,
-                          onChanged: (value)=>
-                            ingresoProvider.guia = value,
+                          onChanged: (value)=>ingresoProvider.guia = value,
                           style: const TextStyle(fontSize: 16, color: Colors.black),
                           decoration:inputDecorationDatos() ,
                         )

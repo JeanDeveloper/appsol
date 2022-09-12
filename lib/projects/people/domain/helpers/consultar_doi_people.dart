@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:solgis/projects/people/data/services/consulta_doi_service.dart';
+import 'package:solgis/projects/people/data/services/datos_acceso_movimiento_services.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
@@ -9,23 +10,31 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
   CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
   progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
   progressDialog.show();
-
   ConsultaModel consulta = await ConsultaDOIService().getConsulta(documento, codServicio);
-
-  progressDialog.dismiss();
   
+  progressDialog.dismiss();
+
+
   if(consulta.resultado == 'OK'){
-    
+
     if(consulta.tipoConsulta == 'INGRESO AUTORIZADO'){
-      
+
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, 'ingreso_autorizado_people', arguments:  consulta);
       // Navigator.pushReplacementNamed(context, 'ingreso_autorizado_people', arguments: consulta);
     }else {
-      
+
+      //OBTENGO LOS DATOS DE ACCESO DEL MOVIMIENTO DE ENTRADA.
+
+      final datos_acceso = await DatosAccesoService().getDatosAccesosMovimiento(consulta.codigoServicio, consulta.codigoPersona!);
+
+
       // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, 'salida_autorizada_people', arguments: consulta);
-      
+      Navigator.pushNamed(context, 'salida_autorizada_people', arguments: {
+        'consulta'    : consulta,
+        'datos_acceso': datos_acceso,
+      });
+
     }
 
   }else{

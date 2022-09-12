@@ -14,8 +14,6 @@ class HomePageBackGroundCargo extends StatelessWidget {
     );
 
   }
-
-
 }
 
 class _OpacityBackground extends StatelessWidget {
@@ -35,7 +33,7 @@ class _OpacityBackground extends StatelessWidget {
       ),
     );
   }
-  
+
 }
 
 

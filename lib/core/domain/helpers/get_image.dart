@@ -59,5 +59,4 @@ Future<Widget> getImage(String? urlimage, {bool create = false} ) async {
 
   }
 
-
 }

@@ -7,17 +7,17 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
+import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '20.168.13.107:8000';
+  final String _url   = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   List<MovimientoModel> movimientosTotalesSelected = [];
   String tipoSeleccionado = 'todos';
   int movimientosContador = 0;
   int get getmovimientosContador => movimientosContador;
-
 
   //PETICION GET
   Future<List<MovimientoModel>> _procesarRespuestaGet(Uri url) async {
@@ -36,6 +36,8 @@ class MovimientosProvider extends ChangeNotifier{
   //PETICION POST
   Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta) async{
     final loginProvider = Provider.of<PersonAuthProvider>(context, listen: false);
+    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
+
     final resp = await http.post(
       url,
       headers: <String, String>{
@@ -53,6 +55,10 @@ class MovimientosProvider extends ChangeNotifier{
           'creado_por'            : 'PEOPLE_${loginProvider.dni}',
           'codigo_area'           : '${consulta.codigoArea}',  // DINAMICO Y NO ESTATICO
           'tipo_persona'          : '${consulta.tipoPersona}',
+          'guia'                  : ingresoProvider.guia, 
+          'url_foto_guia'         : '',
+          'material'              : ingresoProvider.material_valor,
+          'url_foto_material'     : '',
         }
       ),
 
@@ -102,5 +108,8 @@ class MovimientosProvider extends ChangeNotifier{
     return movimientoId;
 
   }
+
+  
+
 
 }

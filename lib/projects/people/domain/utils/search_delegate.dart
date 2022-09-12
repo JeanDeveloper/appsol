@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 import 'package:solgis/projects/people/theme/theme.dart';

@@ -17,18 +17,14 @@ class MovimientoPlantaTab extends StatelessWidget {
     return Column(
 
       children:[
-        MovimientosHeader( index: index ),
+        MovimientosHeader( index:index ),
         Expanded( 
           child: Column(
             children: [
               Text('${mProvider.selectedCarga}'),
             ],
           )
-        
-        
         ),
-          
-          
       ],
 
     );

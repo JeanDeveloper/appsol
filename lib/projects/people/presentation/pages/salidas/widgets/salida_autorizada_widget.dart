@@ -4,9 +4,10 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/salida_provider.dart';
 import 'package:solgis/projects/people/domain/utils/dropdown_decorations.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
@@ -15,8 +16,12 @@ import 'package:solgis/projects/people/styles/style.dart';
 class SalidaAutorizadaWidget extends StatelessWidget {
   
   final ConsultaModel consulta;
+  final DatosAccesoMModel datosAcceso;
 
-  const SalidaAutorizadaWidget({required this.consulta});
+  const SalidaAutorizadaWidget({
+    required this.consulta, 
+    required this.datosAcceso
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +44,27 @@ class SalidaAutorizadaWidget extends StatelessWidget {
 
             children: [
 
-              //CAMPO SERIE
+              //CAMPO ENTRADA DE GUIA
+              //MOSTRAR ESTE CAMPO SI EXISTE DATA
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('SERIE:  ', style: styleCrearPersonaltextForm()),
-                  const InputReadOnlyWidget(initialValue: '')
+                  Text('E. GUIA:  ', style: styleCrearPersonaltextForm()),
+                  InputReadOnlyWidget(initialValue: datosAcceso.guiaMovimiento)
                 ]
               ),
               SizedBox(height: size.height*0.02), 
 
+              //CAMPO ENTRADA DE MATERIAL
+              //MOSTRAR ESTE CAMPO SI EXISTE DATA
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('E. MATERIAL:  ', style: styleCrearPersonaltextForm()),
+                  InputReadOnlyWidget(initialValue: datosAcceso.materialMovimiento)
+                ]
+              ),
+              SizedBox(height: size.height*0.02), 
 
               //CAMPO GUIA
               Row(
@@ -194,7 +210,6 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                 ]
 
               ),
-
 
               //CAMPO FOTO DE ENTRADA
               Column(

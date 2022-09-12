@@ -55,7 +55,8 @@ class IngresosTemplatePage extends StatelessWidget {
         body: _IngresosTemplateBody(
           bodyIngreso: body,
           funtionAccept: (registrarFunction==null)? null : registrarFunction , 
-          consulta: consulta,viewBotton: viewBotton
+          consulta: consulta,
+          viewBotton: viewBotton
         ), //dinamico
       ),
 
@@ -97,7 +98,7 @@ class _IngresosTemplateBody extends StatelessWidget {
         child: Stack(
 
           children: [
-            
+
             SingleChildScrollView(
 
               child: Column(
@@ -109,11 +110,11 @@ class _IngresosTemplateBody extends StatelessWidget {
 
                   //WIDGET DE CAMPOS DINAMICOS
                   bodyIngreso,
-            
+
                 ],
 
               ),
-              
+
             ),
 
             //MENU INFERIOR

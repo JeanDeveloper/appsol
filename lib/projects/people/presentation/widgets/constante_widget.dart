@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:solgis/projects/people/domain/helpers/get_image.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
-
 
 class ConstantesWidget extends StatelessWidget {
 
@@ -72,7 +71,6 @@ class ConstantesWidget extends StatelessWidget {
 
             children: [
 
-
               Text( (consulta.tipoDocumento=='DNI')? 'DNI:' : (consulta.tipoDocumento=='PASAPORTE')? 'PASAPORTE:': 'CARNET:', style: styleCrearPersonaltextForm()),
               InputReadOnlyWidget(initialValue: consulta.docPersona),
 
@@ -126,7 +124,7 @@ class ConstantesWidget extends StatelessWidget {
           ),
 
         ],
-        
+
       ),
 
     );

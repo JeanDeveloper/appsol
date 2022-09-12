@@ -21,8 +21,8 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   String _area_acceso = '';
   String _guia = '';
   String _material_valor = '';
-  late XFile _fotoGuia;
-  late XFile _fotoMaterialValor; 
+  var  _fotoGuia;
+  var  _fotoMaterialValor; 
   bool _isLoading = false;
 
   // METODOS PARA LA VARIABLE LOADING

@@ -6,9 +6,8 @@ import 'package:solgis/projects/cargo/presentation/pages/registrar/widgets/widge
 import 'package:solgis/projects/cargo/theme/theme_cargo.dart';
 
 class RegistrarFormCargo extends StatelessWidget {
-  
-  const RegistrarFormCargo({Key? key}) : super(key: key);
 
+  const RegistrarFormCargo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +18,23 @@ class RegistrarFormCargo extends StatelessWidget {
     return SizedBox.expand(
 
       child: SingleChildScrollView(
-      
+
         child: Column(
 
           children: [
 
+            SizedBox(height: size.height*0.1),
+
             _TipoRegistro(),
-            SizedBox(height: size.height*0.05),
+            SizedBox(height: size.height*0.1),
 
             if(tipoProvider.tipoRegistro==1)
               const PlacaFormRegistro(),
 
             if(tipoProvider.tipoRegistro==2)
               const PlacaFormRegistro(),
-              // const Text('CODIGO'),
-
-            // if(tipoProvider.valorTipoDocumento==3)
-            //   const _PasaporteFormRegister(),
 
           ],
-
         ),
       ),
     );
