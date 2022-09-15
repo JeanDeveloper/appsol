@@ -12,9 +12,9 @@ class MovimientosDiaTabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     //van a venir valores
 
-    
     return Column(
       
       children: [
@@ -23,9 +23,7 @@ class MovimientosDiaTabPage extends StatelessWidget {
         MovimientosListButton(index:index),
 
         const Expanded(
-
           child: MovimientosTilesDiaBody(),
-
         )
 
       ],

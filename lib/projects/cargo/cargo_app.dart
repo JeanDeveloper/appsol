@@ -16,7 +16,7 @@ class CargoApp extends StatelessWidget{
       //PROVIDERS DEL CARGO
       providers:[
         ChangeNotifierProvider( create: (_) => RadioListProvider() ),
-        ChangeNotifierProvider( create: (_) => MovimientosPageProvider())
+        ChangeNotifierProvider( create: (_) => MovimientosPageProvider() )
       ],
 
       child: const CargoAppState(),
@@ -26,8 +26,6 @@ class CargoApp extends StatelessWidget{
   }
 
 }
-
-
 
 class CargoAppState extends StatelessWidget {
   const CargoAppState({Key? key}) : super(key: key);
@@ -44,4 +42,3 @@ class CargoAppState extends StatelessWidget {
 
   }
 }
-

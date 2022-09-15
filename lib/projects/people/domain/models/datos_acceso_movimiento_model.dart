@@ -31,4 +31,6 @@ class DatosAccesoMModel {
       fotoMaterialMovimiento    = json["foto_material_movimiento"]?? '';
       fechaCreacion             = DateTime.parse(json["fecha_creacion"]?? '');
     }
+
+
 }

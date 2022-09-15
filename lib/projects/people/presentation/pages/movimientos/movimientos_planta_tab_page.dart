@@ -9,7 +9,7 @@ import 'package:solgis/projects/people/presentation/widgets/movimientos_tiles.da
 class MovimientosPlantasTabPage extends StatelessWidget {
 
   final int index;
-
+  
   const MovimientosPlantasTabPage({
     Key? key, 
     required this.index, 
@@ -29,7 +29,7 @@ class MovimientosPlantasTabPage extends StatelessWidget {
     );
 
   }
-  
+
 }
 
 class MovimientosTilesPageBody extends StatelessWidget {

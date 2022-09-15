@@ -105,7 +105,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   // METODOS PARA LA VARIABLE FOTO GUIA
   XFile get fotoGuia => _fotoGuia;
 
-  set fotoGuia (XFile value) {
+  set fotoGuia (XFile? value) {
     _fotoGuia = value;
     notifyListeners();
   }
@@ -114,7 +114,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   // METODOS PARA LA VARIABLE FOTO MATERIAL VALOR
   XFile get fotoMaterialValor => _fotoMaterialValor;
 
-  set fotoMaterialValor ( XFile value) {
+  set fotoMaterialValor ( XFile? value) {
     _fotoMaterialValor = value;
     notifyListeners();
   }

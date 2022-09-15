@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/core/presentation/widgets/shimmer_widget.dart';
 import 'package:solgis/projects/cargo/data/models/tipos_carga_model.dart';
+import 'package:solgis/projects/cargo/data/services/movimiento_cargo_service.dart';
 import 'package:solgis/projects/cargo/data/services/tipos_carga_services.dart';
 import 'package:solgis/projects/cargo/domain/providers/movimientos_page_provider.dart';
 import 'package:solgis/projects/cargo/styles/style.dart';
@@ -25,6 +26,8 @@ class MovimientosHeader extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final gProvider = Provider.of<GlobalProvider>(context);
     final movimientosProvider = Provider.of<MovimientosPageProvider>(context);
+
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical:30),
       width: double.infinity,
@@ -35,7 +38,11 @@ class MovimientosHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
+
+          //FECHA 
           AutoSizeText(DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.now()), style: textStyleDate(), minFontSize: 6),
+
+          //TODO: POSTERIORMENTE SERÁ UN STREAMBUILDER
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +58,7 @@ class MovimientosHeader extends StatelessWidget {
             future: TiposCargaService.getTiposCarga(gProvider.codCliente),
 
             builder: ( _ ,  AsyncSnapshot<List<TipoCargaModel>> snapshot) {
+
               if(!snapshot.hasData){
                 return ShimmerWidget(
                   width: size.width * 0.57,
@@ -61,27 +69,21 @@ class MovimientosHeader extends StatelessWidget {
               final tiposCarga = snapshot.data!;
 
               return DropdownButton<int>(
-
                 hint: const Text('Seleccione un tipo de carga'),
+                onChanged: (value) => movimientosProvider.selectedCarga = value!,
+                value: (movimientosProvider.selectedCarga == -1) ? null : movimientosProvider.selectedCarga,
                 items: tiposCarga.map<DropdownMenuItem<int>>((TipoCargaModel carga){
                   return DropdownMenuItem<int>(
                     value: int.parse(carga.codigoCarga!),
                     child: Text(carga.carga!),
                   );
                 }).toList(), 
-                
-
-                onChanged: (value) => movimientosProvider.selectedCarga = value!,
-                value: (movimientosProvider.selectedCarga == -1) ? null : movimientosProvider.selectedCarga,
-
               );
+
             },
           ),
-
         ],
-
       ),
     );
-
   }
 }

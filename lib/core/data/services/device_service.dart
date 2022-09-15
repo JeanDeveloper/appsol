@@ -36,14 +36,11 @@ class DeviceService {
       })
 
     );
-
     if(response.statusCode==201) return DeviceResponseModel.fromJson(json.decode(response.body));
     return null;
-
   }
 
   Future<int> checkAuthDevice(String serial)async{
-
     final url = Uri.http(
       _url, 
       'appsol/dispositivo/estado/', 
@@ -51,17 +48,12 @@ class DeviceService {
         'serial': serial,
       }
     );
-
     final response = await http.get( 
       url, 
-      headers:  {
-        HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"
-      }
+      headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
     );
-
     final estadoData = json.decode(response.body);
     return estadoData['estado'];
-
   }
 
 }

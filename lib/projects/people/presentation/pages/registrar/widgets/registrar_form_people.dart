@@ -131,7 +131,7 @@ class _TipoCarnet extends StatelessWidget{
 
 }
 
-class _DNIFormRegister extends StatelessWidget {
+class _DNIFormRegister extends StatelessWidget {  
 
   const _DNIFormRegister({Key? key}) : super(key: key);
 
@@ -193,26 +193,21 @@ class _CarnetFormRegister extends StatelessWidget {
         AutoSizeText('INGRESE EL CARNET DE EXTRANJERIA', style: AppThemePeople.lighThemePeople.textTheme.headline2, maxLines: 1, minFontSize: 6,),            
         
         NumPad(
+
           isDni: false,
-          
+
           length: 9,
 
           onPressed: (String value) async{
 
-            if( value == '' || value.length<9 ){
-              
-              showSnackBarAwesome(context, 'Error', 'Ingrese un Pasaporte valido', ContentType.failure);
+            if( value == '' || value.length<9 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure);
 
-            }else{
-
-              consultarDOI(context, value, loginProvider.codServicio);
-
-            }
+            consultarDOI(context, value, loginProvider.codServicio);
 
           },
 
         )
-      
+
       ],
 
     );

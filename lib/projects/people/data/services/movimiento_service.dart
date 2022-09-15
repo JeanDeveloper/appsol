@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
-import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
@@ -34,30 +34,30 @@ class MovimientosProvider extends ChangeNotifier{
   }
 
   //PETICION POST
-  Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta) async{
-    final loginProvider = Provider.of<PersonAuthProvider>(context, listen: false);
-    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
+  Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta, DatosAccesoMModel datos) async{
+    final loginProvider      = Provider.of<PersonAuthProvider>(context, listen: false);
 
     final resp = await http.post(
       url,
+
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      
+
       body: jsonEncode(
         <String, String>{
           'codigo_personal'       : '${consulta.codigoPersona}',
           'codigo_servicio'       : '${consulta.codigoServicio}',
           'codigo_tipo_movimiento': '${consulta.codigoMovSgt}',
-          'codigo_tipo_motivo'    : '${consulta.codigoMotivo}', //DINAMICO NO ESTATICO
-          'codigo_empresa'        : '${consulta.codigoEmpresa}', 
-          'autorizado_por'        : '${consulta.codigoAutorizante}', // DINAMICO Y NO ESTATICO
-          'creado_por'            : 'PEOPLE_${loginProvider.dni}',
-          'codigo_area'           : '${consulta.codigoArea}',  // DINAMICO Y NO ESTATICO
+          'codigo_tipo_motivo'    : '${consulta.codigoMotivo}',       //DINAMICO NO ESTATICO
+          'codigo_empresa'        : '${consulta.codigoEmpresa}',      
+          'autorizado_por'        : '${consulta.codigoAutorizante}',  //DINAMICO Y NO ESTATICO
+          'creado_por'            : 'PEOPLE_${loginProvider.dni}',    
+          'codigo_area'           : '${consulta.codigoArea}',         //DINAMICO Y NO ESTATICO
           'tipo_persona'          : '${consulta.tipoPersona}',
-          'guia'                  : ingresoProvider.guia, 
+          'guia'                  : datos.guiaMovimiento ?? '', 
           'url_foto_guia'         : '',
-          'material'              : ingresoProvider.material_valor,
+          'material'              : datos.materialMovimiento ?? '',
           'url_foto_material'     : '',
         }
       ),
@@ -99,17 +99,13 @@ class MovimientosProvider extends ChangeNotifier{
   }
 
   //REGISTRAR UN MOVIMIENTO
-  Future<int> registerMovimiento(BuildContext context, ConsultaModel consulta)async{
-
+  Future<int> registerMovimiento(BuildContext context, ConsultaModel consulta, DatosAccesoMModel datos)async{
     final url = Uri.http(_url, _uncodePath);
-
-    final movimientoId = await _procesarRespuestaPost(context, url, consulta);
-
+    final movimientoId = await _procesarRespuestaPost(context, url, consulta, datos);
     return movimientoId;
-
   }
 
-  
+
 
 
 }

@@ -6,14 +6,12 @@ import 'package:solgis/projects/cargo/presentation/pages/movimientos/widgets/cus
 import 'package:solgis/projects/cargo/theme/theme_cargo.dart';
 
 class MovimientosPageCargo extends StatelessWidget {
-
   const MovimientosPageCargo({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: AppThemeCargo.lighThemeCargo.primaryColor,
         title: const Text('MOVIMIENTOS'),
@@ -22,10 +20,10 @@ class MovimientosPageCargo extends StatelessWidget {
 
       bottomNavigationBar: const CustomNavigationBar(),
       body: const _MovimientosPageCargoBody(),
-
     );
 
   }
+
 }
 
 class _MovimientosPageCargoBody extends StatelessWidget {
@@ -39,7 +37,7 @@ class _MovimientosPageCargoBody extends StatelessWidget {
     final currentIndex = uiProvider.getSelectedMenuOpt;
 
     switch ( currentIndex ){
-      
+
       case 0:
         return  MovimientoPlantaTab(index: currentIndex);
       case 1:
@@ -48,6 +46,6 @@ class _MovimientosPageCargoBody extends StatelessWidget {
         return  MovimientoPlantaTab(index: currentIndex);
 
     }
-  
+
   }
 }

@@ -23,7 +23,6 @@ class SalidaProvider extends ChangeNotifier {
   }
 
 
-
   // METODOS PARA LA VARIABLE MATERIAL VALOR
   String get materialValor => _materialValor;
 

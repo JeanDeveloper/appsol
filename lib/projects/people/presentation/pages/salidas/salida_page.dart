@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
-import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/core/domain/helpers/get_image.dart';
+import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/widgets/widgets.dart';
@@ -21,7 +21,7 @@ class SalidaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final consulta = ModalRoute.of(context)!.settings.arguments as ConsultaModel;
-    
+
     return Scaffold(
 
       appBar: AppBar(
@@ -111,9 +111,9 @@ class SalidaPageBody extends StatelessWidget {
                                 progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
                                 progressDialog.show();
 
-                                final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
+                                // final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
 
-                                print(idMovimiento);
+                                // print(idMovimiento);
 
                                 progressDialog.dismiss();
 

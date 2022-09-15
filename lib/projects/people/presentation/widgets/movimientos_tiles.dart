@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
-import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
@@ -64,12 +64,10 @@ class _ListTileMovimiento extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final globalProvider  = Provider.of<GlobalProvider>(context);
 
-
-
     return ListTile(
 
       style: ListTileStyle.list,
-      
+
       leading: GestureDetector(
         onTap: ()async{
           await NDialog(
@@ -156,8 +154,6 @@ class _ListTileMovimiento extends StatelessWidget {
             child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 6, maxFontSize: 12,)
           ),
 
-          
-
         ],
 
       ),
@@ -191,7 +187,6 @@ class _ListTileMovimiento extends StatelessWidget {
             consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
           },
           // child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
-          
           child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
         : Column(

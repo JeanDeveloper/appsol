@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/ingresos/ingreso_template_page.dart';
 import 'package:solgis/projects/people/presentation/pages/ingresos/widgets/widgets.dart';
@@ -68,27 +69,38 @@ class IngresoAutorizadoBody extends StatelessWidget {
               onPressed: () async {
 
                 final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
+                final datosAcceso = DatosAccesoMModel();
                 CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
                 progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
                 progressDialog.show();
 
+                if(ingresoProvider.material_valor != '') datosAcceso.materialMovimiento = ingresoProvider.material_valor; 
+                if(ingresoProvider.guia != '') datosAcceso.guiaMovimiento = ingresoProvider.guia; 
+
                 //funcion para registrar el movimiento.
-
                 if(
-                  consulta.codigoClienteControl == 5 || consulta.codigoClienteControl == 28463 ||  
-                  consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 25866 || 
-                  consulta.codigoClienteControl == 13 || consulta.codigoClienteControl == 14517
-                  ){
-                    await movimientoProvider.registerMovimiento(context, consulta);
-                  }else{
 
-                    //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
-                    consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
-                    consulta.codigoArea = ingresoProvider.cod_area;
-                    consulta.codigoMotivo = ingresoProvider.cod_motivo;
-                    await movimientoProvider.registerMovimiento(context, consulta);
-                  } 
-                  
+                  consulta.codigoClienteControl == 5     || consulta.codigoClienteControl == 28463 ||  
+                  consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 13    || 
+                  consulta.codigoClienteControl == 14517
+
+                ){
+
+                  await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
+
+                }else{
+
+                  //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
+                  consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
+                  consulta.autorizante       = ingresoProvider.autorizante;
+                  consulta.area              = ingresoProvider.area_acceso;
+                  consulta.codigoArea        = ingresoProvider.cod_area;
+                  consulta.motivo            = ingresoProvider.motivo;
+                  consulta.codigoMotivo      = ingresoProvider.cod_motivo;
+
+                  await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
+
+                } 
 
                 progressDialog.dismiss();
 
@@ -104,7 +116,6 @@ class IngresoAutorizadoBody extends StatelessWidget {
                 // ignore: use_build_context_synchronously
                 Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
                 // Navigator.pushNamedAndRemoveUntil(context, '/');
-
               }
 
             ),

@@ -47,7 +47,9 @@ class IngresoAutorizadoWidget extends StatelessWidget {
         key: ingresoProvider.formKey,
         child: SingleChildScrollView(
           child: Column(
+
             children: [
+
               //CAMPO AUTORIZANTE
               Row(
 
@@ -87,10 +89,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         } 
                         return DropdownButtonWidget(
                           items:dropdownautorizantes, 
-                          onchanged: (value) {
-                            print(value);
-                            ingresoProvider.codautorizante = value!;
-                          },
+                          onchanged: (value) =>ingresoProvider.codautorizante = value!,
                           hintText: (autorizantes.isEmpty)?'NO HAY AUTORIZANTES'  :'SELECCIONE EL AUTORIZANTE',
                         );
                       },
@@ -107,7 +106,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                   Text('MOTIVO:  ', style: styleCrearPersonaltextForm()),
 
                   ( documentacion.contains(gProvider.codCliente) )
-                    
+
                     ? DropdownButtonWidget(
                       items: (consulta.codigoMotivo == -1)
                         ?[]
@@ -138,10 +137,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         }
                         return DropdownButtonWidget(
                           items:dropdownmotivos, 
-                          onchanged: (value) {
-                            print(value);
-                            ingresoProvider.codmotivo = value!;
-                          },
+                          onchanged: (value) => ingresoProvider.codmotivo = value!,
                           hintText: (motivos.isEmpty)?'NO HAY MOTIVOS'  :'SELECCIONE EL MOTIVO' ,
                         );
                       },
@@ -149,7 +145,6 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                 ],
               ),
-
               SizedBox(height: size.height*0.02), 
 
               //CAMPO ACCESO
@@ -167,7 +162,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                       onchanged: (value) => (consulta.codigoArea== 0) ? null : ingresoProvider.codarea=value!,
                       value: consulta.codigoArea,
                     )
-                    
+
                     : FutureBuilder(
                       future: areaService.getAreas(gProvider.codServicio, gProvider.codCliente),
                       builder: (BuildContext context,AsyncSnapshot<List<AreaDbModel>> snapshot) {
@@ -229,16 +224,19 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                           if(photo == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
 
-                          print(photo);
+                          print('PATH DE LA FOTO: ${photo.name}');
+                          print('PATH DE LA FOTO: ${photo.path}');
+                          print('PATH DE LA FOTO: ${photo.mimeType}');
+
                           showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
 
                         }, 
                       )
                     ],
                   )
+                
                 ]
               ),
-
               SizedBox(height: size.height*0.02), 
 
               //CAMPO MATERIAL DE VALOR
@@ -287,32 +285,26 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                             // ignore: use_build_context_synchronously
                             showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
                           }else{
-                            print(photo);
+
+                          print('PATH DE LA FOTO: ${photo.name}');
+                          print('PATH DE LA FOTO: ${photo.path}');
+                          print('PATH DE LA FOTO: ${photo.mimeType}');
                             // ignore: use_build_context_synchronously
                             showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
                           }
-
                         }, 
-
                       )
 
                     ],
-
                   )
-
                 ]
-
               ),
 
             ],
-
           ),
-          
         ),
       ),
-
     );
-
   }
 
 }

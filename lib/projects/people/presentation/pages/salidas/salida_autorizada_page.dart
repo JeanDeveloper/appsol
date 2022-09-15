@@ -9,7 +9,7 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_mod
 import 'package:solgis/projects/people/domain/providers/salida_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
-
+import 'package:vibration/vibration.dart';
 
 class SalidaAutorizadaPage extends StatelessWidget {
 
@@ -17,18 +17,15 @@ class SalidaAutorizadaPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    
   Map argm = ModalRoute.of(context)!.settings.arguments as Map;
   ConsultaModel consulta = argm['consulta'];
-  DatosAccesoMModel datosAcceso = argm['datos_acceso'];
-
+  DatosAccesoMModel? datosAcceso = argm['datos_acceso'];
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ((context) => SalidaProvider())),
+        ChangeNotifierProvider(create: ((context) => SalidaProvider()))
       ],
-      child: SalidaAutorizadaBody(consulta:  consulta, datosAcceso: datosAcceso,),
+      child: SalidaAutorizadaBody(consulta:  consulta, datosAcceso: datosAcceso),
     );
-
   }
 
 }
@@ -36,7 +33,7 @@ class SalidaAutorizadaPage extends StatelessWidget {
 class SalidaAutorizadaBody extends StatelessWidget {
 
   final ConsultaModel consulta;
-  final DatosAccesoMModel datosAcceso;
+  final DatosAccesoMModel? datosAcceso;
 
   const SalidaAutorizadaBody({
     Key? key, 
@@ -44,9 +41,11 @@ class SalidaAutorizadaBody extends StatelessWidget {
     required this.datosAcceso,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
+    final salidaProvider = Provider.of<SalidaProvider>(context, listen: false);
+
+
     return SalidaTemplatePage(
       titleIngreso: 'SALIDA AUTORIZADA', 
       colorAppBar: const Color(0xffF57E25), 
@@ -59,7 +58,7 @@ class SalidaAutorizadaBody extends StatelessWidget {
           dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
           title: const Text("¡Alerta!",),
           content: const Text(" ¿Estas seguro que deseas registrar el movimiento? ", style: TextStyle(color: Colors.black)),  
-          
+
           actions: <Widget>[
 
             TextButton(
@@ -72,13 +71,43 @@ class SalidaAutorizadaBody extends StatelessWidget {
                 CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
                 progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
                 progressDialog.show();
+                final datosAcceso = DatosAccesoMModel();
+
+                if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
+                if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
+
+                await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
 
                 //funcion para registrar el movimiento.
-                final idMovimiento = await movimientoProvider.registerMovimiento(context, consulta);
+                // if(
 
-                print(idMovimiento);
+                //   consulta.codigoClienteControl == 5     || consulta.codigoClienteControl == 28463 ||  
+                //   consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 13    || 
+                //   consulta.codigoClienteControl == 14517
+
+                // ){
+                //   await movimientoProvider.registerMovimiento(context, consulta);
+                // }else{
+
+                //   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
+                //   // consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
+                //   // consulta.autorizante       = ingresoProvider.autorizante;
+                //   // consulta.area              = ingresoProvider.area_acceso;
+                //   // consulta.codigoArea        = ingresoProvider.cod_area;
+                //   // consulta.motivo            = ingresoProvider.motivo;
+                //   // consulta.codigoMotivo      = ingresoProvider.cod_motivo;
+
+                //   await movimientoProvider.registerMovimiento(context, consulta);
+
+                // } 
 
                 progressDialog.dismiss();
+
+                bool? hasvibration = await Vibration.hasVibrator();
+
+                if( hasvibration! ){
+                  Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+                }
 
                 // ignore: use_build_context_synchronously
                 showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
@@ -87,7 +116,6 @@ class SalidaAutorizadaBody extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
 
               }
-
             ),
 
             TextButton(
@@ -103,4 +131,5 @@ class SalidaAutorizadaBody extends StatelessWidget {
 
     );
   }
+
 }
