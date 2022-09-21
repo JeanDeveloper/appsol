@@ -17,6 +17,8 @@ class MovimientosProvider extends ChangeNotifier{
   List<MovimientoModel> movimientosTotalesSelected = [];
   String tipoSeleccionado = 'todos';
   int movimientosContador = 0;
+
+
   int get getmovimientosContador => movimientosContador;
 
   //PETICION GET
@@ -65,6 +67,7 @@ class MovimientosProvider extends ChangeNotifier{
     );
 
     if( resp.statusCode == 201 ) return 1;
+
     return -1;
 
   }
@@ -104,8 +107,6 @@ class MovimientosProvider extends ChangeNotifier{
     final movimientoId = await _procesarRespuestaPost(context, url, consulta, datos);
     return movimientoId;
   }
-
-
 
 
 }

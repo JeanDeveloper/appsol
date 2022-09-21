@@ -37,8 +37,8 @@ class IngresoAutorizadoCargoPageState extends StatelessWidget {
       body: const _IngresoAutorizadoBody(),
     ); 
   }
-}
 
+}
 
 class _IngresoAutorizadoBody extends StatelessWidget {
 
@@ -47,65 +47,34 @@ class _IngresoAutorizadoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final size = MediaQuery.of(context).size;
     final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context);
 
+    return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      child: Column(
 
-    return Column(
+        children: [
 
-      children: [
-        IconStepper(
+          IconStepper(
+            enableNextPreviousButtons: false,
+            icons: getIcons(),
+            activeStep: ingresoProvider.indexStep ,
+            onStepReached: (index)=>ingresoProvider.indexStep = index,
+          ),
 
-          enableNextPreviousButtons: false,
-          icons: const [
-            Icon(FontAwesomeIcons.car),
-            Icon(FontAwesomeIcons.person),
-            Icon(FontAwesomeIcons.photoFilm),
-            // Icon(FontAwesomeIcons.photoFilm),
-          ],
-          activeStep: ingresoProvider.indexStep ,
-          onStepReached: (index)=>ingresoProvider.indexStep = index,
-        ),
-        const SelectedWidget(),
-      ],
+          const SelectedWidget(),
+        ],
+
+      ),
     );
 
   }
 
-  List<Step> getSteps(BuildContext context ){
-
-    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
-
-    return [
-
-      Step(
-        // state: ingresoProvider.getValorStep>0 ? StepState.complete : StepState.indexed ,
-        // isActive: personalProvider.getValorStep>=0,
-        title: const FaIcon(FontAwesomeIcons.car), 
-        content: Container(),
-      ),
-
-      Step(
-        // isActive: personalProvider.getValorStep>=1,
-        title: const FaIcon(FontAwesomeIcons.person),
-        content: Container(),
-      ),
-
-      // Step(
-      //   // isActive: personalProvider.getValorStep>=1,
-      //   title: const FaIcon(FontAwesomeIcons.dev), 
-      //   content: Container(),
-      // ),
-
-      // Step(
-      //   // isActive: personalProvider.getValorStep>=1,
-      //   title: const FaIcon(FontAwesomeIcons.photoFilm), 
-      //   content: Container(),
-      // ),
-
-    ];
-
-  }
+  List<Icon> getIcons()=> const [
+    Icon(FontAwesomeIcons.car),
+    Icon(FontAwesomeIcons.person),
+    Icon(FontAwesomeIcons.photoFilm),
+  ];
 
 }
 

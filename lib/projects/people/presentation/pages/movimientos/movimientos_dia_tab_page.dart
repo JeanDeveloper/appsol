@@ -16,20 +16,17 @@ class MovimientosDiaTabPage extends StatelessWidget {
     //van a venir valores
 
     return Column(
-      
+
       children: [
 
         //se controlará dependiendo el tipo. mandara a llamar cuantos personal hay por tipo
         MovimientosListButton(index:index),
-
-        const Expanded(
-          child: MovimientosTilesDiaBody(),
-        )
+        const Expanded(child: MovimientosTilesDiaBody())
 
       ],
 
     );
-    
+
   }
 
 }
@@ -77,7 +74,5 @@ class MovimientosTilesDiaBody extends StatelessWidget {
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2'));
 
     }
-
   }
-
 }

@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:solgis/projects/people/theme/theme.dart';
+import 'package:solgis/projects/cargo/theme/theme_cargo.dart';
 
 
-AppBar appBarNoSearching ( BuildContext context, String title, Function startSearchFunction){
+AppBar appBarNoSearching ( BuildContext context, String title, Function startSearchFunction ){
 
   return AppBar(
-    backgroundColor: AppThemePeople.lighThemePeople.primaryColor,
+    backgroundColor: AppThemeCargo.lighThemeCargo.primaryColor,
     centerTitle: true,
-    leading: IconButton(
-      icon: Icon(Icons.arrow_back_ios_new_rounded, color: AppThemePeople.lighThemePeople.primaryIconTheme.color),
-      onPressed: ()=>Navigator.pop(context), 
+    leading:  IconButton(
+      icon: Icon(Icons.arrow_back_ios_new_rounded, color: AppThemeCargo.lighThemeCargo.primaryColor),
+      onPressed: ()=> Navigator.pop(context),
     ),
+
     title: Text(title),
     actions: <Widget>[
       IconButton(
-        icon: Icon(Icons.search, size: AppThemePeople.lighThemePeople.primaryIconTheme.size, color: AppThemePeople.lighThemePeople.primaryIconTheme.color),
+        icon: Icon(Icons.search, size: AppThemeCargo.lighThemeCargo.primaryIconTheme.size, color: AppThemeCargo.lighThemeCargo.primaryColor),
         onPressed: () =>startSearchFunction()
-      ),
-    ],            
+      )
+    ],
   );
-
 
 }
 
-AppBar appBarBuscando(Function cancelSearch, Function() searching, Function(String) onchanged) {
-    
+
+
+AppBar appBarSearching(Function cancelSearch, Function() searching, Function(String) onchanged) {
+
   return AppBar(
 
     leading: IconButton(
@@ -54,6 +56,7 @@ AppBar appBarBuscando(Function cancelSearch, Function() searching, Function(Stri
       ),
     ),
 
+
     actions: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal:8.0),
@@ -64,5 +67,15 @@ AppBar appBarBuscando(Function cancelSearch, Function() searching, Function(Stri
       )
     ],
 
+
   );
+
+
+
+
+
+
+
+
+
 }

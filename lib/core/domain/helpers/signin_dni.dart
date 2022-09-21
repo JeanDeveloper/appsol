@@ -16,10 +16,10 @@ Future<void>signinWithDNI(BuildContext context, String dni)async{
   final signinService = SignInService();
   final singInService= await signinService.signInDNI(dni);
 
-  if(singInService==null){  
+  if(singInService==null){
     homeProvider.isLoading = false;
     // ignore: use_build_context_synchronously
-    return showSnackBarAwesome(context, 'Atencion', 'No existe el personal', ContentType.failure);
+    return showSnackBarAwesome(context, 'Atencion', 'El DNI no corresponde a un agente o no existe', ContentType.failure);
   } 
 
   Preferences.codigoPersona = personProvider.codigoPersona = singInService.codigoPersonal!;
@@ -46,6 +46,7 @@ Future<void>signinWithDNI(BuildContext context, String dni)async{
 }
 
   void openHomePage(BuildContext context) {
+    
     final newRoute = PageRouteBuilder<dynamic>(
       pageBuilder: (context, animation, secondaryAnimation) {
         return FadeTransition(

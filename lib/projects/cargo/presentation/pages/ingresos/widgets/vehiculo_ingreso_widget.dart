@@ -25,11 +25,10 @@ class VehiculoIngresoWidget extends StatelessWidget {
             builder: ( _ , AsyncSnapshot<Widget>  snapshot) {
 
               if(!snapshot.hasData){
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: SizedBox(
-                    width: size.width*0.5,
-                    height: size.height*0.5,
+                return SizedBox(
+                  height: size.height* 0.24,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
                     child: const Image(
                       image: AssetImage('assets/gifs/loader.gif'),
                     ),
@@ -47,8 +46,8 @@ class VehiculoIngresoWidget extends StatelessWidget {
               );
 
             },
-          ),
 
+          ),
           SizedBox(height: size.height*0.03),
 
           //PLACA
@@ -86,17 +85,66 @@ class VehiculoIngresoWidget extends StatelessWidget {
           //TIPO DE CARGA
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text('T. CARGA', style: TextStyle(color: Colors.blue)),
+            children: [
+
+              const Text('T. CARGA', style: TextStyle(color: Colors.blue)),
+
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: size.width*0.024),
+                width: size.width*0.57,
+                height: size.height*0.04,
+
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border:Border.all(
+                    color: Colors.black,
+                  )
+                ),
+
+                child: DropdownButton(
+                  
+                  items: const [
+
+                    DropdownMenuItem(
+                      value: 'liviano',
+                      child: Text('LIVIANO'), 
+                    ),
+
+                    DropdownMenuItem(
+                      value: 'Pesado',
+                      child: Text('PESADO'), 
+                    ),
+
+                    DropdownMenuItem(
+                      value: 'Harina',
+                      child: Text('HARINA'), 
+                    ),
+
+                    DropdownMenuItem(
+                      value: 'Aceite',
+                      child: Text('ACEITE'), 
+                    ),
+
+                    DropdownMenuItem(
+                      value: 'Contenedor',
+                      child: Text('CONTENEDOR'), 
+                    ),
+
+                  ],
+
+                  onChanged: (value)=>print(value),
+
+                  style: const TextStyle(color: Colors.black, fontSize:13),
+
+                  isExpanded: true,
+
+                ),
+
+              )
+
             ],
           ),
           SizedBox(height: size.height*0.03),
-
-
-
-
-
-
 
         ],
 

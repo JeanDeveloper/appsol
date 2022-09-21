@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:solgis/projects/cargo/data/models/movimiento_cargo_model.dart';
-
 import 'package:solgis/projects/cargo/styles/style.dart';
 
 class MovimientosTilesCargo extends StatelessWidget {
@@ -15,10 +14,8 @@ class MovimientosTilesCargo extends StatelessWidget {
   }) : super(key: key);
 
 
-
   @override
   Widget build(BuildContext context) {
-
 
     return FutureBuilder(
 
@@ -27,7 +24,6 @@ class MovimientosTilesCargo extends StatelessWidget {
       builder: ( _ ,AsyncSnapshot <List<MovimientoCargoModel>> snapshot) {
 
         if(!snapshot.hasData) return const Center(child: CircularProgressIndicator(color: Colors.blue));
-
         if(snapshot.data!.isEmpty) return const Center(child: Text('NO HAY MOVIMIENTOS', style: TextStyle(color: Colors.black)));
 
         return ListView.separated(
@@ -37,9 +33,11 @@ class MovimientosTilesCargo extends StatelessWidget {
         );
 
       },
+
     );
 
   }
+
 }
 
 class _ListTileMovimiento extends StatelessWidget {
@@ -62,13 +60,13 @@ class _ListTileMovimiento extends StatelessWidget {
 
           SizedBox(
             // color: Colors.red,
-            width: size.width*0.11,
-            child: Text(movimientoCargo.placa! ,  style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1),
+            width: size.width*0.13,
+            child: Text(movimientoCargo.dni! ,  style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1),
           ),
           
           Text('- ' ,  style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1),
           SizedBox(
-            width: size.width*0.6,
+            width: size.width*0.5,
             child: Text(movimientoCargo.nombres!, style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1),
           ),
           const SizedBox(width: 10),
@@ -81,7 +79,7 @@ class _ListTileMovimiento extends StatelessWidget {
         children: [
 
           Expanded(
-            flex: 8,
+            flex: 6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,6 +89,9 @@ class _ListTileMovimiento extends StatelessWidget {
               ]
             ),
           ),
+
+          Expanded( flex: 2 , child: Text(movimientoCargo.placa! ,  style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1)),
+
 
           if(movimientoCargo.fechaSalida == '')
             Expanded( flex: 2 , child: AutoSizeText( movimientoCargo.fechaIngreso!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),
@@ -102,33 +103,27 @@ class _ListTileMovimiento extends StatelessWidget {
       ),
 
       trailing: (movimientoCargo.fechaSalida== '')
-        ? const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green,)
+        ? const FaIcon(FontAwesomeIcons.squareCaretRight, color: Colors.green)
         : Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AutoSizeText(movimientoCargo.fechaIngreso!.toString(), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
-            AutoSizeText(movimientoCargo.fechaSalida.toString(), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
-            AutoSizeText(  getTiempoTranscurrido(movimientoCargo.fechaIngreso!,  DateTime.parse('${movimientoCargo.fechaSalida.toString().replaceAll(' ', 'T')}Z')).toString().substring(0, 7)),
+            AutoSizeText(movimientoCargo.fechaIngreso!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+            AutoSizeText(movimientoCargo.fechaSalida.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+            AutoSizeText( getTiempoTranscurrido(movimientoCargo.fechaIngreso!,  DateTime.parse('${movimientoCargo.fechaSalida.toString().replaceAll(' ', 'T')}Z')).toString().substring(0, 7), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
           ],
 
         ),
 
-      contentPadding:  const EdgeInsets.symmetric(horizontal: 10),
+      contentPadding:  const EdgeInsets.symmetric(horizontal: 20),
 
     );
 
   }
 
-
-
-  
 }
-
 
 
 Duration getTiempoTranscurrido(DateTime fecha1, DateTime fecha2){
   final Duration resultado = fecha2.difference(fecha1);
   return resultado;
 }
-
-

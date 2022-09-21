@@ -10,7 +10,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final uiProvider = Provider.of<MovimientosPageProvider>(context);
+    final uiProvider = Provider.of<MovimientosCargoPageProvider>(context);
     final currentIndex = uiProvider.getSelectedMenuOpt; 
 
     return BottomNavigationBar(
@@ -39,7 +39,6 @@ class CustomNavigationBar extends StatelessWidget {
 
     );
 
-
   }
-  
+
 }

@@ -183,9 +183,7 @@ class _ListTileMovimiento extends StatelessWidget {
 
       trailing: (movimiento.fechaSalida == '')
         ? GestureDetector( 
-          onTap: ()async{
-            consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
-          },
+          onTap: ()=>consultarDOI(context, movimiento.dni!, globalProvider.codServicio),
           // child: Text('DAR SALIDA', style: TextStyle(color: Colors.green, fontSize: size.width*0.03))
           child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )

@@ -16,13 +16,12 @@ class CargoApp extends StatelessWidget{
       //PROVIDERS DEL CARGO
       providers:[
         ChangeNotifierProvider( create: (_) => RadioListProvider() ),
-        ChangeNotifierProvider( create: (_) => MovimientosPageProvider() )
+        ChangeNotifierProvider( create: (_) => MovimientosCargoPageProvider() )
       ],
 
       child: const CargoAppState(),
 
     );
-
   }
 
 }
@@ -41,4 +40,5 @@ class CargoAppState extends StatelessWidget {
       );
 
   }
+
 }

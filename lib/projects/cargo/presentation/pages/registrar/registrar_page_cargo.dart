@@ -12,17 +12,14 @@ class RegistrarPageCargo extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
-    // final registerProvider = Provider.of<RegistrarFormProvider>(context);
 
     return Scaffold(
 
       body: Stack(
 
         children:  [
-
           //FONDO
           const HomePageBackGroundCargo(),
-
           //FORMULARIO DE REGISTRO
           const RegistrarFormCargo(),
 
@@ -32,7 +29,7 @@ class RegistrarPageCargo extends StatelessWidget {
             child: Positioned(
               bottom: 0,
               child: BottomMenuCargo(
-              padding: EdgeInsets.symmetric(vertical: size.height*0.035 ),
+              padding: EdgeInsets.symmetric(vertical: size.height*0.035),
                 child: const MenuOptions(),
               ),
             ),
@@ -45,5 +42,5 @@ class RegistrarPageCargo extends StatelessWidget {
     );
 
   }
-  
+
 }

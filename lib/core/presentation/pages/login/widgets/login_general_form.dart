@@ -1,8 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/providers/home_provider.dart';
 import 'package:solgis/core/presentation/pages/login/widgets/widget.dart';
-import 'package:solgis/core/presentation/pages/pages.dart';
-
 import 'package:solgis/core/theme/theme.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 
@@ -25,16 +25,20 @@ class LoginGeneralForm extends StatelessWidget {
   //   );
   //   Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
   //   // Navigator.pushReplacementNamed(context, newRoute)
-  
   // }
 
   @override
   Widget build(BuildContext context) {
+
+    //VARIABLES
+    final homeProvider = Provider.of<HomeProvider>(context);
     final size = MediaQuery.of(context).size;
     final resizeNotifier = ValueNotifier<bool>(false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp){
       if (!resizeNotifier.value) resizeNotifier.value = true;
     });
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: GestureDetector(
@@ -58,17 +62,17 @@ class LoginGeneralForm extends StatelessWidget {
                   child: child!,
                 );
               },
+
               child: SizedBox(
                 height: size.height,
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: size.height * .1),
                     Center(
-                      // child: Text('SOLMAR'),
                       child: Image(
                         width: size.width*0.5,
                         height: size.height*0.1,
-                        image: AssetImage('assets/pngs/SOLMAR.png'),
+                        image: const AssetImage('assets/pngs/SOLMAR.png'),
                       ),
                     ),
                     const Spacer(),
@@ -88,52 +92,66 @@ class LoginGeneralForm extends StatelessWidget {
                               height: 340,
                               width: double.infinity,
                               color: Colors.white,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  const SizedBox(height: 60),
-                                  const TextInputLoginGeneral(
-                                    label: 'Nombre de usuario',
-                                    iconData: Icons.person,
-                                    textInputType: TextInputType.emailAddress,
-                                  ),
-                                  const SizedBox(height: 20),
-                                  const TextInputLoginGeneral(
-                                    label: 'Contraseña',
-                                    iconData: Icons.lock_outline,
-                                    textInputType:
-                                        TextInputType.visiblePassword,
-                                  ),
-                                  const SizedBox(height: 30),
-                                  SizedBox(
-                                    width: size.width * .65,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        resizeNotifier.value = false;
-                                        showSnackBarAwesome(context, 'Atencion', 'Estamos trabajando para brindarle mas funcionalidades', ContentType.failure);
-                                        // _openHomePage(context);
-                                      },
-                                      style: TextButton.styleFrom(
-                                        primary: Colors.white,
-                                        padding: const EdgeInsets.all(12),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        backgroundColor: AppThemeGeneral.lighTheme.primaryColor,
-                                      ),
-                                      child: const Text(
-                                        'Iniciar sesion',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
+                              padding: const EdgeInsets.symmetric(horizontal:40),
+
+                              child: SingleChildScrollView(
+                                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+
+                                    const SizedBox(height: 60),
+                                    const TextInputLoginGeneral(
+                                      label: 'Nombre de usuario',
+                                      iconData: Icons.person,
+                                      textInputType: TextInputType.emailAddress,
                                     ),
-                                  )
-                                ],
+                                    const SizedBox(height: 30),
+                                    const TextInputLoginGeneral(
+                                      label: 'Contraseña',
+                                      iconData: Icons.lock_outline,
+                                      textInputType:TextInputType.visiblePassword,
+                                    ),
+                                    const SizedBox(height: 30),
+                                    SizedBox(
+                                      width: size.width * .85,
+                                      child: TextButton(
+                                        onPressed: (homeProvider.isLoading)
+                                          ? null
+                                          : () async {
+                                            homeProvider.isLoading = true;
+                                            await Future.delayed(const Duration(seconds: 2));
+                                            homeProvider.isLoading = false;
+                                            // ignore: use_build_context_synchronously
+                                            showSnackBarAwesome(
+                                              context, 
+                                              'Atencion', 
+                                              'Estamos trabajando para brindarte más funcionalidades', 
+                                              ContentType.failure
+                                            );
+                                          },
+
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.white,
+                                          padding: const EdgeInsets.all(12),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          backgroundColor: AppThemeGeneral.lighTheme.primaryColor,
+                                        ),
+                                        child: (homeProvider.isLoading)
+                                          ? const CircularProgressIndicator()
+                                          : const Text(
+                                            'Iniciar Sesion',
+                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                          ),
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+
                               ),
                             ),
                           ),

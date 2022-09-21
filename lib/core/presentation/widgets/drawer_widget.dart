@@ -40,12 +40,12 @@ class DrawerWidget extends StatelessWidget {
               children: [
                 SizedBox(height: size.height*0.03),
                 const Center(
-                  child: CircleAvatar(
+                    child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     foregroundImage: AssetImage('assets/pngs/no-image.png'),
                     radius: 60,
                   ),
-                
+
                 ),
                 SizedBox(height: size.height*0.03),
                 Center(child: AutoSizeText(serviceProvider.nombreCliente, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
@@ -67,14 +67,14 @@ class DrawerWidget extends StatelessWidget {
                     color: Colors.lightBlueAccent,
                   ),
                 ),
-                SizedBox(height: size.height*0.03),
-                const ItemWidget(
-                  text: 'Acerca de',
-                  icon: FaIcon(FontAwesomeIcons.circleExclamation, color: Colors.white,),
-                  color: Colors.white,
-                ),
-                SizedBox(height: size.height*0.4),
-                
+                SizedBox(height: size.height*0.5),
+                // const ItemWidget(
+                //   text: 'Acerca de',
+                //   icon: FaIcon(FontAwesomeIcons.circleExclamation, color: Colors.white,),
+                //   color: Colors.white,
+                // ),
+                // SizedBox(height: size.height*0.4),
+
                 Center(
                   child: Container(
                     width:size.width*0.40,
@@ -92,7 +92,10 @@ class DrawerWidget extends StatelessWidget {
                         ? const SizedBox(height: 20, width: 20,  child: CircularProgressIndicator())
                         : const ItemWidget(
                           text: 'Cerrar Sesion',
-                          icon: FaIcon(FontAwesomeIcons.signOut, color: Colors.lightBlueAccent, size: 15,),
+                          icon: FaIcon(
+                            FontAwesomeIcons.rightFromBracket, 
+                            color: Colors.lightBlueAccent, size: 15
+                            ),
                           color: Colors.lightBlueAccent,
                         ),
                     ),

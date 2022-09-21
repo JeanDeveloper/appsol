@@ -25,6 +25,7 @@ class LoginPage extends StatelessWidget {
 
         fit: StackFit.expand,
         children: [
+
           const LoginBackground(),
 
           AnimatedPositioned(
@@ -39,63 +40,62 @@ class LoginPage extends StatelessWidget {
               curve: Curves.fastOutSlowIn,
               opacity: homeProvider.isdragged ? 0.0 : 1.0,
               child: Center(
-              child: SizedBox(
-                height: size.height * .85,
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // const Spacer(),
-                      Center(
-                        // child:Text('Solmar') 
-                        child: Image(
-                          width: size.width*0.6,
-                          height: size.height*0.13,
-                          image: const AssetImage('assets/pngs/SOLMAR.png'),
+                child: SizedBox(
+                  height: size.height * .9,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+
+                        Center(
+                          child: Image(
+                            width: size.width*0.6,
+                            height: size.height*0.15,
+                            image: const AssetImage('assets/pngs/SOLMAR.png'),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 35),
-                      const Spacer(flex: 7),
-                      Text(
-                        'Bienvenido',
-                        style: GoogleFonts.poppins(
-                          fontSize: size.height * .040,
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xffffffff)
+                        const Spacer(flex: 8),
+                        Text(
+                          'Bienvenido',
+                          style: GoogleFonts.poppins(
+                            fontSize: size.height * .04,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xffffffff)
+                          ),
                         ),
-                      ),
-                      const Spacer(flex: 5),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: SnakeButton(
-                              onPressed: () => _openPage(context, const LoginAgenteForm()),
-                              child: Text(
-                                'DNI',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: const Color(0xffffffff)
+                        const Spacer(flex: 5),
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: SnakeButton(
+                                onPressed: () => _openPage(context, const LoginAgenteForm()),
+                                child: Text(
+                                  'DNI',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    color: const Color(0xffffffff)
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 30),
-                          Expanded(
-                            child: RectangularButton(
-                              onPressed: () => _openPage(context, const LoginGeneralForm()),
-                              label: 'USUARIO',
+                            const SizedBox(width: 30),
+                            Expanded(
+                              child: RectangularButton(
+                                onPressed: () => _openPage(context, const LoginGeneralForm()),
+                                label: 'USUARIO',
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
+                          ],
+                        )
+
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
             ),
           ),
 
@@ -126,7 +126,6 @@ class LoginPage extends StatelessWidget {
   }
 
 }
-
 
 class RectangularButton extends StatelessWidget {
   const RectangularButton({

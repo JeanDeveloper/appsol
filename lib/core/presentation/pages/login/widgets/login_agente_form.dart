@@ -13,21 +13,28 @@ class LoginAgenteForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    //VARIABLES
     final homeProvider = Provider.of<HomeProvider>(context);
     final size = MediaQuery.of(context).size;
     final resizeNotifier = ValueNotifier<bool>(false);
+    
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (!resizeNotifier.value) resizeNotifier.value = true;
     });
+    
     return Scaffold(
       backgroundColor: Colors.transparent,
+
       body: GestureDetector(
+
         onVerticalDragUpdate: (details) {
           if (details.primaryDelta! > 3) {
             resizeNotifier.value = false;
             Navigator.pop(context);
           }
         },
+        
         child: Stack(
           children: <Widget>[
             ValueListenableBuilder<bool>(
@@ -48,7 +55,6 @@ class LoginAgenteForm extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: size.height * .1),
                     Center(
-                      // child: Text('SOLMAR'),
                       child: Image(
                         width: size.width*0.5,
                         height: size.height*0.1,
@@ -127,6 +133,7 @@ class LoginAgenteForm extends StatelessWidget {
         ),
       ),
     );
+
   }
 }
 

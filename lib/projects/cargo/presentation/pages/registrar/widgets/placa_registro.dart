@@ -23,17 +23,20 @@ class PlacaFormRegistro extends StatelessWidget {
       height: size.height*0.6,
 
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
+
         mainAxisAlignment: MainAxisAlignment.start,
 
         children: [
+
           AutoSizeText('INGRESE EL NUMERO DE PLACA', style: AppThemeCargo.lighThemeCargo.textTheme.headline3,), 
           SizedBox(height: size.height*0.05),
 
           Form(
 
             child: Row(
+
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
               children: [
 
                 SizedBox(
@@ -41,8 +44,9 @@ class PlacaFormRegistro extends StatelessWidget {
                   width: size.width*0.13,
 
                   child: TextFormField(
+
                     // textInputAction: TextInputAction.continueAction,
-                    
+
                     onChanged: (value) {
                       if(value.length==1){
                         registroProvider.placa += value;
@@ -165,16 +169,17 @@ class PlacaFormRegistro extends StatelessWidget {
                 ),
 
                 SizedBox(
+
                   height: size.height * 0.2,
-                  width: size.width*0.13,
+                  width: size.width * 0.13,
+
                   child: TextFormField(
-                    
+
                     onChanged: (value) {
 
                       if(value.length==1){
                         registroProvider.placa += value;
                         FocusScope.of(context).nextFocus();
-                        print('Evaluando la Placa n°: ${registroProvider.placa}');
                         consultarPlaca(context, registroProvider.placa);
                       }
 
@@ -185,11 +190,12 @@ class PlacaFormRegistro extends StatelessWidget {
 
                     },
 
-                    keyboardType: TextInputType.text,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white, fontSize:20),
                     decoration: InputDecorationClass.formInputDecoration(),
                     inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                    keyboardType: TextInputType.text,
+                    style: const TextStyle(color: Colors.white, fontSize:20),
+                    textAlign: TextAlign.center,
+
                   ),
 
                 ),
@@ -199,8 +205,7 @@ class PlacaFormRegistro extends StatelessWidget {
           ),
         ],
       ),
-    );
-
+    );  
   }
 
 }

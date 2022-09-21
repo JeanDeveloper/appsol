@@ -3,27 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
-import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
-
 
 class SearchDelegateProvider extends SearchDelegate{
   
   @override
   TextInputType? get keyboardType => TextInputType.number;
 
-
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
       textTheme: const TextTheme(
         headline6: TextStyle( color: Colors.white),
-        
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: AppThemePeople.lighThemePeople.primaryColor,
@@ -42,7 +39,6 @@ class SearchDelegateProvider extends SearchDelegate{
   TextStyle? get searchFieldStyle => const TextStyle(
     color: Colors.grey
   );
-
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -84,11 +80,7 @@ class SearchDelegateProvider extends SearchDelegate{
 
     final size = MediaQuery.of(context).size;
 
-    if ( query.isEmpty ){
-
-      return _emptyContainer();
-    
-    }
+    if ( query.isEmpty )  return _emptyContainer();
 
     return FutureBuilder(
 
@@ -103,19 +95,17 @@ class SearchDelegateProvider extends SearchDelegate{
         final movimientos = snapshot.data;
 
         return ListView.separated(
-
           separatorBuilder: ( _ , int i) => const Divider(color: Colors.black, indent: 10, endIndent: 10),
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: size.height*0.023, horizontal:size.width*0.024),
           itemCount: movimientos!.length,
           itemBuilder: (context, index) => _MovimientoTile(movimiento:movimientos[index]),
-
         );
-  
+
       }
-  
+
     );
-  
+
   }
 
   @override
@@ -126,11 +116,7 @@ class SearchDelegateProvider extends SearchDelegate{
 
     final size = MediaQuery.of(context).size;
 
-    if ( query.isEmpty ){
-
-      return _emptyContainer();
-    
-    }
+    if ( query.isEmpty )return _emptyContainer();
 
     return FutureBuilder(
 
@@ -139,22 +125,16 @@ class SearchDelegateProvider extends SearchDelegate{
       builder: (context, AsyncSnapshot<List<MovimientoModel>> snapshot){
 
         if (!snapshot.hasData)return _emptyContainer();
-
         if(snapshot.data!.isEmpty ) return _emptyContainer();
-
         final movimientos = snapshot.data;
 
         return ListView.builder(
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(vertical: size.height*0.023, horizontal:size.width*0.024),
-
           itemCount: movimientos!.length,
           itemBuilder: (context, index) => _MovimientoTile(movimiento:movimientos[index]),
-
         );
-  
       }
-  
     );
 
   }
@@ -179,7 +159,7 @@ class _MovimientoTile extends StatelessWidget {
       // contentPadding: EdgeInsets.symmetric(horizontal: size.height*0.0116),
       contentPadding: EdgeInsets.zero,
       // leading: Icon(Icons.account_circle, size: size.width*0.1, color: (movimiento.sexo == 'M')? Colors.blue :  Colors.pinkAccent),
-      
+
       leading: GestureDetector(
         onTap: ()async{
 
@@ -302,38 +282,34 @@ class _MovimientoTile extends StatelessWidget {
         
         ],
       ),
-      
+
       trailing: (movimiento.fechaSalida == '')
         ? GestureDetector( 
           onTap: ()async{
               consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
+
             // await NDialog(
             //   dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
             //   title: const Text("Movimiento",  style: TextStyle(color: Colors.black)),
             //   content: const Text("¿Estas Seguro que quieres registar la salida?", style: TextStyle(color: Colors.black)),  
             //   actions: <Widget>[
-
             //     TextButton(
             //       child: const Text("Si"),
             //       onPressed: ()async{
-
             //         consultarDOI(context, movimiento.dni!, globalProvider.codServicio);
-
             //       }
             //     ),
             //     TextButton(child: const Text("No"),onPressed: ()=> Navigator.pop(context)),
             //   ],
-
             // ).show(context);
+
           },
           child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
         : null,
-      
+
     );
 
   }
-  
+
 }
-
-

@@ -92,10 +92,12 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                           onchanged: (value) =>ingresoProvider.codautorizante = value!,
                           hintText: (autorizantes.isEmpty)?'NO HAY AUTORIZANTES'  :'SELECCIONE EL AUTORIZANTE',
                         );
-                      },
-                    ),
-                ],
 
+                      },
+
+                    ),
+
+                ],
               ),
               SizedBox(height: size.height*0.02),
 
