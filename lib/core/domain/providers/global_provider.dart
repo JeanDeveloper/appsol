@@ -12,6 +12,17 @@ class GlobalProvider extends ChangeNotifier{
   late String nombreCliente= '';
   late String? aliasSede= '';
   late int codTipoServicio= 0;
+  String _nombrePuesto = '';
+
+
+  //METODOS PARA LA VARIABLE NOMBRE PUESTO
+
+
+  String get nombrePuesto => _nombrePuesto;
+  set nombrePuesto ( String value ){
+    _nombrePuesto = value;
+    notifyListeners();
+  }
 
 
   //METODOS PARA LA VARIABLE CODIGO DISPOSITIVO

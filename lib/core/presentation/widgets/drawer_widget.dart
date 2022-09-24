@@ -19,9 +19,9 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final personAuth = Provider.of<PersonAuthProvider>(context);
+    final personAuth      = Provider.of<PersonAuthProvider>(context);
     final serviceProvider = Provider.of<GlobalProvider>(context);
-    final homeProvider = Provider.of<HomeProvider>(context);
+    final homeProvider    = Provider.of<HomeProvider>(context);
 
     return ClipRRect(
 
@@ -31,13 +31,13 @@ class DrawerWidget extends StatelessWidget {
         width: size.width*0.6,
         backgroundColor: AppThemeGeneral.lighTheme.backgroundColor,
         child: Stack(
-          
           children: [
-            
+
             const BackgroundDrawer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 SizedBox(height: size.height*0.03),
                 const Center(
                     child: CircleAvatar(
@@ -45,11 +45,14 @@ class DrawerWidget extends StatelessWidget {
                     foregroundImage: AssetImage('assets/pngs/no-image.png'),
                     radius: 60,
                   ),
-
                 ),
                 SizedBox(height: size.height*0.03),
                 Center(child: AutoSizeText(serviceProvider.nombreCliente, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
                 SizedBox(height: size.height*0.03),
+                Center(child: AutoSizeText(serviceProvider.nombreSucursal, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+                SizedBox(height: size.height*0.03),     
+                Center(child: AutoSizeText(serviceProvider.nombrePuesto, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+                SizedBox(height: size.height*0.03),    
                 Center(child: AutoSizeText('${personAuth.nombre}  ${personAuth.pApellido}  ${personAuth.sApellido}', style: letrasEstilo(), maxLines: 1)),
                 SizedBox(height: size.height*0.01),
                 Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
@@ -67,18 +70,11 @@ class DrawerWidget extends StatelessWidget {
                     color: Colors.lightBlueAccent,
                   ),
                 ),
-                SizedBox(height: size.height*0.5),
-                // const ItemWidget(
-                //   text: 'Acerca de',
-                //   icon: FaIcon(FontAwesomeIcons.circleExclamation, color: Colors.white,),
-                //   color: Colors.white,
-                // ),
-                // SizedBox(height: size.height*0.4),
-
+                SizedBox(height: size.height*0.45),  
                 Center(
                   child: Container(
-                    width:size.width*0.40,
-                    height: size.height*0.050,
+                    width:size.width*0.4,
+                    height: size.height*0.05,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       color: Colors.white,
@@ -101,6 +97,7 @@ class DrawerWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+
               ],
             )
           ],

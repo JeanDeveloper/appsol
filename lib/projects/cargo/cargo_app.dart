@@ -15,7 +15,7 @@ class CargoApp extends StatelessWidget{
 
       //PROVIDERS DEL CARGO
       providers:[
-        ChangeNotifierProvider( create: (_) => RadioListProvider() ),
+        ChangeNotifierProvider( create: (_) => RegisterProvider() ),
         ChangeNotifierProvider( create: (_) => MovimientosCargoPageProvider() )
       ],
 

@@ -27,6 +27,8 @@ class ItemWidget extends StatelessWidget {
 
       child: Row(
 
+        mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
 
           icon,

@@ -20,7 +20,7 @@ class RefusedPage extends StatelessWidget {
       body: SafeArea(
 
         child: Column(
-      
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
             Padding(           

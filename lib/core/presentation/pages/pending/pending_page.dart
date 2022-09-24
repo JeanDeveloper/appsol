@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:solgis/core/theme/theme.dart';
 
 class PendingPage extends StatelessWidget {
-  
+
   const PendingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final size = MediaQuery.of(context).size;
-    
     return Scaffold(
-    
+
       backgroundColor: AppThemeGeneral.lighTheme.backgroundColor,
-      
+
       body: Column(
-      
+
+        mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
 
           Padding(
@@ -25,13 +25,14 @@ class PendingPage extends StatelessWidget {
               'assets/svgs/pending-page.svg',
             ),
           ),
-      
+
           const Text('Su peticion a sido enviada'),
           const SizedBox(height: 20),
           const Text('Estamos en espera de la aprobacion'),
           const SizedBox(height: 20),
-      
+
           RichText(
+
             text: const TextSpan(
               text: 'Estado del Dispositivo: ',
               style: TextStyle(color: Colors.black,),
@@ -39,15 +40,11 @@ class PendingPage extends StatelessWidget {
                 TextSpan(text:'PENDIENTE', style: TextStyle(color: Colors.green)),
               ]
             ),
-      
+
           ),
-      
+
         ],
-      
       ),
-    
     );
-
   }
-
 }

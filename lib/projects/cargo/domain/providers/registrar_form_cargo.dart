@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RadioListProvider extends ChangeNotifier {
+class RegisterProvider extends ChangeNotifier {
 
   //controla el radio de tipo de registro
   int _tipoRegistro  = 1;
@@ -13,6 +13,9 @@ class RadioListProvider extends ChangeNotifier {
 
   //controla el valor de la placa
   String _placa = '';
+
+  //controla el form del  registrar por placa
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String get placa => _placa;
 
@@ -41,6 +44,13 @@ class RadioListProvider extends ChangeNotifier {
     _valorTipoCargaDentroPlanta = valor;
     notifyListeners();
 }
+
+  bool isValidForm(){
+    print(formKey.currentState?.validate());
+    print('$placa');
+    return formKey.currentState?.validate() ?? false;
+  }
+
 
 
 }

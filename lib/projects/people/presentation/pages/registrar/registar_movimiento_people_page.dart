@@ -7,7 +7,6 @@ import 'package:solgis/projects/people/domain/providers/registrar_form_provider.
 import 'package:solgis/projects/people/domain/utils/get_result_scanner.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 
-
 class RegistrarMovimientoPage extends StatelessWidget {
 
   const RegistrarMovimientoPage({Key? key}) : super(key: key);
@@ -90,8 +89,11 @@ class RegistrarMovimientoPage extends StatelessWidget {
                 ),
               ),
             ),
+
           ],
+
         ),
+
       ),
 
     );

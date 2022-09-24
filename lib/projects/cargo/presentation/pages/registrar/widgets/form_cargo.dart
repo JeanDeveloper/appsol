@@ -13,7 +13,7 @@ class RegistrarFormCargo extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final tipoProvider = Provider.of<RadioListProvider>(context);
+    final tipoProvider = Provider.of<RegisterProvider>(context);
 
     return SizedBox.expand(
 
@@ -48,7 +48,7 @@ class _TipoRegistro extends StatelessWidget{
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final tipoProvider = Provider.of<RadioListProvider>(context);
+    final tipoProvider = Provider.of<RegisterProvider>(context);
 
     return Container(
       padding: const EdgeInsets.all(10),

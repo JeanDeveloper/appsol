@@ -6,8 +6,8 @@ import 'package:solgis/core/domain/models/device_response_model.dart';
 Future<DeviceResponseModel?>senDataDevice(String number)async{
   final device = DeviceInformationModel();
   await device.getInformationDevice();
-  final String? token = await PushNotification.initalizedApp();
   final deviceService = DeviceService();
+  final String? token = await PushNotification.initalizedApp();
   final deviceResponse = await deviceService.sendDataDevice(device, number, token);
   return deviceResponse;
 }

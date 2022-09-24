@@ -20,7 +20,7 @@ class RadioButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final radioListTile = Provider.of<RadioListProvider>(context);
+    final radioListTile = Provider.of<RegisterProvider>(context);
 
     return SizedBox(
       width: width,

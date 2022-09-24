@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:solgis/core/domain/models/device_information_provider.dart';
 import 'package:solgis/core/domain/models/device_response_model.dart';
 
-class DeviceService {
+class DeviceService{
 
   final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/dispositivo/';
@@ -16,12 +16,13 @@ class DeviceService {
     final url = Uri.http(_url, _uncodePath);
 
     final response = await http.post(
+
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=utf-8',
       },
 
-      body: jsonEncode(<String, String>{
+      body: jsonEncode( <String, String> {
         'serial'     : dispositivo.serialNumber!,
         'hardware'   : dispositivo.hardware!,
         'modelo'     : dispositivo.model!,
@@ -36,8 +37,9 @@ class DeviceService {
       })
 
     );
-    if(response.statusCode==201) return DeviceResponseModel.fromJson(json.decode(response.body));
-    return null;
+
+    return DeviceResponseModel.fromJson( json.decode( response.body ) );
+
   }
 
   Future<int> checkAuthDevice(String serial)async{
@@ -45,15 +47,18 @@ class DeviceService {
       _url, 
       'appsol/dispositivo/estado/', 
       {
-        'serial': serial,
+        'serial': serial
       }
     );
+
     final response = await http.get( 
       url, 
-      headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
+      headers: {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
     );
+
     final estadoData = json.decode(response.body);
     return estadoData['estado'];
+
   }
 
 }

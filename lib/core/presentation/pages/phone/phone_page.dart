@@ -37,9 +37,8 @@ class _PhonePageBody extends StatelessWidget {
     final homeProvider = Provider.of<HomeProvider>(context);
     final authDeviceProvider = Provider.of<AuthDeviceProvider>(context);
 
-    // deviceProvider.getInformationDevice();
-
     return SafeArea(
+
       child: SingleChildScrollView(
 
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -47,7 +46,7 @@ class _PhonePageBody extends StatelessWidget {
         child: Column(
 
           children: [
-      
+
             SizedBox(height: size.height*0.065),
             const Text('Bienvenidos a Appsol', ),
             SizedBox(height: size.height*0.065),
@@ -57,9 +56,11 @@ class _PhonePageBody extends StatelessWidget {
               width: size.width*0.8,
               height: size.height*0.5,
             ),
+
             SizedBox(height: size.height*0.05),
             const Text('Ingrese su numero'),
             SizedBox(height: size.height*0.05),
+
             Form(
               key: homeProvider.formKeyPhone ,
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -77,35 +78,58 @@ class _PhonePageBody extends StatelessWidget {
                 ),
               ),
             ),
+
             SizedBox(height: size.height*0.03),
+
             ButtonWidget(
+
               padding: EdgeInsets.symmetric(horizontal:size.width*0.4, vertical:size.height*0.02),
+
               onpressed:(homeProvider.isLoading)
+
                 ?null
+
                 :()async {
 
                   authDeviceProvider.changeState(AuthDeviceStatus.Authenticanting);
                   FocusScope.of(context).unfocus();
-                  
                   if(!homeProvider.isValidFormPhone()) return;
                   bool checkpermision = await FlutterDeviceIdentifier.checkPermission();
                   // ignore: use_build_context_synchronously
                   if(!checkpermision) return showSnackBarAwesome(context, 'Atencion', 'Se requiere permisos para leer informacion del dispositivo  ', ContentType.failure);
+
                   homeProvider.isLoading = true;
-                  await senDataDevice(homeProvider.phone);
-                  await Future.delayed(const Duration(seconds: 5));
-                  homeProvider.isLoading = false;
-                  // authDeviceProvider.changeState(AuthDeviceStatus.Pending);
+
+                  final responseDevice = await senDataDevice(homeProvider.phone);
+
                   // ignore: use_build_context_synchronously
-                  // Navigator.pushReplacementNamed(context, 'pending_page');
+                  if(responseDevice!.estado == 4) {
+
+                    homeProvider.isLoading = false;
+
+                    // ignore: use_build_context_synchronously
+                    return showSnackBarAwesome(context, 'Atencion', responseDevice.message!, ContentType.failure);
+
+                  }   
+
+                  // await Future.delayed(const Duration(seconds: 5));
+
                 },
+
               child: (homeProvider.isLoading)
                 ? const SizedBox(height:25, width:25, child: CircularProgressIndicator())
                 : const Text('Ingresar',style:  TextStyle(color: Colors.white ))
+
             ),
+
           ],
+
         ),
+
       ),
+
     );
+
   }
+
 }

@@ -28,4 +28,5 @@ class ProjectModel {
     people,
     cargo,
   ];
+
 }

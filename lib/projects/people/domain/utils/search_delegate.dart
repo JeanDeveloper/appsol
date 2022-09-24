@@ -87,13 +87,9 @@ class SearchDelegateProvider extends SearchDelegate{
       future: searchProvider.getSearchMovimientos(query),
       
       builder: (context, AsyncSnapshot<List<MovimientoModel>> snapshot){
-
-        if (!snapshot.hasData)return _emptyContainer();
-
+        if (!snapshot.hasData)return const Center(child: CircularProgressIndicator());
         if(snapshot.data!.isEmpty ) return _emptyContainer();
-
         final movimientos = snapshot.data;
-
         return ListView.separated(
           separatorBuilder: ( _ , int i) => const Divider(color: Colors.black, indent: 10, endIndent: 10),
           physics: const BouncingScrollPhysics(),
@@ -101,7 +97,6 @@ class SearchDelegateProvider extends SearchDelegate{
           itemCount: movimientos!.length,
           itemBuilder: (context, index) => _MovimientoTile(movimiento:movimientos[index]),
         );
-
       }
 
     );
@@ -124,7 +119,7 @@ class SearchDelegateProvider extends SearchDelegate{
       
       builder: (context, AsyncSnapshot<List<MovimientoModel>> snapshot){
 
-        if (!snapshot.hasData)return _emptyContainer();
+        if (!snapshot.hasData)return const Center(child: CircularProgressIndicator());
         if(snapshot.data!.isEmpty ) return _emptyContainer();
         final movimientos = snapshot.data;
 

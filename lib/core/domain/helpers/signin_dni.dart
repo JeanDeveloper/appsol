@@ -24,17 +24,16 @@ Future<void>signinWithDNI(BuildContext context, String dni)async{
 
   Preferences.codigoPersona = personProvider.codigoPersona = singInService.codigoPersonal!;
   Preferences.codigoUsuario = personProvider.codigoUsuario = singInService.codigoUsuario!;
-  Preferences.dni = personProvider.dni = singInService.dni!;
-  Preferences.nombre = personProvider.nombre = singInService.nombre!;
-  Preferences.pApellido = personProvider.pApellido = singInService.pApellido!;
-  Preferences.sApellido = personProvider.sApellido = singInService.sApellido!;
-  Preferences.rol = personProvider.rol = singInService.rol!;
+  Preferences.dni           = personProvider.dni = singInService.dni!;
+  Preferences.nombre        = personProvider.nombre = singInService.nombre!;
+  Preferences.pApellido     = personProvider.pApellido = singInService.pApellido!;
+  Preferences.sApellido     = personProvider.sApellido = singInService.sApellido!;
+  Preferences.rol           = personProvider.rol = singInService.rol!;
   Preferences.codigoCliente = personProvider.codigoCliente = singInService.codigoCliente!;
 
   // ignore: use_build_context_synchronously
   await getRelation(context);
   Preferences.isAuthenticated = true;
-
 
   // ignore: use_build_context_synchronously
   openHomePage(context);

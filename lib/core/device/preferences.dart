@@ -22,9 +22,20 @@ class Preferences{
   static String? _aliasSede= '';
   static int _codTipoServicio= 0;
   static bool _isAuthenticated = false;
+  static String _nombrePuesto = '';
 
   static Future init() async {
     _prefs = await SharedPreferences.getInstance(); 
+  }
+
+  //NOMBRE DEL PUESTO ASIGNADO EL DISPOSITIVO.
+  static String get nombrePuesto{
+    return _prefs.getString('nombrePuesto')??_nombrePuesto;
+  }
+
+  static set nombrePuesto(String nombrePuesto){
+    _nombrePuesto = nombrePuesto;
+    _prefs.setString('nombrePuesto', nombrePuesto);
   }
 
   //CODIGO PERSONA

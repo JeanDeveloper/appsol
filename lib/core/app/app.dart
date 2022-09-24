@@ -24,7 +24,6 @@ class Appsol extends StatelessWidget {
         ChangeNotifierProvider( create: (_) => HomeProvider() ),
         ChangeNotifierProvider( create: (_) => GlobalProvider() ),
         ChangeNotifierProvider( create: (_) => PersonAuthProvider() ),
-
       ],
       child: const AppsolState(),
     );

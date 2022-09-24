@@ -14,6 +14,8 @@ class RelationDeviceServiceModel {
         this.nombreCliente,
         this.aliasSede,
         this.codigoTipoServicio,
+        this.nombrePuesto,
+
     });
 
     int?    codigoDispositivo;
@@ -26,11 +28,12 @@ class RelationDeviceServiceModel {
     String? nombreCliente;
     dynamic aliasSede;
     int?    codigoTipoServicio;
+    String? nombrePuesto;
 
     RelationDeviceServiceModel.fromJson(Map<String, dynamic> json) {
 
       codigoDispositivo  = json["codigo_dispositivo"];
-      codigoServicio     = json["codigo_servicio"];
+      codigoServicio     = json["codigo_servicio"].toInt();
       codigoCliente      = json["codigo_cliente"];
       codigoSubArea      = json["codigo_sub_area"];
       nombreArea         = json["nombre_area"];
@@ -39,7 +42,7 @@ class RelationDeviceServiceModel {
       nombreCliente      = json["nombre_cliente"];
       aliasSede          = json["alias_sede"];
       codigoTipoServicio = json["codigo_tipo_servicio"];
-
+      nombrePuesto       = json["nombre_puesto"];
     }
 
 }

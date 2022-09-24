@@ -21,4 +21,6 @@ Future<void>getRelation(BuildContext context)async{
   Preferences.nombreCliente = provider.nombreCliente = relation.nombreCliente!;
   Preferences.aliasSede = provider.aliasSede = relation.aliasSede;
   Preferences.codTipoServicio = provider.codTipoServicio = relation.codigoTipoServicio!;
+  Preferences.nombrePuesto    = provider.nombrePuesto = relation.nombrePuesto!;
+
 }
