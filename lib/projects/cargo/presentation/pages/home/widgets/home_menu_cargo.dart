@@ -21,7 +21,7 @@ class MenuCargo extends StatelessWidget {
         ButtonMenuCargo(
           icon: FontAwesomeIcons.car, 
           text: 'REGISTRAR',
-          onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_cargo'),
+          // onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_cargo'),
           
           // onpressed:(){},
         ),

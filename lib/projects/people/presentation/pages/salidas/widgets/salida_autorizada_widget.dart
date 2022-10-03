@@ -85,7 +85,8 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                     children: [
 
                       SizedBox(
-                        width: size.width*0.43,
+                        // width: size.width*0.43,
+                        width: size.width*0.57,
                         height: size.height*0.04,
                         child: TextFormField(
                           cursorHeight: 20,
@@ -99,40 +100,40 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                         )
                       ),
 
-                      IconButton(
-                        alignment: Alignment.centerRight,
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
+                      // IconButton(
+                      //   alignment: Alignment.centerRight,
+                      //   padding: EdgeInsets.zero,
+                      //   icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
 
-                        onPressed: ()async{
+                      //   onPressed: ()async{
 
-                          try {
-                            //inicia camara
-                            final ImagePicker _picker = ImagePicker();
-                            final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      //     try {
+                      //       //inicia camara
+                      //       final ImagePicker _picker = ImagePicker();
+                      //       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                            if(photo == null) {
+                      //       if(photo == null) {
 
-                              // ignore: use_build_context_synchronously
-                              return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                            }else{
+                      //         // ignore: use_build_context_synchronously
+                      //         return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                      //       }else{
 
-                              print(photo.path);
-                              // ignore: use_build_context_synchronously
-                              showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                      //         print(photo.path);
+                      //         // ignore: use_build_context_synchronously
+                      //         showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
 
-                            }
+                      //       }
 
-                          } catch (e) {
+                      //     } catch (e) {
 
-                            showSnackBarAwesome(context, '¡Atencion!', ' ${e}', ContentType.failure);
+                      //       showSnackBarAwesome(context, '¡Atencion!', ' ${e}', ContentType.failure);
 
 
-                          }
+                      //     }
 
-                        }, 
+                      //   }, 
 
-                      )
+                      // )
 
                     ],
                   )
@@ -157,7 +158,7 @@ class SalidaAutorizadaWidget extends StatelessWidget {
 
                       SizedBox(
 
-                        width: size.width*0.43,
+                        width: size.width*0.57,
                         height: size.height*0.04,
 
                         child: TextFormField(
@@ -177,39 +178,42 @@ class SalidaAutorizadaWidget extends StatelessWidget {
                       ),
 
 
-                      IconButton(
+                      // IconButton(
 
-                        alignment: Alignment.centerRight,
-                        padding: EdgeInsets.zero,                         
-                        icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
-                        onPressed: ()async{
+                      //   alignment: Alignment.centerRight,
+                      //   padding: EdgeInsets.zero,                         
+                      //   icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
+                      //   onPressed: ()async{
 
-                          try {
+                      //     try {
 
-                            //inicia camara
-                            final ImagePicker _picker = ImagePicker();
-                            final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      //       //inicia camara
+                      //       final ImagePicker _picker = ImagePicker();
+                      //       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                            if(photo == null) {
-                              // ignore: use_build_context_synchronously
-                              showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                            }else{
-                              print(photo);
-                              print(photo.path);
+                      //       if(photo == null) {
+                      //         // ignore: use_build_context_synchronously
+                      //         showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                      //       }else{
+                      //         print(photo);
+                      //         print(photo.path);
 
-                              // ignore: use_build_context_synchronously
-                              showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
-                            }
+                      //         // ignore: use_build_context_synchronously
+                      //         showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                      //       }
 
-                          } catch (e) {
+                      //     } catch (e) {
                             
-                            showSnackBarAwesome(context, '¡Atencion!', 'Permiso de camara necesario para tomar la foto ', ContentType.failure);
-                            print(e);
+                      //       showSnackBarAwesome(context, '¡Atencion!', 'Permiso de camara necesario para tomar la foto ', ContentType.failure);
+                      //       print(e);
                             
-                          }
-                        }, 
+                      //     }
+                      //   }, 
 
-                      )
+                      // )
+                    
+                    
+                    
                     ],
                   )
 

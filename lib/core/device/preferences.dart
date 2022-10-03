@@ -3,14 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Preferences{
 
   static late SharedPreferences _prefs;
-  static String _codigoPersona = '';
-  static int _codigoUsuario = 0;
+  static String _codigoPersonal = '';
   static String _dni = '';
-  static String _nombre = '';
+  static String _pNombre = '';
+  static String _sNombre = '';
   static String _pApellido = '';
   static String _sApellido = '';
-  static int _rol = 0;
-  static String _codigoCliente = '';
+  static int _codigoTipoUsuario = 0;
+  static String _cargo = '';
   static int _codDispositivo = 0;
   static String _codServicio = '';
   static String _codCliente = '';
@@ -23,6 +23,7 @@ class Preferences{
   static int _codTipoServicio= 0;
   static bool _isAuthenticated = false;
   static String _nombrePuesto = '';
+
 
   static Future init() async {
     _prefs = await SharedPreferences.getInstance(); 
@@ -39,12 +40,12 @@ class Preferences{
   }
 
   //CODIGO PERSONA
-  static String get codigoPersona{
-    return _prefs.getString('codigoPersona')??_codigoPersona;
+  static String get codigoPersonal{
+    return _prefs.getString('codigoPersona')??_codigoPersonal;
   }
 
-  static set codigoPersona(String codigoPersona){
-    _codigoPersona = codigoPersona;
+  static set codigoPersonal(String codigoPersona){
+    _codigoPersonal = codigoPersona;
     _prefs.setString('codigoPersona', codigoPersona);
   }
 
@@ -59,14 +60,14 @@ class Preferences{
   }
 
   //CODIGO USUARIO
-  static int get codigoUsuario {
-    return _prefs.getInt('codigoUsuario')??_codigoUsuario;
-  }
+  // static int get codigoUsuario {
+  //   return _prefs.getInt('codigoUsuario')??_codigoUsuario;
+  // }
 
-  static set codigoUsuario(int value){
-    _codigoUsuario = value;
-    _prefs.setInt('codigoUsuario', value);
-  }
+  // static set codigoUsuario(int value){
+  //   _codigoUsuario = value;
+  //   _prefs.setInt('codigoUsuario', value);
+  // }
 
   //CODIGO DNI
   static String get dni {
@@ -78,15 +79,26 @@ class Preferences{
     _prefs.setString('dni', dni);
   }
 
-  //NOMBRES
-  static String get nombre {
-    return _prefs.getString('nombre')??_nombre;
+  //PRIMER NOMBRE
+  static String get pNombre {
+    return _prefs.getString('pNombre')??_pNombre;
   }
 
-  static set nombre(String nombre){
-    _nombre = nombre;
-    _prefs.setString('nombre', nombre);
+  static set pNombre(String pnombre){
+    _pNombre = pnombre;
+    _prefs.setString('pNombre', pnombre);
   }
+
+  //SEGUNDO NOMBRE
+  static String get sNombre {
+    return _prefs.getString('sNombre')??_sNombre;
+  }
+
+  static set sNombre(String snombre){
+    _sNombre = snombre;
+    _prefs.setString('sNombre', snombre);
+  }
+
 
   //PRIMER APELLIDO
   static String get pApellido  {
@@ -108,24 +120,24 @@ class Preferences{
     _prefs.setString('sApellido ', sApellido );
   }
 
-  //ROL
-  static int get rol {
-    return _prefs.getInt('rol')??_rol;
+  //CODIGO TIPO CARGO
+  static int get codtipoUsuario{
+    return _prefs.getInt('codtipoUsuario')??_codigoTipoUsuario;
   }
 
-  static set rol(int value){
-    _rol = value;
-    _prefs.setInt('rol', value);
+  static set codtipoUsuario(int value){
+    _codigoTipoUsuario = value;
+    _prefs.setInt('codtipoUsuario', value);
   }
 
-  //CODIGO CLIENTE
-  static String get codigoCliente {
-    return _prefs.getString('codigoCliente')??_codigoCliente;
+  //CARGO
+  static String get cargo{
+    return _prefs.getString('cargo')??_cargo;
   }
 
-  static set codigoCliente(String codigoCliente){
-    _codigoCliente = codigoCliente;
-    _prefs.setString('codigoCliente', codigoCliente);
+  static set cargo(String cargo){
+    _cargo = cargo;
+    _prefs.setString('cargo', cargo);
   }
 
   //CODIGO DISPOSITIVO
@@ -211,7 +223,7 @@ class Preferences{
     _prefs.setString('nombreCliente', nombreCliente);
   }
 
-  //NOMBRE DE CLIENTE
+  //ALIAS SEDE
   static String? get aliasSede {
     return _prefs.getString('aliasSede')??_aliasSede;
   }
@@ -222,7 +234,7 @@ class Preferences{
   }
 
   //CODIGO TIPO DE SERVICIO
-  static int get codTipoServicio {
+  static int get codTipoServicio{
     return _prefs.getInt('codTipoServicio')??_codTipoServicio;
   }
 
@@ -230,4 +242,5 @@ class Preferences{
     _codTipoServicio = codTipoServicio;
     _prefs.setInt('codTipoServicio', codTipoServicio);
   }
+
 }

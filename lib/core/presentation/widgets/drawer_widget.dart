@@ -46,16 +46,18 @@ class DrawerWidget extends StatelessWidget {
                     radius: 60,
                   ),
                 ),
+
                 SizedBox(height: size.height*0.03),
                 Center(child: AutoSizeText(serviceProvider.nombreCliente, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
-                SizedBox(height: size.height*0.03),
+                // SizedBox(height: size.height*0.03),
                 Center(child: AutoSizeText(serviceProvider.nombreSucursal, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
-                SizedBox(height: size.height*0.03),     
+                // SizedBox(height: size.height*0.03),     
                 Center(child: AutoSizeText(serviceProvider.nombrePuesto, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+
                 SizedBox(height: size.height*0.03),    
-                Center(child: AutoSizeText('${personAuth.nombre}  ${personAuth.pApellido}  ${personAuth.sApellido}', style: letrasEstilo(), maxLines: 1)),
-                SizedBox(height: size.height*0.01),
+                Center(child: AutoSizeText('${personAuth.pNombre}  ${personAuth.pApellido}  ${personAuth.sApellido}', style: letrasEstilo(), maxLines: 1)),
                 Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
+                
                 SizedBox(height: size.height*0.03),
                 Container(
                   width:size.width*0.55,
@@ -70,6 +72,7 @@ class DrawerWidget extends StatelessWidget {
                     color: Colors.lightBlueAccent,
                   ),
                 ),
+                
                 SizedBox(height: size.height*0.45),  
                 Center(
                   child: Container(
@@ -91,7 +94,7 @@ class DrawerWidget extends StatelessWidget {
                           icon: FaIcon(
                             FontAwesomeIcons.rightFromBracket, 
                             color: Colors.lightBlueAccent, size: 15
-                            ),
+                          ),
                           color: Colors.lightBlueAccent,
                         ),
                     ),

@@ -11,7 +11,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '192.168.10.103:8000';
+  final String _url   = '54.221.148.178:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   List<MovimientoModel> movimientosTotalesSelected = [];
@@ -38,7 +38,7 @@ class MovimientosProvider extends ChangeNotifier{
   //PETICION POST
   Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta, DatosAccesoMModel datos) async{
     final loginProvider      = Provider.of<PersonAuthProvider>(context, listen: false);
-
+ 
     final resp = await http.post(
       url,
 

@@ -8,14 +8,17 @@ enum AuthStatus{
 }
 
 class PersonAuthProvider extends ChangeNotifier{
-  late String codigoPersona = '';
-  late int codigoUsuario = 0;
-  late String dni = '';
-  late String nombre = '';
-  late String pApellido = '';
-  late String sApellido = '';
-  late int rol = 0;
-  late String codigoCliente = '';
+
+  late String _codigoPersonal = '';
+  late String _dni = '';
+  late String _pNombre = '';
+  late String _sNombre = '';
+  late String _pApellido = '';
+  late String _sApellido = '';
+  late String _cargo = ''; 
+  late int _codigoTipoUsuario = 0; 
+
+  //TODO: SE AGREGARÁ LOS PERMISOS(ALCANCE Y ACCIONES) ADEMAS TAMBIEN LAS APPS DISPONIBLES (PENDIENTE)
 
   AuthStatus status = AuthStatus.Unauthenticated;
 
@@ -28,70 +31,67 @@ class PersonAuthProvider extends ChangeNotifier{
   }
 
   //METODOS PARA LA VARIABLE CODIGO PERSONA
-  String get getcodigoPersona => codigoPersona;
+  String get codigoPersonal => _codigoPersonal;
 
-  set setcodigoPersona(String valor){
-    codigoPersona = valor;
-    notifyListeners();
+  set codigoPersonal(String valor){
+    _codigoPersonal = valor;
+    // notifyListeners();
   }
-
-
-  //METODOS PARA LA VARIABLE CODIGO USUARIO
-  int get getcodigoUsuario => codigoUsuario;
-
-  set setcodigoUsuario(int valor){
-    codigoUsuario = valor;
-    notifyListeners();
-  }
-
 
   //METODOS PARA LA VARIABLE DNI
-  String get getdni => dni;
+  String get dni => _dni;
 
-  set setdni(String valor){
-    dni = valor;
-    notifyListeners();
+  set dni(String valor){
+    _dni = valor;
+    // notifyListeners();
   }
 
+  //METODOS PARA LA VARIABLE PRIMER NOMBRE
+  String get pNombre => _pNombre;
 
-  //METODOS PARA LA VARIABLE NOMBRE
-  String get getnombre => nombre;
-
-  set setnombre(String valor){
-    nombre = valor;
-    notifyListeners();
+  set pNombre(String valor){
+    _pNombre = valor;
+    // notifyListeners();
   }
 
-  //METODOS PARA LA VARIABLE P APELLIDO
-  String get getpApellido => pApellido;
+  //METODOS PARA LA VARIABLE SEGUNDO NOMBRE
+  String get sNombre => _sNombre;
 
-  set setpApellido(String valor){
-    pApellido = valor;
-    notifyListeners();
+  set sNombre(String valor){
+    _sNombre = valor;
+    // notifyListeners();
   }
 
-  //METODOS PARA LA VARIABLE S APELLIDO
-  String get getsApellido => sApellido;
+  //METODOS PARA LA VARIABLE PRIMER APELLIDO
+  String get pApellido => _pApellido;
 
-  set setsApellido(String valor){
-    sApellido = valor;
-    notifyListeners();
+  set pApellido(String valor){
+    _pApellido = valor;
+    // notifyListeners();
   }
 
-  //METODOS PARA LA VARIABLE ROL
-  int get getrol => rol;
+  //METODOS PARA LA VARIABLE SEGUNDO APELLIDO
+  String get sApellido => _sApellido;
 
-  set setrol(int valor){
-    rol = valor;
-    notifyListeners();
+  set sApellido(String valor){
+    _sApellido = valor;
+    // notifyListeners();
   }
 
-  //METODOS PARA LA VARIABLE CODIGO CLIENTE
-  String get getcodigoCliente => codigoCliente;
+  //METODOS PARA LA VARIABLE CARGO
+  String get cargo => _cargo;
 
-  set setcodigoCliente(String valor){
-    codigoCliente = valor;
-    notifyListeners();
+  set cargo(String valor){
+    _cargo = valor;
+    // notifyListeners();
+  }
+
+  //METODOS PARA LA VARIABLE CODIGO TIPO DE USUARIO
+  int get codigoTipoUsuario => _codigoTipoUsuario;
+
+  set codigoTipoUsuario(int valor){
+    _codigoTipoUsuario = valor;
+    // notifyListeners();
   }
 
 }

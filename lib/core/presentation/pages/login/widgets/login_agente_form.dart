@@ -28,7 +28,7 @@ class LoginAgenteForm extends StatelessWidget {
 
       body: GestureDetector(
 
-        onVerticalDragUpdate: (details) {
+        onVerticalDragUpdate: (details) { 
           if (details.primaryDelta! > 3) {
             resizeNotifier.value = false;
             Navigator.pop(context);

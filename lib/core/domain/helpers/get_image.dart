@@ -49,7 +49,7 @@ Future<Widget> getImage(String? urlimage, {bool create = false} ) async {
     }else{
         
       return Image.file(
-      
+
         File( urlimage ),
         fit: BoxFit.fill,
       

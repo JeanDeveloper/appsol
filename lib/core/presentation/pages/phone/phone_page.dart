@@ -71,8 +71,8 @@ class _PhonePageBody extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   validator: (value){
                     return ( !value!.startsWith('9') || value.length<9 )
-                      ?'Por favor ingrese un numero de telefono valido'
-                      : null;
+                    ?'Por favor ingrese un numero de telefono valido'
+                    : null;
                   },
                   onchanged: (value)=> homeProvider.phone = value,
                 ),
@@ -97,30 +97,27 @@ class _PhonePageBody extends StatelessWidget {
                   bool checkpermision = await FlutterDeviceIdentifier.checkPermission();
                   // ignore: use_build_context_synchronously
                   if(!checkpermision) return showSnackBarAwesome(context, 'Atencion', 'Se requiere permisos para leer informacion del dispositivo  ', ContentType.failure);
+                  final responseDevice = await senDataDevice(homeProvider.phone);
+                  // ignore: use_build_context_synchronously
+                  if( responseDevice!.estado == 4 ) return showSnackBarAwesome(context, 'Atencion', responseDevice.message!, ContentType.failure);
 
                   homeProvider.isLoading = true;
-
-                  final responseDevice = await senDataDevice(homeProvider.phone);
-
+                  await Future.delayed(const Duration(seconds: 2));
+                  homeProvider.isLoading = false;
                   // ignore: use_build_context_synchronously
-                  if(responseDevice!.estado == 4) {
-
-                    homeProvider.isLoading = false;
-
-                    // ignore: use_build_context_synchronously
-                    return showSnackBarAwesome(context, 'Atencion', responseDevice.message!, ContentType.failure);
-
-                  }   
-
-                  // await Future.delayed(const Duration(seconds: 5));
+                  Navigator.pushReplacementNamed(context, 'pending_page');
 
                 },
 
               child: (homeProvider.isLoading)
                 ? const SizedBox(height:25, width:25, child: CircularProgressIndicator())
-                : const Text('Ingresar',style:  TextStyle(color: Colors.white ))
+                : const Text( 'Ingresar', style:  TextStyle(color: Colors.white ))
 
             ),
+            
+
+
+
 
           ],
 

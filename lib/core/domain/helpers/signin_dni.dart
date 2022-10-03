@@ -10,6 +10,7 @@ import 'package:solgis/core/presentation/pages/home/home_page.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 
 Future<void>signinWithDNI(BuildContext context, String dni)async{
+
   final personProvider = Provider.of<PersonAuthProvider>(context, listen:false);
   final homeProvider = Provider.of<HomeProvider>(context, listen:false);
   homeProvider.isLoading = true;
@@ -19,17 +20,17 @@ Future<void>signinWithDNI(BuildContext context, String dni)async{
   if(singInService==null){
     homeProvider.isLoading = false;
     // ignore: use_build_context_synchronously
-    return showSnackBarAwesome(context, 'Atencion', 'El DNI no corresponde a un agente o no existe', ContentType.failure);
+    return showSnackBarAwesome(context, 'Atencion', 'El DNI no corresponde a un agente o supervisor', ContentType.failure);
   } 
 
-  Preferences.codigoPersona = personProvider.codigoPersona = singInService.codigoPersonal!;
-  Preferences.codigoUsuario = personProvider.codigoUsuario = singInService.codigoUsuario!;
-  Preferences.dni           = personProvider.dni = singInService.dni!;
-  Preferences.nombre        = personProvider.nombre = singInService.nombre!;
-  Preferences.pApellido     = personProvider.pApellido = singInService.pApellido!;
-  Preferences.sApellido     = personProvider.sApellido = singInService.sApellido!;
-  Preferences.rol           = personProvider.rol = singInService.rol!;
-  Preferences.codigoCliente = personProvider.codigoCliente = singInService.codigoCliente!;
+  Preferences.codigoPersonal = personProvider.codigoPersonal    = singInService.codigoPersonal!;
+  Preferences.dni            = personProvider.dni               = singInService.dni!;
+  Preferences.pNombre        = personProvider.pNombre           = singInService.pNombre!;
+  Preferences.sNombre        = personProvider.sNombre           = singInService.sNombre!;
+  Preferences.pApellido      = personProvider.pApellido         = singInService.pApellido!;
+  Preferences.sApellido      = personProvider.sApellido         = singInService.sApellido!;
+  Preferences.cargo          = personProvider.cargo             = singInService.cargo!;
+  Preferences.codtipoUsuario = personProvider.codigoTipoUsuario = singInService.codTipoUsuario!;
 
   // ignore: use_build_context_synchronously
   await getRelation(context);
@@ -44,15 +45,15 @@ Future<void>signinWithDNI(BuildContext context, String dni)async{
 
 }
 
-  void openHomePage(BuildContext context) {
-    
-    final newRoute = PageRouteBuilder<dynamic>(
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return FadeTransition(
-          opacity: animation,
-          child: const HomePage(),
-        );
-      },
-    );
-    Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
-  }
+void openHomePage(BuildContext context) {
+  
+  final newRoute = PageRouteBuilder<dynamic>(
+    pageBuilder: (context, animation, secondaryAnimation) {
+      return FadeTransition(
+        opacity: animation,
+        child: const HomePage(),
+      );
+    },
+  );
+  Navigator.pushAndRemoveUntil(context, newRoute, ModalRoute.withName(''));
+}

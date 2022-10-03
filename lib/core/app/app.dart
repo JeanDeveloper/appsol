@@ -8,7 +8,6 @@ import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/core/presentation/widgets/initialized_widget.dart';
 import 'package:solgis/core/routers/routes.dart';
 
-
 class Appsol extends StatelessWidget {
   
   const Appsol({Key? key}) : super(key: key);
@@ -34,6 +33,7 @@ class Appsol extends StatelessWidget {
 class AppsolState extends StatelessWidget {
 
   const AppsolState({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
 
@@ -45,8 +45,6 @@ class AppsolState extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-
-      // initialRoute : AppRoutes.initialRoute,
       home: const InitializedWidget(),
       routes: SolAppRoutes.getAppRoutes(),
 

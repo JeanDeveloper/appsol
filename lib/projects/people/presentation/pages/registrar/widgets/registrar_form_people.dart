@@ -276,7 +276,9 @@ class _PasaporteFormRegister extends StatelessWidget {
               }
             },
           )
+
         ],
+
       ),
 
     );
@@ -284,4 +286,3 @@ class _PasaporteFormRegister extends StatelessWidget {
   }
 
 }
-

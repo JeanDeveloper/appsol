@@ -5,8 +5,8 @@ import 'package:solgis/projects/cargo/data/models/tipos_carga_model.dart';
 
 class TiposCargaService{
 
-  static String _url = '192.168.10.103:8000';
-  static String _uncodePath = 'appsol/cargo/carga/';
+  static const String _url = '54.221.148.178:8000';
+  static const String _uncodePath = 'appsol/cargo/carga/';
 
   //PETICION GET
   static  Future<List<TipoCargaModel>> getTiposCarga(String codCliente)async{
@@ -21,10 +21,10 @@ class TiposCargaService{
         'Content-Type': "application/json; charset=utf-8",
         'Accept': 'application/json'
       }
+
     );
 
     if(response.statusCode == 200){
-
       final decodedData = json.decode(utf8.decode(response.bodyBytes));
       final cargos = TiposCargaModel.fromJsonList(decodedData);
       return cargos.items;

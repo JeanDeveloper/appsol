@@ -12,18 +12,22 @@ Future<void>signOut(BuildContext context)async {
   final personProvider = Provider.of<PersonAuthProvider>(context, listen:false);
   final homeProvider   = Provider.of<HomeProvider>(context, listen:false);
   
-  if(personProvider.codigoPersona != ''){
+  if(personProvider.codigoPersonal != ''){
     homeProvider.isLoading = true;
     await Future.delayed(const Duration(seconds: 3));
-    Preferences.codigoPersona = personProvider.codigoPersona = '';
-    Preferences.codigoUsuario = personProvider.codigoUsuario = 0;
-    Preferences.dni = personProvider.dni                     = '';
-    Preferences.nombre = personProvider.nombre               = '';
-    Preferences.pApellido = personProvider.pApellido         = '';
-    Preferences.sApellido = personProvider.sApellido         = '';
-    Preferences.rol = personProvider.rol                     = 0;
-    Preferences.codigoCliente = personProvider.codigoCliente = '';
+    Preferences.codigoPersonal = personProvider.codigoPersonal    = '';
+    Preferences.dni            = personProvider.dni               = '';
+    Preferences.pNombre        = personProvider.pNombre           = '';
+    Preferences.sNombre        = personProvider.sNombre           = '';
+    Preferences.pApellido      = personProvider.pApellido         = '';
+    Preferences.sApellido      = personProvider.sApellido         = '';
+    Preferences.cargo          = personProvider.cargo             = '';
+    Preferences.codtipoUsuario = personProvider.codigoTipoUsuario = 0 ;
+
+    // ignore: use_build_context_synchronously
     showSnackBarAwesome(context, 'Atencion', 'Cerro Sesion Exitosamente', ContentType.success);
+    
+    // ignore: use_build_context_synchronously
     openLoginPage(context);
     homeProvider.isLoading = false;
     Preferences.isAuthenticated = false;

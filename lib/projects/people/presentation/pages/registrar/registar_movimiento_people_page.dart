@@ -56,7 +56,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
-                      if(tipoProvider.valorTipoDocumento!=3)
+                      // if(tipoProvider.valorTipoDocumento!=3)
 
                         //SCANNER
                         ButtonMenuPeople(
@@ -74,7 +74,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
                           },
                         ),
 
-                      if(tipoProvider.valorTipoDocumento!=3)
+                      // if(tipoProvider.valorTipoDocumento!=3)
                         SizedBox(width: size.width*0.1),
 
                       //INICIO

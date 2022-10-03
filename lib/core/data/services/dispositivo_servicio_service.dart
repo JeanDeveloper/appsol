@@ -6,7 +6,7 @@ import 'package:solgis/core/domain/models/relation_device_service_provider.dart'
 
 class RelationDeviceService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '54.221.148.178:8000';
   final String _uncodePath = 'appsol/dispositivo/relacion/';
 
   //PETICION GET
@@ -29,6 +29,7 @@ class RelationDeviceService{
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
     final relation = RelationDeviceServiceModel.fromJson(decodedData);
     return relation;
+
   }
 
 }

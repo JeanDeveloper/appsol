@@ -4,17 +4,15 @@ List<TipoCargaModel> tipoCargaModelFromJson(String str) => List<TipoCargaModel>.
 class TiposCargaModel{
 
   List<TipoCargaModel> items = [];
-
   TiposCargaModel();
 
   TiposCargaModel.fromJsonList( List<dynamic> jsonList ){
-
     for( var item in jsonList ){
       final carga = TipoCargaModel.fromJson(item);
       items.add(carga);
     }
-
   }
+
 }
 
 class TipoCargaModel {

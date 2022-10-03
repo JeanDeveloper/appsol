@@ -4,34 +4,38 @@ List<LoginDniResponse> loginDniResponseFromJson(String str) => List<LoginDniResp
 
 class LoginDniResponse {
     LoginDniResponse({
+
         this.codigoPersonal,
-        this.codigoUsuario,
         this.dni,
-        this.nombre,
+        this.pNombre,
+        this.sNombre,
         this.pApellido,
         this.sApellido,
-        this.rol,
-        this.codigoCliente,
+        this.cargo,
+        this.codTipoUsuario,
     });
 
     String? codigoPersonal;
-    int? codigoUsuario;
     String? dni;
-    String? nombre;
+    String? pNombre;
+    String? sNombre;
     String? pApellido;
     String? sApellido;
-    int? rol;
-    String? codigoCliente;
+    String? cargo;
+    int?    codTipoUsuario;
+
 
     LoginDniResponse.fromJson(Map<String, dynamic> json) {
+
         codigoPersonal  = json["codigo_personal"];
-        codigoUsuario   = json["codigo_usuario"];
         dni             = json["dni"];
-        nombre          = json["nombre"];
+        pNombre         = json["p_nombre"];
+        sNombre         = json["s_nombre"];
         pApellido       = json["p_apellido"];
         sApellido       = json["s_apellido"];
-        rol             = json["rol"];
-        codigoCliente   = json["codigo_cliente"];
+        cargo           = json["cargo"];
+        codTipoUsuario  = int.parse(json["cod_tipo_usuario"]) ;
+
     }
 
 }

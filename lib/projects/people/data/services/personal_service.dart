@@ -10,7 +10,7 @@ import 'package:solgis/projects/people/domain/providers/crear_personal_provider.
 
 class PersonalProvider{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '54.221.148.178:8000';
   final String _uncodePath = 'appsol/people/personal/';
   
   final bool cargando = false;

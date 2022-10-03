@@ -7,7 +7,7 @@ import 'package:solgis/core/domain/models/device_response_model.dart';
 
 class DeviceService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '54.221.148.178:8000';
   final String _uncodePath = 'appsol/dispositivo/';
 
   //PETICION POST
@@ -51,7 +51,7 @@ class DeviceService{
       }
     );
 
-    final response = await http.get( 
+    final response = await http.get(
       url, 
       headers: {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
     );

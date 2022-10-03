@@ -45,7 +45,6 @@ class IngresoAutorizadoBody extends StatelessWidget {
 
     final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
 
-
     return IngresosTemplatePage(
 
       titleIngreso: 'INGRESO AUTORIZADO', 
@@ -104,11 +103,11 @@ class IngresoAutorizadoBody extends StatelessWidget {
 
                 progressDialog.dismiss();
 
-                bool? hasvibration = await Vibration.hasVibrator();
+                // bool? hasvibration = await Vibration.hasVibrator();
 
-                if( hasvibration! ){
-                  Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
-                }
+                // if( hasvibration! ){
+                //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+                // }
 
                 // ignore: use_build_context_synchronously
                 showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);

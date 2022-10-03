@@ -130,18 +130,26 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                         final motivos = snapshot.data;
                         List<DropdownMenuItem<int>> dropdownmotivos = [];
+
                         for(final motivo in motivos!){
-                          final DropdownMenuItem<int> motivoTemp = DropdownMenuItem(
-                            value: int.parse(motivo.codigo!), 
-                            child: Text(motivo.tipo!)
-                          );
-                          dropdownmotivos.add(motivoTemp);
+
+                          if(motivo.tipo != null){
+                            final DropdownMenuItem<int> motivoTemp = DropdownMenuItem(
+                              value: int.parse(motivo.codigo!), 
+                              child: Text(motivo.tipo!)
+                            );
+                            dropdownmotivos.add(motivoTemp);
+                          }
+
                         }
                         return DropdownButtonWidget(
+
                           items:dropdownmotivos, 
                           onchanged: (value) => ingresoProvider.codmotivo = value!,
                           hintText: (motivos.isEmpty)?'NO HAY MOTIVOS'  :'SELECCIONE EL MOTIVO' ,
+
                         );
+
                       },
                     ),
 
@@ -204,7 +212,8 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(
-                        width: size.width*0.45,
+                        // width: size.width*0.45, 
+                        width: size.width*0.57,
                         height: size.height*0.04,
                         child: TextFormField(
                           cursorHeight: 20,
@@ -213,27 +222,32 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                           decoration:inputDecorationDatos() ,
                         )
                       ),
-                      IconButton(
-                        alignment: Alignment.centerRight,
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
+                      //CAMARA
+                    
+                    
+                      // IconButton(
+                      //   alignment: Alignment.centerRight,
+                      //   padding: EdgeInsets.zero,
+                      //   icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
 
-                        onPressed: ()async{
+                      //   onPressed: ()async{
 
-                          //inicia camara
-                          final ImagePicker _picker = ImagePicker();
-                          final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      //     //inicia camara
+                      //     final ImagePicker _picker = ImagePicker();
+                      //     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                          if(photo == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                      //     if(photo == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
 
-                          print('PATH DE LA FOTO: ${photo.name}');
-                          print('PATH DE LA FOTO: ${photo.path}');
-                          print('PATH DE LA FOTO: ${photo.mimeType}');
+                      //     print('PATH DE LA FOTO: ${photo.name}');
+                      //     print('PATH DE LA FOTO: ${photo.path}');
+                      //     print('PATH DE LA FOTO: ${photo.mimeType}');
 
-                          showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                      //     showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
 
-                        }, 
-                      )
+                      //   }, 
+                      // )
+                    
+                    
                     ],
                   )
                 
@@ -257,8 +271,8 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                     children: [
 
                       SizedBox(
-
-                        width: size.width*0.45,
+                        // width: size.width*0.45, 
+                        width: size.width*0.57,
                         height: size.height*0.04,
 
                         child: TextFormField(
@@ -271,31 +285,31 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                       ),
                       
+                      //CAMARA
+                      // IconButton(
 
-                      IconButton(
+                      //   alignment: Alignment.centerRight,
+                      //   padding: EdgeInsets.zero,                         
+                      //   icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
+                      //   onPressed: ()async{
 
-                        alignment: Alignment.centerRight,
-                        padding: EdgeInsets.zero,                         
-                        icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
-                        onPressed: ()async{
+                      //     //inicia camara
+                      //     final ImagePicker _picker = ImagePicker();
+                      //     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-                          //inicia camara
-                          final ImagePicker _picker = ImagePicker();
-                          final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      //     if(photo == null) {
+                      //       // ignore: use_build_context_synchronously
+                      //       showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
+                      //     }else{
 
-                          if(photo == null) {
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                          }else{
-
-                          print('PATH DE LA FOTO: ${photo.name}');
-                          print('PATH DE LA FOTO: ${photo.path}');
-                          print('PATH DE LA FOTO: ${photo.mimeType}');
-                            // ignore: use_build_context_synchronously
-                            showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
-                          }
-                        }, 
-                      )
+                      //     print('PATH DE LA FOTO: ${photo.name}');
+                      //     print('PATH DE LA FOTO: ${photo.path}');
+                      //     print('PATH DE LA FOTO: ${photo.mimeType}');
+                      //       // ignore: use_build_context_synchronously
+                      //       showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+                      //     }
+                      //   }, 
+                      // )
 
                     ],
                   )

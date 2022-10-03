@@ -63,11 +63,12 @@ class DeviceInformationModel{
     String? isPhysicalDevice;
     String? serialNumber;
 
-  Future  getInformationDevice() async {
+  //PETICION GET
+  Future getInformationDevice() async {
 
     AndroidDeviceInfo build = await deviceInfoPlugin.androidInfo;
     String serial     = await FlutterDeviceIdentifier.androidID;
-
+    
     securityPath  = build.version.securityPatch;
     sdkInt        = build.version.sdkInt.toString();
     release       = build.version.release;
@@ -86,9 +87,9 @@ class DeviceInformationModel{
     manufacturer  = build.manufacturer;
     model         = build.model;
     product       = build.product;
-    support64     = (build.supported64BitAbis.isEmpty)   ? ''  :build.supported64BitAbis.first ;
-    supported32   = (build.supported32BitAbis.isEmpty)   ? ''  :build.supported32BitAbis.first ;
-    supportAbis   = (build.supported32BitAbis.isEmpty)   ? ''  :build.supportedAbis.first;
+    support64     = (build.supported64BitAbis.isEmpty) ? ''  : build.supported64BitAbis.first ;
+    supported32   = (build.supported32BitAbis.isEmpty) ? ''  : build.supported32BitAbis.first ;
+    supportAbis   = (build.supported32BitAbis.isEmpty) ? ''  : build.supportedAbis.first;
     tags          = build.tags;
     type          = build.type;
     serialNumber  = serial;
