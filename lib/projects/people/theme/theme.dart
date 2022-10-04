@@ -3,30 +3,27 @@ import 'package:flutter/material.dart';
 class AppThemePeople {
 
   static final ThemeData lighThemePeople = ThemeData.light().copyWith(
-    
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    // textTheme: GoogleFonts.montserratTextTheme(),
     useMaterial3:true,
-    
+
     primaryColor: const Color.fromARGB(249, 0, 2, 124),
 
     // unselectedWidgetColor:Colors.white,
-    
+
     appBarTheme:  const AppBarTheme(
-    
       backgroundColor: Color.fromARGB(249, 0, 2, 124),
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
       centerTitle: true,
-      
     ),
+
     radioTheme: RadioThemeData(
-      
       fillColor: MaterialStateProperty.all(Colors.white)
     ),
-    
 
     // ESTILOS DE LOS TEXTOS
     textTheme: const TextTheme(
       
-
       headline1: TextStyle( 
         color: Colors.white,
         fontSize: 25
@@ -59,12 +56,6 @@ class AppThemePeople {
       size: 30
     ),
 
-
   );
 
 }
-
-
-
-
-

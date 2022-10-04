@@ -78,7 +78,7 @@ class _TipoCarnet extends StatelessWidget{
 
           // radio de dni, por defecto esta encendido
           SizedBox(
-            width: size.width*0.22,
+            width: size.width*0.23,
             child: RadioListTile<int>(
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
@@ -114,7 +114,7 @@ class _TipoCarnet extends StatelessWidget{
               groupValue: tipoProvider.valorTipoDocumento, 
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
-              title: AutoSizeText('PASAPORTE', style: AppThemePeople.lighThemePeople.textTheme.headline3),
+              title: AutoSizeText('Pasaporte', style: AppThemePeople.lighThemePeople.textTheme.headline3),
               onChanged: (value){
                 tipoProvider.valorTipoDocumento=value!;
               },
@@ -146,7 +146,7 @@ class _DNIFormRegister extends StatelessWidget {
 
       children: [
 
-        AutoSizeText('INGRESE EL NUMERO DE DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2), 
+        AutoSizeText('Ingrese el DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2), 
 
         NumPad(
           
@@ -190,7 +190,7 @@ class _CarnetFormRegister extends StatelessWidget {
 
       children: [
 
-        AutoSizeText('INGRESE EL CARNET DE EXTRANJERIA', style: AppThemePeople.lighThemePeople.textTheme.headline2, maxLines: 1, minFontSize: 6,),            
+        AutoSizeText('Ingrese el Carnet de Extranjeria', style: AppThemePeople.lighThemePeople.textTheme.headline2, maxLines: 1, minFontSize: 6,),            
 
         NumPad(
 
@@ -261,13 +261,12 @@ class _PasaporteFormRegister extends StatelessWidget {
           const SizedBox(height:20),
 
           ElevatedButton(
-
             style: ButtonStyle(
               padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 15)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
 
-            child: const Text('BUSCAR', style: TextStyle(fontSize: 20, color: Colors.black),),
+            child: const Text('Buscar', style: TextStyle(fontSize: 20, color: Colors.black),),
 
             onPressed: (){
               if(registerForm.isValidForm()){

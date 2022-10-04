@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
@@ -21,7 +22,8 @@ class MovimientosListButton extends StatelessWidget {
     initializeDateFormatting('es');
     final size = MediaQuery.of(context).size;
     final contadorProvider = Provider.of<MovimientosProvider>(context);
-    
+    final gProvider = Provider.of<GlobalProvider>(context);
+
     return Container(
 
       padding: const EdgeInsets.symmetric(vertical:30),
@@ -61,8 +63,7 @@ class MovimientosListButton extends StatelessWidget {
 
               children: [
 
-                //TODO
-
+                //TODOS
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
@@ -87,6 +88,7 @@ class MovimientosListButton extends StatelessWidget {
                 ),
 
                 //TERCERO
+                if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
@@ -97,7 +99,7 @@ class MovimientosListButton extends StatelessWidget {
               ],
 
             ),
-            
+
           ),
 
           SizedBox( width: size.height*0.03),
@@ -112,6 +114,15 @@ class MovimientosListButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
               children: [
+
+                //TERCERO
+                if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
+                RadioListButton(
+                  width: size.width*0.24,
+                  index: index,
+                  title: 'TERCERO',
+                  value: 3,
+                ),
 
                 //AUTORIDAD
                 RadioListButton(
@@ -130,6 +141,7 @@ class MovimientosListButton extends StatelessWidget {
                 ),
 
                 //IMPORTACION
+                if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
@@ -138,6 +150,7 @@ class MovimientosListButton extends StatelessWidget {
                 ),
 
                 //EXPORTACION
+                if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
                 RadioListButton(
                   width: size.width*0.24,
                   index: index,
@@ -150,7 +163,7 @@ class MovimientosListButton extends StatelessWidget {
             ),
 
           )
-        
+
         ],
 
       ),

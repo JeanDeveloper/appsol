@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:solgis/core/app/app.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
@@ -66,11 +65,11 @@ class _HomeHeaderPeople extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('PEOPLE', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
+            Text('People', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
             SizedBox(height: size.height*0.05),
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('BIENVENIDO A: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
+              child: Text('Bienvenido a: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
             ),
             SizedBox(height: size.height*0.02),
           ],
@@ -103,7 +102,7 @@ class _IconMenuPeople extends StatelessWidget {
         //REGISTRAR
         ButtonMenuPeople(
           icon: FontAwesomeIcons.person, 
-          text: 'REGISTRAR',
+          text: 'Registrar',
           onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
 
         ),
@@ -113,7 +112,7 @@ class _IconMenuPeople extends StatelessWidget {
         //MOVIMIENTOS
         ButtonMenuPeople(
           icon: FontAwesomeIcons.peopleGroup, 
-          text: 'MOVIMIENTOS',
+          text: 'Movimientos',
           onpressed: ()=>Navigator.pushNamed(context, 'movimientos_page_people'),
         ),
 
@@ -122,7 +121,7 @@ class _IconMenuPeople extends StatelessWidget {
         //CONSULTAR
         ButtonMenuPeople(
           icon: FontAwesomeIcons.magnifyingGlass, 
-          text: 'CONSULTAR',
+          text: 'Consultar',
           onpressed: ()=>Navigator.pushNamed(context, 'consulta_home_page_people'),
         ),
 
@@ -132,14 +131,6 @@ class _IconMenuPeople extends StatelessWidget {
 
   }
 
-void _openMyPage(BuildContext context) {
-  Navigator.push<void>(
-    context,
-    MaterialPageRoute<void>(
-      builder: (BuildContext context) => const Appsol(),
-    ),
-  );
-}
 
 
 }

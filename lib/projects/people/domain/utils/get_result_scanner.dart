@@ -42,10 +42,9 @@ getResultScanner(BuildContext context, String barcode){
       if(barcode == '' || ( barcode.length != 8 )){
         showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
       }else{
-      // Future.delayed(const Duration(seconds: 2));
+
       consultarDOI(context, barcode, loginProvider.codServicio);
       }
-
 
     }else if( tipoProvider.valorTipoDocumento == 2 ){
 
@@ -57,7 +56,7 @@ getResultScanner(BuildContext context, String barcode){
         showSnackBarAwesome(context, 'Error', 'Ingrese un Carnet valido', ContentType.failure);
 
       }else{
-        // Future.delayed(const Duration(seconds: 2));
+  
         consultarDOI(context, barcode, loginProvider.codServicio);
       }
 

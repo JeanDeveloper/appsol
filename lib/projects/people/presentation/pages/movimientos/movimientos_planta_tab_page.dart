@@ -21,7 +21,7 @@ class MovimientosPlantasTabPage extends StatelessWidget {
     return Column(
 
       children: [
-        //se controlará dependiendo el tipo. mandara a llamar cuantos personal hay por tipo
+        //se controlará dependiendo el tipo. mandará a llamar cuantos personal hay por tipo
         MovimientosListButton( index: index ),
         const Expanded( child: MovimientosTilesPageBody() )
       ],

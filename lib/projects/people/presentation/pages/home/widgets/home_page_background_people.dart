@@ -20,7 +20,6 @@ class HomePageBackGroundPeople extends StatelessWidget {
     
   }
 
-
 }
 
 class _OpacityBackground extends StatelessWidget {
@@ -42,7 +41,6 @@ class _OpacityBackground extends StatelessWidget {
   }
   
 }
-
 
 class _ImageBackground extends StatelessWidget {
   const _ImageBackground({Key? key}) : super(key: key);

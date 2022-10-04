@@ -1,5 +1,6 @@
 import 'domain/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/routes/routes.dart';
@@ -31,7 +32,6 @@ class PeopleApp extends StatelessWidget{
 
 }
 
-
 class PeopleAppState extends StatelessWidget {
 
   const PeopleAppState({Key? key}) : super(key: key);
@@ -44,7 +44,13 @@ class PeopleAppState extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: PeopleRoutes.routes,
       initialRoute: "/",
+      // theme: AppThemePeople.lighThemePeople ,
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.montserratTextTheme()
+      ),
     );
 
   }
+
 }

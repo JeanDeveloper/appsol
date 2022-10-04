@@ -48,14 +48,15 @@ class DrawerWidget extends StatelessWidget {
                 ),
 
                 SizedBox(height: size.height*0.03),
-                Center(child: AutoSizeText(serviceProvider.nombreCliente, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+
+                Center(child: AutoSizeText('${serviceProvider.nombreCliente[0].toUpperCase()}${serviceProvider.nombreCliente.substring(1).toLowerCase()}'   , style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
                 // SizedBox(height: size.height*0.03),
-                Center(child: AutoSizeText(serviceProvider.nombreSucursal, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
+                Center(child: AutoSizeText( '${serviceProvider.nombreSucursal[0].toUpperCase()}${serviceProvider.nombreSucursal.substring(1).toLowerCase()}', style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
                 // SizedBox(height: size.height*0.03),     
                 Center(child: AutoSizeText(serviceProvider.nombrePuesto, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold), maxLines: 1)),
 
                 SizedBox(height: size.height*0.03),    
-                Center(child: AutoSizeText('${personAuth.pNombre}  ${personAuth.pApellido}  ${personAuth.sApellido}', style: letrasEstilo(), maxLines: 1)),
+                Center(child: AutoSizeText(' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}', style: letrasEstilo(), maxLines: 1)),
                 Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
                 
                 SizedBox(height: size.height*0.03),
@@ -72,7 +73,7 @@ class DrawerWidget extends StatelessWidget {
                     color: Colors.lightBlueAccent,
                   ),
                 ),
-                
+
                 SizedBox(height: size.height*0.45),  
                 Center(
                   child: Container(

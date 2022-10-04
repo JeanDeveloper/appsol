@@ -38,14 +38,16 @@ class InformacionClientePeopleWidget extends StatelessWidget {
             SizedBox(height: size.height*0.015),
             
             Text(
-              (loginGlobal.codTipoServicio==1000)? 'PLANTA' : 'FLOTA',
+              (loginGlobal.codTipoServicio==1000)? 'Planta' : 'Flota',
               style: AppThemePeople.lighThemePeople.textTheme.headline1
             ),// NOMBRE DEL TIPO DE SERVICIO - dinamico
 
             SizedBox(height: size.height*0.015),
             
             Text(
-              loginGlobal.nombreSubArea,
+                loginGlobal.nombreSubArea.split(' ')
+                  .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
+                  .join(' '),
               style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(  
                 color: Colors.amber
               )

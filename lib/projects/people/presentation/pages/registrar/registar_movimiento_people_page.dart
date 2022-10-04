@@ -61,7 +61,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
                         //SCANNER
                         ButtonMenuPeople(
                           icon: FontAwesomeIcons.barcode,
-                          text: 'ESCANEAR', 
+                          text: 'Escanear', 
                           onpressed:()async{
                             String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
                               "#ff6666", 
@@ -78,9 +78,9 @@ class RegistrarMovimientoPage extends StatelessWidget {
                         SizedBox(width: size.width*0.1),
 
                       //INICIO
-                      ButtonMenuPeople(
+                        ButtonMenuPeople(
                         icon: FontAwesomeIcons.house,
-                        text: 'INICIO', 
+                        text: 'Inicio', 
                         onpressed:()=> Navigator.pop(context),
                       ),
 
@@ -88,6 +88,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
                   ),
                 ),
               ),
+
             ),
 
           ],
