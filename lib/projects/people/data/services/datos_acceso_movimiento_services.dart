@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_mod
 
 class DatosAccesoService {
 
-  final String _url = '54.221.148.178:8000';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/datos_acceso/';
 
   Future<DatosAccesoMModel?> getDatosAccesosMovimiento(int codServicio, int codPersonal)async{

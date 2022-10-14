@@ -56,7 +56,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
 
-                  Text('AUTORIZANTES:', style: styleCrearPersonaltextForm()),
+                  Text('Autorizante:', style: styleCrearPersonaltextForm()),
 
                   ( documentacion.contains(gProvider.codCliente) )
                     ? DropdownButtonWidget(
@@ -83,14 +83,14 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         for(final autorizante in autorizantes!){
                           final DropdownMenuItem<int> autorizanteTemp = DropdownMenuItem(
                             value: int.parse(autorizante.codigo!) , 
-                            child: Text(autorizante.nombrePersonal!)
+                            child: Text(autorizante.nombrePersonal!.toLowerCase())
                           );
                           dropdownautorizantes.add(autorizanteTemp);
                         } 
                         return DropdownButtonWidget(
                           items:dropdownautorizantes, 
                           onchanged: (value) =>ingresoProvider.codautorizante = value!,
-                          hintText: (autorizantes.isEmpty)?'NO HAY AUTORIZANTES'  :'SELECCIONE EL AUTORIZANTE',
+                          hintText: (autorizantes.isEmpty)?'No hay autorizantes'  :'Seleccione el autorizante',
                         );
 
                       },
@@ -105,7 +105,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('MOTIVO:  ', style: styleCrearPersonaltextForm()),
+                  Text('Motivo:  ', style: styleCrearPersonaltextForm()),
 
                   ( documentacion.contains(gProvider.codCliente) )
 
@@ -136,7 +136,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                           if(motivo.tipo != null){
                             final DropdownMenuItem<int> motivoTemp = DropdownMenuItem(
                               value: int.parse(motivo.codigo!), 
-                              child: Text(motivo.tipo!)
+                              child: Text(motivo.tipo!.toLowerCase())
                             );
                             dropdownmotivos.add(motivoTemp);
                           }
@@ -146,7 +146,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                           items:dropdownmotivos, 
                           onchanged: (value) => ingresoProvider.codmotivo = value!,
-                          hintText: (motivos.isEmpty)?'NO HAY MOTIVOS'  :'SELECCIONE EL MOTIVO' ,
+                          hintText: (motivos.isEmpty)?'No hay motivos'  :'Seleccione el motivo' ,
 
                         );
 
@@ -161,7 +161,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('ACCESO:  ', style:styleCrearPersonaltextForm().copyWith(fontSize: 14)),
+                  Text('Acceso:  ', style:styleCrearPersonaltextForm()),
 
                   ( documentacion.contains(gProvider.codCliente) )
 
@@ -188,14 +188,14 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         for(final area in areas!){
                           final DropdownMenuItem<int> areaTemp = DropdownMenuItem(
                             value: int.parse(area.codigo!), 
-                            child: Text(area.area!)
+                            child: Text(area.area!.toLowerCase())
                           );
                           dropdownareas.add(areaTemp);
                         }
                         return DropdownButtonWidget(
                           items:dropdownareas, 
                           onchanged: (value) =>ingresoProvider.codarea = value!,
-                          hintText: (areas.isEmpty)?'NO HAY AREAS DE ACCESO'  :'SELECCIONE EL AREA',
+                          hintText: (areas.isEmpty)?'No hay areas de acceso'  :'Seleccione el area',
                         );
                       },
                     ),
@@ -208,7 +208,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('GUIA:  ', style: styleCrearPersonaltextForm()),
+                  Text('Guia:  ', style: styleCrearPersonaltextForm()),
                   Row(
                     children: [
                       SizedBox(
@@ -262,7 +262,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                 children: [
 
-                  Text('MATERIAL:  ', style: styleCrearPersonaltextForm(), maxLines: 2),
+                  Text('Material:  ', style: styleCrearPersonaltextForm(), maxLines: 2),
 
                   Row(
 

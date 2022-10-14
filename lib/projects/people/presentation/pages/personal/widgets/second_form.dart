@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
+import 'package:solgis/core/presentation/widgets/shimmer_widget.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
-import 'package:solgis/core/presentation/widgets/shimmer_widget.dart';
 import 'package:solgis/projects/people/styles/style.dart';
-
 
 class SecondForm extends StatelessWidget {
   
@@ -24,7 +23,7 @@ class SecondForm extends StatelessWidget {
       key: personalProvider.formKeys[1],
 
       child: Column(
-          
+
         children: [
 
           _SexoRegister(),
@@ -36,21 +35,38 @@ class SecondForm extends StatelessWidget {
 
             children: [
 
-              Text('TIPO PERSONA:  ', style: styleCrearPersonaltextForm()),
+              Text('Tipo Persona:  ', style: styleCrearPersonaltextForm()),
 
-              DropdownButtonPersonal(
-                items: dropdownItemsTipoPersona,
-                hintText: 'SELECCIONE EL TIPO PERSONA',
-                onchanged: (value)=>personalProvider.tipoPersona = value!,
-                onvalidator: (value) {
-                  return (value!= null)
-                  ? null
-                  : "Por favor complete este campo";
+              FutureBuilder(
+
+                future:personalProvider.initTiposPersonal(globalProvider.codCliente),
+                builder: (BuildContext context, AsyncSnapshot<List<DropdownMenuItem<int>>> snapshot) {
+
+                  if(!snapshot.hasData){
+                    return ShimmerWidget(
+                      width: size.width*0.57, 
+                      height: size.height*0.04
+                    );
+                  }
+                  final dropdowntipoPersonas = snapshot.data;
                   
+                  return DropdownButtonPersonal(
+                    items: dropdowntipoPersonas,
+                    hintText: 'Seleccione el tipo de persona',
+                    onchanged: (value)=>personalProvider.tipoPersona = value!,
+                    onvalidator: (value) {
+                      return (value!= null)
+                      ? null
+                      : "Por favor complete este campo";
+                    },
+                  );
+
                 },
               ),
+
             ],
           ),
+
           SizedBox(height: size.height*0.04), 
 
           //CAMPO PARA EL PRIMER NOMBRE
@@ -60,7 +76,7 @@ class SecondForm extends StatelessWidget {
 
             children: [
 
-              Text('NOMBRE:  ', style: styleCrearPersonaltextForm()),
+              Text('Nombre:  ', style: styleCrearPersonaltextForm()),
 
               SizedBox(
 
@@ -87,7 +103,7 @@ class SecondForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
       
-              Text('S. NOMBRE:  ', style: styleCrearPersonaltextForm()),
+              Text('S. Nombre:  ', style: styleCrearPersonaltextForm()),
               
               SizedBox(
                 width: size.width*0.57,
@@ -115,7 +131,7 @@ class SecondForm extends StatelessWidget {
       
             children: [
       
-              Text('A. PATERNO:  ', style: styleCrearPersonaltextForm()),
+              Text('A. Paterno:  ', style: styleCrearPersonaltextForm()),
       
               SizedBox(
       
@@ -146,7 +162,7 @@ class SecondForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
       
-              Text('A. MATERNO:  ', style: styleCrearPersonaltextForm()),
+              Text('A. Materno:  ', style: styleCrearPersonaltextForm()),
               SizedBox(
                 width: size.width*0.57,
                 // height: size.height*0.04,
@@ -172,7 +188,7 @@ class SecondForm extends StatelessWidget {
 
             children: [
 
-              Text('EMPRESA: ', style: styleCrearPersonaltextForm()),
+              Text('Empresa: ', style: styleCrearPersonaltextForm()),
 
               FutureBuilder(
 
@@ -188,7 +204,7 @@ class SecondForm extends StatelessWidget {
                   } 
                   final dropdownempresas = snapshot.data;
                   return DropdownButton2Widget(
-                    hinText: 'SELECCIONE LA EMPRESA',
+                    hinText: 'Seleccione la empresa',
                     items: dropdownempresas,
                     hintTextForm: 'Busque la empresa',
                     onchanged: (value)=>personalProvider.empresa = value!,
@@ -210,7 +226,7 @@ class SecondForm extends StatelessWidget {
 
             children: [
 
-              Text('CARGO: ', style: styleCrearPersonaltextForm()),
+              Text('Cargo ', style: styleCrearPersonaltextForm()),
 
               FutureBuilder(
 
@@ -227,7 +243,7 @@ class SecondForm extends StatelessWidget {
                   final dropdowncargos = snapshot.data;
                   return DropdownButton2Widget(
                     items: dropdowncargos,
-                    hinText: 'SELECCIONE EL CARGO',
+                    hinText: 'Seleccione el cargo',
                     hintTextForm: 'Busque el cargo',
                     onchanged: (value)=>personalProvider.cargo = value!,
                     texteditingcontroller: personalProvider.searchEditingControllerCargo,
@@ -245,10 +261,10 @@ class SecondForm extends StatelessWidget {
         ],
 
       ),
+
     );
   }
 
-  
 }
 
 class _SexoRegister extends StatelessWidget {
@@ -268,11 +284,11 @@ class _SexoRegister extends StatelessWidget {
 
         children: [
 
-          Text('SEXO: ', style: styleCrearPersonaltextForm()),
+          Text('Sexo: ', style: styleCrearPersonaltextForm()),
 
           DropdownButtonPersonal(
 
-            hintText: 'SELECCIONE EL SEXO',
+            hintText: 'Seleccione el sexo',
             onvalidator: (value) {
               return (value!= null)
               ? null
@@ -282,6 +298,7 @@ class _SexoRegister extends StatelessWidget {
             items: dropdownItemSexo, 
             onchanged: (value)=> personalProvider.valorSexo = value!,
           ),
+
         ]
       ),
     );
@@ -293,13 +310,15 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoPersona{
 
   List<DropdownMenuItem<int>> menuItems = [
     
-    const DropdownMenuItem(value:1, child: Text('PROPIO')),
-    const DropdownMenuItem(value:2, child: Text('TERCERO')),
-    const DropdownMenuItem(value:3, child:Text('VISITA')),
-    const DropdownMenuItem(value:4, child: Text('CLIENTE')),
-    const DropdownMenuItem(value:5, child:Text('AUTORIDAD')),
-    const DropdownMenuItem(value:6, child:Text('CLIENTE IMPORTACION')),
-    const DropdownMenuItem(value:7, child:Text('CLIENTE EXPORTACION')),
+    const DropdownMenuItem(value:1, child: Text('Propio')),
+    const DropdownMenuItem(value:2, child: Text('Tercero')),
+    const DropdownMenuItem(value:3, child: Text('Visita')),
+    const DropdownMenuItem(value:4, child: Text('Cliente')),
+    const DropdownMenuItem(value:5, child: Text('Autoridad')),
+
+
+    const DropdownMenuItem(value:6, child: Text('Importación')),
+    const DropdownMenuItem(value:7, child: Text('Exportacion')),
 
   ];
 

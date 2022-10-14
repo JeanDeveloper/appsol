@@ -164,7 +164,10 @@ class _MovimientoTile extends StatelessWidget {
               backgroundColor: const Color(0xFF999999), //0xFF9E9E9E
             ),
             
-            title: Text('FOTO DE ${movimiento.nombres}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
+            title: Text('Foto de ${movimiento.nombres!.split(' ')
+              .map((nombre){
+                if(nombre != '') return nombre[0] + nombre.substring(1).toLowerCase();
+              }).join(' ')}', style: const TextStyle(color: Colors.black), maxLines: 1, overflow: TextOverflow.ellipsis),
             
             content: Container(
             
@@ -235,14 +238,24 @@ class _MovimientoTile extends StatelessWidget {
       title: Row(
 
         children: [
-        
-          SizedBox(
-            width: size.width*0.40,
-            child: AutoSizeText(movimiento.nombres!,style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1,)
+
+          Expanded(
+            flex: 7,
+            child: Text(movimiento.nombres!.split(' ')
+              .map((nombre){
+                if(nombre != '') return nombre[0] + nombre.substring(1).toLowerCase();
+              }).join(' '), style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1),
           ),
-          const SizedBox(width: 10),
+
+          Expanded( flex: 2, child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 6, maxFontSize: 12,))
+
+          // SizedBox(
+          //   width: size.width*0.40,
+          //   child: AutoSizeText(movimiento.nombres!,style: styleLetterpersonalmovimientotitle(), overflow: TextOverflow.ellipsis, maxLines: 1,)
+          // ),
+          // const SizedBox(width: 10),
           
-          AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1)
+          // AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle(), maxLines: 1)
 
         ],
 
@@ -253,28 +266,60 @@ class _MovimientoTile extends StatelessWidget {
         children: [
 
           Expanded(
-            flex: 8,
-            child: Container(
-                  
-              width: size.width*0.31,
-              alignment: Alignment.topLeft,
-          
-              child: Column(
-                
-                crossAxisAlignment: CrossAxisAlignment.start,
-                
-                children: [
-                  AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2,),
-                  AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 3,)
-                ]
-                  
-              ),
-                  
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText( movimiento.cargo != '' 
+                  ? movimiento.cargo!.split(' ')
+                    .map((c) {
+                      if(c != '') return c[0] + c.substring(1).toLowerCase();
+                      // if (c == '') return null;
+                      // return c[0] + c.substring(1).toLowerCase();
+                    })
+                    .join(' ')
+                  :'' ,minFontSize: 6, maxFontSize: 12, style: styleLetterpersonalmovimientosubtitle(),overflow: TextOverflow.ellipsis, maxLines: 2),
+
+                AutoSizeText( movimiento.empresa != '' 
+                  ? movimiento.empresa!.split(' ')
+                    .map((empresa){
+                      if(empresa != '') return empresa[0] + empresa.substring(1).toLowerCase();
+                      // if (empresa == '') return null;
+                      // return empresa[0] + empresa.substring(1).toLowerCase();
+                      })
+                    .join(' ')
+                  : '',
+                  minFontSize: 4, maxFontSize: 12, style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2)
+
+              ]
+
             ),
           ),
 
-          Expanded(flex: 2, child: AutoSizeText(movimiento.fechaMovimiento!.toString().substring(11, 16), style: const TextStyle(color: Colors.red, fontSize: 12), maxLines: 1,))
-        
+          // Expanded(
+          //   flex: 7,
+          //   child: Container(
+          //     width: size.width*0.31,
+          //     alignment: Alignment.topLeft,
+
+          //     child: Column(
+
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+
+          //       children: [
+          //         AutoSizeText(movimiento.cargo!, minFontSize: 6,  maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 2,),
+          //         AutoSizeText(movimiento.empresa!, minFontSize: 4, maxFontSize: 12 , style: styleLetterpersonalmovimientosubtitle(), overflow: TextOverflow.ellipsis, maxLines: 3,)
+          //       ]
+
+          //     ),
+
+          //   ),
+          // ),
+
+          if(movimiento.fechaSalida == '')
+          Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),
+
+
         ],
       ),
 
@@ -301,10 +346,28 @@ class _MovimientoTile extends StatelessWidget {
           },
           child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
         )
-        : null,
+        : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.red, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+
+            AutoSizeText( movimiento.fechaSalida!.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+
+            // AutoSizeText( DateTime.parse(movimiento.fechaSalida!).toString(), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+
+            AutoSizeText( getTiempoTranscurrido(movimiento.fechaMovimiento!, DateTime.parse('${movimiento.fechaSalida.toString().replaceAll(' ', 'T')}Z')).toString().substring(0, 7), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
+
+          ],
+        ),
 
     );
 
   }
 
+}
+
+Duration getTiempoTranscurrido(DateTime fecha1, DateTime fecha2){
+  final Duration resultado = fecha2.difference(fecha1);
+  return resultado;
 }

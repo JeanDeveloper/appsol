@@ -6,7 +6,6 @@ import 'package:solgis/projects/people/presentation/pages/personal/widgets/widge
 import 'package:solgis/projects/people/styles/style.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
-
 class CrearPersonalPage extends StatelessWidget {
   
   const CrearPersonalPage({Key? key}) : super(key: key);
@@ -25,11 +24,7 @@ class CrearPersonalPage extends StatelessWidget {
             titleSpacing: 20,
             backgroundColor: AppThemePeople.lighThemePeople.appBarTheme.backgroundColor,
             centerTitle: true,
-            title: AutoSizeText('CREAR PERSONAL', style:styleCrearPersonalTitulo()),
-            leading:  IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
-              onPressed: ()=> Navigator.pop(context),
-            ),
+            title: AutoSizeText('Crear Personal', style:styleCrearPersonalTitulo()),
           ),
           body: const CrearPersonalBody(),
         ),

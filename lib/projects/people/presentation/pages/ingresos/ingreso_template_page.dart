@@ -33,10 +33,8 @@ class IngresosTemplatePage extends StatelessWidget {
         appBar: AppBar(
 
           leading: IconButton(
-
-            onPressed: ()=>Navigator.of(context).pop(), 
+            onPressed:()=>Navigator.of(context).pop(), 
             icon: const Icon(Icons.arrow_back_ios, size: 30)
-          
           ),
 
           centerTitle: true,
@@ -58,12 +56,12 @@ class IngresosTemplatePage extends StatelessWidget {
           consulta: consulta,
           viewBotton: viewBotton
         ), //dinamico
+
       ),
 
     );
 
   }
-
 
 }
 
@@ -137,7 +135,7 @@ class _IngresosTemplateBody extends StatelessWidget {
                       if(consulta.tipoConsulta == 'INGRESO AUTORIZADO')
                         ButtonMenuPeople(
                           icon: Icons.accessibility_outlined, 
-                          text: 'REGISTRAR',
+                          text: 'Registrar',
                           onpressed: funtionAccept,
                         ),
                       
@@ -146,7 +144,7 @@ class _IngresosTemplateBody extends StatelessWidget {
                         
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
-                        text: 'SALIR',
+                        text: 'Salir',
                         // onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
                         onpressed: ()=> Navigator.pop(context),
                       ),

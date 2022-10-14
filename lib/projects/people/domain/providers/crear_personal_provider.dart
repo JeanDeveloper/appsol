@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:solgis/projects/people/data/services/cargos_service.dart';
 import 'package:solgis/projects/people/data/services/empresa_service.dart';
+import 'package:solgis/projects/people/data/services/tipos_personal_service.dart';
 
 
 class CrearPersonalProvider extends ChangeNotifier{
@@ -11,9 +12,11 @@ class CrearPersonalProvider extends ChangeNotifier{
 
   EmpresasProvider listaempresas = EmpresasProvider();
   CargosProvider cargos = CargosProvider();
+  TiposPersonalProvider tiposPersonal = TiposPersonalProvider();
 
-  List<DropdownMenuItem<int>> itemsCargos = [];
-  List<DropdownMenuItem<int>> itemsEmpresas = [];
+  List<DropdownMenuItem<int>> itemsCargos       = [];
+  List<DropdownMenuItem<int>> itemsEmpresas     = [];
+  List<DropdownMenuItem<int>> itemsTiposPersona = [];
 
   //controla el listado de empresas.
   // List<DropdownMenuItem<int>> get itemsEmpresas =>_itemsEmpresas; 
@@ -181,5 +184,13 @@ class CrearPersonalProvider extends ChangeNotifier{
     return itemsCargos;
   }
 
+
+  Future<List<DropdownMenuItem<int>>> initTiposPersonal(String codCliente)async{
+    if(itemsTiposPersona.isEmpty){
+      itemsTiposPersona = await tiposPersonal.getTiposPersonal(codCliente); //se rellena la lista que necesito posteriormente
+      // notifyListeners();
+    }
+    return itemsTiposPersona;
+  }
 
 }

@@ -15,9 +15,7 @@ class CustomNavigationBar extends StatelessWidget {
 
     return BottomNavigationBar(
 
-      backgroundColor: Colors.orange,
-      fixedColor: Colors.white,
-      iconSize: 30,
+
       currentIndex: currentIndex,
       onTap: (int index)=> uiProvider.setSelectedMenuOpt = index,
 
@@ -26,14 +24,14 @@ class CustomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
 
           icon: FaIcon(FontAwesomeIcons.house),
-          label: 'DENTRO DE LA PLANTA'
+          label: 'Dentro'
 
         ),
 
         BottomNavigationBarItem(
 
           icon: FaIcon(FontAwesomeIcons.readme),
-          label: 'MOVIMIENTOS DEL DIA'
+          label: 'Dia'
 
         ),
 

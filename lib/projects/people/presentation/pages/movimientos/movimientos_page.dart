@@ -15,7 +15,7 @@ class MovimientosPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: appBarNoSearching(context, 'MOVIMIENTOS', ()=>showSearch(context: context, delegate: SearchDelegateProvider())),
+      appBar: appBarNoSearching(context, 'Movimientos', ()=>showSearch(context: context, delegate: SearchDelegateProvider())),
       bottomNavigationBar: const CustomNavigationBar(),
       body: const _MovimientosPageBody(),
     );

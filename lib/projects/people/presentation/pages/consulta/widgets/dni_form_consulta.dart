@@ -23,7 +23,7 @@ class DNIFormConsulta extends StatelessWidget {
 
       children: [
 
-        AutoSizeText('INGRESE EL NUMERO DE DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2,), 
+        AutoSizeText('Ingrese el DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2,), 
         NumpadV2(
           length: 8,
           onPressed: (String value) async{

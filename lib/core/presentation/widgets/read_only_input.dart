@@ -22,12 +22,20 @@ class InputReadOnlyWidget extends StatelessWidget {
 
       child: TextFormField(
 
-        initialValue: initialValue,
+        initialValue: (initialValue == null || initialValue == '') 
+          ? ''  
+          : initialValue!
+            .split(' ')
+            .map((e) {
+              if(e != '') return e[0]+ e.substring(1).toLowerCase();
+            })
+            .join(' '),
         readOnly: true,
         style: const TextStyle(fontSize: 14, color: Colors.black),
         decoration:InputDecorationsReadOnly.formInputDecorationReadOnly(),
 
       )
+
     );
   }
 }

@@ -45,88 +45,114 @@ class SalidaAutorizadaBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final salidaProvider = Provider.of<SalidaProvider>(context, listen: false);
 
-
     return SalidaTemplatePage(
-      titleIngreso: 'SALIDA AUTORIZADA', 
+      titleIngreso: 'Salida Autorizada', 
       colorAppBar: const Color(0xffF57E25), 
       body: SalidaAutorizadaWidget(consulta: consulta, datosAcceso: datosAcceso),
       consulta: consulta,
       registrarFunction: () async {
 
-        await NDialog(
+        final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
+        CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
+        progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
+        progressDialog.show();
+        final datosAcceso = DatosAccesoMModel();
 
-          dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-          title: const Text("¡Alerta!",),
-          content: const Text(" ¿Estas seguro que deseas registrar el movimiento? ", style: TextStyle(color: Colors.black)),  
+        if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
+        if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
 
-          actions: <Widget>[
+        await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
 
-            TextButton(
+        progressDialog.dismiss();
 
-              child: const Text("SI"),
+        // bool? hasvibration = await Vibration.hasVibrator();
 
-              onPressed: () async {
+        // if( hasvibration! ){
+        //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+        // }
 
-                final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
-                CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
-                progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
-                progressDialog.show();
-                final datosAcceso = DatosAccesoMModel();
+        // ignore: use_build_context_synchronously
+        showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
 
-                if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
-                if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+        // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
+        // Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
 
-                await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
+        // await NDialog(
 
-                //funcion para registrar el movimiento.
-                // if(
+        //   dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
+        //   title: const Text("¡Alerta!",),
+        //   content: const Text(" ¿Estas seguro que deseas registrar el movimiento? ", style: TextStyle(color: Colors.black)),  
 
-                //   consulta.codigoClienteControl == 5     || consulta.codigoClienteControl == 28463 ||  
-                //   consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 13    || 
-                //   consulta.codigoClienteControl == 14517
+        //   actions: <Widget>[
 
-                // ){
-                //   await movimientoProvider.registerMovimiento(context, consulta);
-                // }else{
+        //     TextButton(
 
-                //   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
-                //   // consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
-                //   // consulta.autorizante       = ingresoProvider.autorizante;
-                //   // consulta.area              = ingresoProvider.area_acceso;
-                //   // consulta.codigoArea        = ingresoProvider.cod_area;
-                //   // consulta.motivo            = ingresoProvider.motivo;
-                //   // consulta.codigoMotivo      = ingresoProvider.cod_motivo;
+        //       child: const Text("SI"),
 
-                //   await movimientoProvider.registerMovimiento(context, consulta);
+        //       onPressed: () async {
 
-                // } 
+        //         final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
+        //         CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
+        //         progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
+        //         progressDialog.show();
+        //         final datosAcceso = DatosAccesoMModel();
 
-                progressDialog.dismiss();
+        //         if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
+        //         if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
 
-                // bool? hasvibration = await Vibration.hasVibrator();
+        //         await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
 
-                // if( hasvibration! ){
-                //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
-                // }
+        //         //funcion para registrar el movimiento.
+        //         // if(
 
-                // ignore: use_build_context_synchronously
-                showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
+        //         //   consulta.codigoClienteControl == 5     || consulta.codigoClienteControl == 28463 ||  
+        //         //   consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 13    || 
+        //         //   consulta.codigoClienteControl == 14517
 
-                // ignore: use_build_context_synchronously
-                Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
-                // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
+        //         // ){
+        //         //   await movimientoProvider.registerMovimiento(context, consulta);
+        //         // }else{
 
-              }
-            ),
+        //         //   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
+        //         //   // consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
+        //         //   // consulta.autorizante       = ingresoProvider.autorizante;
+        //         //   // consulta.area              = ingresoProvider.area_acceso;
+        //         //   // consulta.codigoArea        = ingresoProvider.cod_area;
+        //         //   // consulta.motivo            = ingresoProvider.motivo;
+        //         //   // consulta.codigoMotivo      = ingresoProvider.cod_motivo;
 
-            TextButton(
-              child: const Text("NO"),
-              onPressed: () => Navigator.pop(context)
-            ),
+        //         //   await movimientoProvider.registerMovimiento(context, consulta);
 
-          ],
+        //         // } 
 
-        ).show(context);
+        //         progressDialog.dismiss();
+
+        //         // bool? hasvibration = await Vibration.hasVibrator();
+
+        //         // if( hasvibration! ){
+        //         //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+        //         // }
+
+        //         // ignore: use_build_context_synchronously
+        //         showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
+
+        //         // ignore: use_build_context_synchronously
+        //         Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
+        //         // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
+
+        //       }
+        //     ),
+
+        //     TextButton(
+        //       child: const Text("NO"),
+        //       onPressed: () => Navigator.pop(context)
+        //     ),
+
+        //   ],
+
+        // ).show(context);
 
       },
 

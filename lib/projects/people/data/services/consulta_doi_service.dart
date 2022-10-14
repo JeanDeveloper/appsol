@@ -2,11 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 
 class ConsultaDOIService {
 
-  final String _url = '54.221.148.178:8000';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/detalle-personal/';
 
   final bool cargando = false;
@@ -24,7 +25,7 @@ class ConsultaDOIService {
     );
 
     if(resp.statusCode ==200){
-      
+
       final decodedData = json.decode(resp.body);
       final consulta = ConsultaModel.fromJson( decodedData[0] );
       return consulta;

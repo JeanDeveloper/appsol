@@ -62,7 +62,7 @@ class TipoCarnetConsulta extends StatelessWidget {
               groupValue: tipoProvider.valorTipoDocumento, 
               activeColor: Colors.white,
               contentPadding: const EdgeInsets.all(0),
-              title: AutoSizeText('PASAPORTE', style: AppThemePeople.lighThemePeople.textTheme.headline3),
+              title: AutoSizeText('Pasaporte', style: AppThemePeople.lighThemePeople.textTheme.headline3),
               onChanged: (value){
                 tipoProvider.valorTipoDocumento=value!;
               },

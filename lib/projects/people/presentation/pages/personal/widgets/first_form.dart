@@ -59,7 +59,7 @@ class _DNIRegister extends StatelessWidget {
                 width: size.width*0.30,
                 height: size.height*0.04,
                 alignment: Alignment.centerLeft,
-                child: AutoSizeText('DOCUMENTO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: size.width*0.0364963503649635))
+                child: AutoSizeText('Documento:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: size.width*0.0364963503649635))
               ),
 
               Expanded(
@@ -69,7 +69,7 @@ class _DNIRegister extends StatelessWidget {
                     ? null
                     : "Por favor complete este campo";
                   },
-                  hintText: 'SELECCIONE EL TIPO DE DOCUMENTO',
+                  hintText: 'Seleccione el tipo de documento',
                   items: dropdownItemsTipoDocumento, 
                   onchanged:(value) =>personalProvider.tipoDocumento = value!
                 ),
@@ -171,7 +171,7 @@ class _ImageCardPersonalRegister extends StatelessWidget {
                   await NDialog(
     
                     dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-                    title:  const Text("INFORMACION",  style: TextStyle(color: Colors.black)),
+                    title:  const Text("Información",  style: TextStyle(color: Colors.black)),
                     content:  const Text("Que accion desea hacer?", style: TextStyle(color: Colors.black)),
                     
                     actions: <Widget>[
@@ -255,8 +255,8 @@ class _ImageCardPersonalRegister extends StatelessWidget {
 
 List<DropdownMenuItem<int>> get dropdownItemSexo{
   List<DropdownMenuItem<int>> menuItems = [
-    const DropdownMenuItem(value: 1, child: Text('MASCULINO')),
-    const DropdownMenuItem(value: 2, child: Text('FEMENINO')),
+    const DropdownMenuItem(value: 1, child: Text('Masculino')),
+    const DropdownMenuItem(value: 2, child: Text('Femenino')),
   ];
   return menuItems;
 }
@@ -302,8 +302,8 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoDocumento{
 
   List<DropdownMenuItem<int>> menuItems = [
     const DropdownMenuItem(value:1, child: AutoSizeText('DNI')),
-    const DropdownMenuItem(value:2, child: AutoSizeText('CARNET DE EXTRANJERIA')),
-    const DropdownMenuItem(value:3, child: AutoSizeText('PASAPORTE')),
+    const DropdownMenuItem(value:2, child: AutoSizeText('Carnet de Extranjeria')),
+    const DropdownMenuItem(value:3, child: AutoSizeText('Pasaporte')),
   ];
   return menuItems;
 }

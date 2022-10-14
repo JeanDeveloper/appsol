@@ -15,7 +15,7 @@ class IngresoDenegadoPage extends StatelessWidget {
     
     return IngresosTemplatePage(
 
-      titleIngreso: 'INGRESO DENEGADO', 
+      titleIngreso: 'Ingreso Denegado', 
       colorAppBar: Colors.red, 
       body: IngresoDenegadoWidget(mensaje: consulta.mensaje),
 

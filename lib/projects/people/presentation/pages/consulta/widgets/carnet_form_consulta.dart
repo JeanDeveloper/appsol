@@ -22,7 +22,7 @@ class CarnetFormConsulta extends StatelessWidget {
 
       children: [
 
-        AutoSizeText('INGRESE EL CARNET DE EXTRANJERIA', style: textstylewelcome(context), maxLines: 1, minFontSize: 6,),            
+        AutoSizeText('Ingrese el Carnet de Extranjeria', style: textstylewelcome(context), maxLines: 1, minFontSize: 6,),            
         
         NumpadV2(
           

@@ -62,6 +62,7 @@ TextStyle styleTituloMovimiento() => const  TextStyle(
 );
 
 TextStyle styleCrearPersonalTitulo() => const  TextStyle(
+  fontWeight: FontWeight.bold,
 
   fontSize: 20,
   color: Colors.white,

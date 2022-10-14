@@ -17,9 +17,7 @@ class ConsultaHomePage extends StatelessWidget {
 
     return MultiProvider(
 
-      providers: [
-        ChangeNotifierProvider(create:  ((context) =>  RadioListConsultaProvider())),
-      ],
+      providers: [ChangeNotifierProvider(create:  ((context) =>  RadioListConsultaProvider()))],
       
       child: Scaffold(
         
@@ -53,7 +51,7 @@ class ConsultaHomePage extends StatelessWidget {
                     child: ButtonMenuPeople(
                   
                       icon: FontAwesomeIcons.house,
-                      text: 'INICIO', 
+                      text: 'Inicio', 
                   
                       onpressed:()=> Navigator.pushNamed(context, '/'),
                   
@@ -64,13 +62,10 @@ class ConsultaHomePage extends StatelessWidget {
                 ),
 
               ),
-    
             ],
-    
           ),
-    
         ),
-        
+
       ),
 
     );

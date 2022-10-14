@@ -71,7 +71,7 @@ class ConstantesWidget extends StatelessWidget {
 
             children: [
 
-              Text( (consulta.tipoDocumento=='DNI')? 'DNI:' : (consulta.tipoDocumento=='PASAPORTE')? 'PASAPORTE:': 'CARNET:', style: styleCrearPersonaltextForm()),
+              Text( (consulta.tipoDocumento=='DNI')? 'DNI:' : (consulta.tipoDocumento=='PASAPORTE')? 'Pasaporte:': 'Carnet:', style: styleCrearPersonaltextForm()),
               InputReadOnlyWidget(initialValue: consulta.docPersona),
 
             ]
@@ -86,7 +86,7 @@ class ConstantesWidget extends StatelessWidget {
 
             children: [
 
-              Text('NOMBRE:  ', style: styleCrearPersonaltextForm()),
+              Text('Nombre:  ', style: styleCrearPersonaltextForm()),
               InputReadOnlyWidget(initialValue: consulta.nombresPersona),
 
             ]
@@ -101,7 +101,7 @@ class ConstantesWidget extends StatelessWidget {
             
             children: [
 
-              Text('CARGO:  ', style: styleCrearPersonaltextForm()),
+              Text('Cargo:  ', style: styleCrearPersonaltextForm()),
               InputReadOnlyWidget(initialValue: consulta.cargo),
               
             ]
@@ -116,7 +116,7 @@ class ConstantesWidget extends StatelessWidget {
 
             children: [
 
-              Text('EMPRESA:  ', style: styleCrearPersonaltextForm()),
+              Text('Empresa:  ', style: styleCrearPersonaltextForm()),
               InputReadOnlyWidget(initialValue: consulta.empresa)
 
             ]

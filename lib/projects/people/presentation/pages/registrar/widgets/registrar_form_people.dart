@@ -138,7 +138,7 @@ class _DNIFormRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final loginProvider = Provider.of<GlobalProvider>(context);
+    // final loginProvider = Provider.of<GlobalProvider>(context);
 
     return Column(
 
@@ -149,24 +149,23 @@ class _DNIFormRegister extends StatelessWidget {
         AutoSizeText('Ingrese el DNI', style: AppThemePeople.lighThemePeople.textTheme.headline2), 
 
         NumPad(
-          
-          length: 8,
+          length: 8, 
 
-          onPressed: (String value) async{
-
-            if( value == '' || value.length<8 ){
-              
-              showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
-
-            }else{
-
-              consultarDOI(context, value, loginProvider.codServicio);
-
-            }
-
-          },
+          // onPressed: (String value)async{
+          //   if(value == '' || value.length <8 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
+          //   consultarDOI(context, value, loginProvider.codServicio);
+          // }
 
         )
+
+        // NumPad(
+        //   length: 8,
+        //   onPressed: (String value) async{
+        //     print(value);
+        //     if(value == '' || value.length < 8) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
+        //     consultarDOI(context, value, loginProvider.codServicio);
+        //   },
+        // )
       
       ],
 
@@ -197,12 +196,12 @@ class _CarnetFormRegister extends StatelessWidget {
           isDni: false,
           length: 9,
 
-          onPressed: (String value) async{
+          // onPressed: (String value) async{
 
-            if( value == '' || value.length<9 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure);
-            consultarDOI(context, value, loginProvider.codServicio);
+          //   if( value == '' || value.length<9 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure);
+          //   consultarDOI(context, value, loginProvider.codServicio);
 
-          },
+          // },
 
         )
 

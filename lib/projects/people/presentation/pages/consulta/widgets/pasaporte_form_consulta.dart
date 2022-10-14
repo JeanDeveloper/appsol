@@ -39,7 +39,7 @@ class PasaporteFormConsulta extends StatelessWidget {
 
               validator: (value){
                 return (value!.length<9)
-                  ? 'ingrese un pasaporte correcto'
+                  ? 'Ingrese un pasaporte correcto'
                   : null;
               },
 
@@ -57,11 +57,11 @@ class PasaporteFormConsulta extends StatelessWidget {
           TextButton(
 
             style: ButtonStyle(
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 50, vertical: 20)),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 85, vertical: 10)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
 
-            child: Text('BUSCAR', style: TextStyle(fontSize: size.width*0.05, color: Colors.black),),
+            child: Text('Buscar', style: TextStyle(fontSize: size.width*0.05, color: Colors.black),),
             
             onPressed: (){
               if(consultaForm.isValidForm()){

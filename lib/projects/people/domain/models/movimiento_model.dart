@@ -46,17 +46,17 @@ class MovimientoModel {
 
   MovimientoModel.fromJson(Map<String, dynamic> json) {
 
-    codMovimiento= json["cod_movimiento"];
-    nombres= json["nombres"] ?? '';
-    dni= json["dni"] ?? '';
-    sexo= json["sexo"] ?? '';
-    cargo= json["cargo"] ?? '';
-    empresa= json["empresa"] ?? '';
+    codMovimiento  = json["cod_movimiento"];
+    nombres        = json["nombres"] ?? '';
+    dni            = json["dni"] ?? '';
+    sexo           = json["sexo"] ?? '';
+    cargo          = json["cargo"] ?? '';
+    empresa        = json["empresa"] ?? '';
     fechaMovimiento= DateTime.parse(json["fecha_movimiento"]) ;
-    fechaSalida = json["fecha_salida"]?? '' ;
-    tipoIngreso= json["tipo_ingreso"] ?? '';
-    tipoPersonal = json["tipo_personal"];
-    pathImage = json["imagen"] ?? '';
+    fechaSalida    = json["fecha_salida"]?? '' ;
+    tipoIngreso    = json["tipo_ingreso"] ?? '';
+    tipoPersonal   = json["tipo_personal"];
+    pathImage      = json["imagen"] ?? '';
 
   }
 

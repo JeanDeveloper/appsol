@@ -30,7 +30,7 @@ class RegistrarMovimientoPage extends StatelessWidget {
 
           children:  [
 
-            //FONDO
+            //FONDO 9387010
             const HomePageBackGroundPeople(),
 
             (registerProvider.isLoading)

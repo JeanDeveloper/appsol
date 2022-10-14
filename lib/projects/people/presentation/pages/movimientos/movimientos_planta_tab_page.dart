@@ -6,31 +6,54 @@ import 'package:solgis/projects/people/domain/providers/radio_list_provider.dart
 import 'package:solgis/projects/people/presentation/pages/movimientos/widgets/widgets.dart';
 import 'package:solgis/projects/people/presentation/widgets/movimientos_tiles.dart';
 
-class MovimientosPlantasTabPage extends StatelessWidget {
+class MovimientosPlantasTabPage extends StatefulWidget {
 
   final int index;
-  
+
   const MovimientosPlantasTabPage({
     Key? key, 
     required this.index, 
   }) : super(key: key);
 
   @override
+  State<MovimientosPlantasTabPage> createState() => _MovimientosPlantasTabPageState();
+}
+
+class _MovimientosPlantasTabPageState extends State<MovimientosPlantasTabPage> {
+  @override
   Widget build(BuildContext context) {
 
-    return Column(
+    final radioListTile  = Provider.of<RadioListProvider>(context);
 
-      children: [
-        //se controlará dependiendo el tipo. mandará a llamar cuantos personal hay por tipo
-        MovimientosListButton( index: index ),
-        const Expanded( child: MovimientosTilesPageBody() )
-      ],
+    // final movimientosListProvider = Provider.of<MovimientosProvider>(context);
+    // final globalProvider = Provider.of<GlobalProvider>(context);
+
+    return RefreshIndicator(
+      onRefresh: () async {
+        radioListTile.setValorTipoPersonaDentroPlanta = 0;
+        setState(() {});
+      },
+      child: Column(
+      
+        children: [
+
+          //se controlará dependiendo el tipo. mandará a llamar cuantos personal hay por tipo
+          MovimientosListButton( index: widget.index ),
+
+          // ignore: prefer_const_constructors
+          Expanded(
+            child: MovimientosTilesPageBody()
+          )
+
+        ],
+
+      ),
 
     );
 
   }
-
 }
+
 
 class MovimientosTilesPageBody extends StatelessWidget {
   
@@ -41,32 +64,32 @@ class MovimientosTilesPageBody extends StatelessWidget {
 
     final radioListTile  = Provider.of<RadioListProvider>(context);
     final currentIndex   = radioListTile.valorTipoPersonaDentroPlanta;
-    final movimientosListProvider = Provider.of<MovimientosProvider>(context, listen: false);
+    final movimientosListProvider = Provider.of<MovimientosProvider>(context, listen:false);
     final globalProvider = Provider.of<GlobalProvider>(context);
 
     switch (currentIndex) {
 
       case 0:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1' ));
       case 1:
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '1'));
       case 2:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '2'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '2'));
       case 3:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '3'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '3'));
       case 4: 
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '4'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '4'));
       case 5:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '5'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '5'));
       case 6:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '6'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '6'));
       case 7:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1', tipoPersonal: '7'));      
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1', tipoPersonal: '7'));      
       default:
-        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'1'));
+        return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio, '1' ));
 
     }
-    
+
   }
 
 }

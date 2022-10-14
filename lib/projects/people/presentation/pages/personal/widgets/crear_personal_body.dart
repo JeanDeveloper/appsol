@@ -17,79 +17,88 @@ class CrearPersonalBody extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final personalProvider = Provider.of<CrearPersonalProvider>(context);
 
-    return Stepper(
-    
-      currentStep: personalProvider.getValorStep,
+    return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      child: Column(
 
-      type: StepperType.horizontal,
-      
-      controlsBuilder: (BuildContext context, ControlsDetails details){
-    
-        return Row(
-
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    
-          children: <Widget>[
-    
-            Expanded(
-    
-              child: TextButton(
-                style: getStyleButtonStep(context),
-                onPressed: details.onStepContinue,
-
-                child: Padding(
-                  padding: const  EdgeInsets.all(8.0),
-                  child: AutoSizeText( ( personalProvider.getValorStep == 1 ) ? 'GUARDAR': 'CONTINUAR', style:  TextStyle( color: Colors.white, fontSize: size.width*0.04)),
-                ),
-
-              ),
-
-            ),
-
-            SizedBox(width: (personalProvider.getValorStep != 0) ? size.width*0.1: null),
-
-            if(personalProvider.getValorStep != 0 )
-              Expanded(
-                child: TextButton(
-                  style: getStyleButtonStep(context),
-                  onPressed: details.onStepCancel,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AutoSizeText('REGRESAR ', style: TextStyle(color: Colors.white, fontSize: size.width*0.04)),
-                  ),
-                ),
-              ),
-
-          ],
-
-        );
-
-      } ,
-
-      onStepContinue: (){
-
-        if(personalProvider.getValorStep<=0){
-          if(personalProvider.isValidForm(personalProvider.getValorStep)){
-            personalProvider.setValorStep = personalProvider.getValorStep + 1;
-            FocusScope.of(context).requestFocus(FocusNode());
-          }
-        }else{
-          print(personalProvider.getValorStep);
-          print(personalProvider.isValidForm(0));
-          print(personalProvider.isValidForm(1));
-
-          if(personalProvider.isValidForm(personalProvider.getValorStep)) guardarPersonal(context);
-        }
-      },
-
-      onStepCancel: (){
-        if(personalProvider.getValorStep>0) personalProvider.setValorStep =  personalProvider.getValorStep - 1;
-      },
-    
-      steps: getSteps(context),
-    
+        
+        
+      ),
     );
+
+    // return Stepper(
     
+    //   currentStep: personalProvider.getValorStep,
+
+    //   type: StepperType.horizontal,
+      
+    //   controlsBuilder: (BuildContext context, ControlsDetails details){
+    
+    //     return Row(
+
+    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    
+    //       children: <Widget>[
+    
+    //         Expanded(
+    
+    //           child: TextButton(
+    //             style: getStyleButtonStep(context),
+    //             onPressed: details.onStepContinue,
+
+    //             child: Padding(
+    //               padding: const  EdgeInsets.all(8.0),
+    //               child: AutoSizeText( ( personalProvider.getValorStep == 1 ) ? 'Guardar': 'Continuar', style:  TextStyle( color: Colors.white, fontSize: size.width*0.04)),
+    //             ),
+
+    //           ),
+
+    //         ),
+
+    //         SizedBox(width: (personalProvider.getValorStep != 0) ? size.width*0.1: null),
+
+    //         if(personalProvider.getValorStep != 0 )
+    //           Expanded(
+    //             child: TextButton(
+    //               style: getStyleButtonStep(context),
+    //               onPressed: details.onStepCancel,
+    //               child: Padding(
+    //                 padding: const EdgeInsets.all(8.0),
+    //                 child: AutoSizeText('Regresar ', style: TextStyle(color: Colors.white, fontSize: size.width*0.04)),
+    //               ),
+    //             ),
+    //           ),
+
+    //       ],
+
+    //     );
+
+    //   } ,
+
+    //   onStepContinue: (){
+
+    //     if(personalProvider.getValorStep<=0){
+    //       if(personalProvider.isValidForm(personalProvider.getValorStep)){
+    //         personalProvider.setValorStep = personalProvider.getValorStep + 1;
+    //         FocusScope.of(context).requestFocus(FocusNode());
+    //       }
+    //     }else{
+    //       print(personalProvider.getValorStep);
+    //       print(personalProvider.isValidForm(0));
+    //       print(personalProvider.isValidForm(1));
+
+    //       if(personalProvider.isValidForm(personalProvider.getValorStep)) guardarPersonal(context);
+    //     }
+    //   },
+
+    //   onStepCancel: (){
+    //     if(personalProvider.getValorStep>0) personalProvider.setValorStep =  personalProvider.getValorStep - 1;
+    //   },
+
+    //   steps: getSteps(context),
+
+    // );
+
 
   }
 

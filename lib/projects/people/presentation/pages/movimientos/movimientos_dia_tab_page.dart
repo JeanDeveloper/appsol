@@ -6,29 +6,47 @@ import 'package:solgis/projects/people/domain/providers/radio_list_provider.dart
 import 'package:solgis/projects/people/presentation/pages/movimientos/widgets/widgets.dart';
 import 'package:solgis/projects/people/presentation/widgets/movimientos_tiles.dart';
 
-class MovimientosDiaTabPage extends StatelessWidget {
+class MovimientosDiaTabPage extends StatefulWidget {
   final int index;
   const MovimientosDiaTabPage({Key? key, required this.index}) : super(key: key);
 
   @override
+  State<MovimientosDiaTabPage> createState() => _MovimientosDiaTabPageState();
+}
+
+class _MovimientosDiaTabPageState extends State<MovimientosDiaTabPage> {
+  @override
   Widget build(BuildContext context) {
 
-    //van a venir valores
+    // final movimientosListProvider = Provider.of<MovimientosProvider>(context);
+    // final globalProvider = Provider.of<GlobalProvider>(context);
+    final radioListTile  = Provider.of<RadioListProvider>(context);
 
-    return Column(
+    return RefreshIndicator(
+      onRefresh: () async{
+        radioListTile.setValorTipoPersonaMovimientoDia = 0;
+        setState(() {});
+      },
 
-      children: [
+      child: Column(
+    
+        children: [
 
-        //se controlará dependiendo el tipo. mandara a llamar cuantos personal hay por tipo
-        MovimientosListButton(index:index),
-        const Expanded(child: MovimientosTilesDiaBody())
+          //se controlará dependiendo el tipo. mandara a llamar cuantos personal hay por tipo
+          MovimientosListButton(index:widget.index),
 
-      ],
+          // ignore: prefer_const_constructors
+          Expanded(
+            child: MovimientosTilesDiaBody()
+          )
+
+        ],
+
+      ),
 
     );
 
   }
-
 }
 
 
@@ -74,5 +92,6 @@ class MovimientosTilesDiaBody extends StatelessWidget {
         return MovimientosTiles(movimientos: movimientosListProvider.getMovimientos(globalProvider.codServicio,'2'));
 
     }
+
   }
 }

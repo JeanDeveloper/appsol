@@ -11,7 +11,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '54.221.148.178:8000';
+  final String _url   = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   List<MovimientoModel> movimientosTotalesSelected = [];
@@ -23,7 +23,7 @@ class MovimientosProvider extends ChangeNotifier{
 
   //PETICION GET
   Future<List<MovimientoModel>> _procesarRespuestaGet(Uri url) async {
-    
+
     final resp = await http.get( 
       url, 
       headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
@@ -79,13 +79,30 @@ class MovimientosProvider extends ChangeNotifier{
       'tipoMovimiento': tipoMovimiento,
       'idServicio': idServicio,
       'tipoPersonal': tipoPersonal,
-    } );
+    });
     final movimientos = await _procesarRespuestaGet(url);
     movimientosContador = movimientos.length;
     notifyListeners();
     if(tipoPersonal== '0') movimientosTotalesSelected = [...movimientos];
     return movimientos;
   }
+
+  //OBTENER DE MOVIMIENTOS LUEGO DE CARGAR
+  Future<List<MovimientoModel>> loadDataMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
+
+    final url = Uri.http( _url, _uncodePath, {
+      'tipoMovimiento': tipoMovimiento,
+      'idServicio': idServicio,
+      'tipoPersonal': tipoPersonal,
+    } );
+    final movimientos = await _procesarRespuestaGet(url);
+    movimientosContador = movimientos.length;
+    print(movimientosContador);
+    notifyListeners();
+    if(tipoPersonal== '0') movimientosTotalesSelected = [...movimientos];
+    return movimientos;
+  }
+
 
   //CONSULTAR UN MOVIMIENTO
   Future<List<MovimientoModel>> getSearchMovimientos(String query)async{
@@ -94,9 +111,15 @@ class MovimientosProvider extends ChangeNotifier{
     Future.delayed(const Duration(seconds: 3));
 
     for( int i= 0; i< movimientosTotalesSelected.length; i++ ) {
+
       if (movimientosTotalesSelected[i].dni!.contains(query)){
         movimientosFiltered.add(movimientosTotalesSelected[i]);
       }
+
+      // if( movimientosTotalesSelected[i].dni!.contains(query)) movimientosFiltered.add(movimientosTotalesSelected[i]);
+
+
+
     }
     return movimientosFiltered;
   }

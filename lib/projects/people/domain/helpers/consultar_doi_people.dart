@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/data/services/consulta_doi_service.dart';
 import 'package:solgis/projects/people/data/services/datos_acceso_movimiento_services.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/providers/numpad_provider.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
 void consultarDOI(BuildContext context, String documento, String codServicio ) async {
+  
 
   CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
+  final numpadProvider= Provider.of<NumPadProvider>(context, listen: false); 
   progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
   progressDialog.show();
   ConsultaModel consulta = await ConsultaDOIService().getConsulta(documento, codServicio);
@@ -20,6 +24,7 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, 'ingreso_autorizado_people', arguments:  consulta);
       // Navigator.pushReplacementNamed(context, 'ingreso_autorizado_people', arguments: consulta);
+
     }else {
 
       //OBTENGO LOS DATOS DE ACCESO DEL MOVIMIENTO DE ENTRADA.
@@ -33,10 +38,13 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
 
     }
 
+    numpadProvider.dni = '';
+    numpadProvider.carnet = '';
+
   }else{
-    
+
     if(consulta.docPersona != null){
-      
+
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, 'ingreso_denegado_people', arguments: consulta);
 
@@ -47,8 +55,8 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
 
         dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
         title:  const Text("INFORMACION",  style: TextStyle(color: Colors.black)),
-        content:  const Text("El personal no se encuentra en el sistema \n ¿Deseas registar al personal?", style: TextStyle(color: Colors.black)),  
-        
+        content:  Text("El documento $documento no se encuentra en el sistema \n ¿Deseas registar al personal?", style: const TextStyle(color: Colors.black)),  
+
         actions: <Widget>[
 
           TextButton(
@@ -58,18 +66,23 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
             onPressed: ()=>Navigator.pushReplacementNamed(context, 'crear_personal_page_people', arguments: {
               "dni_persona" : documento,
               "cod_servicio" : codServicio,
-            }), 
+            }),
+
           ),
 
           TextButton(
 
             child: const Text("No"),
-            onPressed: ()=> Navigator.pop(context)
+            onPressed: (){
+
+              Navigator.pop(context);
+
+            }
 
           ),
 
         ],
-      
+
       ).show(context);
 
     }
@@ -77,14 +90,6 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
   }
 
 }
-
-
-
-
-
-
-
-
 
 
   // if(consulta.resultado == 'OK'){

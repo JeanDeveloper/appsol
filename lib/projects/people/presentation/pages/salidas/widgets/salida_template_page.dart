@@ -134,7 +134,7 @@ class _SalidaTemplateBody extends StatelessWidget {
                       // if(consulta.tipoConsulta == 'INGRESO AUTORIZADO')
                       ButtonMenuPeople(
                         icon: Icons.accessibility_outlined, 
-                        text: 'REGISTRAR',
+                        text: 'Registrar',
                         onpressed: funtionAccept,
                       ),
                       
@@ -143,7 +143,7 @@ class _SalidaTemplateBody extends StatelessWidget {
                         
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
-                        text: 'SALIR',
+                        text: 'Salir',
                         onpressed: ()=> Navigator.pop(context),
                       ),
             
