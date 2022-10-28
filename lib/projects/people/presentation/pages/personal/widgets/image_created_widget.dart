@@ -19,9 +19,9 @@ class ImageCreatedWidget extends StatelessWidget{
 
         if(!snapshot.hasData) return const CircularProgressIndicator();
 
-        if(snapshot.hasData) return snapshot.data!;
+        // if(snapshot.hasData) return snapshot.data!;
 
-        return Container();
+        return snapshot.data!;
 
       
       },

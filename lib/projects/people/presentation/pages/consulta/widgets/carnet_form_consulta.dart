@@ -1,10 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
-import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
-import 'package:solgis/projects/people/domain/helpers/validar_consulta.dart';
 import 'package:solgis/projects/people/presentation/widgets/numpad2_people.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
@@ -27,20 +24,15 @@ class CarnetFormConsulta extends StatelessWidget {
         NumpadV2(
           
           length: 9,
+          isDni: false,
 
-          onPressed: (String value) async{
-
-            if( value == '' || value.length<9 ){
-              
-              showSnackBarAwesome(context, 'Error', 'Ingrese un Pasaporte valido', ContentType.failure);
-
-            }else{
-
-              validarConsulta(context, value, globalProvider.codServicio);
-
-            }
-
-          },
+          // onPressed: (String value) async{
+          //   if( value == '' || value.length<9 ){
+          //     showSnackBarAwesome(context, 'Error', 'Ingrese un Pasaporte valido', ContentType.failure);
+          //   }else{
+          //     validarConsulta(context, value, globalProvider.codServicio);
+          //   }
+          // },
 
         )
       

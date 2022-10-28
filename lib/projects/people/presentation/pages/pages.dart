@@ -1,3 +1,4 @@
+export 'package:solgis/projects/people/presentation/pages/registrar/register_scan_gun_page.dart';
 export 'package:solgis/projects/people/presentation/pages/consulta/consulta_home_page.dart';
 export 'package:solgis/projects/people/presentation/pages/consulta/consulta_page.dart';
 export 'package:solgis/projects/people/presentation/pages/detalle_movimiento/detalle_movimiento_page.dart';

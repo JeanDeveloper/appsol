@@ -85,8 +85,11 @@ class RegistrarMovimientoPage extends StatelessWidget {
                       ),
 
                     ],
+
                   ),
+
                 ),
+
               ),
 
             ),

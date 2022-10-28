@@ -26,7 +26,7 @@ class ProjectModel {
   );
   static const listProjects = [
     people,
-    cargo,
+    // cargo,
   ];
 
 }

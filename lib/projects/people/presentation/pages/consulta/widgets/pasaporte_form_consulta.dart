@@ -8,8 +8,6 @@ import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 
 class PasaporteFormConsulta extends StatelessWidget {
   
-  const PasaporteFormConsulta({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
 
@@ -35,15 +33,27 @@ class PasaporteFormConsulta extends StatelessWidget {
             
             child: InputWidget(
 
-              length: 12,
+              length: 11,
 
               validator: (value){
-                return (value!.length<9)
-                  ? 'Ingrese un pasaporte correcto'
+                return (value!.length<9 || value.length > 13)
+                  ? ''
                   : null;
               },
 
-              onchanged: (value)=> consultaForm.pasaporte = value,
+              onchanged: (value){
+                consultaForm.pasaporte = value;
+
+                // if(consultaForm.pasaporte.length == 9) {
+                //   FocusScope.of(context).requestFocus(FocusNode());
+                //   validarConsulta(context, consultaForm.pasaporte , globalProvider.codServicio);
+                //   consultaForm.pasaporte='';
+                // }
+
+              },
+
+
+              // onchanged: (value)=> consultaForm.pasaporte = value,
 
               hintext: 'Ingrese el pasaporte', 
               icon: FontAwesomeIcons.idCard, 
@@ -52,16 +62,16 @@ class PasaporteFormConsulta extends StatelessWidget {
 
           ),
 
-          const SizedBox(height:20),
+          SizedBox(height:size.height* 0.05),
 
           TextButton(
 
             style: ButtonStyle(
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 85, vertical: 10)),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 15)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
 
-            child: Text('Buscar', style: TextStyle(fontSize: size.width*0.05, color: Colors.black),),
+            child: const Text('Buscar', style: TextStyle(fontSize: 20, color: Colors.black),),
             
             onPressed: (){
               if(consultaForm.isValidForm()){

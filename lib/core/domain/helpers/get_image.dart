@@ -33,12 +33,10 @@ Future<Widget> getImage(String? urlimage, {bool create = false} ) async {
       final resp = await http.get(uri);
 
       if(resp.statusCode==200){
-
         return Image(
           image: NetworkImage( urlimage ),
           fit: BoxFit.fill,
         );
-      
       }else{
         return const Image(
           image: AssetImage('assets/pngs/no-image-rectangle.png'),
@@ -47,14 +45,10 @@ Future<Widget> getImage(String? urlimage, {bool create = false} ) async {
       }
 
     }else{
-        
       return Image.file(
-
         File( urlimage ),
         fit: BoxFit.fill,
-      
       );
-
     }
 
   }

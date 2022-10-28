@@ -60,7 +60,6 @@ class _HomeHeaderPeople extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       width: double.infinity,
       height: 200,
-
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +72,6 @@ class _HomeHeaderPeople extends StatelessWidget {
             ),
             SizedBox(height: size.height*0.02),
           ],
-
         ),
       ),
     );
@@ -104,7 +102,15 @@ class _IconMenuPeople extends StatelessWidget {
           icon: FontAwesomeIcons.person, 
           text: 'Registrar',
           onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
+        ),
 
+        SizedBox(width: size.width*0.08),
+
+        //REGISTRAR POR DISPOSITIVO SCANNER
+        ButtonMenuPeople(
+          icon: Icons.qr_code_scanner_outlined, 
+          text: 'Fotocontrol',
+          onpressed: ()=> Navigator.pushNamed(context, 'register_movimiento_gun_people'),
         ),
 
         SizedBox(width: size.width*0.08),

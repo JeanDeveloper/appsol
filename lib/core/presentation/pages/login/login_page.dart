@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
                         const Spacer(flex: 8),
                         Text(
                           'Bienvenido',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.aBeeZee(
                             fontSize: size.height * .04,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xffffffff)
@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                                 onPressed: () => _openPage(context, const LoginAgenteForm()),
                                 child: Text(
                                   'DNI',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.aBeeZee(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
                                     color: const Color(0xffffffff)
@@ -151,7 +151,7 @@ class RectangularButton extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.aBeeZee(
             fontWeight: FontWeight.w500,
             fontSize: 14,
           ),

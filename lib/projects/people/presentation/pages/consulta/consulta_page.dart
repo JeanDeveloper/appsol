@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/consulta_datos_persona_service.dart';
-import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/consulta_validacion_model.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 class ConsultaPage extends StatelessWidget {
   const ConsultaPage({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class ConsultaPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white,)
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xff1E2971),
+        backgroundColor: Colors.blue,
         title: const Text('CONSULTA', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))
       ),
 
@@ -58,9 +57,8 @@ class _ConsultaPageBody extends StatelessWidget {
 
     ConsultaDatosService consultadatosservice = ConsultaDatosService();
 
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
+    return Padding(
+
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
 
       child: Column(
@@ -101,18 +99,22 @@ class _ConsultaPageBody extends StatelessWidget {
             
             builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
-              if(!snapshot.hasData) return Container(width: 40, height: 40, child:  const Center(child: CircularProgressIndicator()));
+              // if(!snapshot.hasData) return Container(width: 40, height: 40, child:  const Center(child: CircularProgressIndicator()));
+
+
+              if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
 
               if( snapshot.data!.valor == '0'){
 
                 if(loginProvider.codCliente  == '25866') return _ContainerEstado(size:size, text: 'HOMOLOGADO', color: Colors.greenAccent); // CODIGO SAASA
                 if( loginProvider.codCliente == '00013') return _ContainerEstado(size:size, text: 'INDUCIDO', color: Colors.greenAccent);  //CODIGO EXALMAR 
-                if( loginProvider.codCliente == '00005') return _ContainerEstado(size:size, text: 'AUTORIZADO', color: Colors.greenAccent);
-                return _ContainerEstado(size:size, text: 'VIGENTE', color: Colors.greenAccent);
+                // if( loginProvider.codCliente == '00005') return _ContainerEstado(size:size, text: 'AUTORIZADO', color: Colors.greenAccent);//CODIGO HAYDUK
+                
+                return _ContainerEstado(size:size, text: 'AUTORIZADO', color: Colors.greenAccent);
 
               } 
               
-              if(snapshot.data!.valor == '-1')return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red);
+              if(snapshot.data!.valor == '-1') return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red);
 
               return _ContainerEstado(size:size, text: 'VENCIDO', color: Colors.red,);
 
@@ -208,139 +210,139 @@ class _ConsultaPageBody extends StatelessWidget {
             ],
 
           ),
-          
+
           SizedBox(height: size.height*0.02), 
 
-          //FECHA DE AUTORIZACION 
-          Row(
+          // //FECHA DE AUTORIZACION 
+          // Row(
 
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   
-            children: [
+          //   children: [
   
-              Text('F.  AUTORIZACION:', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
+          //     Text('F.  AUTORIZACION:', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
 
-              FutureBuilder(
+          //     FutureBuilder(
 
-                future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
+          //       future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
 
-                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
+          //       builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
-                  // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
-                  if(!snapshot.hasData) return Expanded(child:Container());
-                  if( snapshot.data!.fiAutorizacion == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
+          //         // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
+          //         if(!snapshot.hasData) return Expanded(child:Container());
+          //         if( snapshot.data!.fiAutorizacion == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  final String? fecha = snapshot.data!.fiAutorizacion;
-                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
+          //         final String? fecha = snapshot.data!.fiAutorizacion;
+          //         return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
-                }
+          //       }
 
-              ),
+          //     ),
 
-            ],
-          ),
+          //   ],
+          // ),
 
-          SizedBox(height: size.height*0.03), 
+          // SizedBox(height: size.height*0.03), 
 
-          //CAMPO STCR PENSION
-          Row(
+          // //CAMPO STCR PENSION
+          // Row(
 
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   
-            children: [
+          //   children: [
   
-              Text('SCTR PENSION:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
+          //     Text('SCTR PENSION:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
 
 
-              FutureBuilder(
+          //     FutureBuilder(
 
-                future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
+          //       future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
                 
-                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
+          //       builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
-                  // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
-                  if(!snapshot.hasData) return Expanded(child:Container());
-                  if( snapshot.data!.sctrSaludFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
+          //         // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
+          //         if(!snapshot.hasData) return Expanded(child:Container());
+          //         if( snapshot.data!.sctrSaludFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  final String? fecha = snapshot.data!.sctrSaludFv;
-                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
+          //         final String? fecha = snapshot.data!.sctrSaludFv;
+          //         return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
-                }
+          //       }
               
-              ),
+          //     ),
 
               
-            ],
+          //   ],
 
-          ),
+          // ),
           
 
-          SizedBox(height: size.height*0.03), 
+          // SizedBox(height: size.height*0.03), 
 
-          //CAMPO STCR SALUD
-          Row(
+          // //CAMPO STCR SALUD
+          // Row(
 
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   
-            children: [
+          //   children: [
   
-              Text('SCTR SALUD:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
+          //     Text('SCTR SALUD:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
 
 
-              FutureBuilder(
+          //     FutureBuilder(
 
-                future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
+          //       future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
                 
-                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
+          //       builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
-                  // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
-                  if(!snapshot.hasData) return Expanded(child:Container());
+          //         // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
+          //         if(!snapshot.hasData) return Expanded(child:Container());
 
-                  if( snapshot.data!.sctrPensionFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
+          //         if( snapshot.data!.sctrPensionFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  final String? fecha = snapshot.data!.sctrPensionFv;
-                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
+          //         final String? fecha = snapshot.data!.sctrPensionFv;
+          //         return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
-                }
+          //       }
 
-              ),
-            ],
+          //     ),
+          //   ],
 
-          ),
+          // ),
 
 
-          SizedBox(height: size.height*0.03), 
+          // SizedBox(height: size.height*0.03), 
 
-          //CAMPO EMO
-          Row(
+          // //CAMPO EMO
+          // Row(
 
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   
-            children: [
+          //   children: [
   
-              Text('EMO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
+          //     Text('EMO:  ', style: styleCrearPersonaltextForm().copyWith(fontSize: 13)),
 
-              FutureBuilder(
+          //     FutureBuilder(
 
-                future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
+          //       future: consultadatosservice.getConsulta(consulta.codigoServicio.toString(), consulta.codigoPersona.toString(), consulta.tipoPersona![0]),
                 
-                builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
+          //       builder:  ( BuildContext context , AsyncSnapshot<ConsultaDatosPersonaModel>snapshot ){
 
-                  // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
+          //         // if(!snapshot.hasData) return Expanded(child: Center(child: Container(width: size.width*0.05, height: size.width*0.05, child:  const CircularProgressIndicator())));
 
-                  if(!snapshot.hasData) return Expanded(child:Container());
+          //         if(!snapshot.hasData) return Expanded(child:Container());
 
-                  if( snapshot.data!.emoFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
+          //         if( snapshot.data!.emoFv == '0') return const InputReadOnlyWidget(initialValue: 'NO TIENE');
 
-                  final String? fecha = snapshot.data!.emoFv;
-                  return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
+          //         final String? fecha = snapshot.data!.emoFv;
+          //         return InputReadOnlyWidget(initialValue: DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.parse(fecha!)).toUpperCase());
 
-                }
-              ),
+          //       }
+          //     ),
 
-            ],
+          //   ],
 
-          ),
+          // ),
 
         ],
 
@@ -354,6 +356,7 @@ class _ConsultaPageBody extends StatelessWidget {
 }
 
 class _ContainerEstado extends StatelessWidget {
+
   const _ContainerEstado({
     Key? key,
     required this.size, 
@@ -370,17 +373,16 @@ class _ContainerEstado extends StatelessWidget {
 
     return Container(
 
-      height: size.height*0.03,
-      width: size.width*0.3,
+      height: size.height*0.05,
+      width: size.width*0.5,
 
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(50)
-
       ),
 
       alignment: Alignment.center,
-      child: Text(text, style: const TextStyle(color: Colors.white)),
+      child: Text(text, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
 
     );
 

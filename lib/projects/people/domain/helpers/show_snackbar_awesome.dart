@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 void showSnackBarAwesome(BuildContext context, String title, String message, ContentType contenttype){
 
   final snackBar = SnackBar(
+    duration: Duration(seconds: 1),
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(

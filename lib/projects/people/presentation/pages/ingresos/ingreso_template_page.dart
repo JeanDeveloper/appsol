@@ -43,7 +43,7 @@ class IngresosTemplatePage extends StatelessWidget {
           title: Text(
             titleIngreso, 
             style: const  TextStyle(
-              fontSize: 25, 
+              fontSize: 23, 
               fontWeight: FontWeight.bold
             )
           ) //dinamico,
@@ -64,7 +64,6 @@ class IngresosTemplatePage extends StatelessWidget {
   }
 
 }
-
 
 class _IngresosTemplateBody extends StatelessWidget {
 

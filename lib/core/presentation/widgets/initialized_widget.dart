@@ -38,8 +38,11 @@ class _InitializedWidgetState extends State<InitializedWidget> with WidgetsBindi
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // print(state);
+    // print(state.name);
 
     if(state == AppLifecycleState.resumed){
+      // print('se tiene que mandar la peticion del estado del dispositivo');
       checkAuthDevice()
       .then((value) {
         _estado = value;

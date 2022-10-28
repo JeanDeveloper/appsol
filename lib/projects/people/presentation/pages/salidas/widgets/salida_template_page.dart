@@ -45,7 +45,7 @@ class SalidaTemplatePage extends StatelessWidget {
             titleIngreso, 
             style: const  TextStyle(
               fontSize: 25, 
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.bold,
             )
           ) //dinamico,
 

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
@@ -31,17 +32,17 @@ class DropdownButton2Widget extends StatelessWidget {
         buttonPadding: const EdgeInsets.only(left:10),
         buttonElevation: 0,
         dropdownElevation: 0,
-        buttonDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(
-            color: Colors.black
-          )
-        ),
+        // buttonDecoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(5),
+        //   border: Border.all(
+        //     color: Colors.black
+        //   )
+        // ),
         style:  TextStyle(color: Colors.black, fontSize:  size.width*0.030),
         items: items, //
         buttonWidth: size.width*0.57,
         isExpanded: true,
-        hint: Text(hinText, style: TextStyle(color:Colors.grey, fontSize: size.width*0.030)), //
+        hint: AutoSizeText(hinText, style: TextStyle(color:Colors.grey, fontSize: size.width*0.03)), //
         onChanged: onchanged, //
         value: value,//
         searchController: texteditingcontroller, //

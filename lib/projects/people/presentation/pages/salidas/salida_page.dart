@@ -146,18 +146,18 @@ class SalidaPageBody extends StatelessWidget {
                 
                   SizedBox(width: size.width*0.09),
             
-                  Column(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.exit_to_app_outlined, color: Colors.white, size: size.width*0.06),
-                        onPressed: (){
-                          // Navigator.pushReplacementNamed(context, '');
-                          Navigator.pop(context);
-                        },
-                      ),
-                      Text('SALIR',  style: textStyleLetter() ),
-                    ],
-                  )
+                  // Column(
+                  //   children: [
+                  //     IconButton(
+                  //       icon: Icon(Icons.exit_to_app_outlined, color: Colors.white, size: size.width*0.06),
+                  //       onPressed: (){
+                  //         // Navigator.pushReplacementNamed(context, '');
+                  //         Navigator.pop(context);
+                  //       },
+                  //     ),
+                  //     Text('SALIR',  style: textStyleLetter() ),
+                  //   ],
+                  // )
 
                 ],
 
@@ -289,9 +289,8 @@ class SalidaPageContent extends StatelessWidget {
           ),
           SizedBox(height: size.height*0.02), 
 
-
           SizedBox(height: size.height*0.03), 
-      
+
           //FOTO DE INGRESO Y FOTO DE SALIDA.
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width*0.07 ),

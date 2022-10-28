@@ -4,14 +4,15 @@ import 'package:solgis/projects/people/theme/theme.dart';
 
 AppBar appBarNoSearching ( BuildContext context, String title, Function startSearchFunction){
 
+
   return AppBar(
-    backgroundColor: AppThemePeople.lighThemePeople.primaryColor,
+    backgroundColor: Colors.blue,
     centerTitle: true,
     leading: IconButton(
       icon: Icon(Icons.arrow_back_ios_new_rounded, color: AppThemePeople.lighThemePeople.primaryIconTheme.color),
       onPressed: ()=>Navigator.pop(context), 
     ),
-    title: Text(title),
+    title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
     actions: <Widget>[
       IconButton(
         icon: Icon(Icons.search, size: AppThemePeople.lighThemePeople.primaryIconTheme.size, color: AppThemePeople.lighThemePeople.primaryIconTheme.color),

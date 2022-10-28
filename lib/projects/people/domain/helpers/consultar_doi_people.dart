@@ -8,7 +8,6 @@ import 'package:solgis/projects/people/domain/providers/numpad_provider.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
 void consultarDOI(BuildContext context, String documento, String codServicio ) async {
-  
 
   CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
   final numpadProvider= Provider.of<NumPadProvider>(context, listen: false); 
@@ -28,12 +27,12 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
     }else {
 
       //OBTENGO LOS DATOS DE ACCESO DEL MOVIMIENTO DE ENTRADA.
-      final datos_acceso = await DatosAccesoService().getDatosAccesosMovimiento(consulta.codigoServicio, consulta.codigoPersona!);
+      final datosAcceso = await DatosAccesoService().getDatosAccesosMovimiento(consulta.codigoServicio, consulta.codigoPersona!);
 
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, 'salida_autorizada_people', arguments: {
         'consulta'    : consulta,
-        'datos_acceso': datos_acceso,
+        'datos_acceso': datosAcceso,
       });
 
     }
@@ -63,10 +62,7 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
 
             child: const Text("Si"),
 
-            onPressed: ()=>Navigator.pushReplacementNamed(context, 'crear_personal_page_people', arguments: {
-              "dni_persona" : documento,
-              "cod_servicio" : codServicio,
-            }),
+            onPressed: ()=>Navigator.pushReplacementNamed(context, 'crear_personal_page_people', arguments: documento),
 
           ),
 

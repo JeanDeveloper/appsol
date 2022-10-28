@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
-import 'package:solgis/projects/people/theme/theme.dart';
 
 class CrearPersonalPage extends StatelessWidget {
   
@@ -12,6 +11,9 @@ class CrearPersonalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+  // final documento = ModalRoute.of(context)?.settings.arguments as String;
 
   return MultiProvider(
       providers: [
@@ -22,11 +24,11 @@ class CrearPersonalPage extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             titleSpacing: 20,
-            backgroundColor: AppThemePeople.lighThemePeople.appBarTheme.backgroundColor,
+            backgroundColor: Colors.blue,
             centerTitle: true,
             title: AutoSizeText('Crear Personal', style:styleCrearPersonalTitulo()),
           ),
-          body: const CrearPersonalBody(),
+          body: CrearPersonalBody(),
         ),
       ),
     );

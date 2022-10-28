@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:solgis/projects/people/domain/utils/input_decorations_read_only.dart';
+// import 'package:solgis/projects/people/domain/utils/input_decorations_read_only.dart';
 
 class InputReadOnlyWidget extends StatelessWidget {
   
   final String? initialValue;
+  final double? width;
 
   const InputReadOnlyWidget({
     Key? key, 
-    this.initialValue
+    this.initialValue,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class InputReadOnlyWidget extends StatelessWidget {
 
     return  SizedBox(
 
-      width: size.width*0.57,
+      width: (width != null)? width : size.width*0.57,
       height: size.height*0.04,
 
       child: TextFormField(

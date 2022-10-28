@@ -47,7 +47,7 @@ class PeopleAppState extends StatelessWidget {
       // theme: AppThemePeople.lighThemePeople ,
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.montserratTextTheme()
+        textTheme: GoogleFonts.aBeeZeeTextTheme()
       ),
     );
 

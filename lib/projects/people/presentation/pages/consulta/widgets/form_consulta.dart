@@ -5,7 +5,7 @@ import 'package:solgis/projects/people/presentation/pages/consulta/widgets/widge
 
 class FormConsulta extends StatelessWidget {
 
-  const FormConsulta({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class FormConsulta extends StatelessWidget {
               const CarnetFormConsulta(),
             
             if(tipoProvider.valorTipoDocumento==3)
-              const PasaporteFormConsulta(),
+              PasaporteFormConsulta(),
         
           ],
         

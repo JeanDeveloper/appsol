@@ -34,7 +34,7 @@ void validarConsulta(BuildContext context, String documento, String codServicio 
         dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
 
         title:  const Text("INFORMACION",  style: TextStyle(color: Colors.black)),
-        content:  const Text("El personal no se encuentra en el sistema \n Por favor Registrelo", style: TextStyle(color: Colors.black)),  
+        content:  Text("El personal $documento \nno se encuentra en el sistema \nPor favor Registrelo", style: TextStyle(color: Colors.black)),  
         
         actions: <Widget>[
 

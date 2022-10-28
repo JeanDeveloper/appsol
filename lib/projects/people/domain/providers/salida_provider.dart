@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SalidaProvider extends ChangeNotifier {
 
@@ -8,10 +9,13 @@ class SalidaProvider extends ChangeNotifier {
   //controla el radio de otro material
   int _otroMaterial  = 1;
 
-
   String _guia = '';
 
   String _materialValor = '';
+
+  XFile?  _fotoGuia;
+  XFile?  _fotoMaterialValor; 
+
 
 
   // METODOS PARA LA VARIABLE GUIA
@@ -49,4 +53,25 @@ class SalidaProvider extends ChangeNotifier {
   
   }
 
+  // METODOS PARA LA VARIABLE FOTO GUIA
+  XFile? get fotoGuia => _fotoGuia;
+
+  set fotoGuia (XFile? value) {
+    _fotoGuia = value;
+    notifyListeners();
+  }
+
+
+  // METODOS PARA LA VARIABLE FOTO MATERIAL VALOR
+  XFile? get fotoMaterialValor => _fotoMaterialValor;
+
+  set fotoMaterialValor ( XFile? value) {
+    _fotoMaterialValor = value;
+    notifyListeners();
+  }
+
+
 }
+
+
+

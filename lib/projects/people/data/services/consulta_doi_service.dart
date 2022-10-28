@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart
 
 class ConsultaDOIService {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'appsol/people/detalle-personal/';
 
   final bool cargando = false;
@@ -15,6 +15,7 @@ class ConsultaDOIService {
   late ConsultaModel consulta;
 
   Future<ConsultaModel> _procesarRespuestaGet(Uri url) async{
+
 
     final resp  = await http.get(
       url,
@@ -33,14 +34,14 @@ class ConsultaDOIService {
     }else{
 
       throw Exception('Error al cargar la Consulta');
-    
+
     }
 
 
   }
   
   // METODO PARA LA CONSULTA 
-  Future<ConsultaModel>  getConsulta(String doc, String idServicio)async{
+  Future<ConsultaModel> getConsulta(String doc, String idServicio)async{
     
     final url = Uri.http(_url, _uncodePath,{
 

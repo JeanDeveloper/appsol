@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
@@ -44,9 +45,11 @@ class SalidaAutorizadaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final salidaProvider = Provider.of<SalidaProvider>(context, listen: false);
+    final loginGlobal = Provider.of<GlobalProvider>(context,listen: false);
+
 
     return SalidaTemplatePage(
-      titleIngreso: 'Salida Autorizada', 
+      titleIngreso: 'SALIDA AUTORIZADA', 
       colorAppBar: const Color(0xffF57E25), 
       body: SalidaAutorizadaWidget(consulta: consulta, datosAcceso: datosAcceso),
       consulta: consulta,
@@ -63,13 +66,30 @@ class SalidaAutorizadaBody extends StatelessWidget {
 
         await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
 
+          if(salidaProvider.fotoGuia != null ) {
+            if(loginGlobal.codServicio == '3550'){
+              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
+              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, '1371', consulta.codigoPersona.toString(),isCosco: true);
+            }else{
+              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
+            }
+          }
+
+        // if(salidaProvider.fotoGuia != null ) await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
+
+          if(salidaProvider.fotoMaterialValor != null ) {
+            if(loginGlobal.codServicio == '3550'){
+              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
+              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, '1371', consulta.codigoPersona.toString(), isCosco: true );
+            }else{
+              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
+            }
+          }
+
+        // if(salidaProvider.fotoMaterialValor != null ) await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
+
         progressDialog.dismiss();
 
-        // bool? hasvibration = await Vibration.hasVibrator();
-
-        // if( hasvibration! ){
-        //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
-        // }
 
         // ignore: use_build_context_synchronously
         showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);

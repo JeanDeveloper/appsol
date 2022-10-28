@@ -43,7 +43,7 @@ class AppsolState extends StatelessWidget {
       title: 'SOLAPP',
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.montserratTextTheme()
+        textTheme: GoogleFonts.aBeeZeeTextTheme()
       ),
       home: const InitializedWidget(),
       routes: SolAppRoutes.getAppRoutes(),

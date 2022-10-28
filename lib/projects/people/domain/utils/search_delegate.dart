@@ -13,8 +13,6 @@ import 'package:solgis/projects/people/theme/theme.dart';
 
 class SearchDelegateProvider extends SearchDelegate{
   
-  @override
-  TextInputType? get keyboardType => TextInputType.number;
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -22,33 +20,32 @@ class SearchDelegateProvider extends SearchDelegate{
       textTheme: const TextTheme(
         headline6: TextStyle( color: Colors.white),
       ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppThemePeople.lighThemePeople.primaryColor,
+      appBarTheme:const AppBarTheme(
+        backgroundColor: Colors.blue,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: Colors.yellow.withOpacity(0.5)),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(color: Colors.white),
         border: InputBorder.none,
       ),
     );
   }
 
   @override
-  String? get searchFieldLabel => 'Ingrese el numero de documento';
+  String? get searchFieldLabel => 'Documento o Nombres';
 
   @override
   TextStyle? get searchFieldStyle => const TextStyle(
-    color: Colors.grey
+    color: Colors.red
   );
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [
 
+    return [
       IconButton(
         icon: const Icon(Icons.close),
         onPressed: ()=>query = '', 
       )
-
     ];
 
   }
@@ -85,7 +82,6 @@ class SearchDelegateProvider extends SearchDelegate{
     return FutureBuilder(
 
       future: searchProvider.getSearchMovimientos(query),
-      
       builder: (context, AsyncSnapshot<List<MovimientoModel>> snapshot){
         if (!snapshot.hasData)return const Center(child: CircularProgressIndicator());
         if(snapshot.data!.isEmpty ) return _emptyContainer();
@@ -106,7 +102,6 @@ class SearchDelegateProvider extends SearchDelegate{
   @override
   Widget buildSuggestions(BuildContext context) {
 
-
     final searchProvider = Provider.of<MovimientosProvider>(context, listen: false);
 
     final size = MediaQuery.of(context).size;
@@ -118,7 +113,6 @@ class SearchDelegateProvider extends SearchDelegate{
       future: searchProvider.getSearchMovimientos(query),
       
       builder: (context, AsyncSnapshot<List<MovimientoModel>> snapshot){
-
         if (!snapshot.hasData)return const Center(child: CircularProgressIndicator());
         if(snapshot.data!.isEmpty ) return _emptyContainer();
         final movimientos = snapshot.data;
@@ -130,6 +124,7 @@ class SearchDelegateProvider extends SearchDelegate{
           itemBuilder: (context, index) => _MovimientoTile(movimiento:movimientos[index]),
         );
       }
+
     );
 
   }

@@ -5,19 +5,19 @@ InputDecoration inputDecorationDatos()=> const  InputDecoration(
   contentPadding: EdgeInsets.only(left: 10),
 
 
-  enabledBorder:  OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(5)),
-    borderSide: BorderSide(
-      color: Colors.black
-    )
-  ),
+  // enabledBorder:  OutlineInputBorder(
+  //   borderRadius: BorderRadius.all(Radius.circular(5)),
+  //   borderSide: BorderSide(
+  //     color: Colors.black
+  //   )
+  // ),
 
-  focusedBorder:  OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(5)),
-    borderSide: BorderSide(
-      color: Colors.black
-    )
-  ),
+  // focusedBorder:  OutlineInputBorder(
+  //   borderRadius: BorderRadius.all(Radius.circular(5)),
+  //   borderSide: BorderSide(
+  //     color: Colors.black
+  //   )
+  // ),
 
 );
 

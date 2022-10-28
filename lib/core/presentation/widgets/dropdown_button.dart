@@ -32,12 +32,12 @@ class DropdownButtonWidget extends StatelessWidget {
       width: size.width*0.57,
       height: size.height*0.04,
 
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Colors.black,
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(5),
+      //   border: Border.all(
+      //     color: Colors.black,
+      //   ),
+      // ),
 
       child: DropdownButtonFormField<int>(
 

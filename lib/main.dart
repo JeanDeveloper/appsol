@@ -16,4 +16,5 @@ void main() async{
   await FlutterDeviceIdentifier.requestPermission();
   SystemChrome.setEnabledSystemUIMode( SystemUiMode.manual, overlays: [] );
 
-} 
+}
+

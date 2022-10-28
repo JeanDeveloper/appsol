@@ -42,18 +42,17 @@ class NumPad extends StatelessWidget {
               NumpadButton(
                 text: '1',
                 onPressed: (){
-
                   if(isDni){
-
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('1', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
-
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
                   }else{
-
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('1', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
-
-                  }   
+                    numpadProvider.setValueCarnet('1', length);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('1', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                  }
                 },
               ),
 
@@ -69,12 +68,15 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('2', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
-
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('2', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    numpadProvider.setValueCarnet('2', length);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('2', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -97,12 +99,15 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('3', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
-
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('3', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    numpadProvider.setValueCarnet('3', length);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('3', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -122,10 +127,15 @@ class NumPad extends StatelessWidget {
 
                   if(isDni){
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('4', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8){
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
                   }else{
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('4', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    numpadProvider.setValueCarnet('4', length);
+
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('4', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
                   }   
 
                 },
@@ -144,12 +154,16 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('5', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
+                    numpadProvider.setValueCarnet('5', length);
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('5', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('5', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -170,12 +184,16 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('6', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
+                    numpadProvider.setValueCarnet('6', length);
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('6', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('6', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -200,12 +218,16 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('7', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    };
 
                   }else{
+                    numpadProvider.setValueCarnet('7', length);
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('7', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('7', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -224,12 +246,17 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('8', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('8', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    numpadProvider.setValueCarnet('8', length);
+
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('8', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -247,12 +274,16 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('9', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8){
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
+                    numpadProvider.setValueCarnet('9', length);
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('9', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('9', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }   
                 },
@@ -271,18 +302,22 @@ class NumPad extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
 
-              Container(
-                width: 80,
-              ),
+              if(isDni)
+                Container(
+                  width: size.width*0.23,
+                ),
 
-              // NumpadButton(
-              //   haveBorder: false,
-              //   icon: Icons.check,
-              //   onPressed: (){
-              //     onPressed((isDni)?numpadProvider.dni:numpadProvider.carnet);
-              //     (isDni)?numpadProvider.dni = '': numpadProvider.carnet = '';
-              //   },
-              // ),
+              if(!isDni)
+                NumpadButton(
+                  haveBorder: false,
+                  icon: Icons.check,
+                  onPressed: (){
+                    consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    numpadProvider.carnet = '';
+                    // onPressed((isDni)?numpadProvider.dni:numpadProvider.carnet);
+                    // (isDni)?numpadProvider.dni = '': numpadProvider.carnet = '';
+                  },
+                ),
 
               NumpadButton(
                 text: '0',
@@ -291,12 +326,16 @@ class NumPad extends StatelessWidget {
                   if(isDni){
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('0', length);
-                    if(numpadProvider.dni.length == 8) consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                    if(numpadProvider.dni.length == 8) {
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      numpadProvider.dni = '';
+                    }
 
                   }else{
+                    numpadProvider.setValueCarnet('0', length);
 
-                    if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('0', length);
-                    if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    // if(numpadProvider.carnet.length < 9 ) numpadProvider.setValueCarnet('0', length);
+                    // if(numpadProvider.carnet.length == 9) consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
 
                   }
                 },
@@ -315,6 +354,7 @@ class NumPad extends StatelessWidget {
               ),
 
             ],
+
           )
 
         ],

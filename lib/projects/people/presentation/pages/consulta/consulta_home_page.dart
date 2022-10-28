@@ -33,7 +33,7 @@ class ConsultaHomePage extends StatelessWidget {
               //FONDO
               const HomePageBackGroundPeople(),
               //FORMULARIO DE REGISTRO
-              const FormConsulta(),
+              FormConsulta(),
               
               //MENU BOTTOM
               Visibility(

@@ -38,7 +38,7 @@ class MovimientosListButton extends StatelessWidget {
         children: [
 
           //DIA Y FECHA.
-          AutoSizeText(DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.now()), style: GoogleFonts.montserrat(), minFontSize: 6),
+          AutoSizeText(DateFormat('EEEE, d MMMM yyyy', 'es').format(DateTime.now()), style: GoogleFonts.aBeeZee(), minFontSize: 6),
 
           SizedBox( height: size.height*0.01),
 

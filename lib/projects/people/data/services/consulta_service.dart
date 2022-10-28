@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart
 
 class ConsultaProvider {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'appsol/people/detalle-personal/';
   
 

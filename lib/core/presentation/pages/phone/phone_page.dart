@@ -48,7 +48,7 @@ class _PhonePageBody extends StatelessWidget {
           children: [
 
             SizedBox(height: size.height*0.065),
-            const Text('Bienvenidos a Appsol', ),
+            const Text('Bienvenidos a Solgis v.2', ),
             SizedBox(height: size.height*0.065),
 
             SvgPicture.asset(
@@ -114,9 +114,6 @@ class _PhonePageBody extends StatelessWidget {
                 : const Text( 'Ingresar', style:  TextStyle(color: Colors.white ))
 
             ),
-            
-
-
 
 
           ],

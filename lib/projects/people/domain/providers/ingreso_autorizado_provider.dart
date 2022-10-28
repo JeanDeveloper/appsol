@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,9 +23,21 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   String _area_acceso = '';
   String _guia = '';
   String _material_valor = '';
-  var  _fotoGuia;
-  var  _fotoMaterialValor; 
+  XFile?  _fotoGuia;
+  XFile?  _fotoMaterialValor; 
   bool _isLoading = false;
+
+  //controla la foto cuando no tiene y se quiere actualizar
+  File? fotoPersonalUpdate;
+
+
+  //FOTO
+  void updateImage( String path ){
+    fotoPersonalUpdate = File.fromUri(Uri(path: path));
+    notifyListeners();
+  }
+
+
 
   // METODOS PARA LA VARIABLE LOADING
   bool get isLoading => _isLoading;
@@ -103,7 +117,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
 
 
   // METODOS PARA LA VARIABLE FOTO GUIA
-  XFile get fotoGuia => _fotoGuia;
+  XFile? get fotoGuia => _fotoGuia;
 
   set fotoGuia (XFile? value) {
     _fotoGuia = value;
@@ -112,7 +126,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
 
 
   // METODOS PARA LA VARIABLE FOTO MATERIAL VALOR
-  XFile get fotoMaterialValor => _fotoMaterialValor;
+  XFile? get fotoMaterialValor => _fotoMaterialValor;
 
   set fotoMaterialValor ( XFile? value) {
     _fotoMaterialValor = value;

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/providers/providers.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
@@ -18,6 +21,8 @@ class ConstantesWidget extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
+    // checkIfHasPhoto();
+
     return Container(
 
       padding: EdgeInsets.symmetric(horizontal: size.width*0.0729, vertical: size.height*0.0116),
@@ -27,7 +32,7 @@ class ConstantesWidget extends StatelessWidget {
       child: Column(
 
         children: [
-          
+
           // FOTO
           FutureBuilder(
 
@@ -54,14 +59,13 @@ class ConstantesWidget extends StatelessWidget {
                   width: size.width*0.33,
                   height: size.width*0.33,
                   child: snapshot.data,
-                
                 ),
               );
 
             }
 
           ),
-          
+
           SizedBox(height: size.height*0.02),
 
           //CAMPO DNI

@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:async';
+import  'package:http_parser/http_parser.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -7,10 +10,10 @@ import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/domain/models/response_persona_model.dart';
 import 'package:solgis/projects/people/domain/providers/crear_personal_provider.dart';
 
-
 class PersonalProvider{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
+
   final String _uncodePath = 'appsol/people/personal/';
   
   final bool cargando = false;
@@ -52,10 +55,52 @@ class PersonalProvider{
       body: body,
     );
 
+    print(resp.body);
+
     final decodedData = json.decode(resp.body);
     final consulta = ResponsePersonalModel.fromJson( decodedData );
     return consulta;
 
   }
+
+  //SUBIR FOTO DEL PERSONAL AL SERVIDOR
+  Future<void> uploadPhotoPersonal(File file, String nombre)async {
+
+      final url = Uri.parse('http://190.116.178.163:92/api/personal/upload-photo-personal');
+      final imageUploadRequest = http.MultipartRequest('POST', url);
+
+      final filemultipart = await http.MultipartFile.fromPath(
+        'file', 
+        file.path,
+        contentType: MediaType('image', 'jpg')
+      );
+
+      imageUploadRequest.fields['nombre'] = '$nombre.jpg';
+      imageUploadRequest.files.add(filemultipart);
+      final streamResponse = await imageUploadRequest.send();
+      final resp = await http.Response.fromStream(streamResponse);
+
+      print(resp);
+      print(resp.statusCode);
+      print(resp.body);
+
+    
+  } 
+
+  // //GUARDANDO LA FOTO DEL PERSONAL AL SERVIDOR DE SOLMAR.
+  // Future<ResponsePersonalModel> uploadFotoPersonal(BuildContext context, String codPersonal){
+  //   const String url = '190.116.178.163:96';
+  //   const String uncodePath = 'appsol/people/personal/';
+
+    
+
+    
+
+  // }
+
+
+
+
+
 
 }

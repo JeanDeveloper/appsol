@@ -52,13 +52,15 @@ class CrearPersonalProvider extends ChangeNotifier{
   int _cargo = -1;
 
   //controla el campo sexo.
-  int _sexo = 1;
+  int _sexo = 0;
   
   //controla la foto
   File? foto;
 
   //llave para validar los campos
   List<GlobalKey<FormState>> formKeys = [GlobalKey<FormState>(), GlobalKey<FormState>()];
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   //controla el tipo Persona.
   int get tipoPersona =>_tipoPersona; 
@@ -161,12 +163,13 @@ class CrearPersonalProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-
-  bool isValidForm(int index){
-
-    return formKeys[index].currentState?.validate() ?? false;
-  
+  bool isValidForm(){
+    return  formKey.currentState?.validate() ?? false;
   }
+
+  // bool isValidForm(int index){
+  //   return formKeys[index].currentState?.validate() ?? false;
+  // }
 
   Future<List<DropdownMenuItem<int>>> initEmpresas(String codEmpresa, String nombreEmpresa)async{
     if(itemsEmpresas.isEmpty){

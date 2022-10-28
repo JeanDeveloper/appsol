@@ -1,7 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
+import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/area_service.dart';
 import 'package:solgis/projects/people/data/services/autorizante_service.dart';
@@ -58,11 +60,9 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                   Text('Autorizante:', style: styleCrearPersonaltextForm()),
 
-                  ( documentacion.contains(gProvider.codCliente) )
+                  ( documentacion.contains(gProvider.codCliente) &&  consulta.codigoAutorizante != 0 && consulta.codigoAutorizante != -1 )
                     ? DropdownButtonWidget(
-                      items: (consulta.codigoAutorizante == -1|| consulta.codigoAutorizante == 0)
-                        ?[]
-                        :[DropdownMenuItem(value: consulta.codigoAutorizante, child: Text(consulta.autorizante!))],
+                      items: [DropdownMenuItem(value: consulta.codigoAutorizante, child: Text(consulta.autorizante!))],
                       onchanged: (value) => (consulta.codigoAutorizante== -1) ? null : ingresoProvider.codautorizante=value!,
                       value: consulta.codigoAutorizante,
                     )
@@ -79,6 +79,16 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         if(snapshot.data!.isEmpty) return Container();
 
                         final autorizantes = snapshot.data;
+
+                        // if(autorizantes!.length == 1) {
+                        //   ingresoProvider.codautorizante = int.parse(autorizantes[0].codPersonal!);
+                        //   return DropdownButtonWidget(
+                        //     items: [DropdownMenuItem(value: int.parse(autorizantes[0].codPersonal!) , child: Text(autorizantes[0].nombrePersonal!.toLowerCase()))],
+                        //     onchanged: (value) => ingresoProvider.codautorizante = value!,
+                        //     value: int.parse(autorizantes[0].codPersonal!),
+                        //   );
+                        // }
+
                         List<DropdownMenuItem<int>> dropdownautorizantes = [];
                         for(final autorizante in autorizantes!){
                           final DropdownMenuItem<int> autorizanteTemp = DropdownMenuItem(
@@ -107,12 +117,10 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                 children: [
                   Text('Motivo:  ', style: styleCrearPersonaltextForm()),
 
-                  ( documentacion.contains(gProvider.codCliente) )
+                  ( documentacion.contains(gProvider.codCliente) && consulta.codigoMotivo != -1  && consulta.codigoMotivo != 0)
 
                     ? DropdownButtonWidget(
-                      items: (consulta.codigoMotivo == -1)
-                        ?[]
-                        :[DropdownMenuItem(value: consulta.codigoMotivo, child: Text(consulta.motivo!))],
+                      items: [DropdownMenuItem(value: consulta.codigoMotivo, child: Text(consulta.motivo!))],
                       onchanged: (value) => (consulta.codigoMotivo == -1) ? null : ingresoProvider.codmotivo=value!,
                       value: consulta.codigoMotivo,
                     )
@@ -126,9 +134,21 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                             height: size.height*0.04
                           );
                         } 
+
                         if(snapshot.data!.isEmpty) return Container();
 
                         final motivos = snapshot.data;
+
+                        // if(motivos!.length == 1) {
+                        //   ingresoProvider.codautorizante = int.parse(motivos[0].codigo!);
+                        //   return DropdownButtonWidget(
+                        //     items: [DropdownMenuItem(value: int.parse(motivos[0].codigo!) , child: Text(motivos[0].tipo!.toLowerCase()))],
+                        //     onchanged: (value) => ingresoProvider.codautorizante = value!,
+                        //     value: int.parse(motivos[0].codigo!),
+                        //   );
+                        // }
+
+
                         List<DropdownMenuItem<int>> dropdownmotivos = [];
 
                         for(final motivo in motivos!){
@@ -163,12 +183,10 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                 children: [
                   Text('Acceso:  ', style:styleCrearPersonaltextForm()),
 
-                  ( documentacion.contains(gProvider.codCliente) )
+                  ( documentacion.contains(gProvider.codCliente) && consulta.codigoAutorizante !=0 && consulta.codigoAutorizante !=-1 )
 
                     ? DropdownButtonWidget(
-                      items: (consulta.codigoArea == 0)
-                        ?[]
-                        :[DropdownMenuItem(value: consulta.codigoArea, child: Text(consulta.area!))],
+                      items: [DropdownMenuItem(value: consulta.codigoArea, child: Text(consulta.area!))],
                       onchanged: (value) => (consulta.codigoArea== 0) ? null : ingresoProvider.codarea=value!,
                       value: consulta.codigoArea,
                     )
@@ -184,6 +202,16 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                         } 
                         // if(snapshot.data!.isEmpty) return Text('NO EXISTEN AREA DE ACCESO DISPONIBLES');
                         final areas = snapshot.data;
+
+                        // if(areas!.length == 1) {
+                        //   ingresoProvider.codarea = int.parse(areas[0].codigo!);
+                        //   return DropdownButtonWidget(
+                        //     items: [DropdownMenuItem(value: int.parse(areas[0].codigo!) , child: Text(areas[0].area!.toLowerCase()))],
+                        //     onchanged: (value) => ingresoProvider.codautorizante = value!,
+                        //     value: int.parse(areas[0].codigo!),
+                        //   );
+                        // }
+                        
                         List<DropdownMenuItem<int>> dropdownareas = [];
                         for(final area in areas!){
                           final DropdownMenuItem<int> areaTemp = DropdownMenuItem(
@@ -209,48 +237,29 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Guia:  ', style: styleCrearPersonaltextForm()),
+
                   Row(
+                    
                     children: [
+
                       SizedBox(
-                        // width: size.width*0.45, 
-                        width: size.width*0.57,
+                        width: size.width*0.43, 
+                        // width: size.width*0.57,
                         height: size.height*0.04,
                         child: TextFormField(
                           cursorHeight: 20,
                           onChanged: (value)=>ingresoProvider.guia = value,
                           style: const TextStyle(fontSize: 16, color: Colors.black),
-                          decoration:inputDecorationDatos() ,
+                          decoration:inputDecorationDatos(),
                         )
                       ),
+
                       //CAMARA
-                    
-                    
-                      // IconButton(
-                      //   alignment: Alignment.centerRight,
-                      //   padding: EdgeInsets.zero,
-                      //   icon: const Icon(Icons.camera_alt_outlined, color: Colors.black),
+                      CameraButton(campo: 'guia')
 
-                      //   onPressed: ()async{
-
-                      //     //inicia camara
-                      //     final ImagePicker _picker = ImagePicker();
-                      //     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-
-                      //     if(photo == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-
-                      //     print('PATH DE LA FOTO: ${photo.name}');
-                      //     print('PATH DE LA FOTO: ${photo.path}');
-                      //     print('PATH DE LA FOTO: ${photo.mimeType}');
-
-                      //     showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
-
-                      //   }, 
-                      // )
-                    
-                    
                     ],
                   )
-                
+
                 ]
               ),
               SizedBox(height: size.height*0.02), 
@@ -271,8 +280,7 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                     children: [
 
                       SizedBox(
-                        // width: size.width*0.45, 
-                        width: size.width*0.57,
+                        width: size.width*0.43, 
                         height: size.height*0.04,
 
                         child: TextFormField(
@@ -280,11 +288,11 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                           onChanged: (value) =>ingresoProvider.material_valor = value,
                           style: const TextStyle(fontSize: 16, color: Colors.black),
                           decoration:inputDecorationDatos(),
-
                         )
-
                       ),
-                      
+
+                      CameraButton(campo: 'material'),
+
                       //CAMARA
                       // IconButton(
 
@@ -294,25 +302,23 @@ class IngresoAutorizadoWidget extends StatelessWidget {
                       //   onPressed: ()async{
 
                       //     //inicia camara
-                      //     final ImagePicker _picker = ImagePicker();
-                      //     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      //     final ImagePicker picker = ImagePicker();
+                      //     final XFile? photoMaterial = await picker.pickImage(source: ImageSource.camera);
 
-                      //     if(photo == null) {
-                      //       // ignore: use_build_context_synchronously
-                      //       showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado ninguna imagen', ContentType.failure);
-                      //     }else{
+                      //     // ignore: use_build_context_synchronously
+                      //     if(photoMaterial  == null)  showSnackBarAwesome(context, '!Atencion!', 'No se ha capturado imagen', ContentType.failure);
 
-                      //     print('PATH DE LA FOTO: ${photo.name}');
-                      //     print('PATH DE LA FOTO: ${photo.path}');
-                      //     print('PATH DE LA FOTO: ${photo.mimeType}');
-                      //       // ignore: use_build_context_synchronously
-                      //       showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
-                      //     }
+                      //     ingresoProvider.fotoMaterialValor = photoMaterial;
+                      //     // ignore: use_build_context_synchronously
+                      //     showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+
                       //   }, 
                       // )
 
                     ],
+
                   )
+
                 ]
               ),
 
@@ -323,4 +329,106 @@ class IngresoAutorizadoWidget extends StatelessWidget {
     );
   }
 
+}
+
+class CameraButton extends StatelessWidget {
+  final String campo;
+  const CameraButton({
+    required this.campo,
+    Key? key,
+  }) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
+    final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context);
+    return IconButton(
+      alignment: Alignment.centerRight,
+      padding: EdgeInsets.zero,
+      icon: Icon(
+        Icons.camera_alt_outlined, 
+        color:(
+          (campo == 'guia' ? ingresoProvider.guia : ingresoProvider.material_valor) == '')
+          ? Colors.grey 
+          : ( campo == 'guia' ? ingresoProvider.fotoGuia : ingresoProvider.fotoMaterialValor ) == null
+            ? Colors.black
+            : Colors.green
+      ),
+
+      onPressed:((campo == 'guia' ? ingresoProvider.guia : ingresoProvider.material_valor) == '')
+        ? null
+
+        :((campo == 'guia') ? ingresoProvider.fotoGuia : ingresoProvider.fotoMaterialValor) != null
+          
+        ? () async{
+          await NDialog(
+            dialogStyle: DialogStyle(backgroundColor: const Color(0xFF999999)),
+            title: Text(
+              (campo=='guia')
+                ? 'Foto de Guia'
+                : 'Foto de Material',
+              style:  const TextStyle( color: Colors.black), 
+              maxLines: 1, 
+              overflow: TextOverflow.ellipsis
+            ),
+            content: SizedBox(
+              width: size.width*0.5,
+              height: size.height*0.5,
+              child:Column(
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: FutureBuilder(
+                        future: getImage((campo == 'guia') ? ingresoProvider.fotoGuia!.path : ingresoProvider.fotoMaterialValor!.path),
+                        builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) { 
+                          if(!snapshot.hasData){
+                            return const Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/gifs/loader-gris.gif'),
+                            );
+                          }
+                          return Container(
+                            child: snapshot.data!,
+                          );
+                        }
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    child: const Text('Eliminar', style: TextStyle(color: Colors.black),),
+                    onPressed: (){
+                      if(campo == 'guia'){
+                        ingresoProvider.fotoGuia = null;
+                      }else{
+                        ingresoProvider.fotoMaterialValor = null;
+                      }
+                      Navigator.pop(context);
+                    }, 
+                  ),
+                ],
+              )
+            )
+          ).show(context);
+        }
+
+          : () async {
+            //inicia camara
+            final ImagePicker picker = ImagePicker();
+            final XFile? pickerPhoto = await picker.pickImage(
+              source: ImageSource.camera,
+              imageQuality: 25
+            );
+            // ignore: use_build_context_synchronously
+            if(pickerPhoto == null) return showSnackBarAwesome(context, '¡Atencion!', 'No se ha capturado imagen', ContentType.failure);
+            (campo == 'guia' ? ingresoProvider.fotoGuia =pickerPhoto : ingresoProvider.fotoMaterialValor= pickerPhoto); 
+            // ignore: use_build_context_synchronously
+            showSnackBarAwesome(context, '¡Atencion!', 'La imagen ha sido guardada', ContentType.success);
+          },
+
+    );
+  }
 }

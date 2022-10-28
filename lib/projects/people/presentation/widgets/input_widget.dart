@@ -32,57 +32,75 @@ class InputWidget extends StatelessWidget {
 
     return Padding(
 
-      padding: EdgeInsets.symmetric(vertical:size.height*0.01, horizontal:size.width*0.07),
+      padding: EdgeInsets.symmetric(vertical:size.height*0.01, horizontal:size.width*0.02),
 
       child: TextFormField(
 
         initialValue: (registerForm.pasaporte.isEmpty)? null:registerForm.pasaporte,
-        textCapitalization: TextCapitalization.characters,
 
         maxLength: length,
 
         decoration: InputDecoration(
 
           counterText: '',
-          contentPadding: EdgeInsets.symmetric(vertical: size.height*0.015),
-          fillColor: Colors.white,
-          filled: true,
+          // contentPadding: EdgeInsets.symmetric(vertical: size.height*0.015),
           hintText: hintext,
 
           hintStyle: TextStyle(
-            fontSize: getResponsiveText(size, size.width*0.045),
-            color: Colors.black 
+            fontSize: getResponsiveText(size, size.width*0.06),
+            color: Colors.white 
           ),
 
           errorStyle: TextStyle(
-            fontSize: getResponsiveText(size, size.width*0.045 )
+            fontSize: getResponsiveText(size, size.width*0.06)
           ),
 
-          prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width*0.07),
-            child: Icon(
-              icon,
-              size:getResponsiveText(size, size.width*0.068),
-              color: Colors.black,
+          errorBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 2.0,
             ),
           ),
 
-          border: const OutlineInputBorder(
-          
-            borderRadius: BorderRadius.zero,
-            
-            borderSide: BorderSide(
+          focusedErrorBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
               color: Colors.red,
+              width: 2.0,
+            ),
+          ),
+
+
+          enabledBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.white,
+              width: 2.0,
+            ),
+          ),
+
+          focusedBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.white,
+              width: 2.0,
+            ),
+          ),
+
+          disabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.zero,
+            borderSide: BorderSide(
+              color: Colors.white,
               width: 1.0,
             ),
-            
           ),
 
         ),
 
         style:  TextStyle(
-          color: Colors.black,
-          fontSize: getResponsiveText(size, size.width*0.045)
+          color: Colors.white,
+          fontSize: getResponsiveText(size, size.width*0.08)
         ),
 
         textInputAction: TextInputAction.next,  

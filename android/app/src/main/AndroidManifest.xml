@@ -7,7 +7,7 @@
 
 
 <application
-        android:label="Appsol"
+        android:label="Solgis"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

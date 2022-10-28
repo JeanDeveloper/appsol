@@ -300,6 +300,7 @@ class _SexoRegister extends StatelessWidget {
           ),
 
         ]
+
       ),
     );
   }

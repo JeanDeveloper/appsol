@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/consulta_validacion_model.d
 
 class ConsultaDatosService {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'appsol/people/consulta-datos-persona/';
 
   final bool cargando = false;
@@ -18,26 +18,18 @@ class ConsultaDatosService {
       headers: {
         HttpHeaders.contentTypeHeader: "application/json; charset= utf-8",
       }
-
     );
 
     if(resp.statusCode == 200){
-      
       final decodedData = json.decode(resp.body);
       final consulta = ConsultaDatosPersonaModel.fromJson( decodedData );
-      
       return consulta;
-
-
     }else{
-
       throw Exception('Error al cargar la Consulta');
-    
     }
 
-
   }
-  
+
   // METODO PARA LA CONSULTA 
   Future<ConsultaDatosPersonaModel> getConsulta(String codServicio, String codPersonal, String tipoMaster)async{
     

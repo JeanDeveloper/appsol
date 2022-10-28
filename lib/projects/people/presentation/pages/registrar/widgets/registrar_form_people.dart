@@ -1,11 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/domain/helpers/consultar_doi_people.dart';
-import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/providers/providers.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
@@ -122,9 +120,7 @@ class _TipoCarnet extends StatelessWidget{
           ),
 
         ],
-
       ),
-
     );
 
   }
@@ -137,7 +133,7 @@ class _DNIFormRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     // final loginProvider = Provider.of<GlobalProvider>(context);
 
     return Column(
@@ -150,23 +146,8 @@ class _DNIFormRegister extends StatelessWidget {
 
         NumPad(
           length: 8, 
-
-          // onPressed: (String value)async{
-          //   if(value == '' || value.length <8 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
-          //   consultarDOI(context, value, loginProvider.codServicio);
-          // }
-
         )
 
-        // NumPad(
-        //   length: 8,
-        //   onPressed: (String value) async{
-        //     print(value);
-        //     if(value == '' || value.length < 8) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
-        //     consultarDOI(context, value, loginProvider.codServicio);
-        //   },
-        // )
-      
       ],
 
     );
@@ -182,9 +163,8 @@ class _CarnetFormRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // final loginProvider = Provider.of<GlobalProvider>(context);
 
-    final loginProvider = Provider.of<GlobalProvider>(context);
-    
     return Column(
 
       children: [
@@ -197,10 +177,8 @@ class _CarnetFormRegister extends StatelessWidget {
           length: 9,
 
           // onPressed: (String value) async{
-
           //   if( value == '' || value.length<9 ) return showSnackBarAwesome(context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure);
           //   consultarDOI(context, value, loginProvider.codServicio);
-
           // },
 
         )
@@ -223,7 +201,7 @@ class _PasaporteFormRegister extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final registerForm = Provider.of<RegistrarFormProvider>(context);
     final loginProvider = Provider.of<GlobalProvider>(context);
-    
+
     return SizedBox(
 
       width: size.width*0.8,
@@ -236,25 +214,35 @@ class _PasaporteFormRegister extends StatelessWidget {
         children: [
 
           Form(
+
             key: registerForm.formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
 
             child: InputWidget(
 
-              length: 12,
-              initialvalue: registerForm.pasaporte,
+              length: 11,
+              // initialvalue: registerForm.pasaporte,
 
               validator: (value){
-                return ( value!.length<9)
-                  ? 'ingrese un pasaporte valido'
+                return ( value!.length<9 || value.length>13)
+                  ? ''
                   :null;
               },
 
-              onchanged: (value) =>registerForm.pasaporte=value,
+              onchanged: (value){
+                registerForm.pasaporte=value;
+                // if(registerForm.pasaporte.length == 9) {
+                //   FocusScope.of(context).nextFocus();
+                  // FocusScope.of(context).requestFocus(FocusNode());
+                  // consultarDOI(context, registerForm.pasaporte, loginProvider.codServicio);
+                  // registerForm.pasaporte='';
+                // }
+              },
               hintext: 'Ingrese el pasaporte', 
               icon: FontAwesomeIcons.idCard, 
 
             ),
+
           ),
 
           const SizedBox(height:20),
@@ -273,6 +261,7 @@ class _PasaporteFormRegister extends StatelessWidget {
               consultarDOI(context, registerForm.pasaporte, loginProvider.codServicio);
               }
             },
+
           )
 
         ],
