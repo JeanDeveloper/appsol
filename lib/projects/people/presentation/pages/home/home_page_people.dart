@@ -4,26 +4,21 @@ import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
 class HomePagePeople extends StatelessWidget {
-  
+
   const HomePagePeople({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;  //47269389
-    
+
     return Scaffold(
-      
       body: SizedBox.expand(
-        
         child: Stack(
-
           children:  [
-
             const HomePageBackGroundPeople(),
             const _HomeHeaderPeople(),
             const InformacionClientePeopleWidget(),
-
             Positioned(
               bottom: 0,
               //aqui debe tener el container que se expande con sus hijos.
@@ -32,13 +27,9 @@ class HomePagePeople extends StatelessWidget {
                 child: const _IconMenuPeople(),
               )
             ),
-
           ],
-
         ),
-
       ),
-
     );
 
   }
@@ -64,7 +55,7 @@ class _HomeHeaderPeople extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('People', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
+            Text('People v2', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
             SizedBox(height: size.height*0.05),
             Align(
               alignment: Alignment.centerLeft,
@@ -81,7 +72,7 @@ class _HomeHeaderPeople extends StatelessWidget {
 }
 
 class _IconMenuPeople extends StatelessWidget {
-  
+
   const _IconMenuPeople({
     Key? key,
   }) : super(key: key);
@@ -91,7 +82,7 @@ class _IconMenuPeople extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
-    return Row( 
+    return Row(
 
       mainAxisAlignment: MainAxisAlignment.center,
 
@@ -136,8 +127,6 @@ class _IconMenuPeople extends StatelessWidget {
     );
 
   }
-
-
 
 }
 

@@ -10,7 +10,6 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_mod
 import 'package:solgis/projects/people/domain/providers/salida_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
-import 'package:vibration/vibration.dart';
 
 class SalidaAutorizadaPage extends StatelessWidget {
 
@@ -67,29 +66,14 @@ class SalidaAutorizadaBody extends StatelessWidget {
         await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
 
           if(salidaProvider.fotoGuia != null ) {
-            if(loginGlobal.codServicio == '3550'){
-              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
-              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, '1371', consulta.codigoPersona.toString(),isCosco: true);
-            }else{
-              await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
-            }
+            await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
           }
-
-        // if(salidaProvider.fotoGuia != null ) await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
 
           if(salidaProvider.fotoMaterialValor != null ) {
-            if(loginGlobal.codServicio == '3550'){
               await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
-              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, '1371', consulta.codigoPersona.toString(), isCosco: true );
-            }else{
-              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
-            }
           }
 
-        // if(salidaProvider.fotoMaterialValor != null ) await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
-
         progressDialog.dismiss();
-
 
         // ignore: use_build_context_synchronously
         showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
@@ -99,84 +83,10 @@ class SalidaAutorizadaBody extends StatelessWidget {
         // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
         // Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
 
-        // await NDialog(
-
-        //   dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-        //   title: const Text("¡Alerta!",),
-        //   content: const Text(" ¿Estas seguro que deseas registrar el movimiento? ", style: TextStyle(color: Colors.black)),  
-
-        //   actions: <Widget>[
-
-        //     TextButton(
-
-        //       child: const Text("SI"),
-
-        //       onPressed: () async {
-
-        //         final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
-        //         CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
-        //         progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
-        //         progressDialog.show();
-        //         final datosAcceso = DatosAccesoMModel();
-
-        //         if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
-        //         if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
-
-        //         await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
-
-        //         //funcion para registrar el movimiento.
-        //         // if(
-
-        //         //   consulta.codigoClienteControl == 5     || consulta.codigoClienteControl == 28463 ||  
-        //         //   consulta.codigoClienteControl == 22702 || consulta.codigoClienteControl == 13    || 
-        //         //   consulta.codigoClienteControl == 14517
-
-        //         // ){
-        //         //   await movimientoProvider.registerMovimiento(context, consulta);
-        //         // }else{
-
-        //         //   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
-        //         //   // consulta.codigoAutorizante = ingresoProvider.cod_autorizante;
-        //         //   // consulta.autorizante       = ingresoProvider.autorizante;
-        //         //   // consulta.area              = ingresoProvider.area_acceso;
-        //         //   // consulta.codigoArea        = ingresoProvider.cod_area;
-        //         //   // consulta.motivo            = ingresoProvider.motivo;
-        //         //   // consulta.codigoMotivo      = ingresoProvider.cod_motivo;
-
-        //         //   await movimientoProvider.registerMovimiento(context, consulta);
-
-        //         // } 
-
-        //         progressDialog.dismiss();
-
-        //         // bool? hasvibration = await Vibration.hasVibrator();
-
-        //         // if( hasvibration! ){
-        //         //   Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
-        //         // }
-
-        //         // ignore: use_build_context_synchronously
-        //         showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
-
-        //         // ignore: use_build_context_synchronously
-        //         Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
-        //         // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
-
-        //       }
-        //     ),
-
-        //     TextButton(
-        //       child: const Text("NO"),
-        //       onPressed: () => Navigator.pop(context)
-        //     ),
-
-        //   ],
-
-        // ).show(context);
-
       },
 
     );
   }
 
 }
+  

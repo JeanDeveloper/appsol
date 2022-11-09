@@ -27,6 +27,5 @@ class FondoMenuPeople extends StatelessWidget {
       child: child,
 
     );
-
   }
 }

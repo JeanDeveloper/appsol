@@ -78,6 +78,22 @@ class DrawerWidget extends StatelessWidget {
 
                 ),
 
+                // Center(child: AutoSizeText(serviceProvider.nombrePuesto, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold),maxLines: 1)),
+
+                SizedBox(height: size.height*0.03),
+
+                Center(child: AutoSizeText(
+                  personAuth.pNombre != '' || personAuth.sApellido != ''
+                  ?' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}'
+                  : '',
+                  // ' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}', 
+                  style: letrasEstilo(), 
+                  maxLines: 1
+                  )
+                ),
+
+                Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
+
                 SizedBox(height: size.height*0.03),
 
                 Center(child: AutoSizeText(
@@ -104,24 +120,8 @@ class DrawerWidget extends StatelessWidget {
                   )
                 ),
 
-                Center(child: AutoSizeText(serviceProvider.nombrePuesto, style: letrasEstilo().copyWith(fontWeight: FontWeight.bold),maxLines: 1)),
-                SizedBox(height: size.height*0.03),
+                SizedBox(height: size.height*0.06),
 
-                Center(child: AutoSizeText(
-                  personAuth.pNombre != '' || personAuth.sApellido != ''
-                  ?' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}'
-                  : '',
-                  // ' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}', 
-                  style: letrasEstilo(), 
-                  maxLines: 1
-                  )
-                ),
-
-                // Center(child:Text(personAuth.codigoPersonal, style: letrasEstilo(), maxLines: 1)),
-                // Center(child: AutoSizeText(' ${personAuth.pNombre[0].toUpperCase()}${personAuth.pNombre.substring(1).toLowerCase()} ${personAuth.pApellido} ${personAuth.sApellido[0].toUpperCase()}${personAuth.sApellido.substring(1).toLowerCase()}', style: letrasEstilo(), maxLines: 1)),
-                Center(child: AutoSizeText(personAuth.dni, style: letrasEstilo(), maxLines: 1)),
-
-                SizedBox(height: size.height*0.03),
                 Container(
                   width:size.width*0.55,
                   height: size.height*0.045,

@@ -177,61 +177,41 @@ class _ImageCardPersonalRegister extends StatelessWidget {
                     actions: <Widget>[
     
                       TextButton(
-    
                         child: const Text("Ir a Camara"),
-    
                         onPressed: ()async{
-    
                           final pickedFile = await picker.pickImage(
-
                             source: ImageSource.camera,
                             imageQuality: 100,
-
                           );
-    
                           if ( pickedFile == null ){
-
                             // ignore: use_build_context_synchronously
                             Navigator.pop(context);
                             return;
-
                           }
-    
                           personalProvider.updateImage(pickedFile.path);
-    
                           // ignore: use_build_context_synchronously
                           Navigator.pop(context);
-    
                         }
-    
                       ),
 
                       TextButton(
-    
                         child: const Text("Abrir Galeria"),
-    
                         onPressed: ()async{
-    
                           final pickedFile = await picker.pickImage(
                             source: ImageSource.gallery,
                             imageQuality: 100,
                           );
-    
                           if (pickedFile == null){
                             // ignore: use_build_context_synchronously
                             Navigator.pop(context);
                             return;
                           }
-
                           personalProvider.updateImage(pickedFile.path);
-    
                           // ignore: use_build_context_synchronously
                           Navigator.pop(context);
-    
                         }
-    
                       ),
-                    
+
                     ],
                   
                   ).show(context);

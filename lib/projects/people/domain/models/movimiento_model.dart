@@ -29,6 +29,11 @@ class MovimientoModel {
   String? tipoIngreso;
   String? tipoPersonal;
   String? pathImage;
+  int?    codDatoAcceso;
+  String? guiaMov;
+  String? fotoGuiaMov;
+  String? materialMov;
+  String? fotoMaterialMov;
 
   MovimientoModel({
     this.codMovimiento,
@@ -42,22 +47,31 @@ class MovimientoModel {
     this.tipoIngreso,
     this.tipoPersonal,
     this.pathImage,
+    this.codDatoAcceso,
+    this.guiaMov,
+    this.fotoGuiaMov,
+    this.materialMov,
+    this.fotoMaterialMov,
+
   });
 
   MovimientoModel.fromJson(Map<String, dynamic> json) {
-
-    codMovimiento  = json["cod_movimiento"];
-    nombres        = json["nombres"] ?? '';
-    dni            = json["dni"] ?? '';
-    sexo           = json["sexo"] ?? '';
-    cargo          = json["cargo"] ?? '';
-    empresa        = json["empresa"] ?? '';
-    fechaMovimiento= DateTime.parse(json["fecha_movimiento"]) ;
-    fechaSalida    = json["fecha_salida"]?? '' ;
-    tipoIngreso    = json["tipo_ingreso"] ?? '';
-    tipoPersonal   = json["tipo_personal"];
-    pathImage      = json["imagen"] ?? '';
-
+    codMovimiento     = json["cod_movimiento"];
+    nombres           = json["nombres"] ?? '';
+    dni               = json["dni"] ?? '';
+    sexo              = json["sexo"] ?? '';
+    cargo             = json["cargo"] ?? '';
+    empresa           = json["empresa"] ?? '';
+    fechaMovimiento   = DateTime.parse(json["fecha_movimiento"]) ;
+    fechaSalida       = json["fecha_salida"]?? '' ;
+    tipoIngreso       = json["tipo_ingreso"] ?? '';
+    tipoPersonal      = json["tipo_personal"];
+    pathImage         = json["imagen"] ?? '';
+    codDatoAcceso   = json["cod_dato_acceso"];
+    guiaMov          = json["guia_mov"];
+    fotoGuiaMov     = json["foto_guia_mov"];
+    materialMov      = json["material_mov"];
+    fotoMaterialMov = json["foto_material_mov"];
   }
 
 }

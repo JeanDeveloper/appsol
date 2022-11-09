@@ -15,7 +15,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   String cod_empresa = '';
   String empresa = '';
   String cargo = ''; 
-  int cod_autorizante = 0;
+  int _codAutorizante = 0;
   String _autorizante = ''; 
   int cod_motivo = 0;
   String _motivo = '';
@@ -30,14 +30,11 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   //controla la foto cuando no tiene y se quiere actualizar
   File? fotoPersonalUpdate;
 
-
   //FOTO
   void updateImage( String path ){
     fotoPersonalUpdate = File.fromUri(Uri(path: path));
     notifyListeners();
   }
-
-
 
   // METODOS PARA LA VARIABLE LOADING
   bool get isLoading => _isLoading;
@@ -48,11 +45,11 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   }
 
   // METODOS PARA LA VARIABLE AUTORIZANTE
-  int get codautorizante => cod_autorizante;
+  int get codautorizante => _codAutorizante;
 
   set codautorizante(int value) {
-    cod_autorizante = value;
-    notifyListeners();
+    _codAutorizante = value;
+    // notifyListeners();
   }
 
   // METODOS PARA LA VARIABLE AUTORIZANTE
@@ -63,16 +60,13 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-
-
   // METODOS PARA LA VARIABLE MOTIVO
   int get codmotivo => cod_motivo;
 
   set codmotivo ( int value ) {
     cod_motivo = value;
-    notifyListeners();
+    // notifyListeners();
   }
-
 
   // METODOS PARA LA VARIABLE MOTIVO
   String get motivo => _motivo;
@@ -87,7 +81,7 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
 
   set codarea(int value) {
     cod_area = value;
-    notifyListeners();
+    // notifyListeners();
   }
 
 
@@ -134,10 +128,8 @@ class IngresoAutorizadoProvider extends ChangeNotifier{
   }
 
   bool isValidForm(){
-    
     print(formKey.currentState?.validate());
     return formKey.currentState?.validate() ?? false;
-  
   }
 
 }

@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         drawer: const DrawerWidget(),
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
-          title: const Text('APPSOL', style: TextStyle()),
+          title: const Text('Solgis v2', style: TextStyle()),
           centerTitle: true,
         ),
         body: const HomePageBody(),
@@ -53,11 +53,7 @@ class HomePageBody extends StatelessWidget {
         crossAxisSpacing: size.width*0.05,
         mainAxisExtent: size.height*0.3
       ),
-      itemBuilder: (context, index) {
-        return CardApp(
-          project: ProjectModel.listProjects[index]
-        );
-      },
+      itemBuilder: (context, index) => CardApp(project: ProjectModel.listProjects[index]),
     );
 
   }

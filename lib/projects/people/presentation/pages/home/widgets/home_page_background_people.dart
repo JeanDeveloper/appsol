@@ -31,7 +31,7 @@ class _OpacityBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Opacity(
-      opacity: 0.6,
+      opacity: 0.7,
       child: Container(
         width: double.infinity,
         height: size.height*0.9,
@@ -48,7 +48,7 @@ class _ImageBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width,
       height: size.height*0.9,
       child: const Image(

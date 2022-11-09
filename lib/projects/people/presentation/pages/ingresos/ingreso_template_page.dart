@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
+import 'package:solgis/projects/people/presentation/pages/ingresos/widgets/constante_widget_entrada.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 
 class IngresosTemplatePage extends StatelessWidget {
@@ -25,6 +28,7 @@ class IngresosTemplatePage extends StatelessWidget {
 
 
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
+    final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
     
     return SafeArea(
 
@@ -33,7 +37,10 @@ class IngresosTemplatePage extends StatelessWidget {
         appBar: AppBar(
 
           leading: IconButton(
-            onPressed:()=>Navigator.of(context).pop(), 
+            onPressed:(){
+              registerProvider.isScanning = false;
+              Navigator.of(context).pop();
+            }, 
             icon: const Icon(Icons.arrow_back_ios, size: 30)
           ),
 
@@ -58,9 +65,7 @@ class IngresosTemplatePage extends StatelessWidget {
         ), //dinamico
 
       ),
-
     );
-
   }
 
 }
@@ -101,13 +106,12 @@ class _IngresosTemplateBody extends StatelessWidget {
               child: Column(
 
                 children: [
-
                   //WIDGET DE CAMPOS CONSTANTES.
-                  ConstantesWidget(consulta: consulta),
-
+                  (consulta.tipoConsulta == 'INGRESO AUTORIZADO')
+                    ?ConstantesWidgetEntrada(consulta: consulta)
+                    :ConstantesWidgetSalida(consulta: consulta),
                   //WIDGET DE CAMPOS DINAMICOS
                   bodyIngreso,
-
                 ],
 
               ),
@@ -118,17 +122,17 @@ class _IngresosTemplateBody extends StatelessWidget {
             Visibility(
               visible: (viewBotton==0) ? true :false,
               child: Positioned(
-            
+
                 bottom: 0,
-            
+
                 child: FondoMenuPeople(
-            
+
                   padding: EdgeInsets.symmetric(vertical: size.height*0.01),
-                  
+
                   child: Row(
-                    
+
                     mainAxisAlignment: MainAxisAlignment.center,
-                    
+
                     children: [
 
                       if(consulta.tipoConsulta == 'INGRESO AUTORIZADO')
@@ -137,21 +141,20 @@ class _IngresosTemplateBody extends StatelessWidget {
                           text: 'Registrar',
                           onpressed: funtionAccept,
                         ),
-                      
+
                       if(consulta.tipoConsulta == 'INGRESO AUTORIZADO')
                         SizedBox(width: size.width*0.09),
-                        
+
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
                         text: 'Salir',
-                        // onpressed: ()=> Navigator.pushNamed(context, 'registrar_movimiento_people'),
                         onpressed: ()=> Navigator.pop(context),
                       ),
-            
+
                     ],
-            
+
                   ),
-            
+
                 ),
               
               ),

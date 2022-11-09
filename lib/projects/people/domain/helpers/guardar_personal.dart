@@ -29,9 +29,6 @@ import 'package:solgis/projects/people/theme/theme.dart';
 
           ResponsePersonalModel response = await PersonalProvider().procesarRegistroPersonal(context);
 
-          progressDialog.dismiss();
-
-
             if(response.personal_maestro !=-1){
 
               if(foto != null) await PersonalProvider().uploadPhotoPersonal(foto, response.personal_maestro.toString());
@@ -39,19 +36,18 @@ import 'package:solgis/projects/people/theme/theme.dart';
               // ignore: use_build_context_synchronously
               Navigator.pop(context);
               Navigator.pop(context);
-              // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
 
               // ignore: use_build_context_synchronously
               showSnackBarAwesome(context, 'Exito', "${response.message} ", ContentType.success);
-              
 
           }else{
             // ignore: use_build_context_synchronously
               Navigator.pop(context);
             // ignore: use_build_context_synchronously
             showSnackBarAwesome(context, 'Error', 'Hubo un problema al registrar el personal', ContentType.failure);
-
           }
+
+          progressDialog.dismiss();
 
         }, 
 

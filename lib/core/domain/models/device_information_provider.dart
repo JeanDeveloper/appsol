@@ -6,7 +6,6 @@ class DeviceInformationModel{
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 
   DeviceInformationModel({
-
     this.securityPath,
     this.sdkInt,
     this.release,
@@ -33,7 +32,6 @@ class DeviceInformationModel{
     this.type,
     this.isPhysicalDevice,
     this.serialNumber,
-
   });
 
     String? securityPath;
@@ -68,7 +66,7 @@ class DeviceInformationModel{
 
     AndroidDeviceInfo build = await deviceInfoPlugin.androidInfo;
     String serial     = await FlutterDeviceIdentifier.androidID;
-    
+
     securityPath  = build.version.securityPatch;
     sdkInt        = build.version.sdkInt.toString();
     release       = build.version.release;

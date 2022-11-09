@@ -12,7 +12,6 @@ class CrearPersonalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
   // final documento = ModalRoute.of(context)?.settings.arguments as String;
 
   return MultiProvider(

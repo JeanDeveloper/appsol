@@ -39,10 +39,9 @@ getResultScanner(BuildContext context, String barcode){
       numpadProvider.dni = barcode;
       registerForm.dni = barcode;
 
-      if(barcode == '' || ( barcode.length != 8 )){
+      if(barcode == '' ){
         showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
       }else{
-
       consultarDOI(context, barcode, loginProvider.codServicio);
       }
 
@@ -51,27 +50,27 @@ getResultScanner(BuildContext context, String barcode){
       numpadProvider.carnet = barcode;
       registerForm.carnetExtranjeria = barcode;
 
-      if( barcode == '' || barcode.length != 9 ){
+      if( barcode == '' ){
 
         showSnackBarAwesome(context, 'Error', 'Ingrese un Carnet valido', ContentType.failure);
 
       }else{
-  
+
         consultarDOI(context, barcode, loginProvider.codServicio);
+
       }
 
     }else{
 
       registerForm.pasaporte = barcode;
 
-      if( barcode == '' || barcode.length < 9 || barcode.length > 14 ){
+      if( barcode == '' ){
 
         showSnackBarAwesome( context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure );
 
       }else{
         consultarDOI( context, barcode, loginProvider.codServicio );
       }
-
 
     }
 

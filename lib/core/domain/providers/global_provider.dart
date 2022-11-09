@@ -14,7 +14,6 @@ class GlobalProvider extends ChangeNotifier{
   late int codTipoServicio= 0;
   String _nombrePuesto = '';
 
-
   //METODOS PARA LA VARIABLE NOMBRE PUESTO
 
 

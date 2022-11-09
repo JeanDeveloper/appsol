@@ -11,7 +11,6 @@ class DatosAccesoMModel {
     String? fotoMaterialMovimiento;
     DateTime? fechaCreacion;
 
-
     DatosAccesoMModel({
         this.codigoDatosAcceso,
         this.codigoMovimiento,

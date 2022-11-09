@@ -30,21 +30,15 @@ void validarConsulta(BuildContext context, String documento, String codServicio 
 
       // ignore: use_build_context_synchronously
       await NDialog(
-
         dialogStyle: DialogStyle(titleDivider: true, backgroundColor: Colors.white),
-
         title:  const Text("INFORMACION",  style: TextStyle(color: Colors.black)),
         content:  Text("El personal $documento \nno se encuentra en el sistema \nPor favor Registrelo", style: TextStyle(color: Colors.black)),  
-        
         actions: <Widget>[
-
           TextButton(
             child: const Text("Ok"),
             onPressed: ()=> Navigator.pop(context)
           ),
-
         ],
-
       ).show(context);
 
     }

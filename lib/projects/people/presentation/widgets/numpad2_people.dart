@@ -213,7 +213,6 @@ class _NumpadV2 extends State<NumpadV2> {
                   haveBorder: false,
                   icon: Icons.check,
                   onPressed: (){
-
                     if( number == '' || number.length<widget.length ){
                       showSnackBarAwesome(context, 'Error', 'Ingrese un Pasaporte valido', ContentType.failure);
                     }else{
@@ -223,10 +222,6 @@ class _NumpadV2 extends State<NumpadV2> {
                         
                       });
                     }
-                    // widget.onPressed(number);
-                    // setState(() {
-                    //   number='';
-                    // });
                   },
                 ),
 
@@ -268,7 +263,6 @@ class _NumpadV2 extends State<NumpadV2> {
 
 }
 
-
 class Preview extends StatelessWidget {
 
   final int length;
@@ -278,29 +272,19 @@ class Preview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     List<Widget> previewLength = [];
 
     for (var i = 0; i < length; i++) {
-
       bool valor = text.length >= i+1;
       previewLength.add(Dot(isActive: valor, number: valor? text.substring(i,i+1) : null));
-
     } 
 
     return Container(
-
       padding: const EdgeInsets.symmetric(vertical: 50.0),
-
-      child: Wrap(
-
-        children: previewLength
-
-      )
-    
+      child: Wrap(children: previewLength)
     );
-  
-  
+
   }
 
 }
@@ -315,26 +299,20 @@ class Dot extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  Container(
-
       padding: const  EdgeInsets.all(8.0),
       child: isActive
       ? Container(width: 20.0, height: 20.0,child: Text('$number', style: const TextStyle(color: Colors.white, fontSize:20, fontWeight: FontWeight.bold)))      
       : Container(
         width: 20.0,
         height: 20.0,
-
         decoration: BoxDecoration(
-
           border: Border.all(
             width: 1.0,
             color: Colors.white
           ),
-          
           borderRadius: BorderRadius.circular(30.0),
         ),
-
       ),
-
     );
 
   }
@@ -357,11 +335,8 @@ class NumpadButton extends StatelessWidget {
       : Text(text ?? '', style: buttonStyle);
       
     return OutlinedButton(
-
-
       onPressed: onPressed, 
       style: ButtonStyle(
-        
         backgroundColor: haveBorder ? MaterialStateProperty.all(Colors.white) : MaterialStateProperty.all(Colors.transparent),
         side: haveBorder ? MaterialStateProperty.all(const BorderSide(color: Colors.grey)) : MaterialStateProperty.all(BorderSide.none),
         padding: MaterialStateProperty.all(EdgeInsets.all(size.width*0.07)),

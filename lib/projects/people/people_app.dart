@@ -10,10 +10,8 @@ class PeopleApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
-
         //PROVIDERS DEL PEOPLE
         ChangeNotifierProvider( create: (_) => ConsultaFormProvider() ),
         ChangeNotifierProvider( create: (_) => RadioProvider() ),
@@ -22,35 +20,27 @@ class PeopleApp extends StatelessWidget{
         ChangeNotifierProvider( create: (_) => MovimientosProvider() ),
         ChangeNotifierProvider( create: (_) => MovimientosPageProvider() ),
         ChangeNotifierProvider( create: (_) => RadioListProvider() ),
-
       ],
-
       child: const PeopleAppState(),
     );
-
   }
 
 }
 
 class PeopleAppState extends StatelessWidget {
-
   const PeopleAppState({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'People',
       debugShowCheckedModeBanner: false,
       routes: PeopleRoutes.routes,
       initialRoute: "/",
-      // theme: AppThemePeople.lighThemePeople ,
+      // theme: AppThemePeople.lighThemePeople,
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.aBeeZeeTextTheme()
       ),
     );
-
   }
-
 }

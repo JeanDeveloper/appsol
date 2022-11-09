@@ -40,7 +40,6 @@ class DropdownButtonWidget extends StatelessWidget {
       // ),
 
       child: DropdownButtonFormField<int>(
-
         validator: onvalidator,
         hint: hintText!=null ? Text(hintText!, style: const TextStyle(fontSize: 13), maxLines: 1, overflow: TextOverflow.ellipsis,) : null ,
         items: items, 
@@ -49,7 +48,6 @@ class DropdownButtonWidget extends StatelessWidget {
         decoration: inputDecorationDropDown(),
         isExpanded: true,
         value: value,
-
       ),
 
     );

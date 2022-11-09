@@ -103,7 +103,7 @@ class _SalidaTemplateBody extends StatelessWidget {
                 children: [
 
                   //WIDGET DE CAMPOS CONSTANTES.
-                  ConstantesWidget(consulta: consulta),
+                  ConstantesWidgetSalida(consulta: consulta),
 
                   //WIDGET DE CAMPOS DINAMICOS
                   bodyIngreso,

@@ -32,7 +32,6 @@ class PendingPage extends StatelessWidget {
           const SizedBox(height: 20),
 
           RichText(
-
             text: const TextSpan(
               text: 'Estado del Dispositivo: ',
               style: TextStyle(color: Colors.black,),
@@ -40,7 +39,6 @@ class PendingPage extends StatelessWidget {
                 TextSpan(text:'PENDIENTE', style: TextStyle(color: Colors.green)),
               ]
             ),
-
           ),
 
         ],

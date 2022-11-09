@@ -25,16 +25,15 @@ class _MovimientosPlantasTabPageState extends State<MovimientosPlantasTabPage> {
 
     final radioListTile  = Provider.of<RadioListProvider>(context);
 
-    // final movimientosListProvider = Provider.of<MovimientosProvider>(context);
-    // final globalProvider = Provider.of<GlobalProvider>(context);
-
     return RefreshIndicator(
       onRefresh: () async {
+        
         radioListTile.setValorTipoPersonaDentroPlanta = 0;
         setState(() {});
+
       },
       child: Column(
-      
+
         children: [
 
           //se controlará dependiendo el tipo. mandará a llamar cuantos personal hay por tipo
@@ -53,7 +52,6 @@ class _MovimientosPlantasTabPageState extends State<MovimientosPlantasTabPage> {
 
   }
 }
-
 
 class MovimientosTilesPageBody extends StatelessWidget {
   

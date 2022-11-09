@@ -1,8 +1,6 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:solgis/core/domain/models/project_model.dart';
-import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 
 class CardApp extends StatelessWidget {
 
@@ -25,16 +23,16 @@ class CardApp extends StatelessWidget {
 
       },
       child: Container(
-    
+
         decoration: getDecoration(),
 
         child: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset( project.pathImage,height:size.height*0.18 ),
-            
+
+            SvgPicture.asset( project.pathImage,height:size.height*0.15),
+
             Positioned(
-              
               bottom: 0,
               child: Container(
                 alignment: Alignment.center,
@@ -45,19 +43,13 @@ class CardApp extends StatelessWidget {
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))
                 ),
                 child: Text(project.title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:size.width*0.06 )),
-
               ),
-
             ),
 
           ],
-        
         ),
-
-      
       ),
     );
-
   }
 
 }

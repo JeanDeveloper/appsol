@@ -7,16 +7,19 @@ class AppThemePeople {
     // textTheme: GoogleFonts.montserratTextTheme(),
     useMaterial3:true,
 
-    primaryColor: const Color.fromARGB(249, 0, 2, 124),
+    primaryColor: const Color(0xff031C36),
 
     // unselectedWidgetColor:Colors.white,
 
+
+    //TIENE COLOR
     appBarTheme:  const AppBarTheme(
       backgroundColor: Color.fromARGB(249, 0, 2, 124),
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
       centerTitle: true,
     ),
 
+    //TIENE COLOR
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.all(Colors.white)
     ),
@@ -55,7 +58,5 @@ class AppThemePeople {
       color: Colors.white,
       size: 30
     ),
-
   );
-
 }

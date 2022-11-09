@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-
 class RegistrarFormProvider extends ChangeNotifier{
 
   String _dni = '';
   String _carnetExtranjeria = '';
   String _pasaporte = '';
   String _dataBarCode = '';
-
+  bool _isScanning = false;
   bool _isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String get dataBarCode => _dataBarCode;
 
+  //METODO PARA CONTROLAR SI SE ENTRO POR EL SCANNER O NO.
+  bool get isScanning => _isScanning;
+  set isScanning (bool value){
+    _isScanning = value;
+    //notifyListeners();
+  }
+
+  //METODO PARA EL CAMPO DE CODIGO DE BARRAS
+  String get dataBarCode => _dataBarCode;
   set dataBarCode(String value) {
     _dataBarCode = value;
     notifyListeners();
@@ -50,10 +57,6 @@ class RegistrarFormProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  bool isValidForm(){
-
-    return formKey.currentState?.validate() ?? false;
-
-  }
+  bool isValidForm() => formKey.currentState?.validate() ?? false;
 
 }

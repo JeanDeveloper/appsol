@@ -58,11 +58,14 @@ class RegistrarMovimientoPage extends StatelessWidget {
 
                       // if(tipoProvider.valorTipoDocumento!=3)
 
-                        //SCANNER
-                        ButtonMenuPeople(
+                      //SCANNER
+                      ButtonMenuPeople(
                           icon: FontAwesomeIcons.barcode,
                           text: 'Escanear', 
                           onpressed:()async{
+
+                            registerProvider.isScanning = true;
+
                             String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
                               "#ff6666", 
                               'Cancelar', 
@@ -71,14 +74,15 @@ class RegistrarMovimientoPage extends StatelessWidget {
                             );
                             // ignore: use_build_context_synchronously
                             getResultScanner(context,barcodeScanRes);
+
                           },
+
                         ),
 
-                      // if(tipoProvider.valorTipoDocumento!=3)
-                        SizedBox(width: size.width*0.1),
+                      SizedBox(width: size.width*0.1),
 
                       //INICIO
-                        ButtonMenuPeople(
+                      ButtonMenuPeople(
                         icon: FontAwesomeIcons.house,
                         text: 'Inicio', 
                         onpressed:()=> Navigator.pop(context),
@@ -87,11 +91,8 @@ class RegistrarMovimientoPage extends StatelessWidget {
                     ],
 
                   ),
-
                 ),
-
               ),
-
             ),
 
           ],

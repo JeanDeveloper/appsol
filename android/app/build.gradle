@@ -33,7 +33,6 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
-
 android {
     compileSdkVersion 33 
     ndkVersion flutter.ndkVersion
@@ -58,8 +57,8 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 13
-        versionName "0.12"
+        versionCode 18
+        versionName "0.17"
     }
 
     signingConfigs {

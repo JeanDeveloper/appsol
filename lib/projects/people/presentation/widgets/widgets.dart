@@ -12,3 +12,4 @@ export 'package:solgis/projects/people/presentation/widgets/input_widget.dart';
 export 'package:solgis/projects/people/presentation/widgets/numpad_people.dart';
 export 'package:solgis/core/presentation/widgets/read_only_input.dart';
 export 'package:solgis/projects/people/presentation/pages/registrar/widgets/registrar_form_people.dart';
+export 'package:solgis/projects/people/presentation/widgets/tile_movimiento.dart';

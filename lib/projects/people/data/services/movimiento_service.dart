@@ -1,3 +1,4 @@
+import  'package:http_parser/http_parser.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -10,7 +11,6 @@ import 'package:solgis/projects/people/data/services/foto_acceso_service.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
-import  'package:http_parser/http_parser.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
@@ -29,11 +29,14 @@ class MovimientosProvider extends ChangeNotifier{
 
     final resp = await http.get( 
       url, 
-      headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
+      headers:  {
+        HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"
+      }
     );
 
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
     final movimientos = MovimientosModel.fromJsonList(decodedData);
+    
     return movimientos.items;
 
   }
@@ -70,7 +73,6 @@ class MovimientosProvider extends ChangeNotifier{
 
     );
 
-
     if( resp.statusCode == 201 ) return 1;
 
     return -1;
@@ -79,8 +81,7 @@ class MovimientosProvider extends ChangeNotifier{
 
   //OBTENER DE MOVIMIENTOS
   Future<List<MovimientoModel>> getMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
-
-    final url = Uri.http( _url, _uncodePath, {
+    final url = Uri.http( _url, _uncodePath,{
       'tipoMovimiento': tipoMovimiento,
       'idServicio': idServicio,
       'tipoPersonal': tipoPersonal,
@@ -94,7 +95,6 @@ class MovimientosProvider extends ChangeNotifier{
 
   //OBTENER DE MOVIMIENTOS LUEGO DE CARGAR
   Future<List<MovimientoModel>> loadDataMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
-
     final url = Uri.http( _url, _uncodePath, {
       'tipoMovimiento': tipoMovimiento,
       'idServicio': idServicio,
@@ -133,19 +133,15 @@ class MovimientosProvider extends ChangeNotifier{
 
   //SUBIR LAS IMAGENES AL SERVIDOR DE SOLMAR CON EL API APISOLGISFOTOS.
   Future<int> obtenerCodigoUltimoMovimiento(String codServicio, String codPersonal ) async {
-
     final url = Uri.http( _url,'appsol/people/movimientos/obtener_ultimo_movimiento/', {
       'codServicio': codServicio ,
       'codPersonal': codPersonal ,
     });
-
     final resp = await http.get( 
       url, 
       headers:  {HttpHeaders.contentTypeHeader: "application/json;  charset=utf-8"}
     );
-
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
-
     return decodedData['codigo_movimiento'];
   }
 
@@ -178,10 +174,6 @@ class MovimientosProvider extends ChangeNotifier{
       imageUploadRequest.files.add(file);
       final streamResponse = await imageUploadRequest.send();
       final resp = await http.Response.fromStream(streamResponse);
-
-      // print(resp);
-      // print(resp.statusCode);
-      // print(resp.body);
 
     }else{
 
