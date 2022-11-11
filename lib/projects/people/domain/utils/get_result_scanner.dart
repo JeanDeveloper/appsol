@@ -21,28 +21,31 @@ getResultScanner(BuildContext context, String barcode){
       elevation: 0,
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
-
       content: AwesomeSnackbarContent(
         title: '¡Alerta!',
         message:'Lo siento, no se ha escaneado nada',
         contentType: ContentType.warning,
       ),
-
     );
-
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
   }else{
+
+    registerForm.isScanning = true;
 
     if(tipoProvider.valorTipoDocumento == 1){
 
       numpadProvider.dni = barcode;
       registerForm.dni = barcode;
 
-      if(barcode == '' ){
+      // if( barcode.trim() == '' ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
+
+      // return consultarDOI(context, barcode, loginProvider.codServicio);
+
+      if( barcode.trim() == '' ){
         showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
       }else{
-      consultarDOI(context, barcode, loginProvider.codServicio);
+        consultarDOI(context, barcode, loginProvider.codServicio);
       }
 
     }else if( tipoProvider.valorTipoDocumento == 2 ){
@@ -50,30 +53,31 @@ getResultScanner(BuildContext context, String barcode){
       numpadProvider.carnet = barcode;
       registerForm.carnetExtranjeria = barcode;
 
-      if( barcode == '' ){
+      if( barcode.trim() == '' ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
 
-        showSnackBarAwesome(context, 'Error', 'Ingrese un Carnet valido', ContentType.failure);
+      return consultarDOI(context, barcode, loginProvider.codServicio);
 
-      }else{
-
-        consultarDOI(context, barcode, loginProvider.codServicio);
-
-      }
+      // if( barcode.trim() == '' ){
+      //   showSnackBarAwesome(context, 'Error', 'Ingrese un Carnet valido', ContentType.failure);
+      // }else{
+      //   consultarDOI(context, barcode, loginProvider.codServicio);
+      // }
 
     }else{
 
       registerForm.pasaporte = barcode;
 
-      if( barcode == '' ){
+      if( barcode.trim() == '' ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
 
-        showSnackBarAwesome( context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure );
+      return consultarDOI(context, barcode, loginProvider.codServicio);
 
-      }else{
-        consultarDOI( context, barcode, loginProvider.codServicio );
-      }
+      // if( barcode.trim() == '' ){
+      //   showSnackBarAwesome( context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure );
+      // }else{
+      //   consultarDOI( context, barcode, loginProvider.codServicio );
+      // }
 
     }
-
   }
 
 }

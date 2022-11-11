@@ -8,7 +8,16 @@ class RegistrarFormProvider extends ChangeNotifier{
   String _dataBarCode = '';
   bool _isScanning = false;
   bool _isLoading = false;
+  late BuildContext _context;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+
+  //METODO PARA CONTROLAR EL CONTEXT EN EL REGISTRARWIDGET
+  BuildContext get registerContext => _context;
+  set registerContext(BuildContext value){
+    _context = value;
+    //notifyListeners();
+  }
 
 
   //METODO PARA CONTROLAR SI SE ENTRO POR EL SCANNER O NO.

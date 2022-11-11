@@ -13,7 +13,6 @@ class IngresosTemplatePage extends StatelessWidget {
   ConsultaModel consulta;
   Function()? registrarFunction;
 
-
   IngresosTemplatePage({
     super.key, 
     required this.titleIngreso,
@@ -25,7 +24,6 @@ class IngresosTemplatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
 
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
     final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
@@ -92,7 +90,8 @@ class _IngresosTemplateBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-  
+    final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
+
     return SafeArea(
 
       child: SizedBox.expand(
@@ -148,26 +147,19 @@ class _IngresosTemplateBody extends StatelessWidget {
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
                         text: 'Salir',
-                        onpressed: ()=> Navigator.pop(context),
+                        onpressed: (){
+                          registerProvider.isScanning = false;
+                          Navigator.pop(context);
+                        } ,
                       ),
-
                     ],
-
                   ),
-
                 ),
-              
               ),
             ),
-
           ],
-
         ),
-
       ),
-
     );
-
   }
-
 }

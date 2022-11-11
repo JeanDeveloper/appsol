@@ -29,7 +29,7 @@ class ProjectRoutes {
       'home_people'                 : (BuildContext context) => const HomePagePeople(),
 
       //RUTAS PARA LA APP PEOPLE
-      'registrar_movimiento_people' : (BuildContext context) => const RegistrarMovimientoPage(),
+      'registrar_movimiento_people' : (BuildContext context) => RegistrarMovimientoPage(),
       'ingreso_autorizado_people'   : (BuildContext context) => const IngresoAutorizadoPage(),
       'movimientos_page_people'     : (BuildContext context) => const MovimientosPage(),
       'crear_personal_page_people'  : (BuildContext context) => const CrearPersonalPage(),

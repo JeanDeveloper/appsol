@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
+import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
 
 class SalidaTemplatePage extends StatelessWidget {
@@ -24,7 +26,8 @@ class SalidaTemplatePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
-    
+    final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
+
     return SafeArea(
 
       child: Scaffold(
@@ -33,7 +36,11 @@ class SalidaTemplatePage extends StatelessWidget {
 
           leading: IconButton(
 
-            onPressed: ()=>Navigator.of(context).pop(), 
+            onPressed: (){
+              registerProvider.isScanning = false;
+              Navigator.of(context).pop();
+            },
+
             icon: const Icon(Icons.arrow_back_ios, size: 30)
           
           ),
@@ -57,11 +64,8 @@ class SalidaTemplatePage extends StatelessWidget {
           consulta: consulta,viewBotton: viewBotton
         ), //dinamico
       ),
-
     );
-
   }
-
 }
 
 
@@ -101,32 +105,28 @@ class _SalidaTemplateBody extends StatelessWidget {
               child: Column(
 
                 children: [
-
                   //WIDGET DE CAMPOS CONSTANTES.
                   ConstantesWidgetSalida(consulta: consulta),
 
                   //WIDGET DE CAMPOS DINAMICOS
                   bodyIngreso,
-            
                 ],
-
               ),
-              
             ),
 
             //MENU INFERIOR
             Visibility(
               visible: (viewBotton==0) ? true :false,
               child: Positioned(
-            
+
                 bottom: 0,
-            
+
                 child: FondoMenuPeople(
-            
+
                   padding: EdgeInsets.symmetric(vertical: size.height*0.01),
-                  
+
                   child: Row(
-                    
+
                     mainAxisAlignment: MainAxisAlignment.center,
                     
                     children: [
@@ -137,33 +137,23 @@ class _SalidaTemplateBody extends StatelessWidget {
                         text: 'Registrar',
                         onpressed: funtionAccept,
                       ),
-                      
+
                       // if(consulta.tipoConsulta == 'INGRESO AUTORIZADO')
                       SizedBox(width: size.width*0.09),
-                        
+
                       ButtonMenuPeople(
                         icon: Icons.exit_to_app_outlined, 
                         text: 'Salir',
                         onpressed: ()=> Navigator.pop(context),
                       ),
-            
                     ],
-            
                   ),
-            
                 ),
-              
               ),
             ),
-
           ],
-
         ),
-
       ),
-
     );
-
   }
-
 }

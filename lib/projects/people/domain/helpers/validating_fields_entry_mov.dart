@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
@@ -11,19 +10,17 @@ import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart
 import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
 import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
-import 'package:solgis/projects/people/domain/utils/get_result_scanner.dart';
+import 'package:solgis/projects/people/domain/utils/scanning_infinity.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
-
-validatingFields(BuildContext context, ConsultaModel consulta)async {
+validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
 
   final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
   final loginGlobal = Provider.of<GlobalProvider>(context,listen: false);
   final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
   final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
-
   final datosAcceso = DatosAccesoMModel();
-  
+
   if(!ingresoProvider.isValidForm())return showSnackBarAwesome(context, 'Atencion', 'Hay datos sin llenar', ContentType.failure); 
 
   CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
@@ -42,13 +39,13 @@ validatingFields(BuildContext context, ConsultaModel consulta)async {
   }
 
   if(consulta.codigoArea == 0 ||  consulta.codigoArea == -1){
-    consulta.codigoArea        = ingresoProvider.cod_area;
-    consulta.area              = ingresoProvider.area_acceso;
+    consulta.codigoArea = ingresoProvider.cod_area;
+    consulta.area       = ingresoProvider.area_acceso;
   }
 
   if(consulta.codigoMotivo == 0 || consulta.codigoMotivo == -1){
-    consulta.codigoMotivo      = ingresoProvider.cod_motivo;
-    consulta.motivo            = ingresoProvider.motivo;
+    consulta.codigoMotivo = ingresoProvider.cod_motivo;
+    consulta.motivo       = ingresoProvider.motivo;
   }
 
   await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
@@ -61,10 +58,10 @@ validatingFields(BuildContext context, ConsultaModel consulta)async {
   // ignore: use_build_context_synchronously
   showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
 
-  // ignore: use_build_context_synchronously
   Navigator.of(context).pop();
-  // Navigator.of(context,rootNavigator: true).pop();
-  // Navigator.pop(context);
+
+  // ignore: use_build_context_synchronously
+  if(registerProvider.isScanning==true) scanningInfinity(registerProvider.registerContext);
 
 }
 

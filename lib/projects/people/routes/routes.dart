@@ -9,7 +9,7 @@ class PeopleRoutes {
     //RAIZ DEL PEOPLE
     "/": (context) => const HomePagePeople(),
     //RUTAS PARA LA APP PEOPLE
-    'registrar_movimiento_people'    : (BuildContext context) => const RegistrarMovimientoPage(),
+    'registrar_movimiento_people'    : (BuildContext context) => RegistrarMovimientoPage(),
     'ingreso_autorizado_people'      : (BuildContext context) => const IngresoAutorizadoPage(),
     'salida_autorizada_people'       : (BuildContext context) => const SalidaAutorizadaPage(),
     'ingreso_denegado_people'        : (BuildContext context) => const IngresoDenegadoPage(),

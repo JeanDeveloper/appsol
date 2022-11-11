@@ -21,7 +21,7 @@ class LoadingPage extends StatelessWidget {
 
             const CircularProgressIndicator(),
             SizedBox(height: size.height*0.02,),
-            const Text('Estamos validando los datos')
+            const Text('Cargando...')
 
           ],
 
