@@ -57,10 +57,12 @@ class _HomeHeaderPeople extends StatelessWidget {
           children: [
             Text('People v2', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
             SizedBox(height: size.height*0.05),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Bienvenido a la nueva rama: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
-            ),
+
+            Container(height: 20, width: 200, color: Colors.red),
+            // Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: Text('Bienvenido a la nueva rama: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
+            // ),
             SizedBox(height: size.height*0.02),
           ],
         ),
