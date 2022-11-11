@@ -59,7 +59,7 @@ class _HomeHeaderPeople extends StatelessWidget {
             SizedBox(height: size.height*0.05),
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('Bienvenido a: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
+              child: Text('Bienvenido a la nueva rama: ', style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(color: Colors.amber)),
             ),
             SizedBox(height: size.height*0.02),
           ],
