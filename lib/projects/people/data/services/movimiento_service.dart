@@ -14,7 +14,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
-  final String _url   = '190.116.178.163:96';
+  final String _url   = '192.168.10.103:8000';
   final String _uncodePath = 'appsol/people/movimientos/';
   final bool cargando = false;
   File? pictureFile;

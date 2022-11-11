@@ -7,7 +7,7 @@ import 'dart:io';
 
 class FotoAccesoService {
 
-  static const String _url = '190.116.178.163:96';
+  static const String _url = '192.168.10.103:8000';
   static const String _uncodePath = 'appsol/people/fotos_acceso/';
 
   static Future<FotoAccesoModel?> getFotoAcceso(String fotoId)async{

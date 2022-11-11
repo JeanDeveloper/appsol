@@ -12,7 +12,7 @@ import 'package:solgis/projects/people/domain/providers/crear_personal_provider.
 
 class PersonalProvider{
 
-  final String _url = '190.116.178.163:96';
+  final String _url = '192.168.10.103:8000';
 
   final String _uncodePath = 'appsol/people/personal/';
   
@@ -89,7 +89,7 @@ class PersonalProvider{
 
   // //GUARDANDO LA FOTO DEL PERSONAL AL SERVIDOR DE SOLMAR.
   // Future<ResponsePersonalModel> uploadFotoPersonal(BuildContext context, String codPersonal){
-  //   const String url = '190.116.178.163:96';
+  //   const String url = '192.168.10.103:8000';
   //   const String uncodePath = 'appsol/people/personal/';
 
     
