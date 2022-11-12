@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_salida_model.d
 class DatosAccesoService{
 
   final String _url = '192.168.10.103:8000';
-  final String _uncodePath = 'appsol/people/datos_acceso/';
+  final String _uncodePath = 'solgis/people/datos_acceso/';
 
   Future<DatosAccesoMModel?> getDatosAccesosMovimiento(int codServicio, int codPersonal)async{
 
@@ -36,7 +36,7 @@ class DatosAccesoService{
 
   Future<DatosAccesoSalidaModel?> getDatosAccesoSalida(String codServicio, String documento)async{
 
-    String uncodePath = 'appsol/people/datos_acceso/salida/';
+    String uncodePath = 'solgis/people/datos_acceso/salida/';
 
     final url = Uri.http(_url, uncodePath,{
       'codServicio' : codServicio,

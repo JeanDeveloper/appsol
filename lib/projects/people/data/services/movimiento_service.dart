@@ -15,7 +15,7 @@ import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 class MovimientosProvider extends ChangeNotifier{
   
   final String _url   = '192.168.10.103:8000';
-  final String _uncodePath = 'appsol/people/movimientos/';
+  final String _uncodePath = 'solgis/people/movimientos/';
   final bool cargando = false;
   File? pictureFile;
   List<MovimientoModel> movimientosTotalesSelected = [];
@@ -133,7 +133,7 @@ class MovimientosProvider extends ChangeNotifier{
 
   //SUBIR LAS IMAGENES AL SERVIDOR DE SOLMAR CON EL API APISOLGISFOTOS.
   Future<int> obtenerCodigoUltimoMovimiento(String codServicio, String codPersonal ) async {
-    final url = Uri.http( _url,'appsol/people/movimientos/obtener_ultimo_movimiento/', {
+    final url = Uri.http( _url,'solgis/people/movimientos/obtener_ultimo_movimiento/', {
       'codServicio': codServicio ,
       'codPersonal': codPersonal ,
     });

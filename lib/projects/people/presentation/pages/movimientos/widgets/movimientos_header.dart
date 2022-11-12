@@ -26,10 +26,8 @@ class MovimientosListButton extends StatelessWidget {
 
     return Container(
 
-      // color: Colors.red,
-
       padding: const EdgeInsets.only(top: 20),
-      height: size.height * .18,
+      height: (gProvider.codCliente != '28463')? size.height * .25 : size.height * .18,
 
       child: Column(
 
@@ -63,13 +61,6 @@ class MovimientosListButton extends StatelessWidget {
 
             children: [
 
-              // TODOS
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Todos',
-              //   value: 0,
-              // ),
 
               //PROPIO
               RadioListButton(
@@ -108,71 +99,40 @@ class MovimientosListButton extends StatelessWidget {
                 // icon: Icons.cro,
                 value: 4,
               ),
-          
             ],
-          
           ),
 
           // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
             // SizedBox( width: size.height*0.03),
 
           //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
-          Row(
+          if(gProvider.codCliente != '28463')
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
 
-            children: [
+                //IMPORTACION
+                RadioListButton(
+                  width: size.width*0.24,
+                  index: index,
+                  title: 'Impo',
+                  // icon: Icons.arrow_circle_down_rounded,
+                  value: 6,
+                ),
 
-              //TERCERO
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Tercero',
-              //   value: 3,
-              // ),
+                //EXPORTACION
+                RadioListButton(
+                  width: size.width*0.24,
+                  index: index,
+                  // icon:Icons.arrow_circle_up_outlined,
+                  title: 'Expo',
+                  value: 7,
+                ),            
 
-              //AUTORIDAD
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
+              ],
 
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Autor',
-              //   value: 4,
-              // ),
-
-              //CLIENTES
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Cliente',
-              //   value: 5,
-              // ),
-
-              //IMPORTACION
-              if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-              RadioListButton(
-                width: size.width*0.24,
-                index: index,
-                title: 'Impo',
-                // icon: Icons.arrow_circle_down_rounded,
-                value: 6,
-              ),
-
-              //EXPORTACION
-              if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-              RadioListButton(
-                width: size.width*0.24,
-                index: index,
-                // icon:Icons.arrow_circle_up_outlined,
-                title: 'Expo',
-                value: 7,
-              ),            
-
-            ],
-
-          ),
+            ),
 
           // Container(
 

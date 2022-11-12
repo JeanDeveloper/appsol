@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/tipos_personal_model.dart';
 class TiposPersonalProvider{
 
   final String _url = '192.168.10.103:8000';
-  final String _uncodePath = 'appsol/people/personal/tipos/';
+  final String _uncodePath = 'solgis/people/personal/tipos/';
   final bool cargando = false;
 
   // peticion GET

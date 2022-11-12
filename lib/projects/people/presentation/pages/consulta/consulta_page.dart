@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:solgis/core/domain/helpers/get_image.dart';
-import 'package:solgis/core/domain/providers/global_provider.dart';
-import 'package:solgis/projects/people/data/services/autorizacion_service.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/autorizacion_model.dart';
 import 'package:solgis/projects/people/presentation/pages/consulta/widgets/widgets.dart';

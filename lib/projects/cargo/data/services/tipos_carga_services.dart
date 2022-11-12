@@ -6,7 +6,7 @@ import 'package:solgis/projects/cargo/data/models/tipos_carga_model.dart';
 class TiposCargaService{
 
   static const String _url = '192.168.10.103:8000';
-  static const String _uncodePath = 'appsol/cargo/carga/';
+  static const String _uncodePath = 'solgis/cargo/carga/';
 
   //PETICION GET
   static  Future<List<TipoCargaModel>> getTiposCarga(String codCliente)async{

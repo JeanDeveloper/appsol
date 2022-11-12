@@ -7,7 +7,7 @@ import 'package:solgis/core/domain/models/login_dni_response.dart';
 class SignInService{
 
   final String _url = '192.168.10.103:8000';
-  final String _uncodePath = 'appsol/autenticacion/';
+  final String _uncodePath = 'solgis/autenticacion/';
 
   //PETICION GET
   Future<LoginDniResponse?> signInDNI(String dni) async {
