@@ -27,11 +27,9 @@ class MovimientosListButton extends StatelessWidget {
     return Container(
 
       padding: const EdgeInsets.only(top: 20),
-      height: (gProvider.codCliente != '28463')? size.height * .25 : size.height * .18,
+      height: (gProvider.codCliente == '28463')? size.height * .25 : size.height * .18,
 
       child: Column(
-
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
 
@@ -60,7 +58,6 @@ class MovimientosListButton extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
             children: [
-
 
               //PROPIO
               RadioListButton(
@@ -99,14 +96,16 @@ class MovimientosListButton extends StatelessWidget {
                 // icon: Icons.cro,
                 value: 4,
               ),
+
             ],
+
           ),
 
           // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
             // SizedBox( width: size.height*0.03),
 
           //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
-          if(gProvider.codCliente != '28463')
+          if(gProvider.codCliente == '28463')
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
@@ -134,64 +133,10 @@ class MovimientosListButton extends StatelessWidget {
 
             ),
 
-          // Container(
-
-          //   width: double.infinity,
-          //   height: size.height*0.05,
-          //   alignment: Alignment.center,
-
-          //   child: Row(
-
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          //     children: [
-
-          //       //PROPIO
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Propio',
-          //         value: 1,
-          //       ),
-
-          //       //VISITANTE
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Visita',
-          //         value: 2
-          //       ),
-
-          //       //TERCERO
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Tercero',
-          //         value: 3,
-          //       ),
-
-          //       //AUTORIDAD
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Autoridad',
-          //         value: 4,
-          //       ),
-
-          //     ]
-
-          //   ),
-
-          // ),
-
-          // SizedBox( width: size.height*0.03),
-
         ],
 
       ),
-
     );
 
   }
-
 }

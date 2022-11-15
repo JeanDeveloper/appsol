@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
 import 'package:solgis/projects/people/data/services/foto_acceso_service.dart';
@@ -45,13 +44,11 @@ class MovimientosProvider extends ChangeNotifier{
   Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta, DatosAccesoMModel datos) async{
 
     final loginProvider = Provider.of<PersonAuthProvider>(context, listen: false);
- 
+
     final resp = await http.post(
       url,
 
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'},
 
       body: jsonEncode(
         <String, String>{

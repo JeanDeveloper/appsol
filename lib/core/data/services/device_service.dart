@@ -60,7 +60,6 @@ class DeviceService{
 
     final estadoData = json.decode(response.body);
     return estadoData['estado'];
-
   }
 
 }
