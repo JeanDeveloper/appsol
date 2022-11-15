@@ -115,9 +115,9 @@ class ListTileMovimiento extends StatelessWidget {
         ),
     
         subtitle: Row(
-    
+
           children: [
-    
+
             Expanded(
               flex:5,
               child: Column(
@@ -152,13 +152,13 @@ class ListTileMovimiento extends StatelessWidget {
               flex: (movimiento.guiaMov == '' && movimiento.materialMov == '') ? 2 : (movimiento.guiaMov != '' || movimiento.materialMov != '')? 1 :  0, 
               child: const SizedBox(), 
             ),
-    
+
             if(movimiento.guiaMov != '' )
               const Expanded( flex: 1 , child: Icon(Icons.library_books_outlined, size: 18)),
-    
+
             if(movimiento.materialMov != '' )
               const Expanded( flex: 1 , child: Icon(Icons.diamond, size: 18)),
-    
+
             if(movimiento.fechaSalida == '')
               Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),
 
@@ -169,7 +169,7 @@ class ListTileMovimiento extends StatelessWidget {
         trailing: (movimiento.fechaSalida == '')
           ? GestureDetector( 
             onTap: ()=>consultarDOI(context, movimiento.dni!, globalProvider.codServicio),
-            child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.green),
+            child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.red),
           )
           : Column(
             mainAxisAlignment: MainAxisAlignment.center,

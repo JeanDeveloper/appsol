@@ -26,8 +26,6 @@ class MovimientosListButton extends StatelessWidget {
 
     return Container(
 
-      // color: Colors.red,
-
       padding: const EdgeInsets.only(top: 20),
       height: size.height * .18,
 
@@ -46,7 +44,7 @@ class MovimientosListButton extends StatelessWidget {
           Row(
 
             mainAxisAlignment: MainAxisAlignment.center,
-
+            
             children: [
 
               AutoSizeText('Cantidad:', style: TextStyle( color: Colors.green, fontSize: size.height* .03, fontWeight: FontWeight.bold), minFontSize: 6),
@@ -62,14 +60,6 @@ class MovimientosListButton extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
             children: [
-
-              // TODOS
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Todos',
-              //   value: 0,
-              // ),
 
               //PROPIO
               RadioListButton(
@@ -123,33 +113,6 @@ class MovimientosListButton extends StatelessWidget {
 
             children: [
 
-              //TERCERO
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Tercero',
-              //   value: 3,
-              // ),
-
-              //AUTORIDAD
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
-
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Autor',
-              //   value: 4,
-              // ),
-
-              //CLIENTES
-              // RadioListButton(
-              //   width: size.width*0.24,
-              //   index: index,
-              //   title: 'Cliente',
-              //   value: 5,
-              // ),
-
               //IMPORTACION
               if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
               RadioListButton(
@@ -173,58 +136,6 @@ class MovimientosListButton extends StatelessWidget {
             ],
 
           ),
-
-          // Container(
-
-          //   width: double.infinity,
-          //   height: size.height*0.05,
-          //   alignment: Alignment.center,
-
-          //   child: Row(
-
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          //     children: [
-
-          //       //PROPIO
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Propio',
-          //         value: 1,
-          //       ),
-
-          //       //VISITANTE
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Visita',
-          //         value: 2
-          //       ),
-
-          //       //TERCERO
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Tercero',
-          //         value: 3,
-          //       ),
-
-          //       //AUTORIDAD
-          //       RadioListButton(
-          //         width: size.width*0.24,
-          //         index: index,
-          //         title: 'Autoridad',
-          //         value: 4,
-          //       ),
-
-          //     ]
-
-          //   ),
-
-          // ),
-
-          // SizedBox( width: size.height*0.03),
 
         ],
 
