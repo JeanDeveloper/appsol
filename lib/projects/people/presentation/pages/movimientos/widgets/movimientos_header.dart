@@ -55,52 +55,55 @@ class MovimientosListButton extends StatelessWidget {
 
           ),
 
-          Row(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical:20),
+            child: Row(
 
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
 
-            children: [
+                //PROPIO
+                RadioListButton(
+                  width: size.width*0.2,
+                  index: index,
+                  title:'Propio',
+                  // icon: Icons.engineering,
+                  value: 1,
+                ),
 
-              //PROPIO
-              RadioListButton(
-                width: size.width*0.24,
-                index: index,
-                title:'Propio',
-                // icon: Icons.engineering,
-                value: 1,
-              ),
 
-              //TERCERO
-              // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-              RadioListButton(
-                width: size.width*0.25,
-                index: index,
-                // icon: Icons.content_paste_rounded,
-                title: 'Contratista',
-                value: 3,
-              ),
+                //TERCERO
+                // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
+                RadioListButton(
+                  width: size.width*0.3,
+                  index: index,
+                  // icon: Icons.content_paste_rounded,
+                  title: 'Contratista',
+                  value: 3,
+                ),
 
-              //VISITANTE
-              RadioListButton(
-                width: size.width*0.25,
-                index: index,
-                // icon: Icons.visibility,
-                title: 'Visita',
-                value: 2
-              ),
+                //VISITANTE
+                RadioListButton(
+                  width: size.width*0.2,
+                  index: index,
+                  // icon: Icons.visibility,
+                  title: 'Visita',
+                  value: 2
+                ),
 
-              //AUTORIDAD
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
-              RadioListButton(
-                width: size.width*0.25,
-                index: index,
-                title: 'Autoridad',
-                // icon: Icons.cro,
-                value: 4,
-              ),
-          
-            ],
-          
+                //AUTORIDAD
+                // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
+                RadioListButton(
+                  width: size.width*0.3,
+                  index: index,
+                  title: 'Autoridad',
+                  // icon: Icons.cro,
+                  value: 4,
+                ),
+            
+              ],
+            
+            ),
           ),
 
           // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
@@ -119,7 +122,6 @@ class MovimientosListButton extends StatelessWidget {
                 width: size.width*0.24,
                 index: index,
                 title: 'Impo',
-                // icon: Icons.arrow_circle_down_rounded,
                 value: 6,
               ),
 
@@ -128,7 +130,6 @@ class MovimientosListButton extends StatelessWidget {
               RadioListButton(
                 width: size.width*0.24,
                 index: index,
-                // icon:Icons.arrow_circle_up_outlined,
                 title: 'Expo',
                 value: 7,
               ),            

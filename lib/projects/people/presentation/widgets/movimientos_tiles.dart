@@ -35,7 +35,7 @@ class MovimientosTiles extends StatelessWidget {
         }
 
         return ListView.separated(
-          separatorBuilder: ( _ , int i) => Divider(color: Colors.grey.shade500.withOpacity(0.5), indent: 10, endIndent: 10, height: 0 ),
+          separatorBuilder: ( _ , int i) => Divider(color: Colors.grey.shade300.withOpacity(0.5), indent: 10, endIndent: 10, height: 0 ),
           itemCount: snapshot.data!.length,
           itemBuilder: (_, i) => ListTileMovimiento( movimiento: snapshot.data![i]),
         );

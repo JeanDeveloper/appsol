@@ -27,6 +27,7 @@ class ListTileMovimiento extends StatelessWidget {
       onTap: ()=> Navigator.pushNamed(context, 'detalle_movimiento', arguments: movimiento) ,
 
       child: ListTile(
+        minVerticalPadding: 10,
 
         style: ListTileStyle.list,
 
@@ -74,24 +75,18 @@ class ListTileMovimiento extends StatelessWidget {
 
             ).show(context);
           },
-    
-          child: Container(
-            width: size.width* .08,
-            height: size.height*0.4,
-            alignment: Alignment.center,
-            child: FaIcon(
-              FontAwesomeIcons.circleUser, 
-              color: (movimiento.sexo == 'M')?Colors.blueAccent : Colors.pinkAccent, 
-              size: 40
-            ),
-    
+
+          child: FaIcon(
+            FontAwesomeIcons.circleUser, 
+            color: (movimiento.sexo == 'M')?Colors.blueAccent : Colors.pinkAccent, 
+            size: 40
           ),
         ),
-    
+
         title: Row(
     
           children: [
-    
+
             Expanded(
               flex: 7,
               child: Text( movimiento.nombres != '' 
@@ -107,13 +102,13 @@ class ListTileMovimiento extends StatelessWidget {
               maxLines: 1
               ),
             ),
-    
+
             Expanded( flex: 2, child: AutoSizeText(movimiento.dni!, style: styleLetterpersonalmovimientotitle() , maxLines: 1, minFontSize: 6, maxFontSize: 12,))
-    
+
           ],
-    
+
         ),
-    
+
         subtitle: Row(
 
           children: [
@@ -169,8 +164,15 @@ class ListTileMovimiento extends StatelessWidget {
         trailing: (movimiento.fechaSalida == '')
           ? GestureDetector( 
             onTap: ()=>consultarDOI(context, movimiento.dni!, globalProvider.codServicio),
-            child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.red),
+            child:  Container(
+              width: size.width * .1,
+              height: double.infinity,
+              alignment: Alignment.center,
+              color: Colors.transparent,
+              child: const FaIcon(FontAwesomeIcons.personWalkingArrowRight, color: Colors.red, size: 30),
+            )
           )
+
           : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -179,7 +181,7 @@ class ListTileMovimiento extends StatelessWidget {
               AutoSizeText( getTiempoTranscurrido(movimiento.fechaMovimiento!, DateTime.parse('${movimiento.fechaSalida.toString().replaceAll(' ', 'T')}Z')).toString().substring(0, 7), style: TextStyle(color: Colors.blue, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12),
             ],
           ),  
-    
+
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       ),
     );

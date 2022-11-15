@@ -30,7 +30,7 @@ void consultarDOI(BuildContext context, String documento, String codServicio ) a
     }else {
 
       // ignore: use_build_context_synchronously
-      if(consulta.codigoTipoPersona == null || consulta.codigoEmpresa == null || consulta.codigoCargo == null ) return showSnackBarAwesome(context, 'Atencion', 'Por favor regularize al personal', ContentType.warning);
+      if(consulta.codigoTipoPersona == null || consulta.codigoEmpresa == null || consulta.codigoCargo == null ) return showSnackBarAwesome(context, 'Atencion', 'Regularizar al personal mediante el Sistema Control ', ContentType.warning);
 
       //OBTENGO LOS DATOS DE ACCESO DEL MOVIMIENTO DE ENTRADA.
       final datosAcceso = await DatosAccesoService().getDatosAccesosMovimiento(consulta.codigoServicio, consulta.codigoPersona!);
