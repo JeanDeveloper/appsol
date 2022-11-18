@@ -9,19 +9,15 @@ class NumpadV2 extends StatefulWidget {
 
   final int length;
   final bool isDni;
-  // final Function onPressed;
 
   const NumpadV2({
     super.key, 
     required this.length, 
     this.isDni=true,
-
-    // required this.onPressed
   });
 
   @override
   _NumpadV2 createState() => _NumpadV2();
-
 }
 
 class _NumpadV2 extends State<NumpadV2> {
@@ -248,17 +244,14 @@ class _NumpadV2 extends State<NumpadV2> {
                 icon: Icons.backspace,
                 onPressed: ()=>backspace(number),
               ),
+
             ],
 
           )
 
-
         ],
-
       ),
-
     );
-  
   }
 
 }
@@ -301,7 +294,7 @@ class Dot extends StatelessWidget {
     return  Container(
       padding: const  EdgeInsets.all(8.0),
       child: isActive
-      ? Container(width: 20.0, height: 20.0,child: Text('$number', style: const TextStyle(color: Colors.white, fontSize:20, fontWeight: FontWeight.bold)))      
+      ? SizedBox(width: 20.0, height: 20.0,child: Text('$number', style: const TextStyle(color: Colors.white, fontSize:20, fontWeight: FontWeight.bold)))      
       : Container(
         width: 20.0,
         height: 20.0,
@@ -333,7 +326,7 @@ class NumpadButton extends StatelessWidget {
     TextStyle buttonStyle = const TextStyle(fontSize: 20, color: Colors.black);
     Widget label = icon != null ? Icon(icon, color: Colors.white, size: 30.0)
       : Text(text ?? '', style: buttonStyle);
-      
+
     return OutlinedButton(
       onPressed: onPressed, 
       style: ButtonStyle(
@@ -341,9 +334,9 @@ class NumpadButton extends StatelessWidget {
         side: haveBorder ? MaterialStateProperty.all(const BorderSide(color: Colors.grey)) : MaterialStateProperty.all(BorderSide.none),
         padding: MaterialStateProperty.all(EdgeInsets.all(size.width*0.07)),
         shape: MaterialStateProperty.all(const CircleBorder()),
-        
       ),
       child: label,
     );
+
   }
 }

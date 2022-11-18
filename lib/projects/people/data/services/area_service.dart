@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/area_model.dart';
 class AreaService{
 
   final String _url = '190.116.178.163:96';
-  final String _uncodePath = 'appsol/people/areas/';
+  final String _uncodePath = 'solgis/people/areas/';
 
   //PETICION GET
   Future<List<AreaDbModel>> _procesarRespuestaGet( Uri url )async{

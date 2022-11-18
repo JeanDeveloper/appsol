@@ -41,7 +41,7 @@ class _MovimientosPlantasTabPageState extends State<MovimientosPlantasTabPage> {
 
           // ignore: prefer_const_constructors
           Expanded(
-            child: MovimientosTilesPageBody()
+            child: const MovimientosTilesPageBody()
           )
 
         ],

@@ -7,10 +7,9 @@ import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/data/services/personal_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
-import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
+import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
 import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
-import 'package:solgis/projects/people/domain/utils/scanning_infinity.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
 validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
@@ -18,24 +17,20 @@ validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
   final ingresoProvider = Provider.of<IngresoAutorizadoProvider>(context, listen: false);
   final loginGlobal = Provider.of<GlobalProvider>(context,listen: false);
   final movimientoProvider = Provider.of<MovimientosProvider>(context, listen: false);
-  final registerProvider = Provider.of<RegistrarFormProvider>(context, listen: false);
-  final datosAcceso = DatosAccesoMModel();
 
+  
   if(!ingresoProvider.isValidForm())return showSnackBarAwesome(context, 'Atencion', 'Hay datos sin llenar', ContentType.failure); 
 
   CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
   progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
   progressDialog.show();
 
-  if(ingresoProvider.material_valor != '') datosAcceso.materialMovimiento = ingresoProvider.material_valor; 
-  if(ingresoProvider.guia != '') datosAcceso.guiaMovimiento = ingresoProvider.guia; 
 
-  //FUNCION PARA REGISTRAR UN MOVIMIENTO
   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
 
-  if(consulta.codigoAutorizante == 0 ||  consulta.codigoAutorizante == -1){
-    consulta.codigoAutorizante = ingresoProvider.codautorizante;
-    consulta.autorizante       = ingresoProvider.autorizante;
+  if(consulta.codigoAutorizante == 0 || consulta.codigoAutorizante == -1){
+    consulta.codigoAutorizante  = ingresoProvider.codautorizante;
+    consulta.autorizante        = ingresoProvider.autorizante;
   }
 
   if(consulta.codigoArea == 0 ||  consulta.codigoArea == -1){
@@ -48,10 +43,14 @@ validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
     consulta.motivo       = ingresoProvider.motivo;
   }
 
-  await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
-  if(ingresoProvider.fotoGuia != null ) await movimientoProvider.uploadImage(ingresoProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
-  if(ingresoProvider.fotoMaterialValor != null)  await movimientoProvider.uploadImage(ingresoProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString() );
-  if(ingresoProvider.fotoPersonalUpdate !=null) await PersonalProvider().uploadPhotoPersonal(ingresoProvider.fotoPersonalUpdate!, consulta.codigoPersona.toString());
+  //REGISTRANDO EL MOVIMIENTO Y SALVANDO EL RESPONSE .
+  final MovimientoReponseModel? movimientoResponse = await movimientoProvider.registerMovimiento(context, consulta);
+
+  //GUARDAR LOS DATOS DE ACCESO.
+  await movimientoProvider.registerDatoAcceso( ingresoProvider.guia , movimientoResponse!.codMovimiento, 'PEOPLE', 1,loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoGuia);
+  await movimientoProvider.registerDatoAcceso( ingresoProvider.material_valor , movimientoResponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoMaterialValor);
+
+  if(ingresoProvider.fotoPersonalUpdate !=null) await PersonalProvider().uploadPhotoPersonal(ingresoProvider.fotoPersonalUpdate!, consulta.docPersona.toString());
 
   progressDialog.dismiss();
 
@@ -59,9 +58,6 @@ validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
   showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
 
   Navigator.of(context).pop();
-
-  // ignore: use_build_context_synchronously
-  if(registerProvider.isScanning==true) scanningInfinity(registerProvider.registerContext);
 
 }
 

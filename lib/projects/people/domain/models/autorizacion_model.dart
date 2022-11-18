@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-List<ConsultaDatosPersonaModel> consultaDatosPersonaModelFromJson(String str) => List<ConsultaDatosPersonaModel>.from(json.decode(str).map((x) => ConsultaDatosPersonaModel.fromJson(x)));
+List<AutorizacionModel> consultaDatosPersonaModelFromJson(String str) => List<AutorizacionModel>.from(json.decode(str).map((x) => AutorizacionModel.fromJson(x)));
 
-class ConsultaDatosPersonaModel {
-    ConsultaDatosPersonaModel({
+class AutorizacionModel {
+    AutorizacionModel({
       this.valor,
       this.mensaje,
       this.codAutorizacion,
@@ -29,7 +29,7 @@ class ConsultaDatosPersonaModel {
     String? fiAutorizacion;
     String? fvAutorizacion;
 
-    ConsultaDatosPersonaModel.fromJson(Map<String, dynamic> json) {
+    AutorizacionModel.fromJson(Map<String, dynamic> json) {
         valor= json["valor"];
         mensaje= json["mensaje"];
         codAutorizacion= json["cod_autorizacion"];

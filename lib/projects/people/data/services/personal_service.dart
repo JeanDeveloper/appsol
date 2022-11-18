@@ -14,7 +14,7 @@ class PersonalProvider{
 
   final String _url = '190.116.178.163:96';
 
-  final String _uncodePath = 'appsol/people/personal/';
+  final String _uncodePath = 'solgis/people/personal/';
   
   final bool cargando = false;
 
@@ -86,21 +86,6 @@ class PersonalProvider{
 
     
   } 
-
-  // //GUARDANDO LA FOTO DEL PERSONAL AL SERVIDOR DE SOLMAR.
-  // Future<ResponsePersonalModel> uploadFotoPersonal(BuildContext context, String codPersonal){
-  //   const String url = '190.116.178.163:96';
-  //   const String uncodePath = 'appsol/people/personal/';
-
-    
-
-    
-
-  // }
-
-
-
-
 
 
 }

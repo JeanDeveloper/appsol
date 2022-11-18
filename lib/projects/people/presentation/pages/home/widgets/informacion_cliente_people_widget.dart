@@ -47,7 +47,8 @@ class InformacionClientePeopleWidget extends StatelessWidget {
             Text(
                 loginGlobal.nombreSubArea.split(' ')
                   .map((word) {
-                    if (word != '') return word[0].toUpperCase() + word.substring(1).toLowerCase();
+                    if (word == '') return '';
+                    return word[0] + word.substring(1).toLowerCase();
                   })
                   .join(' '),
               style: AppThemePeople.lighThemePeople.textTheme.headline3?.copyWith(  

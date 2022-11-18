@@ -27,11 +27,9 @@ class MovimientosListButton extends StatelessWidget {
     return Container(
 
       padding: const EdgeInsets.only(top: 20),
-      height: size.height * .18,
+      height: (gProvider.codCliente == '28463')? size.height * .25 : size.height * .18,
 
       child: Column(
-
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
 
@@ -71,16 +69,14 @@ class MovimientosListButton extends StatelessWidget {
                   value: 1,
                 ),
 
-
-                //TERCERO
-                // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-                RadioListButton(
-                  width: size.width*0.3,
-                  index: index,
-                  // icon: Icons.content_paste_rounded,
-                  title: 'Contratista',
-                  value: 3,
-                ),
+              //PROPIO
+              RadioListButton(
+                width: size.width*0.24,
+                index: index,
+                title:'Propio',
+                // icon: Icons.engineering,
+                value: 1,
+              ),
 
                 //VISITANTE
                 RadioListButton(
@@ -91,59 +87,65 @@ class MovimientosListButton extends StatelessWidget {
                   value: 2
                 ),
 
-                //AUTORIDAD
-                // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
-                RadioListButton(
-                  width: size.width*0.3,
-                  index: index,
-                  title: 'Autoridad',
-                  // icon: Icons.cro,
-                  value: 4,
-                ),
-            
-              ],
-            
-            ),
-          ),
-
-          // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-            // SizedBox( width: size.height*0.03),
-
-          //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
-          Row(
-
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-            children: [
-
-              //IMPORTACION
-              if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
+              //VISITANTE
               RadioListButton(
-                width: size.width*0.24,
+                width: size.width*0.25,
                 index: index,
-                title: 'Impo',
-                value: 6,
+                // icon: Icons.visibility,
+                title: 'Visita',
+                value: 2
               ),
 
-              //EXPORTACION
-              if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
+              //AUTORIDAD
+              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
               RadioListButton(
-                width: size.width*0.24,
+                width: size.width*0.25,
                 index: index,
-                title: 'Expo',
-                value: 7,
-              ),            
+                title: 'Autoridad',
+                // icon: Icons.cro,
+                value: 4,
+              ),
 
             ],
 
           ),
 
+          // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
+            // SizedBox( width: size.height*0.03),
+          ),
+          //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
+          if(gProvider.codCliente == '28463')
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+              children: [
+
+                //IMPORTACION
+                RadioListButton(
+                  width: size.width*0.24,
+                  index: index,
+                  title: 'Impo',
+                  // icon: Icons.arrow_circle_down_rounded,
+                  value: 6,
+                ),
+
+                //EXPORTACION
+                RadioListButton(
+                  width: size.width*0.24,
+                  index: index,
+                  // icon:Icons.arrow_circle_up_outlined,
+                  title: 'Expo',
+                  value: 7,
+                ),            
+
+              ],
+
+            ),
+
         ],
 
       ),
-
     );
 
   }
-
 }

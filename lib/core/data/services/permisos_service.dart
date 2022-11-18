@@ -7,7 +7,7 @@ import 'package:solgis/core/domain/models/permisos_model.dart';
 class PermisosService{
 
   static const String _url = '190.116.178.163:96'; 
-  static const String _uncodePath = 'appsol/usuario/permisos/';
+  static const String _uncodePath = 'solgis/usuario/permisos/';
 
   // PETICION GET
   static Future<List<PermisoModel>> getPermisos(int codTipoUsuario)async{

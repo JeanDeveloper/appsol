@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/motivo_model.dart';
 class MotivoService{
 
   final String _url = '190.116.178.163:96';
-  final String _uncodePath = 'appsol/people/motivos/';
+  final String _uncodePath = 'solgis/people/motivos/';
 
 
   //PETICION GET

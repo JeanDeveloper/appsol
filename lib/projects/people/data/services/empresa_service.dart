@@ -9,7 +9,7 @@ import 'package:solgis/projects/people/domain/models/empresa_model.dart';
 class EmpresasProvider {
 
   final String _url = '190.116.178.163:96';
-  final String _uncodePath = 'appsol/people/empresas/';
+  final String _uncodePath = 'solgis/people/empresas/';
 
 
   final bool cargando     = false;

@@ -55,7 +55,6 @@ class RegistrarMovimientoPage extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
-                      // if(tipoProvider.valorTipoDocumento!=3)
                       //SCANNER
                       ButtonMenuPeople(
                           icon: FontAwesomeIcons.barcode,

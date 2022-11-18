@@ -7,20 +7,21 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/person_auth_provider.dart';
+import 'package:solgis/projects/people/data/services/datos_acceso_movimiento_service.dart';
 import 'package:solgis/projects/people/data/services/foto_acceso_service.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
-import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 
 class MovimientosProvider extends ChangeNotifier{
   
   final String _url   = '190.116.178.163:96';
-  final String _uncodePath = 'appsol/people/movimientos/';
+  final String _uncodePath = 'solgis/people/movimientos/';
   final bool cargando = false;
   File? pictureFile;
   List<MovimientoModel> movimientosTotalesSelected = [];
   String tipoSeleccionado = 'todos';
   int movimientosContador = 0;
+  final datosAccesoService = DatosAccesoService();
 
   int get getmovimientosContador => movimientosContador;
 
@@ -42,16 +43,14 @@ class MovimientosProvider extends ChangeNotifier{
   }
 
   //PETICION POST
-  Future<int> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta, DatosAccesoMModel datos) async{
+  Future<MovimientoReponseModel?> _procesarRespuestaPost(BuildContext context, Uri url, ConsultaModel consulta) async{
 
     final loginProvider = Provider.of<PersonAuthProvider>(context, listen: false);
- 
+
     final resp = await http.post(
       url,
 
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'},
 
       body: jsonEncode(
         <String, String>{
@@ -63,23 +62,22 @@ class MovimientosProvider extends ChangeNotifier{
           'autorizado_por'        : '${consulta.codigoAutorizante}',  //DINAMICO Y NO ESTATICO
           'creado_por'            : 'PEOPLE_${loginProvider.dni}',    
           'codigo_area'           : '${consulta.codigoArea}',         //DINAMICO Y NO ESTATICO
-          'tipo_persona'          : '${consulta.tipoPersona}',
-          'guia'                  : datos.guiaMovimiento ?? '', 
-          'url_foto_guia'         : '',
-          'material'              : datos.materialMovimiento ?? '',
-          'url_foto_material'     : '',
         }
       ),
 
     );
 
-    if( resp.statusCode == 201 ) return 1;
+    if( resp.statusCode == 201 ) {
+      final decodedData = json.decode(utf8.decode(resp.bodyBytes));
+      final movResponse = MovimientoReponseModel.fromJson(decodedData);
+      return movResponse;
+    }
 
-    return -1;
+    return null;
 
   }
 
-  //OBTENER DE MOVIMIENTOS
+  //OBTENER LOS MOVIMIENTOS
   Future<List<MovimientoModel>> getMovimientos( String idServicio,  String tipoMovimiento, {String tipoPersonal= "0"}) async {
     final url = Uri.http( _url, _uncodePath,{
       'tipoMovimiento': tipoMovimiento,
@@ -125,15 +123,15 @@ class MovimientosProvider extends ChangeNotifier{
   }
 
   //REGISTRAR UN MOVIMIENTO
-  Future<int> registerMovimiento(BuildContext context, ConsultaModel consulta, DatosAccesoMModel datos)async{
+  Future<MovimientoReponseModel?> registerMovimiento(BuildContext context, ConsultaModel consulta)async{
     final url = Uri.http(_url, _uncodePath);
-    final movimientoId = await _procesarRespuestaPost(context, url, consulta, datos);
+    final movimientoId = await _procesarRespuestaPost(context, url, consulta);
     return movimientoId;
   }
 
   //SUBIR LAS IMAGENES AL SERVIDOR DE SOLMAR CON EL API APISOLGISFOTOS.
   Future<int> obtenerCodigoUltimoMovimiento(String codServicio, String codPersonal ) async {
-    final url = Uri.http( _url,'appsol/people/movimientos/obtener_ultimo_movimiento/', {
+    final url = Uri.http( _url,'solgis/people/movimientos/obtener_ultimo_movimiento/', {
       'codServicio': codServicio ,
       'codPersonal': codPersonal ,
     });
@@ -145,7 +143,7 @@ class MovimientosProvider extends ChangeNotifier{
     return decodedData['codigo_movimiento'];
   }
 
-  Future uploadImage( String pathImage, String creadoPor, int datosAcceso, String codigoServicio, String codPersonal,{isCosco = false})async{
+  Future uploadImage( String pathImage, String creadoPor, int datosAcceso, String codigoServicio, String codPersonal,{isCosco = false} )async{
 
     final codigoMovimiento = await obtenerCodigoUltimoMovimiento(codigoServicio, codPersonal);
 
@@ -183,11 +181,47 @@ class MovimientosProvider extends ChangeNotifier{
 
   }
 
+  Future uploadImageQA( String pathImage, String creadoPor, int tipoDatosAcceso, String codigoServicio, String  codCliente, int codDatoAcceso ) async{
+
+    pictureFile = File.fromUri(Uri(path: pathImage));
+
+    if(pictureFile == null) return null;
+
+    final url = Uri.parse('http://190.116.178.163:92/api/photo/upload-photo');
+    final imageUploadRequest = http.MultipartRequest('POST', url);
+
+    final file = await http.MultipartFile.fromPath(
+      'File', 
+      pictureFile!.path,
+      contentType: MediaType('image', 'jpg')
+    );
+
+    imageUploadRequest.fields['CreadoPor']      = creadoPor;
+    imageUploadRequest.fields['TipoDatoAcceso'] = tipoDatosAcceso.toString();
+    imageUploadRequest.fields['CodServicio']    = codigoServicio.toString();
+    imageUploadRequest.fields['CodCliente']     = codCliente;
+    imageUploadRequest.fields['CodDatoAcceso']  = codDatoAcceso.toString();
+    imageUploadRequest.files.add(file);
+    final streamResponse = await imageUploadRequest.send();
+    final resp = await http.Response.fromStream(streamResponse);
+    print(resp);
+
+  }
+
   Future<File> changeFileNameOnly(File file, String newFileName) {
     var path = file.path;
     var lastSeparator = path.lastIndexOf(Platform.pathSeparator);
     var newPath = path.substring(0, lastSeparator + 1) + newFileName;
     return file.rename(newPath);
+  }
+
+  Future registerDatoAcceso(String datoAcceso, int codMovimiento, String creadoPor, int codTipoDatoAcceso, String codServicio, String codCliente,  XFile? pathGuia )async{
+
+    if( datoAcceso != ''  ){
+      final codDatoAcceso = await datosAccesoService.registerDatosAcceso(codMovimiento, datoAcceso, creadoPor, codTipoDatoAcceso.toString());
+      if( pathGuia != null ) await uploadImageQA(pathGuia.path, 'PEOPLE', codTipoDatoAcceso, codServicio, codCliente, codDatoAcceso!);
+    }
+
   }
 
 }

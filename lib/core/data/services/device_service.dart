@@ -8,7 +8,7 @@ import 'package:solgis/core/domain/models/device_response_model.dart';
 class DeviceService{
 
   final String _url = '190.116.178.163:96';
-  final String _uncodePath = 'appsol/dispositivo/';
+  final String _uncodePath = 'solgis/dispositivo/';
 
   //PETICION POST
   Future<DeviceResponseModel?> sendDataDevice( DeviceInformationModel dispositivo, String number, String? token )async{
@@ -45,7 +45,7 @@ class DeviceService{
   Future<int> checkAuthDevice(String serial)async{
     final url = Uri.http(
       _url, 
-      'appsol/dispositivo/estado/', 
+      'solgis/dispositivo/estado/', 
       {
         'serial': serial
       }
@@ -60,7 +60,6 @@ class DeviceService{
 
     final estadoData = json.decode(response.body);
     return estadoData['estado'];
-
   }
 
 }
