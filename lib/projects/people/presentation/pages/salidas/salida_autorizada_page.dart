@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
-import 'package:solgis/projects/people/domain/helpers/validating_fields_exit_mov.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
