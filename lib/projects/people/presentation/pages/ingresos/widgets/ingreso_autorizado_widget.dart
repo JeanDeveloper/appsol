@@ -267,7 +267,6 @@ class IngresoAutorizadoWidget extends StatelessWidget {
 
                       SizedBox(
                         width: size.width*0.43, 
-                        // width: size.width*0.57,
                         height: size.height*0.04,
                         child: TextFormField(
                           cursorHeight: 20,

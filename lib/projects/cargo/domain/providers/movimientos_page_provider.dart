@@ -7,7 +7,7 @@ import 'package:solgis/projects/cargo/data/models/movimiento_cargo_model.dart';
 
 class MovimientosCargoPageProvider extends ChangeNotifier{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/cargo/movimientos/';
   final bool cargando = false;
   String _search = '';

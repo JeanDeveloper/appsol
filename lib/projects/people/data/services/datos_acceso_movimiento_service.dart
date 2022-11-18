@@ -7,27 +7,26 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_salida_model.d
 
 class DatosAccesoService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/people/datos_acceso/';
 
-  Future<DatosAccesoMModel?> getDatosAccesosMovimiento(int codServicio, int codPersonal)async{
+  Future<List<DatoAccesoMModel>?> getDatosAccesosMovimiento(int tipoMovimiento, int codServicio, String? documento)async{
 
     final url = Uri.http(_url, _uncodePath,{
+      'tipo_movimiento' : tipoMovimiento.toString(),
       'codigo_servicio' : codServicio.toString(),
-      'codigo_personal' : codPersonal.toString(),
+      'documento' : documento.toString(),
     });
 
     final resp = await http.get(
       url,
-      headers: {
-        HttpHeaders.contentTypeHeader: "application/json; charset= utf-8",
-      }
+      headers: { HttpHeaders.contentTypeHeader: "application/json; charset= utf-8"}
     );
 
     if(resp.statusCode == 200){
-      final decodedData = json.decode(resp.body);
-      final consulta = DatosAccesoMModel.fromJson(decodedData);
-      return consulta;
+      final decodedData = json.decode(utf8.decode(resp.bodyBytes));
+      final consulta = DatosAccesoModel.fromJsonList(decodedData);
+      return consulta.items;
     }
 
     return null;
@@ -57,6 +56,34 @@ class DatosAccesoService{
     }
 
     return null;
+
+  }
+
+  Future<int?> registerDatosAcceso(int codMov, String desccripcion, String creadoPor, String codTipoDatoAcceso)async{
+
+    final url = Uri.http(_url, _uncodePath);
+
+    final resp = await http.post(
+      url,
+      headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'},
+      body: jsonEncode(
+        <String, String>{
+          'cod_mov_peatonal'      : '$codMov',
+          'descripcion'           : desccripcion,
+          'creado_por'            : creadoPor,
+          'cod_tipo_dato_acceso'  : codTipoDatoAcceso,
+        }
+      )
+    );
+
+    if(resp.statusCode == 201){
+      final decodedData = json.decode(utf8.decode(resp.bodyBytes)); 
+      return decodedData['codigo_dato_acceso'];
+
+    }
+
+    return null;
+
 
   }
 

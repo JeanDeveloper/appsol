@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CardAcceso extends StatelessWidget {
@@ -17,19 +18,23 @@ class CardAcceso extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      margin: const EdgeInsets.all(10),
       width: size.width*0.35,
       height: (pathUrl != '') ? size.height*0.35 : size.height*0.2,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
         boxShadow: [
+
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
             offset: const Offset(1, 1),
           ),
+
         ],
+
       ),
 
       child: Column(
@@ -58,7 +63,7 @@ class CardAcceso extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal:10.0,vertical: 5),
-                child: Text(textDato!,textAlign: TextAlign.center),
+                child: AutoSizeText(textDato!,textAlign: TextAlign.center),
               ),
             )
           ),
@@ -68,5 +73,7 @@ class CardAcceso extends StatelessWidget {
       ),
 
     );
+
   }
+
 }

@@ -7,7 +7,7 @@ import 'package:solgis/core/domain/models/device_response_model.dart';
 
 class DeviceService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/dispositivo/';
 
   //PETICION POST

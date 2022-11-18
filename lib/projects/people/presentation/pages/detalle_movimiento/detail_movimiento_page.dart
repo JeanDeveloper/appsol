@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/datos_acceso_movimiento_service.dart';
-import 'package:solgis/projects/people/domain/models/datos_acceso_salida_model.dart';
+import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/detalle_movimiento_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/detalle_movimiento/widgets/widgets.dart';
@@ -38,11 +38,13 @@ class DetailMovimientoPageState extends StatelessWidget {
     final datosSalida = DatosAccesoService();
 
     return FutureBuilder(
-      future: datosSalida.getDatosAccesoSalida(gProvider.codServicio, movimiento.dni!),
 
-      builder: (context, AsyncSnapshot<DatosAccesoSalidaModel?>snapshot) {
+      // future: datosSalida.getDatosAccesoSalida(gProvider.codServicio, movimiento.dni!),
+      future :  datosSalida.getDatosAccesosMovimiento(2, int.parse(gProvider.codServicio), movimiento.dni),
 
-        if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+      builder: (context, AsyncSnapshot<List<DatoAccesoMModel>?>snapshot) {
+
+        // if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
 
         final datosSalida = snapshot.data;
 
@@ -183,7 +185,7 @@ class DetailMovimientoPageState extends StatelessWidget {
                       ),
                     ),
                     //BODY ES DINAMICO
-                    SelectedWidgetBody(movimiento: movimiento,datosSalida: datosSalida!),
+                    SelectedWidgetBody(movimiento: movimiento,datosSalida: datosSalida),
                   ],
                 ),
               ),
@@ -197,42 +199,38 @@ class DetailMovimientoPageState extends StatelessWidget {
                 ),
               ),
 
-              // if(movimiento.fechaSalida == '')
-              //   Positioned(
-              //     top: 0,
-              //     right: 10,
-              //     child: IconButton(
-              //       icon: const FaIcon(FontAwesomeIcons.personWalkingDashedLineArrowRight, color: Colors.white, size: 30),
-              //       onPressed: ()=>Navigator.pop(context), 
-              //     ),
-              //   ),
-
               Positioned(
                 top: size.height*0.42,
-                left: (movimiento.codDatoAcceso!=0 || datosSalida.codigoDatosAcceso != "0" ) ? size.width* 0.15 : size.width* 0.35,
+                left: ( datosSalida != null  ) ? size.width* 0.15 : size.width* 0.35,
                 child: Row(
                   children: [
                     const CustomButton(textButton: 'Movimiento'),
-                    if(movimiento.codDatoAcceso!=0 || datosSalida.codigoDatosAcceso !="0")
+                    if( datosSalida != null )
                       SizedBox(width: size.width*.1),
-                    if(movimiento.codDatoAcceso!=0 || datosSalida.codigoDatosAcceso !="0")
+                    if( datosSalida != null )
                       const CustomButton(textButton: 'Acceso'),
                   ],
                 ),
               ),
 
             ],
+
           ),
+
         );
+
       },
+
     );
+
   }
+
 }
 
 class SelectedWidgetBody extends StatelessWidget {
 
   final MovimientoModel movimiento;
-  final DatosAccesoSalidaModel datosSalida;
+  final List<DatoAccesoMModel>? datosSalida;
 
   const SelectedWidgetBody({
     Key? key, 
@@ -260,4 +258,5 @@ class SelectedWidgetBody extends StatelessWidget {
     }
 
   }
+
 }

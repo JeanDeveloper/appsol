@@ -2,7 +2,6 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:solgis/projects/people/domain/providers/radio_provider.dart';
 import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
 import 'package:solgis/projects/people/domain/utils/get_result_scanner.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
@@ -16,7 +15,6 @@ class RegistrarMovimientoPage extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     final registerProvider = Provider.of<RegistrarFormProvider>(context);
-    final tipoProvider = Provider.of<RadioProvider>(context);
     final viewBotton  = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
@@ -55,8 +53,6 @@ class RegistrarMovimientoPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      // if(tipoProvider.valorTipoDocumento!=3)
 
                       //SCANNER
                       ButtonMenuPeople(

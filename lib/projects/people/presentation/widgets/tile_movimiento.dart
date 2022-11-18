@@ -24,6 +24,7 @@ class ListTileMovimiento extends StatelessWidget {
     final globalProvider  = Provider.of<GlobalProvider>(context);
 
     return GestureDetector(
+
       onTap: ()=> Navigator.pushNamed(context, 'detalle_movimiento', arguments: movimiento) ,
 
       child: ListTile(
@@ -147,17 +148,19 @@ class ListTileMovimiento extends StatelessWidget {
 
               ),
             ),
+            
+            // (movimiento.guiaMov == '' && movimiento.materialMov == '') ? 2 : (movimiento.guiaMov != '' || movimiento.materialMov != '')? 1 :  0 
 
-            Expanded( 
-              flex: (movimiento.guiaMov == '' && movimiento.materialMov == '') ? 2 : (movimiento.guiaMov != '' || movimiento.materialMov != '')? 1 :  0, 
-              child: const SizedBox(), 
+            const Expanded( 
+              flex: 2,
+              child: SizedBox(), 
             ),
 
-            if(movimiento.guiaMov != '' )
-              const Expanded( flex: 1 , child: Icon(Icons.library_books_outlined, size: 18) ),
+            // if(movimiento.guiaMov != '' )
+            //   const Expanded( flex: 1 , child: Icon(Icons.library_books_outlined, size: 18) ),
 
-            if(movimiento.materialMov != '' )
-              const Expanded( flex: 1 , child: Icon(Icons.diamond, size: 18)  ),
+            // if(movimiento.materialMov != '' )
+            //   const Expanded( flex: 1 , child: Icon(Icons.diamond, size: 18)  ),
 
             if( movimiento.fechaSalida == '' )
               Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),
@@ -187,12 +190,10 @@ class ListTileMovimiento extends StatelessWidget {
 
   }
 
-
   Duration getTiempoTranscurrido(DateTime fecha1, DateTime fecha2){
     final Duration resultado = fecha2.difference(fecha1);
     return resultado;
   }
-
 
 }
 

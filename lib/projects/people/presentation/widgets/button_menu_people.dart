@@ -15,7 +15,6 @@ class ButtonMenuPeople extends StatelessWidget {
     this.onpressed
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,4 +28,5 @@ class ButtonMenuPeople extends StatelessWidget {
       ],
     );
   }
+
 }

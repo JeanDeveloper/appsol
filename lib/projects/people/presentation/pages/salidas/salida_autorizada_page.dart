@@ -7,6 +7,7 @@ import 'package:solgis/projects/people/data/services/movimiento_service.dart';
 import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart';
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
+import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/salida_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/salidas/widgets/widgets.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
@@ -19,7 +20,7 @@ class SalidaAutorizadaPage extends StatelessWidget {
   Widget build(BuildContext context) {
   Map argm = ModalRoute.of(context)!.settings.arguments as Map;
   ConsultaModel consulta = argm['consulta'];
-  DatosAccesoMModel? datosAcceso = argm['datos_acceso'];
+  List<DatoAccesoMModel>? datosAcceso = argm['datos_acceso'];
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: ((context) => SalidaProvider()))
@@ -33,7 +34,7 @@ class SalidaAutorizadaPage extends StatelessWidget {
 class SalidaAutorizadaBody extends StatelessWidget {
 
   final ConsultaModel consulta;
-  final DatosAccesoMModel? datosAcceso;
+  final List<DatoAccesoMModel>? datosAcceso;
 
   const SalidaAutorizadaBody({
     Key? key, 
@@ -58,20 +59,24 @@ class SalidaAutorizadaBody extends StatelessWidget {
         CustomProgressDialog progressDialog = CustomProgressDialog(context,blur: 10);
         progressDialog.setLoadingWidget(CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppThemePeople.lighThemePeople.primaryColor)));
         progressDialog.show();
-        final datosAcceso = DatosAccesoMModel();
 
-        if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
-        if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
+        // final datosAcceso = DatosAccesoMModel();
+        // if(salidaProvider.materialValor != '' ) datosAcceso.materialMovimiento= salidaProvider.materialValor;
+        // if(salidaProvider.guia!= '') datosAcceso.guiaMovimiento = salidaProvider.guia;
 
-        await movimientoProvider.registerMovimiento(context, consulta, datosAcceso);
+        final MovimientoReponseModel? movReponse = await movimientoProvider.registerMovimiento(context, consulta);
 
-          if(salidaProvider.fotoGuia != null ) {
-            await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
-          }
+        //GUARDAR LOS DATOS DE ACCESO.
+        await movimientoProvider.registerDatoAcceso( salidaProvider.guia , movReponse!.codMovimiento, 'PEOPLE', 1,loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoGuia! );
+        await movimientoProvider.registerDatoAcceso( salidaProvider.materialValor , movReponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoMaterialValor! );
 
-          if(salidaProvider.fotoMaterialValor != null ) {
-              await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
-          }
+        // if(salidaProvider.fotoGuia != null ){
+        //   await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());
+        // }
+
+        // if(salidaProvider.fotoMaterialValor != null ){
+        //   await movimientoProvider.uploadImage(salidaProvider.fotoMaterialValor!.path, 'PEOPLE', 2, loginGlobal.codServicio, consulta.codigoPersona.toString());
+        // }
 
         progressDialog.dismiss();
 
@@ -80,8 +85,6 @@ class SalidaAutorizadaBody extends StatelessWidget {
 
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
-        // Navigator.pushReplacementNamed(context, 'registrar_movimiento_people');
-        // Navigator.pushNamedAndRemoveUntil(context, '/', ModalRoute.withName(''));
 
       },
 
@@ -89,4 +92,3 @@ class SalidaAutorizadaBody extends StatelessWidget {
   }
 
 }
-  

@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/autorizacion_model.dart';
 
 class AutorizacionService {
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/people/consulta-datos-persona/';
 
   Future<AutorizacionModel> _procesarRespuestaGet(Uri url) async{
