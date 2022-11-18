@@ -18,8 +18,6 @@ class _MovimientosDiaTabPageState extends State<MovimientosDiaTabPage> {
   @override
   Widget build(BuildContext context) {
 
-    // final movimientosListProvider = Provider.of<MovimientosProvider>(context);
-    // final globalProvider = Provider.of<GlobalProvider>(context);
     final radioListTile  = Provider.of<RadioListProvider>(context);
 
     return RefreshIndicator(

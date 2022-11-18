@@ -69,13 +69,13 @@ class MovimientosListButton extends StatelessWidget {
                   value: 1,
                 ),
 
-              //PROPIO
+              //CONTRATISTA
               RadioListButton(
-                width: size.width*0.24,
+                width: size.width*0.3,
                 index: index,
-                title:'Propio',
+                title:'Contratista',
                 // icon: Icons.engineering,
-                value: 1,
+                value: 3,
               ),
 
                 //VISITANTE
@@ -87,19 +87,10 @@ class MovimientosListButton extends StatelessWidget {
                   value: 2
                 ),
 
-              //VISITANTE
-              RadioListButton(
-                width: size.width*0.25,
-                index: index,
-                // icon: Icons.visibility,
-                title: 'Visita',
-                value: 2
-              ),
-
               //AUTORIDAD
-              // if(gProvider.codCliente == '28463' || gProvider.codCliente == '30361')
+
               RadioListButton(
-                width: size.width*0.25,
+                width: size.width*0.3,
                 index: index,
                 title: 'Autoridad',
                 // icon: Icons.cro,
@@ -110,9 +101,11 @@ class MovimientosListButton extends StatelessWidget {
 
           ),
 
-          // if(gProvider.codCliente != '28463' && gProvider.codCliente != '30361')
-            // SizedBox( width: size.height*0.03),
+
           ),
+
+          if( gProvider.codCliente == '28463' )
+            SizedBox( width: size.height*0.03),
           //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
           if(gProvider.codCliente == '28463')
             Row(
