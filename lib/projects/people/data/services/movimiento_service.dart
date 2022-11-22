@@ -218,7 +218,7 @@ class MovimientosProvider extends ChangeNotifier{
   Future registerDatoAcceso(String datoAcceso, int codMovimiento, String creadoPor, int codTipoDatoAcceso, String codServicio, String codCliente,  XFile? pathGuia )async{
 
     if( datoAcceso != ''  ){
-      final codDatoAcceso = await datosAccesoService.registerDatosAcceso(codMovimiento, datoAcceso, creadoPor, codTipoDatoAcceso.toString());
+      final codDatoAcceso = await datosAccesoService.registerDatosAcceso(codServicio,  codMovimiento, datoAcceso, creadoPor, codTipoDatoAcceso.toString());
       if( pathGuia != null ) await uploadImageQA(pathGuia.path, 'PEOPLE', codTipoDatoAcceso, codServicio, codCliente, codDatoAcceso!);
     }
 

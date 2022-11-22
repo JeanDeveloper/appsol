@@ -59,7 +59,7 @@ class DatosAccesoService{
 
   }
 
-  Future<int?> registerDatosAcceso(int codMov, String desccripcion, String creadoPor, String codTipoDatoAcceso)async{
+  Future<int?> registerDatosAcceso(String codServicio,int codMov, String descripcion, String creadoPor, String codTipoDatoAcceso)async{
 
     final url = Uri.http(_url, _uncodePath);
 
@@ -68,8 +68,9 @@ class DatosAccesoService{
       headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'},
       body: jsonEncode(
         <String, String>{
+          'cod_servicio'          : codServicio,
           'cod_mov_peatonal'      : '$codMov',
-          'descripcion'           : desccripcion,
+          'descripcion'           : descripcion,
           'creado_por'            : creadoPor,
           'cod_tipo_dato_acceso'  : codTipoDatoAcceso,
         }
@@ -79,7 +80,6 @@ class DatosAccesoService{
     if(resp.statusCode == 201){
       final decodedData = json.decode(utf8.decode(resp.bodyBytes)); 
       return decodedData['codigo_dato_acceso'];
-
     }
 
     return null;

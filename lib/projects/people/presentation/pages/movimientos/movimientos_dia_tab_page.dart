@@ -92,4 +92,5 @@ class MovimientosTilesDiaBody extends StatelessWidget {
     }
 
   }
+
 }

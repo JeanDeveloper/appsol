@@ -36,7 +36,6 @@ class IngresoAutorizadoBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return IngresosTemplatePage(
-
       titleIngreso: 'INGRESO AUTORIZADO', 
       colorAppBar: Colors.green, 
       body: IngresoAutorizadoWidget(consulta: consulta),

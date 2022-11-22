@@ -87,7 +87,6 @@ class ListTileMovimiento extends StatelessWidget {
               color: (movimiento.sexo == 'M')?Colors.blueAccent : Colors.pinkAccent, 
               size: 40
             ),
-
           ),
         ),
 
@@ -126,6 +125,7 @@ class ListTileMovimiento extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   AutoSizeText( movimiento.cargo != '' 
                     ? movimiento.cargo!.split(' ')
                       .map((c) {
@@ -144,24 +144,23 @@ class ListTileMovimiento extends StatelessWidget {
                       .join(' ')
                     : '',
                     minFontSize: 4, maxFontSize: 12, style: styleLetterpersonalmovimientosubtitle().copyWith(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis, maxLines: 2)
-
                 ]
 
               ),
             ),
-            
+
             // (movimiento.guiaMov == '' && movimiento.materialMov == '') ? 2 : (movimiento.guiaMov != '' || movimiento.materialMov != '')? 1 :  0 
 
-            const Expanded( 
+            const Expanded(
               flex: 2,
               child: SizedBox(), 
             ),
 
             // if(movimiento.guiaMov != '' )
-            //   const Expanded( flex: 1 , child: Icon(Icons.library_books_outlined, size: 18) ),
+              // const Expanded( flex: 1 , child: Icon(Icons.library_books_outlined, size: 18) ),
 
             // if(movimiento.materialMov != '' )
-            //   const Expanded( flex: 1 , child: Icon(Icons.diamond, size: 18)  ),
+              // const Expanded( flex: 1 , child: Icon(Icons.diamond, size: 18)  ),
 
             if( movimiento.fechaSalida == '' )
               Expanded( flex: 2 , child: AutoSizeText( movimiento.fechaMovimiento!.toString().substring(11, 19), style: TextStyle(color: Colors.green, fontSize: size.width*0.03), minFontSize: 6, maxFontSize: 12,)),

@@ -9,7 +9,6 @@ import 'package:solgis/projects/people/domain/helpers/show_snackbar_awesome.dart
 import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/ingreso_autorizado_provider.dart';
-import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
 import 'package:solgis/projects/people/theme/theme.dart';
 
 validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
