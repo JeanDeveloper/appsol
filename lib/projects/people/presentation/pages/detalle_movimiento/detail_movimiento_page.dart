@@ -4,7 +4,6 @@ import 'package:solgis/core/domain/helpers/get_image.dart';
 import 'package:solgis/core/domain/providers/global_provider.dart';
 import 'package:solgis/projects/people/data/services/datos_acceso_movimiento_service.dart';
 import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
-import 'package:solgis/projects/people/domain/models/datos_acceso_movimiento_model.dart';
 import 'package:solgis/projects/people/domain/models/movimiento_model.dart';
 import 'package:solgis/projects/people/domain/providers/detalle_movimiento_provider.dart';
 import 'package:solgis/projects/people/presentation/pages/detalle_movimiento/widgets/widgets.dart';
@@ -40,8 +39,7 @@ class DetailMovimientoPageState extends StatelessWidget {
 
     return FutureBuilder(
 
-      // future: datosSalida.getDatosAccesoSalida(gProvider.codServicio, movimiento.dni!),
-      future :  datosSalida.getDatosAccesosMovimiento(2, int.parse(gProvider.codServicio), movimiento.dni),
+      future :  datosSalida.getDatosAccesosMovimiento( (movimiento.fechaSalida == '')? 1 : 2, int.parse(gProvider.codServicio), movimiento.dni),
 
       builder: (context, AsyncSnapshot<List<DatoAccesoMModel>?>snapshot) {
 

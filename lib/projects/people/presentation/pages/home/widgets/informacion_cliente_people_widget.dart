@@ -23,7 +23,7 @@ class InformacionClientePeopleWidget extends StatelessWidget {
       child: SafeArea(
 
         child: Column(
-          
+
           children: [
             
             SizedBox(height: size.height*0.15),
@@ -43,7 +43,7 @@ class InformacionClientePeopleWidget extends StatelessWidget {
             ),// NOMBRE DEL TIPO DE SERVICIO - dinamico
 
             SizedBox(height: size.height*0.015),
-            
+
             Text(
                 loginGlobal.nombreSubArea.split(' ')
                   .map((word) {
@@ -55,12 +55,12 @@ class InformacionClientePeopleWidget extends StatelessWidget {
                 color: Colors.amber
               )
             ),//NOMBRE DEL SERVICIO - dinamico
-            
+
             Text(
               loginGlobal.codServicio,
               style: AppThemePeople.lighThemePeople.textTheme.headline1 
             ),//CODIGO DEL SERVICIO - dinamico
-            
+
           ],
 
         ),

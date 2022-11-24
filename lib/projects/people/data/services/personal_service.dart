@@ -55,8 +55,6 @@ class PersonalProvider{
       body: body,
     );
 
-    print(resp.body);
-
     final decodedData = json.decode(resp.body);
     final consulta = ResponsePersonalModel.fromJson( decodedData );
     return consulta;
@@ -64,7 +62,7 @@ class PersonalProvider{
   }
 
   //SUBIR FOTO DEL PERSONAL AL SERVIDOR
-  Future<void> uploadPhotoPersonal(File file, String nombre)async {
+  Future<void> uploadPhotoPersonal(File file, String nombre, String codServicio)async {
 
       final url = Uri.parse('http://190.116.178.163:92/api/personal/upload-photo-personal');
       final imageUploadRequest = http.MultipartRequest('POST', url);
@@ -76,15 +74,12 @@ class PersonalProvider{
       );
 
       imageUploadRequest.fields['nombre'] = '$nombre.jpg';
+      imageUploadRequest.fields['cod_servicio'] = codServicio;
+
       imageUploadRequest.files.add(filemultipart);
       final streamResponse = await imageUploadRequest.send();
       final resp = await http.Response.fromStream(streamResponse);
 
-      print(resp);
-      print(resp.statusCode);
-      print(resp.body);
-
-    
   } 
 
 

@@ -59,7 +59,7 @@ class DatosAccesoService{
 
   }
 
-  Future<int?> registerDatosAcceso(String codServicio,int codMov, String descripcion, String creadoPor, String codTipoDatoAcceso)async{
+  Future<int?> registerDatosAcceso(String codServicio, int codMov, String descripcion, String creadoPor, String codTipoDatoAcceso)async{
 
     final url = Uri.http(_url, _uncodePath);
 
@@ -83,7 +83,6 @@ class DatosAccesoService{
     }
 
     return null;
-
 
   }
 

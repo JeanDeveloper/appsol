@@ -67,8 +67,8 @@ class SalidaAutorizadaBody extends StatelessWidget {
         final MovimientoReponseModel? movReponse = await movimientoProvider.registerMovimiento(context, consulta);
 
         //GUARDAR LOS DATOS DE ACCESO.
-        await movimientoProvider.registerDatoAcceso( salidaProvider.guia , movReponse!.codMovimiento, 'PEOPLE', 1,loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoGuia! );
-        await movimientoProvider.registerDatoAcceso( salidaProvider.materialValor , movReponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoMaterialValor! );
+        await movimientoProvider.registerDatoAcceso( salidaProvider.guia , movReponse!.codMovimiento, 'PEOPLE', 1,loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoGuia );
+        await movimientoProvider.registerDatoAcceso( salidaProvider.materialValor , movReponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, salidaProvider.fotoMaterialValor );
 
         // if(salidaProvider.fotoGuia != null ){
         //   await movimientoProvider.uploadImage(salidaProvider.fotoGuia!.path, 'PEOPLE', 1, loginGlobal.codServicio, consulta.codigoPersona.toString());

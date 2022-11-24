@@ -27,35 +27,36 @@ validatingFieldsEntryMov(BuildContext context, ConsultaModel consulta)async {
 
   //ACTUALIZANDO LOS CODIGOS DEL AUTORIZANTE, CODIGO DE AREA Y CODIGO MOTIVOO
 
-  if(consulta.codigoAutorizante == 0 || consulta.codigoAutorizante == -1){
-    consulta.codigoAutorizante  = ingresoProvider.codautorizante;
-    consulta.autorizante        = ingresoProvider.autorizante;
+  if( consulta.codigoAutorizante == 0 || consulta.codigoAutorizante == -1  ){
+    consulta.codigoAutorizante   = ingresoProvider.codautorizante;
+    consulta.autorizante         = ingresoProvider.autorizante;
   }
 
-  if(consulta.codigoArea == 0 ||  consulta.codigoArea == -1){
-    consulta.codigoArea = ingresoProvider.cod_area;
-    consulta.area       = ingresoProvider.area_acceso;
+  if( consulta.codigoArea == 0 ||  consulta.codigoArea == -1 ){
+    consulta.codigoArea   = ingresoProvider.cod_area;
+    consulta.area         = ingresoProvider.area_acceso;
   }
 
-  if(consulta.codigoMotivo == 0 || consulta.codigoMotivo == -1){
-    consulta.codigoMotivo = ingresoProvider.cod_motivo;
-    consulta.motivo       = ingresoProvider.motivo;
+  if( consulta.codigoMotivo == 0 || consulta.codigoMotivo == -1  ){
+    consulta.codigoMotivo   = ingresoProvider.cod_motivo;
+    consulta.motivo         = ingresoProvider.motivo;
   }
 
-  //REGISTRANDO EL MOVIMIENTO Y SALVANDO EL RESPONSE .
+  //REGISTRANDO EL MOVIMIENTO Y OBTENIENDO EL CODIGO DE SERVICIO .
   final MovimientoReponseModel? movimientoResponse = await movimientoProvider.registerMovimiento(context, consulta);
 
   //GUARDAR LOS DATOS DE ACCESO.
-  await movimientoProvider.registerDatoAcceso( ingresoProvider.guia , movimientoResponse!.codMovimiento, 'PEOPLE', 1,loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoGuia);
-  await movimientoProvider.registerDatoAcceso( ingresoProvider.material_valor , movimientoResponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoMaterialValor);
+  await movimientoProvider.registerDatoAcceso( ingresoProvider.guia , movimientoResponse!.codMovimiento, 'PEOPLE', 1, loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoGuia );
+  await movimientoProvider.registerDatoAcceso( ingresoProvider.material_valor , movimientoResponse.codMovimiento, 'PEOPLE', 2, loginGlobal.codServicio, loginGlobal.codCliente, ingresoProvider.fotoMaterialValor );
 
-  if(ingresoProvider.fotoPersonalUpdate !=null) await PersonalProvider().uploadPhotoPersonal(ingresoProvider.fotoPersonalUpdate!, consulta.docPersona.toString());
+  if( ingresoProvider.fotoPersonalUpdate !=null ) await PersonalProvider().uploadPhotoPersonal( ingresoProvider.fotoPersonalUpdate!, consulta.docPersona.toString(), loginGlobal.codServicio);
 
   progressDialog.dismiss();
 
   // ignore: use_build_context_synchronously
-  showSnackBarAwesome(context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success);
+  showSnackBarAwesome(  context, 'EXITO', 'Se registro el movimiento para el personal ${consulta.docPersona} con exito', ContentType.success  );
 
+  // ignore: use_build_context_synchronously
   Navigator.of(context).pop();
 
 }
