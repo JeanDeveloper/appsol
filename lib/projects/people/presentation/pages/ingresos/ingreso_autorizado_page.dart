@@ -44,5 +44,6 @@ class IngresoAutorizadoBody extends StatelessWidget {
         validatingFieldsEntryMov(context, consulta);
       },
     );
+
   }
 }

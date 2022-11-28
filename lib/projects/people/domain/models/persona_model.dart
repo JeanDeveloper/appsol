@@ -1,83 +1,137 @@
 import 'dart:convert';
 
-List<PersonaModel> personaModelFromMap(String str) => List<PersonaModel>.from(json.decode(str).map((x) => PersonaModel.fromMap(x)));
+PersonalModel personalModelFromJson(String str) => PersonalModel.fromJson(json.decode(str));
 
-String personaModelToMap(List<PersonaModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
+String personalModelToJson(PersonalModel data) => json.encode(data.toJson());
 
-class PersonaModel {
-    PersonaModel({
-        this.tipoPersonal,
-        required this.tipoDocumento,
-        required this.numeroDocumento,
-        this.pNombre,
-        this.sNombre,
-        this.pApellido,
-        this.sApellido,
-        this.empresa,
-        this.cargo,
+class PersonalModel {
+    PersonalModel({
+        this.codigoPersonal,
+        this.codigoTipoPersonal,
+        this.codigoEmpresa,
+        this.codigoTipoDocumento,
+        this.codigoCargo,
+        this.codigoArea,
+        this.nombre1,
+        this.nombre2,
+        this.apellido1,
+        this.apellido2,
+        this.docPersonal,
         this.sexo,
-        this.urlimg,
-        this.creadoPor,
         this.esAutorizante,
-        this.habilitado = true,
-        this.tiene_foto = true,
-        this.cod_cliente_control,
+        this.esListaNegra,
+        this.tieneFoto,
+        this.imgPath,
+        this.brevete,
+        this.nombreTurnoPersonal,
+        this.fNacimiento,
+        this.dosisCompleta,
+        this.telefono,
     });
-    String? tipoPersonal;
-    int tipoDocumento;
-    String numeroDocumento;
-    String? pNombre;
-    String? sNombre;
-    String? pApellido;
-    String? sApellido;
-    String? empresa;
-    String? cargo;
+
+    String? codigoPersonal;
+    String? codigoTipoPersonal;
+    String? codigoEmpresa;
+    String? codigoTipoDocumento;
+    String? codigoCargo;
+    String? codigoArea;
+    String? nombre1;
+    String? nombre2;
+    String? apellido1;
+    String? apellido2;
+    String? docPersonal;
     String? sexo;
-    String? urlimg;
-    String? creadoPor;
-    int? esAutorizante= 0;
-    bool? habilitado = true;
-    bool? tiene_foto = true;
-    String? cod_cliente_control;
+    bool?   esAutorizante;
+    String? esListaNegra;
+    String? tieneFoto;
+    String? imgPath;
+    String? brevete;
+    String? nombreTurnoPersonal;
+    String? fNacimiento;
+    String? dosisCompleta;
+    String? telefono;
 
-
-    factory PersonaModel.fromMap(Map<String, dynamic> json) => PersonaModel(
-        tipoPersonal: json["tipo_persona"],
-        tipoDocumento: json["tipo_documento"],
-        numeroDocumento: json["numero_documento"],
-        pNombre: json["p_nombre"],
-        sNombre: json["s_nombre"],
-        pApellido: json["p_apellido"],
-        sApellido: json["s_apellido"],
-        empresa: json["empresa"],
-        cargo: json["cargo"],
+    factory PersonalModel.fromJson(Map<String, dynamic> json) => PersonalModel(
+        codigoPersonal    : json["codigo_personal"],
+        codigoTipoPersonal: json["codigo_tipo_personal"],
+        codigoEmpresa: json["codigo_empresa"],
+        codigoTipoDocumento: json["codigo_tipo_documento"],
+        codigoCargo: json["codigo_cargo"],
+        codigoArea: json["codigo_area"],
+        nombre1: json["nombre1"],
+        nombre2: json["nombre2"],
+        apellido1: json["apellido1"],
+        apellido2: json["apellido2"],
+        docPersonal: json["doc_personal"],
         sexo: json["sexo"],
-        urlimg: json["urlimg"],
-        creadoPor: json["creadoPor"],
-        esAutorizante: json["esAutorizante"],
-        habilitado: json["habilitado"],
-        tiene_foto: json["tiene_foto"],
-        cod_cliente_control: json["cod_cliente_control"],
-
+        esAutorizante: json["es_autorizante"],
+        esListaNegra: json["es_lista_negra"],
+        tieneFoto: json["tiene_foto"],
+        imgPath: json["imgPath"],
+        brevete: json["brevete"],
+        nombreTurnoPersonal: json["nombre_turno_personal"],
+        fNacimiento: json["f_nacimiento"],
+        dosisCompleta: json["dosis_completa"],
+        telefono: json["telefono"],
     );
 
-    Map<String, dynamic> toMap() => {
-        "tipo_persona": tipoPersonal,
-        "tipo_documento": tipoDocumento,
-        "numero_documento": numeroDocumento,
-        "p_nombre": pNombre,
-        "s_nombre": sNombre,
-        "p_apellido": pApellido,
-        "s_apellido": sApellido,
-        "empresa": empresa,
-        "cargo": cargo,
+    Map<String, dynamic> toJson() => {
+        "codigo_personal": codigoPersonal,
+        "codigo_tipo_personal": codigoTipoPersonal,
+        "codigo_empresa": codigoEmpresa,
+        "codigo_tipo_documento": codigoTipoDocumento,
+        "codigo_cargo": codigoCargo,
+        "codigo_area": codigoArea,
+        "nombre1": nombre1,
+        "nombre2": nombre2,
+        "apellido1": apellido1,
+        "apellido2": apellido2,
+        "doc_personal": docPersonal,
         "sexo": sexo,
-        "urlimg": urlimg,
-        "creadoPor": creadoPor,
-        "esAutorizante": esAutorizante,
-        "habilitado": habilitado,
-        "tiene_foto": tiene_foto,
-        "cod_cliente_control": cod_cliente_control,
-
+        "es_autorizante": esAutorizante,
+        "es_lista_negra": esListaNegra,
+        "tiene_foto": tieneFoto,
+        "imgPath": imgPath,
+        "brevete": brevete,
+        "nombre_turno_personal": nombreTurnoPersonal,
+        "f_nacimiento": fNacimiento,
+        "dosis_completa": dosisCompleta,
+        "telefono": telefono,
     };
+
 }
+
+
+PersonalValidacionModel personalValidacionModelFromJson(String str) => PersonalValidacionModel.fromJson(json.decode(str));
+
+class PersonalValidacionModel{
+
+    PersonalValidacionModel({
+      this.estadoTransaccion,
+      this.codPersonal,
+    });
+
+    int? estadoTransaccion;
+    String? codPersonal;
+
+    factory PersonalValidacionModel.fromJson(Map<String, dynamic> json) => PersonalValidacionModel(
+      estadoTransaccion: json["estado_transaccion"],
+      codPersonal: json["cod_personal"],
+    );
+
+}
+
+
+
+
+
+
+
+
+
+
+// class PersonalValidacionModel{
+//   int documento;
+//   String cod_persona;
+
+// }

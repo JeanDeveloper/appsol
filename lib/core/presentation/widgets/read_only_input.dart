@@ -29,8 +29,8 @@ class InputReadOnlyWidget extends StatelessWidget {
           ? ''  
           : initialValue!
             .split(' ')
-            .map((e) {
-              if(e != '') return e[0]+ e.substring(1).toLowerCase();
+            .map((e){
+              if( e != '' ) return e[0]+ e.substring(1).toLowerCase();
             })
             .join(' '),
         readOnly: true,

@@ -30,7 +30,7 @@ class RegistrarForm extends StatelessWidget {
       child: SingleChildScrollView(
 
         child: Column(
-        
+
           children: [
 
             _TipoCarnet(),
@@ -258,7 +258,7 @@ class _PasaporteFormRegister extends StatelessWidget {
             onPressed: (){
               if(registerForm.isValidForm()){
               FocusScope.of(context).requestFocus(FocusNode());
-              consultarDOI(context, registerForm.pasaporte, loginProvider.codServicio);
+              consultarDOI(context, registerForm.pasaporte, loginProvider.codServicio, loginProvider.codCliente);
               }
             },
 

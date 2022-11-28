@@ -5,21 +5,11 @@ class InputDecorationsReadOnly{
   static InputDecoration formInputDecorationReadOnly(){
 
     return const InputDecoration(
-      contentPadding: EdgeInsets.only(left: 5 ),
+      contentPadding: EdgeInsets.only(bottom: 18 ),
 
-      // enabledBorder:   OutlineInputBorder(
-      //   borderRadius: BorderRadius.all(Radius.circular(5)),
-      //   borderSide: BorderSide(
-      //     color: Colors.black
-      //   )
-      // ),
+      border: InputBorder.none,
+      enabledBorder:   InputBorder.none,
 
-      // focusedBorder:  OutlineInputBorder(
-      //   borderRadius: BorderRadius.all(Radius.circular(5)),
-      //   borderSide: BorderSide(
-      //     color: Colors.black
-      //   )
-      // ),
 
     );
 

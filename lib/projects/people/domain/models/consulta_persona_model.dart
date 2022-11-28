@@ -1,6 +1,4 @@
 import 'dart:convert';
-//     final consultaModel = consultaModelFromJson(jsonString);
-
 
 String consultaModelToJson(List<ConsultaModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -117,3 +115,7 @@ class ConsultaModel {
     };
 
 }
+
+
+
+

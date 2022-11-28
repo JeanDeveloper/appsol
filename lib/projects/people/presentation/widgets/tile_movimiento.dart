@@ -171,7 +171,7 @@ class ListTileMovimiento extends StatelessWidget {
 
         trailing: (movimiento.fechaSalida == '')
           ? GestureDetector( 
-            onTap: ()=>consultarDOI(context, movimiento.dni!, globalProvider.codServicio),
+            onTap: ()=>consultarDOI(context, movimiento.dni!, globalProvider.codServicio, globalProvider.codCliente),
             child:  Container(
               width: size.width * .1,
               height: double.infinity,

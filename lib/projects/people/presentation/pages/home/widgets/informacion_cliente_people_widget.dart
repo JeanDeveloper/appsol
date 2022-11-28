@@ -33,6 +33,8 @@ class InformacionClientePeopleWidget extends StatelessWidget {
               height: size.width*0.48,
               placeholder:  const AssetImage('assets/gifs/loading.gif'), 
               image: AssetImage("assets/pngs/${loginGlobal.nombreCliente}.png")
+              //image: AssetImage("assets/pngs/tasa2.png")
+
             ),
 
             SizedBox(height: size.height*0.015),

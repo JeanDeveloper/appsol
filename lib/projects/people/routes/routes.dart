@@ -18,7 +18,8 @@ class PeopleRoutes {
     'consulta_home_page_people'      : (BuildContext context) => const ConsultaHomePage(),
     'consulta_page_people'           : (BuildContext context) => const ConsultaPage(),
     'register_movimiento_gun_people' : (BuildContext context) => const RegisterScanGunPage(),
-    'detalle_movimiento'             : (BuildContext context) =>       DetailMovimientoPage()
+    'detalle_movimiento'             : (BuildContext context) => DetailMovimientoPage(),
+    'habilitar_personal'             : (BuildContext context) => HabilitarPersonalPage(),
 
   };
 

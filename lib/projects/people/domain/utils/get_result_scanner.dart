@@ -45,7 +45,7 @@ getResultScanner(BuildContext context, String barcode){
       if( barcode.trim() == '' ){
         showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
       }else{
-        consultarDOI(context, barcode, loginProvider.codServicio);
+        consultarDOI(context, barcode, loginProvider.codServicio, loginProvider.codCliente);
       }
 
     }else if( tipoProvider.valorTipoDocumento == 2 ){
@@ -55,7 +55,7 @@ getResultScanner(BuildContext context, String barcode){
 
       if( barcode.trim() == '' ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
 
-      return consultarDOI(context, barcode, loginProvider.codServicio);
+      return consultarDOI(context, barcode, loginProvider.codServicio, loginProvider.codCliente);
 
       // if( barcode.trim() == '' ){
       //   showSnackBarAwesome(context, 'Error', 'Ingrese un Carnet valido', ContentType.failure);
@@ -69,7 +69,7 @@ getResultScanner(BuildContext context, String barcode){
 
       if( barcode.trim() == '' ) return showSnackBarAwesome(context, 'Error', 'Ingrese un dni valido', ContentType.failure);
 
-      return consultarDOI(context, barcode, loginProvider.codServicio);
+      return consultarDOI(context, barcode, loginProvider.codServicio,  loginProvider.codCliente);
 
       // if( barcode.trim() == '' ){
       //   showSnackBarAwesome( context, 'Error', 'Ingrese un pasaporte valido', ContentType.failure );

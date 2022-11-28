@@ -27,7 +27,7 @@ class MovimientosListButton extends StatelessWidget {
     return Container(
 
       padding: const EdgeInsets.only(top: 20),
-      height: (gProvider.codCliente == '28463')? size.height * .25 : size.height * .18,
+      height: (gProvider.codCliente == '25866')? size.height * .25 : size.height * .18,
 
       child: Column(
 
@@ -104,10 +104,10 @@ class MovimientosListButton extends StatelessWidget {
 
           ),
 
-          if( gProvider.codCliente == '28463' )
+          if( gProvider.codCliente == '25866' )
             SizedBox( width: size.height*0.03),
           //SE REMOVIO EL SIZEDBOX CON WIDTH INFINITY Y HEIGHT size.height*0.05
-          if(gProvider.codCliente == '28463')
+          if(gProvider.codCliente == '25866')
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 

@@ -6,7 +6,7 @@ import 'package:solgis/projects/people/domain/models/consulta_persona_model.dart
 
 class ConsultaDOIService {
 
-  final String _url = '190.116.178.163:96';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'solgis/people/detalle-personal/';
   final bool cargando = false;
   late ConsultaModel consulta;
@@ -19,6 +19,8 @@ class ConsultaDOIService {
         HttpHeaders.contentTypeHeader: "application/json; charset= utf-8",
       }
     );
+
+    print(resp.body);
 
     if(resp.statusCode ==200){
       final decodedData = json.decode(resp.body);

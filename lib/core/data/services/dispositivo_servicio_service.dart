@@ -6,7 +6,7 @@ import 'package:solgis/core/domain/models/relation_device_service_provider.dart'
 
 class RelationDeviceService{
 
-  final String _url = '190.116.178.163:96';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'solgis/dispositivo/relacion/';
 
   //PETICION GET

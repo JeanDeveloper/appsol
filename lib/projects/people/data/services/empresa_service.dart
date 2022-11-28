@@ -8,7 +8,7 @@ import 'package:solgis/projects/people/domain/models/empresa_model.dart';
 
 class EmpresasProvider {
 
-  final String _url = '190.116.178.163:96';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'solgis/people/empresas/';
 
 
@@ -35,15 +35,15 @@ class EmpresasProvider {
     }
 
   }
-                      
+
   //obtener las empresas
-  Future<List<DropdownMenuItem<int>>> getEmpresas(String codEmpresa, String nomEmpresa)async{
-    
+  Future<List<DropdownMenuItem<int>>> getEmpresas(String codCliente, String nomEmpresa)async{
+
     List<DropdownMenuItem<int>> menuItems = [];
 
     final url = Uri.http( _url, _uncodePath, {
       'nombreEmpresa': nomEmpresa,
-      'codEmpresa': codEmpresa,
+      'codEmpresa': codCliente,
     } );
 
     final empresas = await _procesarRespuestaGet(url);

@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/tipos_personal_model.dart';
 
 class TiposPersonalProvider{
 
-  final String _url = '190.116.178.163:96';
+  final String _url = '192.168.10.103:8000';
   final String _uncodePath = 'solgis/people/personal/tipos/';
   final bool cargando = false;
 

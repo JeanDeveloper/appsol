@@ -7,7 +7,6 @@ import 'package:solgis/projects/people/domain/providers/crear_personal_provider.
 import 'package:solgis/projects/people/presentation/pages/personal/widgets/widgets.dart';
 import 'package:solgis/projects/people/styles/style.dart';
 
-
 class CrearPersonalBody extends StatelessWidget {
 
   // final String documento;
@@ -275,7 +274,6 @@ class CrearPersonalBody extends StatelessWidget {
                         value:(personalProvider.cargo == -1) ?null  :personalProvider.cargo ,
                       );
 
-
                       // return DropdownButton2Widget(
                       //   items: dropdowncargos,
                       //   hinText: 'Seleccione el cargo',
@@ -285,8 +283,6 @@ class CrearPersonalBody extends StatelessWidget {
                       //   value: (personalProvider.cargo == -1) ? null : personalProvider.cargo,
                       // );
 
-
-
                     }, 
 
                   ),
@@ -294,6 +290,7 @@ class CrearPersonalBody extends StatelessWidget {
                 ]
 
               ),
+
               SizedBox(height: size.height*0.04), 
 
               //BOTON PARA EL REGISTRO
@@ -304,13 +301,10 @@ class CrearPersonalBody extends StatelessWidget {
                   padding: const EdgeInsets.all(14.0),
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-
                 onPressed: (){
-                  if(personalProvider.isValidForm()){
-                    guardarPersonal(context, personalProvider.foto);
-                  } 
+                  if(personalProvider.isValidForm()) guardarPersonal(context, personalProvider.foto);
+                  
                 },
-
                 child: const Text('Registar', style: TextStyle(fontSize: 14))
               )
 

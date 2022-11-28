@@ -91,7 +91,7 @@ class _RegisterScanGunPageState extends State<RegisterScanGunPage> {
                     onSubmitted: (value) {
 
                       if(value== '') return showSnackBarAwesome(context, 'Atencion', 'Escanee el fotocontrol correctamente', ContentType.failure);
-                      consultarDOI(context, value, loginProvider.codServicio);
+                      consultarDOI(context, value, loginProvider.codServicio, loginProvider.codCliente);
                       myController.text = '';
                       myFocusNode.requestFocus();
 

@@ -45,7 +45,7 @@ class NumPad extends StatelessWidget {
                   if(isDni){
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('1', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
                   }else{
@@ -69,7 +69,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('2', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -100,7 +100,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('3', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -128,7 +128,7 @@ class NumPad extends StatelessWidget {
                   if(isDni){
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('4', length);
                     if(numpadProvider.dni.length == 8){
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
                   }else{
@@ -155,7 +155,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('5', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -185,7 +185,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('6', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -219,7 +219,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('7', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     };
 
@@ -247,7 +247,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('8', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -275,7 +275,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('9', length);
                     if(numpadProvider.dni.length == 8){
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 
@@ -312,7 +312,7 @@ class NumPad extends StatelessWidget {
                   haveBorder: false,
                   icon: Icons.check,
                   onPressed: (){
-                    consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio);
+                    consultarDOI(context, numpadProvider.carnet, loginProvider.codServicio, loginProvider.codCliente);
                     numpadProvider.carnet = '';
                     // onPressed((isDni)?numpadProvider.dni:numpadProvider.carnet);
                     // (isDni)?numpadProvider.dni = '': numpadProvider.carnet = '';
@@ -327,7 +327,7 @@ class NumPad extends StatelessWidget {
 
                     if(numpadProvider.dni.length < 8) numpadProvider.setValueDni('0', length);
                     if(numpadProvider.dni.length == 8) {
-                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio);
+                      consultarDOI(context, numpadProvider.dni, loginProvider.codServicio, loginProvider.codCliente);
                       numpadProvider.dni = '';
                     }
 

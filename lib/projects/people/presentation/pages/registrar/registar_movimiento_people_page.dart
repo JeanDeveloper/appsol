@@ -4,9 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:solgis/projects/people/domain/providers/registrar_form_provider.dart';
 import 'package:solgis/projects/people/domain/utils/get_result_scanner.dart';
-import 'package:solgis/projects/people/domain/utils/scanning_infinity.dart';
 import 'package:solgis/projects/people/presentation/widgets/widgets.dart';
-import 'package:solgis/projects/people/styles/style.dart';
 
 
 class RegistrarMovimientoPage extends StatelessWidget{
@@ -60,9 +58,6 @@ class RegistrarMovimientoPage extends StatelessWidget{
                           icon: FontAwesomeIcons.barcode,
                           text: 'Escanear', 
                           onpressed:()async{
-
-                            // registerProvider.isScanning = true;
-
                             String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
                               "#ff6666", 
                               'Cancelar', 

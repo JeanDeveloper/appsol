@@ -10,3 +10,4 @@ export 'package:solgis/projects/people/presentation/pages/personal/crear_persona
 export 'package:solgis/projects/people/presentation/pages/registrar/registar_movimiento_people_page.dart';
 export 'package:solgis/projects/people/presentation/pages/registrar/register_scan_gun_page.dart';
 export 'package:solgis/projects/people/presentation/pages/salidas/salida_page.dart';
+export 'package:solgis/projects/people/presentation/pages/personal/habilitar_personal_page.dart';
