@@ -7,7 +7,7 @@ import 'package:solgis/projects/people/domain/models/datos_acceso_salida_model.d
 
 class DatosAccesoService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/people/datos_acceso/';
 
   Future<List<DatoAccesoMModel>?> getDatosAccesosMovimiento(int tipoMovimiento, int codServicio, String? documento)async{

@@ -6,7 +6,7 @@ import 'package:solgis/core/domain/models/permisos_model.dart';
 
 class PermisosService{
 
-  static const String _url = '192.168.10.103:8000'; 
+  static const String _url = '190.116.178.163:96'; 
   static const String _uncodePath = 'solgis/usuario/permisos/';
 
   // PETICION GET

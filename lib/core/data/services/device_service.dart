@@ -7,7 +7,7 @@ import 'package:solgis/core/domain/models/device_response_model.dart';
 
 class DeviceService{
 
-  final String _url = '192.168.10.103:8000';
+  final String _url = '190.116.178.163:96';
   final String _uncodePath = 'solgis/dispositivo/';
 
   //PETICION POST
@@ -23,17 +23,17 @@ class DeviceService{
       },
 
       body: jsonEncode( <String, String> {
-        'serial'     : dispositivo.serialNumber!,
-        'hardware'   : dispositivo.hardware!,
-        'modelo'     : dispositivo.model!,
-        'fabricante' : dispositivo.brand!,
-        'version_api': dispositivo.release!,
-        'numero'     : number,
-        'sdk'        : dispositivo.sdkInt!,
-        'incremental': dispositivo.incremental!,
-        'dispositivo': dispositivo.device!,
-        'id'         : dispositivo.id!,
-        'id_fb'      : token?? '',
+        'serial'     : dispositivo.serialNumber ?? '',
+        'hardware'   : dispositivo.hardware ?? '',
+        'modelo'     : dispositivo.model ?? '',
+        'fabricante' : dispositivo.brand ?? '',
+        'version_api': dispositivo.release ?? '',
+        'numero'     : number ,
+        'sdk'        : dispositivo.sdkInt ?? '',
+        'incremental': dispositivo.incremental ?? '',
+        'dispositivo': dispositivo.device ?? '',
+        'id'         : dispositivo.id ?? '',
+        'id_fb'      : token ?? '',
       })
 
     );
