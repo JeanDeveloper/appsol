@@ -100,7 +100,7 @@ class PersonalProvider{
       }
     );
 
-    print( resp.body );
+    // print( resp.body );
 
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
     PersonalValidacionModel responseModel = PersonalValidacionModel.fromJson(decodedData);
@@ -127,7 +127,7 @@ class PersonalProvider{
       ),
 
     );
-    print(resp.body);
+    // print(resp.body);
 
   }
 
@@ -146,7 +146,7 @@ class PersonalProvider{
       }
     );
     
-    print(resp.body);
+    // print(resp.body);
 
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
     PersonalModel responseModel = PersonalModel.fromJson(decodedData);

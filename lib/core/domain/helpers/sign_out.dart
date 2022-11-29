@@ -33,7 +33,7 @@ Future<void>signOut(BuildContext context)async {
     Preferences.isAuthenticated = false;
   }else{
 
-    print('fue logeado por usuario y contraseña');
+    //print('fue logeado por usuario y contraseña');
 
   }
 

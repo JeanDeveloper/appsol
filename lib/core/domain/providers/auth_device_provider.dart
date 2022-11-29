@@ -21,7 +21,7 @@ class AuthDeviceProvider extends ChangeNotifier{
   changeState(AuthDeviceStatus state){
 
     status = state;
-    print('Estado: ${status}');
+    //print('Estado: ${status}');
     notifyListeners();
   }
 

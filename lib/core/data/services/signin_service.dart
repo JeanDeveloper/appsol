@@ -19,7 +19,7 @@ class SignInService{
       url,
       headers: {HttpHeaders.contentTypeHeader: "application/json; charset=utf-8"}
     );
-    print(resp.body);
+    //print(resp.body);
     final decodedData = json.decode(utf8.decode(resp.bodyBytes));
     if(decodedData.length == 1) return null;
     final signinwithdni = LoginDniResponse.fromJson(decodedData);

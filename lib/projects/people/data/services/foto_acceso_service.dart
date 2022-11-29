@@ -60,7 +60,7 @@ class FotoAccesoService {
       }
     );
 
-    print(resp.body);
+    // print(resp.body);
 
   }
 

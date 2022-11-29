@@ -59,12 +59,12 @@ class HomeProvider extends ChangeNotifier{
 
   bool isValidForm(){
     // print(formKey.currentState?.validate());
-    print('${_usuario} - ${_password}');
+    //print('${_usuario} - ${_password}');
     return formKey.currentState?.validate() ?? false;
   }
 
   bool isValidFormPhone(){
-    print('$_phone');
+    // print('$_phone');
     return formKeyPhone.currentState?.validate() ?? false;
   }
 

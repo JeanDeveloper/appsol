@@ -17,7 +17,7 @@ class PushNotification {
 
     } catch (e) {
 
-      print(e);
+      //print(e);
 
     }
 

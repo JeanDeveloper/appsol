@@ -147,13 +147,13 @@ class MovimientosProvider extends ChangeNotifier{
 
     final codigoMovimiento = await obtenerCodigoUltimoMovimiento(codigoServicio, codPersonal);
 
-    print('path de la imagen fotografiada $pathImage');
+    // print('path de la imagen fotografiada $pathImage');
 
     if(!isCosco){
       pictureFile = File.fromUri(Uri(path: pathImage));
       pictureFile = await changeFileNameOnly(pictureFile!, '${codigoMovimiento.toString()}.jpg');
-      print('imprimiendo del pictureFile');
-      print(pictureFile!.path);
+      // print('imprimiendo del pictureFile');
+      // print(pictureFile!.path);
 
       if(pictureFile == null) return null;
 
@@ -204,7 +204,7 @@ class MovimientosProvider extends ChangeNotifier{
     imageUploadRequest.files.add(file);
     final streamResponse = await imageUploadRequest.send();
     final resp = await http.Response.fromStream(streamResponse);
-    print(resp);
+    // print(resp);
 
   }
 

@@ -9,7 +9,7 @@ import 'package:solgis/projects/people/styles/style.dart';
 class DNIRegister extends StatelessWidget {
 
   // final String documento;
-  
+
   DNIRegister({
     Key? key, 
     // required this.documento
@@ -156,7 +156,7 @@ class DNIRegister extends StatelessWidget {
                     onChanged: (value)=> personalProvider.nDocumento=value,
                     onFieldSubmitted: (value) {
                       FocusNode().requestFocus();
-                      print(value);
+                      // print(value);
                     },
                   ),
                 ),
@@ -183,7 +183,6 @@ List<DropdownMenuItem<int>> get dropdownItemsTipoDocumento{
   return menuItems;
 
 }
-
 
 
 InputDecoration _inputDecorationDatos()=> const  InputDecoration(

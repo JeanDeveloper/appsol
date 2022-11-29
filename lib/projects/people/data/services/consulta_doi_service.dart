@@ -20,7 +20,7 @@ class ConsultaDOIService {
       }
     );
 
-    print(resp.body);
+    // print(resp.body);
 
     if(resp.statusCode ==200){
       final decodedData = json.decode(resp.body);

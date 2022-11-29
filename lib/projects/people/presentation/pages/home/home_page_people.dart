@@ -55,7 +55,7 @@ class _HomeHeaderPeople extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('People v2', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
+            Text('People v2.7', style: AppThemePeople.lighThemePeople.textTheme.headline1 ),
             SizedBox(height: size.height*0.05),
             Align(
               alignment: Alignment.centerLeft,

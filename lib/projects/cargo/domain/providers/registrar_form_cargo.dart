@@ -46,8 +46,8 @@ class RegisterProvider extends ChangeNotifier {
 }
 
   bool isValidForm(){
-    print(formKey.currentState?.validate());
-    print('$placa');
+    // print(formKey.currentState?.validate());
+    // print('$placa');
     return formKey.currentState?.validate() ?? false;
   }
 
